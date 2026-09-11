@@ -1,0 +1,20 @@
+[
+  {
+    "source": "E:/Office/RedSpectrum/testingGHL_AI/red-spectrum-ai-operations-command-center/public/assets/logo-full-white-bg.png",
+    "target": "E:/Office/customer_Projects/rs-website-factory/public/brand/red-spectrum/logo-light.png",
+    "sha256": "9B447899F8D27AA2B652CAE4B108F72DA7B753B652A4FF08749C687336D17BBC",
+    "unchanged": true
+  },
+  {
+    "source": "E:/Office/RedSpectrum/testingGHL_AI/red-spectrum-ai-operations-command-center/public/assets/logo-full-transparent.png",
+    "target": "E:/Office/customer_Projects/rs-website-factory/public/brand/red-spectrum/logo-transparent.png",
+    "sha256": "91E6ADADAE8A2F8FA58D3CB0C6E460F97A6CCCDA9BCB014AF36C8E59603B888F",
+    "unchanged": true
+  },
+  {
+    "source": "E:/Office/RedSpectrum/testingGHL_AI/red-spectrum-ai-operations-command-center/public/assets/logo-icon-transparent-400.png",
+    "target": "E:/Office/customer_Projects/rs-website-factory/public/brand/red-spectrum/favicon.png",
+    "sha256": "F38D131B156D5A32F3CDA36A10F49CDA67E8748FCBC11C50BE64BB956017D3A0",
+    "unchanged": true
+  }
+]

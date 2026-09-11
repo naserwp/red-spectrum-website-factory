@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.theredspectrum.com/schemas/customer-site.v1.json",
+  "title": "Red Spectrum Customer Website Configuration",
+  "type": "object",
+  "required": ["schemaVersion", "slug", "status", "templateId", "business", "contact", "services", "pages", "branding", "images", "seo", "schema", "form", "myndy"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "status": { "enum": ["draft", "review", "approved"] },
+    "templateId": { "enum": ["forge", "ledger", "stillwater"] },
+    "business": { "type": "object", "required": ["name", "industry", "tagline", "summary"] },
+    "contact": { "type": "object", "required": ["phone", "email", "address", "serviceAreas"], "additionalProperties": { "$ref": "#/$defs/verifiedText" } },
+    "services": { "type": "array", "minItems": 1, "maxItems": 12, "items": { "$ref": "#/$defs/service" } },
+    "pages": { "type": "object", "required": ["home", "services", "about", "contact", "privacy"] },
+    "branding": { "type": "object", "required": ["primary", "secondary", "accent", "surface", "logoPath", "faviconPath"] },
+    "images": { "type": "object", "required": ["hero", "gallery"] },
+    "seo": { "type": "object", "required": ["title", "description"] },
+    "schema": { "type": "object", "required": ["type", "description"] },
+    "form": {
+      "type": "object",
+      "required": ["provider", "mode", "recipientConfirmed", "testPassed"],
+      "properties": {
+        "provider": { "const": "sendgrid" },
+        "mode": { "enum": ["disabled", "test", "live"] },
+        "recipientConfirmed": { "type": "boolean" },
+        "testPassed": { "type": "boolean" }
+      }
+    },
+    "myndy": { "type": "object", "required": ["agentName", "greeting", "avatarBrief", "knowledgeContextPath", "embed"] }
+  },
+  "$defs": {
+    "verifiedText": {
+      "type": "object",
+      "required": ["value", "status"],
+      "properties": { "value": { "type": "string" }, "status": { "enum": ["verified", "draft", "missing"] }, "source": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "service": {
+      "type": "object",
+      "required": ["name", "description", "status"],
+      "properties": { "name": { "type": "string", "minLength": 1 }, "description": { "type": "string", "minLength": 1 }, "status": { "enum": ["verified", "draft"] }, "source": { "type": "string" } },
+      "additionalProperties": false
+    }
+  }
+}

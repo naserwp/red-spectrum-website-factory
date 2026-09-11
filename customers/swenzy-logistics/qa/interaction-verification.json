@@ -1,0 +1,115 @@
+{
+  "date": "2026-09-11T19:21:36.733Z",
+  "initial": {
+    "scripts": 1,
+    "shadowStyles": 1,
+    "url": "/swenzy-logistics",
+    "widgets": 1
+  },
+  "services": {
+    "scripts": 0,
+    "shadowStyles": 1,
+    "url": "/swenzy-logistics/services",
+    "widgets": 1
+  },
+  "widget": {
+    "controls": [
+      {
+        "label": "Enter your name",
+        "rect": {
+          "bottom": 458.65625,
+          "left": 59.609375,
+          "right": 320,
+          "top": 411.65625
+        }
+      },
+      {
+        "label": "Enter your email",
+        "rect": {
+          "bottom": 550.75,
+          "left": 59.609375,
+          "right": 320,
+          "top": 503.75
+        }
+      },
+      {
+        "label": "Enter your contact number",
+        "rect": {
+          "bottom": 642.84375,
+          "left": 59.609375,
+          "right": 320,
+          "top": 595.84375
+        }
+      },
+      {
+        "label": " Chat",
+        "rect": {
+          "bottom": 726.84375,
+          "left": 59.609375,
+          "right": 181.796875,
+          "top": 674.84375
+        }
+      },
+      {
+        "label": " Voice",
+        "rect": {
+          "bottom": 726.84375,
+          "left": 193.796875,
+          "right": 320,
+          "top": 674.84375
+        }
+      },
+      {
+        "label": "Close Support Widget",
+        "rect": {
+          "bottom": 823.84375,
+          "left": 309,
+          "right": 359,
+          "top": 773.84375
+        }
+      }
+    ],
+    "reducedMotionStyle": true
+  },
+  "factory": {
+    "scripts": 0,
+    "shadowStyles": 0,
+    "url": "/",
+    "widgets": 0
+  },
+  "returned": {
+    "scripts": 0,
+    "shadowStyles": 1,
+    "url": "/swenzy-logistics/services",
+    "widgets": 1
+  },
+  "demos": [
+    {
+      "template": "forge",
+      "scripts": 0,
+      "shadowStyles": 0,
+      "url": "/templates/forge",
+      "widgets": 0
+    },
+    {
+      "template": "ledger",
+      "scripts": 0,
+      "shadowStyles": 0,
+      "url": "/templates/ledger",
+      "widgets": 0
+    },
+    {
+      "template": "stillwater",
+      "scripts": 0,
+      "shadowStyles": 0,
+      "url": "/templates/stillwater",
+      "widgets": 0
+    }
+  ],
+  "narrow": {
+    "disabled": true,
+    "invalid": true,
+    "overflow": false
+  },
+  "errors": ""
+}

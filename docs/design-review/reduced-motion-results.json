@@ -1,0 +1,26 @@
+[
+  {
+    "animations": 0,
+    "checked": 53,
+    "failures": [],
+    "minimum": 5.31,
+    "path": "/templates/forge",
+    "reducedMotion": true
+  },
+  {
+    "animations": 0,
+    "checked": 59,
+    "failures": [],
+    "minimum": 5.1,
+    "path": "/templates/ledger",
+    "reducedMotion": true
+  },
+  {
+    "animations": 0,
+    "checked": 55,
+    "failures": [],
+    "minimum": 5.6,
+    "path": "/templates/stillwater",
+    "reducedMotion": true
+  }
+]

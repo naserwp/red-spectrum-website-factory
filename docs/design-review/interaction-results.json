@@ -1,0 +1,236 @@
+[
+  {
+    "template": "forge",
+    "faq": {
+      "alert": null,
+      "animations": 0,
+      "faqOpen": [
+        true,
+        false,
+        false
+      ],
+      "invalid": [],
+      "leadRequests": 0,
+      "path": "/templates/forge/services",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "withoutConsent": {
+      "alert": null,
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [
+        {
+          "message": "Please check this box if you want to proceed.",
+          "name": "consent"
+        }
+      ],
+      "leadRequests": 0,
+      "path": "/templates/forge/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "submitted": {
+      "alert": "This form is not available yet. Please use the verified phone or email shown on this page.",
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [],
+      "leadRequests": 0,
+      "path": "/templates/forge/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "menuOpen": true,
+    "empty": {
+      "alert": null,
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [
+        {
+          "message": "Please fill out this field.",
+          "name": "name"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "email"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "phone"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "service"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "message"
+        },
+        {
+          "message": "Please check this box if you want to proceed.",
+          "name": "consent"
+        }
+      ],
+      "leadRequests": 0,
+      "path": "/templates/forge/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    }
+  },
+  {
+    "template": "ledger",
+    "faq": {
+      "alert": null,
+      "animations": 1,
+      "faqOpen": [
+        true,
+        false,
+        false
+      ],
+      "invalid": [],
+      "leadRequests": 0,
+      "path": "/templates/ledger/services",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "withoutConsent": {
+      "alert": null,
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [
+        {
+          "message": "Please check this box if you want to proceed.",
+          "name": "consent"
+        }
+      ],
+      "leadRequests": 0,
+      "path": "/templates/ledger/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "submitted": {
+      "alert": "This form is not available yet. Please use the verified phone or email shown on this page.",
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [],
+      "leadRequests": 0,
+      "path": "/templates/ledger/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "menuOpen": true,
+    "empty": {
+      "alert": null,
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [
+        {
+          "message": "Please fill out this field.",
+          "name": "name"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "email"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "phone"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "service"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "message"
+        },
+        {
+          "message": "Please check this box if you want to proceed.",
+          "name": "consent"
+        }
+      ],
+      "leadRequests": 0,
+      "path": "/templates/ledger/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    }
+  },
+  {
+    "template": "stillwater",
+    "faq": {
+      "alert": null,
+      "animations": 1,
+      "faqOpen": [
+        true,
+        false,
+        false
+      ],
+      "invalid": [],
+      "leadRequests": 0,
+      "path": "/templates/stillwater/services",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "withoutConsent": {
+      "alert": null,
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [
+        {
+          "message": "Please check this box if you want to proceed.",
+          "name": "consent"
+        }
+      ],
+      "leadRequests": 0,
+      "path": "/templates/stillwater/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "submitted": {
+      "alert": "This form is not available yet. Please use the verified phone or email shown on this page.",
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [],
+      "leadRequests": 0,
+      "path": "/templates/stillwater/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    },
+    "menuOpen": true,
+    "empty": {
+      "alert": null,
+      "animations": 0,
+      "faqOpen": [],
+      "invalid": [
+        {
+          "message": "Please fill out this field.",
+          "name": "name"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "email"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "phone"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "service"
+        },
+        {
+          "message": "Please fill out this field.",
+          "name": "message"
+        },
+        {
+          "message": "Please check this box if you want to proceed.",
+          "name": "consent"
+        }
+      ],
+      "leadRequests": 0,
+      "path": "/templates/stillwater/contact",
+      "ready": "complete",
+      "reducedMotion": false
+    }
+  }
+]

@@ -1,0 +1,1 @@
+JSON.stringify(Array.from(document.querySelectorAll(".sw-hero-content,.sw-hero h1,.sw-hero-shade,.sw-hero-image")).map(e=>({tag:e.className,color:getComputedStyle(e).color,opacity:getComputedStyle(e).opacity,z:getComputedStyle(e).zIndex,position:getComputedStyle(e).position,transform:getComputedStyle(e).transform,animation:getComputedStyle(e).animationName})))

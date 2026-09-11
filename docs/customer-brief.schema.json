@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.theredspectrum.com/schemas/customer-brief.v1.json",
+  "title": "Red Spectrum Customer Website Brief",
+  "type": "object",
+  "required": ["schemaVersion", "project", "contact", "content", "assets", "formDelivery", "approval"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "project": {
+      "type": "object",
+      "required": ["businessName", "slug", "industry", "templateId"],
+      "properties": {
+        "businessName": { "type": "string", "minLength": 1 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "industry": { "type": "string", "minLength": 1 },
+        "templateId": { "enum": ["forge", "ledger", "stillwater"] }
+      },
+      "additionalProperties": false
+    },
+    "contact": { "$ref": "#/$defs/evidenceGroup" },
+    "content": { "$ref": "#/$defs/evidenceGroup" },
+    "assets": { "type": "object" },
+    "formDelivery": {
+      "type": "object",
+      "required": ["provider", "mode", "recipientConfirmed", "testPassed"],
+      "properties": {
+        "provider": { "const": "sendgrid" },
+        "mode": { "enum": ["disabled", "test", "live"], "default": "disabled" },
+        "recipientConfirmed": { "type": "boolean", "default": false },
+        "testPassed": { "type": "boolean", "default": false }
+      }
+    },
+    "approval": { "type": "object" }
+  },
+  "$defs": {
+    "evidenceGroup": { "type": "object", "additionalProperties": { "$ref": "#/$defs/evidenceField" } },
+    "evidenceField": {
+      "type": "object",
+      "required": ["value", "status"],
+      "properties": { "value": { "type": "string" }, "status": { "enum": ["verified", "draft", "missing"] }, "source": { "type": "string" } },
+      "additionalProperties": false
+    }
+  }
+}

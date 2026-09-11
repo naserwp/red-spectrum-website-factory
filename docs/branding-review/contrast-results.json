@@ -1,0 +1,258 @@
+[
+  {
+    "animations": 0,
+    "checked": 96,
+    "failures": [],
+    "minimum": 5.36,
+    "path": "/",
+    "reducedMotion": false
+  },
+  {
+    "animations": 1,
+    "checked": 48,
+    "failures": [],
+    "minimum": 5.31,
+    "path": "/templates/forge",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 39,
+    "failures": [],
+    "minimum": 5.81,
+    "path": "/templates/forge/services",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 36,
+    "failures": [],
+    "minimum": 5.31,
+    "path": "/templates/forge/about",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 38,
+    "failures": [],
+    "minimum": 5.81,
+    "path": "/templates/forge/contact",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 32,
+    "failures": [],
+    "minimum": 5.81,
+    "path": "/templates/forge/privacy",
+    "reducedMotion": false
+  },
+  {
+    "animations": 1,
+    "checked": 54,
+    "failures": [],
+    "minimum": 5.1,
+    "path": "/templates/ledger",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 39,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/services",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 36,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/about",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 38,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/contact",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 32,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/privacy",
+    "reducedMotion": false
+  },
+  {
+    "animations": 1,
+    "checked": 50,
+    "failures": [],
+    "minimum": 5.6,
+    "path": "/templates/stillwater",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 39,
+    "failures": [],
+    "minimum": 6.2,
+    "path": "/templates/stillwater/services",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 36,
+    "failures": [],
+    "minimum": 5.6,
+    "path": "/templates/stillwater/about",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 38,
+    "failures": [],
+    "minimum": 6.2,
+    "path": "/templates/stillwater/contact",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 32,
+    "failures": [],
+    "minimum": 6.2,
+    "path": "/templates/stillwater/privacy",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 93,
+    "failures": [],
+    "minimum": 5.36,
+    "path": "/",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 45,
+    "failures": [],
+    "minimum": 5.31,
+    "path": "/templates/forge",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 36,
+    "failures": [],
+    "minimum": 5.81,
+    "path": "/templates/forge/services",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 33,
+    "failures": [],
+    "minimum": 5.31,
+    "path": "/templates/forge/about",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 35,
+    "failures": [],
+    "minimum": 5.81,
+    "path": "/templates/forge/contact",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 29,
+    "failures": [],
+    "minimum": 5.81,
+    "path": "/templates/forge/privacy",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 50,
+    "failures": [],
+    "minimum": 5.1,
+    "path": "/templates/ledger",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 36,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/services",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 33,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/about",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 35,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/contact",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 29,
+    "failures": [],
+    "minimum": 5.8,
+    "path": "/templates/ledger/privacy",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 47,
+    "failures": [],
+    "minimum": 5.6,
+    "path": "/templates/stillwater",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 36,
+    "failures": [],
+    "minimum": 6.2,
+    "path": "/templates/stillwater/services",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 33,
+    "failures": [],
+    "minimum": 5.6,
+    "path": "/templates/stillwater/about",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 35,
+    "failures": [],
+    "minimum": 6.2,
+    "path": "/templates/stillwater/contact",
+    "reducedMotion": false
+  },
+  {
+    "animations": 0,
+    "checked": 29,
+    "failures": [],
+    "minimum": 6.2,
+    "path": "/templates/stillwater/privacy",
+    "reducedMotion": false
+  }
+]

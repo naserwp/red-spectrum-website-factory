@@ -1,0 +1,50 @@
+import {execFileSync} from "node:child_process";
+import {writeFile} from "node:fs/promises";
+import assert from "node:assert/strict";
+const cli=process.env.AGENT_BROWSER_CLI||"C:/Users/USER/AppData/Local/npm-cache/_npx/6de2aa2fded2970c/node_modules/agent-browser/bin/agent-browser.js";
+const browser=(...a)=>execFileSync(process.execPath,[cli,"--session","swenzy-qa",...a],{encoding:"utf8",timeout:25000});
+const base=process.env.PREVIEW_BASE||"http://localhost:3006";
+const evaluate=input=>JSON.parse(execFileSync(process.execPath,[cli,"--session","swenzy-qa","eval","--stdin"],{encoding:"utf8",input,timeout:25000}));
+const count=()=>evaluate(`({url:location.pathname,widgets:document.querySelectorAll("myndy-convai").length,scripts:document.querySelectorAll('script[src*="widget.myndy.ai"]').length,shadowStyles:document.querySelector("myndy-convai")?.shadowRoot?.querySelectorAll("[data-swenzy-accessibility]").length||0})`);
+const navigate=path=>evaluate(`(async()=>{document.querySelector('a[href="${path}"]').click();for(let i=0;i<100&&location.pathname!=="${path}";i++)await new Promise(r=>setTimeout(r,40));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));return location.pathname;})()`);
+browser("set","viewport","390","844");
+if (!process.argv.includes("--resume")) browser("open",base+"/swenzy-logistics");
+browser("snapshot","-i");
+const initial=count();assert.equal(initial.widgets,1);
+evaluate(`document.querySelector(".sw-menu").click();true`);
+assert.equal(evaluate(`document.querySelector(".sw-menu").getAttribute("aria-expanded")`),"true");
+browser("screenshot","customers/swenzy-logistics/qa/mobile-menu.png");
+assert.equal(navigate("/swenzy-logistics/services"),"/swenzy-logistics/services");
+const services=count();assert.equal(services.widgets,1);
+evaluate(`document.querySelector(".sw-faq details").open=false;document.querySelector(".sw-faq summary").click();true`);
+assert.equal(evaluate(`document.querySelector(".sw-faq details").open`),true);
+let ready=false;
+for(let attempt=0;attempt<20;attempt++){
+ ready=evaluate(`!!document.querySelector("myndy-convai")?.shadowRoot?.querySelector('[aria-label="Open Support Widget"]')`);
+ if(ready)break;
+ browser("wait","1000");
+}
+assert.equal(ready,true,"Provider widget controls did not load within the bounded wait.");
+evaluate(`document.querySelector("myndy-convai").shadowRoot.querySelector('[aria-label="Open Support Widget"]').click();true`);
+const widget=evaluate(`(()=>{const s=document.querySelector("myndy-convai").shadowRoot;return {controls:Array.from(s.querySelectorAll("button,input")).map(e=>({label:e.getAttribute("aria-label")||e.placeholder||e.textContent,rect:{left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,top:e.getBoundingClientRect().top,bottom:e.getBoundingClientRect().bottom}})),reducedMotionStyle:!!s.querySelector("[data-swenzy-accessibility]")}})()`);
+browser("screenshot","customers/swenzy-logistics/qa/myndy-mobile-open.png");
+assert.equal(widget.reducedMotionStyle,true);
+assert.ok(widget.controls.every(c=>c.rect.left>=0&&c.rect.right<=390&&c.rect.top>=0&&c.rect.bottom<=844));
+evaluate(`document.querySelector("myndy-convai").shadowRoot.querySelector('[aria-label="Close Support Widget"]').click();true`);
+assert.equal(navigate("/"),"/");
+const factory=count();assert.equal(factory.widgets,0);assert.equal(factory.scripts,0);
+browser("back");
+const returned=count();assert.equal(returned.widgets,1);
+const demos=[];
+for(const template of ["forge","ledger","stillwater"]){
+ browser("open",base+"/templates/"+template);
+ const state=count();assert.equal(state.widgets,0);assert.equal(state.scripts,0);demos.push({template,...state});
+}
+browser("set","viewport","320","740");
+browser("open",base+"/swenzy-logistics/contact");
+const narrow=evaluate(`({overflow:document.documentElement.scrollWidth>innerWidth,disabled:document.querySelector(".sw-form button").disabled,invalid:!document.querySelector(".sw-form").checkValidity()})`);
+assert.equal(narrow.overflow,false);assert.equal(narrow.disabled,true);assert.equal(narrow.invalid,true);
+browser("screenshot","customers/swenzy-logistics/qa/contact-320.png","--full");
+const errors=browser("errors");
+await writeFile("customers/swenzy-logistics/qa/interaction-verification.json",JSON.stringify({date:new Date().toISOString(),initial,services,widget,factory,returned,demos,narrow,errors},null,2));
+console.log(JSON.stringify({initial,services,factory,returned,demos,narrow,errors},null,2));

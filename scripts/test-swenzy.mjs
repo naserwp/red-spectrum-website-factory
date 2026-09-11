@@ -1,0 +1,20 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { customerSiteSchema, customerManifestSchema } from "../lib/customers/schema.ts";
+const manifest=JSON.parse(await readFile("customers/manifest.json","utf8"));
+const customer=JSON.parse(await readFile("customers/swenzy-logistics/site/customer.config.json","utf8"));
+assert.deepEqual(manifest.customers.find(c=>c.slug==="swenzy-logistics"),customer);
+assert.equal(customerSiteSchema.safeParse(customer).success,true);
+function rejects(change){const x=structuredClone(customer);change(x);assert.equal(customerSiteSchema.safeParse(x).success,false);}
+rejects(c=>c.form.mode="live");
+rejects(c=>c.form.mode="test");
+rejects(c=>c.form.provider="other");
+rejects(c=>c.images.hero.src="/customers/other-tenant/hero.webp");
+rejects(c=>c.myndy.embed.scriptUrl="https://unapproved.example/script.js");
+rejects(c=>c.myndy.embed.agentId="invalid");
+rejects(c=>c.status="approved");
+assert.equal(customerManifestSchema.safeParse({schemaVersion:"1.0",customers:[customer,customer]}).success,false);
+assert.equal(customer.form.mode,"disabled");
+assert.equal(customer.form.recipientConfirmed,false);
+assert.equal(customer.form.testPassed,false);
+console.log("Passed customer registry, schema, isolation and approval-gate assertions.");

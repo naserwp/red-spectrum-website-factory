@@ -1,0 +1,607 @@
+{
+  "checkedAt": "2026-09-11T19:19:01.274Z",
+  "base": "https://red-spectrum-website-factory.vercel.app",
+  "results": [
+    {
+      "device": "desktop",
+      "page": "home",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "Every movestarts with aconversation.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative unbranded semi truck on a highway at dawn; not Swenzy’s fleet.",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative hands planning a route on a paper map; not Swenzy employees.",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative truck on a sweeping rural highway; not a statement of service coverage.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact#inquiry",
+        "tel:+12252297347",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Swenzy Logistics LLC | Baton Rouge Transportation",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 1440
+    },
+    {
+      "device": "desktop",
+      "page": "services",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/services",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "Your shipment.The right questions.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative truck on a sweeping rural highway; not a statement of service coverage.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Your shipment. The right questions. | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/services",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 1440
+    },
+    {
+      "device": "desktop",
+      "page": "about",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/about",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "From Baton Rouge.Looking ahead.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative hands planning a route on a paper map; not Swenzy employees.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "From Baton Rouge. Looking ahead. | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/about",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 1440
+    },
+    {
+      "device": "desktop",
+      "page": "contact",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/contact",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "formDisabled": true,
+      "h1": "Let’s talk aboutyour next move.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative hands planning a route on a paper map; not Swenzy employees.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "tel:+12252297347",
+        "mailto:rs@swenzylogistics.net",
+        "/swenzy-logistics/privacy",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Let’s talk about your next move. | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/contact",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 1440
+    },
+    {
+      "device": "desktop",
+      "page": "privacy",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/privacy",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "PrivacyPolicy.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Privacy Policy | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/privacy",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 1440
+    },
+    {
+      "device": "mobile",
+      "page": "home",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "Every movestarts with aconversation.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative unbranded semi truck on a highway at dawn; not Swenzy’s fleet.",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative hands planning a route on a paper map; not Swenzy employees.",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative truck on a sweeping rural highway; not a statement of service coverage.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact#inquiry",
+        "tel:+12252297347",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Swenzy Logistics LLC | Baton Rouge Transportation",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 390
+    },
+    {
+      "device": "mobile",
+      "page": "services",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/services",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "Your shipment.The right questions.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative truck on a sweeping rural highway; not a statement of service coverage.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Your shipment. The right questions. | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/services",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 390
+    },
+    {
+      "device": "mobile",
+      "page": "about",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/about",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "From Baton Rouge.Looking ahead.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative hands planning a route on a paper map; not Swenzy employees.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "From Baton Rouge. Looking ahead. | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/about",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 390
+    },
+    {
+      "device": "mobile",
+      "page": "contact",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/contact",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "formDisabled": true,
+      "h1": "Let’s talk aboutyour next move.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Illustrative hands planning a route on a paper map; not Swenzy employees.",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "tel:+12252297347",
+        "mailto:rs@swenzylogistics.net",
+        "/swenzy-logistics/privacy",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Let’s talk about your next move. | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/contact",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 390
+    },
+    {
+      "device": "mobile",
+      "page": "privacy",
+      "agent": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+      "canonical": "https://preview.redspectrum.ai/swenzy-logistics/privacy",
+      "favicon": "/customers/swenzy-logistics/brand/favicon.svg",
+      "h1": "PrivacyPolicy.",
+      "hasSchema": true,
+      "images": [
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        },
+        {
+          "alt": "Miles, a fictional AI assistant avatar concept",
+          "loaded": true
+        },
+        {
+          "alt": "Swenzy Logistics",
+          "loaded": true
+        }
+      ],
+      "links": [
+        "#sw-main",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/contact#inquiry",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics",
+        "/swenzy-logistics",
+        "/swenzy-logistics/services",
+        "/swenzy-logistics/about",
+        "/swenzy-logistics/contact",
+        "/swenzy-logistics/privacy",
+        "https://www.theredspectrum.com/",
+        "/"
+      ],
+      "overflow": false,
+      "overlay": false,
+      "title": "Privacy Policy | Swenzy Logistics LLC",
+      "url": "https://red-spectrum-website-factory.vercel.app/swenzy-logistics/privacy",
+      "widgetControls": [],
+      "widgets": 1,
+      "width": 390
+    }
+  ],
+  "api": [
+    {
+      "name": "disabled",
+      "status": 503,
+      "body": {
+        "ok": false,
+        "message": "Form delivery is not active."
+      }
+    },
+    {
+      "name": "spam",
+      "status": 400,
+      "body": {
+        "ok": false,
+        "message": "Please check the required fields."
+      }
+    },
+    {
+      "name": "invalid",
+      "status": 400,
+      "body": {
+        "ok": false,
+        "message": "Please check the required fields."
+      }
+    },
+    {
+      "name": "unknown",
+      "status": 404,
+      "body": {
+        "ok": false,
+        "message": "Website not found."
+      }
+    }
+  ],
+  "privateRoutes": [
+    {
+      "route": "/swenzy-logistics/not-a-page",
+      "status": 404
+    },
+    {
+      "route": "/swenzy-logistics/about/extra",
+      "status": 404
+    },
+    {
+      "route": "/customers/swenzy-logistics/brief/customer-brief.json",
+      "status": 404
+    },
+    {
+      "route": "/customers/swenzy-logistics/myndy/agent-context.md",
+      "status": 404
+    },
+    {
+      "route": "/customers/manifest.json",
+      "status": 404
+    }
+  ],
+  "browserErrors": ""
+}

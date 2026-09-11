@@ -1,0 +1,1218 @@
+[
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Inter, \"Inter Fallback\", Arial, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Poppins, \"Poppins Fallback\", Arial, sans-serif",
+    "icons": [
+      "/brand/red-spectrum/favicon.png"
+    ],
+    "images": [
+      {
+        "alt": "Red Spectrum",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co. demo logo",
+        "loaded": true
+      },
+      {
+        "alt": "Contemporary home in an illustrative website preview",
+        "loaded": true
+      },
+      {
+        "alt": "",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural home in the Forge demo design",
+        "loaded": true
+      },
+      {
+        "alt": "",
+        "loaded": true
+      },
+      {
+        "alt": "Sunlit office in the Ledger demo design",
+        "loaded": true
+      },
+      {
+        "alt": "",
+        "loaded": true
+      },
+      {
+        "alt": "Yoga at sunset in the Stillwater demo design",
+        "loaded": true
+      },
+      {
+        "alt": "Red Spectrum",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/services",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/about",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/contact",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/privacy",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/services",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/about",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/contact",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/privacy",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/services",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/about",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/contact",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/privacy",
+    "viewport": 1440
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Inter, \"Inter Fallback\", Arial, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Poppins, \"Poppins Fallback\", Arial, sans-serif",
+    "icons": [
+      "/brand/red-spectrum/favicon.png"
+    ],
+    "images": [
+      {
+        "alt": "Red Spectrum",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co. demo logo",
+        "loaded": true
+      },
+      {
+        "alt": "Contemporary home in an illustrative website preview",
+        "loaded": true
+      },
+      {
+        "alt": "",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural home in the Forge demo design",
+        "loaded": true
+      },
+      {
+        "alt": "",
+        "loaded": true
+      },
+      {
+        "alt": "Sunlit office in the Ledger demo design",
+        "loaded": true
+      },
+      {
+        "alt": "",
+        "loaded": true
+      },
+      {
+        "alt": "Yoga at sunset in the Stillwater demo design",
+        "loaded": true
+      },
+      {
+        "alt": "Red Spectrum",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/services",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/about",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/contact",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/forge/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      },
+      {
+        "alt": "Draft Trade Co.",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/forge/privacy",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/services",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/about",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/contact",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "icons": [
+      "/brand/ledger/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      },
+      {
+        "alt": "North & Pine Advisory",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/ledger/privacy",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/services",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/about",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/contact",
+    "viewport": 390
+  },
+  {
+    "activeMyndyScripts": 0,
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "correctFavicon": true,
+    "crossTenantLinks": [],
+    "deadAnchors": [],
+    "faviconStatus": 200,
+    "footerLogo": true,
+    "h1": 1,
+    "headerLogo": true,
+    "headingFont": "Arial, Helvetica, sans-serif",
+    "icons": [
+      "/brand/stillwater/favicon.svg"
+    ],
+    "images": [
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      },
+      {
+        "alt": "Quiet Current Wellness",
+        "loaded": true
+      }
+    ],
+    "internalLinks": [],
+    "leadRequests": 0,
+    "overflow": false,
+    "path": "/templates/stillwater/privacy",
+    "viewport": 390
+  }
+]

@@ -1,0 +1,638 @@
+[
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Home template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/services",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Services template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/about",
+    "placeholderContacts": [],
+    "title": "Forge & Field — About template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/contact",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Contact template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/privacy",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Privacy template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Home template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/services",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Services template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/about",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — About template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/contact",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Contact template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/privacy",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Privacy template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater",
+    "placeholderContacts": [],
+    "title": "Stillwater — Home template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/services",
+    "placeholderContacts": [],
+    "title": "Stillwater — Services template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/about",
+    "placeholderContacts": [],
+    "title": "Stillwater — About template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/contact",
+    "placeholderContacts": [],
+    "title": "Stillwater — Contact template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/privacy",
+    "placeholderContacts": [],
+    "title": "Stillwater — Privacy template | RS Website Factory",
+    "viewport": 1440
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Home template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Contemporary home with an open terrace",
+        "loaded": true
+      },
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      },
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/services",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Services template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Light-filled living room with natural materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/about",
+    "placeholderContacts": [],
+    "title": "Forge & Field — About template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Architectural drawings and planning materials",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/contact",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Contact template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/forge/privacy",
+    "placeholderContacts": [],
+    "title": "Forge & Field — Privacy template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Home template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Sunlit office corridor with glass meeting-room walls",
+        "loaded": true
+      },
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      },
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/services",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Services template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "People exchanging ideas around a meeting table",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/about",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — About template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Documents and notes being reviewed at a desk",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/contact",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Contact template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/ledger/privacy",
+    "placeholderContacts": [],
+    "title": "Ledger & Line — Privacy template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater",
+    "placeholderContacts": [],
+    "title": "Stillwater — Home template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Person stretching into a yoga pose against a sunset sky",
+        "loaded": true
+      },
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      },
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/services",
+    "placeholderContacts": [],
+    "title": "Stillwater — Services template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "Person practising a seated yoga pose outdoors",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/about",
+    "placeholderContacts": [],
+    "title": "Stillwater — About template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [
+      {
+        "alt": "People taking part in a group movement session",
+        "loaded": true
+      }
+    ],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/contact",
+    "placeholderContacts": [],
+    "title": "Stillwater — Contact template | RS Website Factory",
+    "viewport": 390
+  },
+  {
+    "crossTemplateLinks": [],
+    "deadAnchors": [],
+    "description": true,
+    "h1Count": 1,
+    "images": [],
+    "myndyDisabled": true,
+    "overflow": false,
+    "overflowing": [],
+    "path": "/templates/stillwater/privacy",
+    "placeholderContacts": [],
+    "title": "Stillwater — Privacy template | RS Website Factory",
+    "viewport": 390
+  }
+]

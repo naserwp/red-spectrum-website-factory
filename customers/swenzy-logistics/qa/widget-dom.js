@@ -1,0 +1,1 @@
+(()=>{const e=document.querySelector("myndy-convai");return {html:e?.shadowRoot?.innerHTML.slice(0,3500),scripts:Array.from(document.scripts).filter(x=>x.src.includes("myndy")).map(x=>x.outerHTML)};})()

@@ -1,0 +1,6 @@
+export const templates = [
+  { id: "forge", name: "Forge & Field", industry: "Home services", summary: "A decisive, estimate-first layout for contractors, repair teams, and skilled trades.", traits: ["Split hero", "Service grid", "Mobile call bar"], image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80", previewClass: "bg-[#13283a]" },
+  { id: "ledger", name: "Ledger & Line", industry: "Professional services", summary: "An editorial, authority-led system for advisors, consultants, accountants, and legal teams.", traits: ["Editorial rhythm", "Insight led", "Consultation CTA"], image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=80", previewClass: "bg-[#2f3e34]" },
+  { id: "stillwater", name: "Stillwater", industry: "Wellness & care", summary: "A calm, story-rich experience for studios, therapists, wellness practices, and personal care.", traits: ["Immersive hero", "Gentle pathways", "FAQ accordion"], image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1400&q=80", previewClass: "bg-[#314b46]" },
+] as const;
+export type TemplateId = (typeof templates)[number]["id"];

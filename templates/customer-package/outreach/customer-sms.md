@@ -1,0 +1,1 @@
+Draft: Hi [Customer name] — your private {{BUSINESS_NAME}} website preview is ready: https://preview.redspectrum.ai/{{SLUG}}. Please review the content and contact details. Reply with approval or requested changes. The form stays inactive until the recipient email is confirmed and tested.

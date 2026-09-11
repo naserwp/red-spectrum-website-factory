@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0",
+  "customers": [
+    {
+      "schemaVersion": "1.0",
+      "slug": "swenzy-logistics",
+      "status": "review",
+      "templateId": "forge",
+      "business": {
+        "name": "Swenzy Logistics LLC",
+        "industry": "Transportation & logistics",
+        "tagline": "Logistics Made Easy",
+        "summary": "Swenzy Logistics LLC is a transportation and logistics business in Baton Rouge, Louisiana."
+      },
+      "contact": {
+        "phone": {
+          "value": "(225) 229-7347",
+          "status": "draft",
+          "source": "Customer-provided brief, 2026-09-12"
+        },
+        "email": {
+          "value": "rs@swenzylogistics.net",
+          "status": "draft",
+          "source": "Customer-provided brief, 2026-09-12"
+        },
+        "address": {
+          "value": "Baton Rouge, LA",
+          "status": "verified",
+          "source": "Customer-provided brief, 2026-09-12"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Transportation & logistics",
+          "description": "Discuss your transportation requirements with Swenzy Logistics. Share the shipment, locations and timing so the business can review your inquiry.",
+          "status": "verified",
+          "source": "Customer-provided brief, 2026-09-12"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "Baton Rouge, Louisiana · Transportation & logistics",
+          "headline": "Every move starts with a conversation.",
+          "intro": "Tell us what needs to move, where it needs to go, and when. Start your transportation inquiry with Swenzy Logistics.",
+          "ctaLabel": "Discuss your shipment"
+        },
+        "services": {
+          "headline": "Your shipment. The right questions.",
+          "intro": "A useful transportation conversation starts with the details. Share your requirements so Swenzy can discuss the next step."
+        },
+        "about": {
+          "headline": "From Baton Rouge. Looking ahead.",
+          "paragraphs": [
+            "Swenzy Logistics LLC is a transportation and logistics business based in Baton Rouge, Louisiana.",
+            "“Logistics Made Easy” is the message on our existing website. Here, your next step is straightforward: tell us about your transportation needs and connect with the business.",
+            "Have a question about a shipment? Speak with Loyce Swen to discuss your requirements."
+          ]
+        },
+        "contact": {
+          "headline": "Let’s talk about your next move.",
+          "intro": "Call or email Swenzy Logistics to discuss your transportation inquiry. Quotes, routes and availability need confirmation from the business."
+        },
+        "privacy": {
+          "headline": "Privacy Policy",
+          "body": [
+            "This preview policy explains the tools on this website. It is a draft pending business review, including retention periods and applicable privacy requirements.",
+            "Contacting the business: if you call or email Swenzy Logistics, the information you share can be used to respond to your inquiry. Do not send financial details, government identifiers or other sensitive information.",
+            "Website form: lead delivery is currently disabled. Completing this form does not send a lead. When configured and approved, a Red Spectrum server will store the contact and shipment information you choose to submit, then notify the appropriate recipient. During an authorized internal test, notifications go only to Red Spectrum’s confirmed test inbox, not the business.",
+            "AI assistant: the Myndy widget is embedded on Swenzy pages. Loading it connects your browser to Myndy; messages or voice interactions you choose to initiate may be processed by Myndy. AI responses may be inaccurate and do not confirm a quote, booking or availability. Do not share sensitive information. The website preview does not imply that the provider agent’s knowledge has been approved.",
+            "Technical data: website hosting and third-party services may process connection information needed to serve the website and widget. No separate marketing analytics or advertising tags have been added to this customer website.",
+            "Questions: contact rs@swenzylogistics.net with privacy questions or requests. Specific retention periods and handling procedures must be confirmed by the business before launch."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#102238",
+        "secondary": "#091727",
+        "accent": "#F1B44C",
+        "surface": "#FAF8F3",
+        "logoPath": "/customers/swenzy-logistics/brand/logo-light.svg",
+        "faviconPath": "/customers/swenzy-logistics/brand/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/swenzy-logistics/images/highway-dawn.webp",
+          "alt": "Illustrative unbranded semi truck on a highway at dawn; not Swenzy’s fleet.",
+          "width": 1536,
+          "height": 1024
+        },
+        "gallery": [
+          {
+            "src": "/customers/swenzy-logistics/images/route-planning.webp",
+            "alt": "Illustrative hands planning a route on a paper map; not Swenzy employees.",
+            "width": 1536,
+            "height": 1024
+          },
+          {
+            "src": "/customers/swenzy-logistics/images/open-road.webp",
+            "alt": "Illustrative truck on a sweeping rural highway; not a statement of service coverage.",
+            "width": 1536,
+            "height": 1024
+          }
+        ]
+      },
+      "seo": {
+        "title": "Swenzy Logistics LLC | Baton Rouge Transportation",
+        "description": "Start a transportation inquiry with Swenzy Logistics LLC in Baton Rouge, Louisiana. Discuss your shipment, locations and timing with the business."
+      },
+      "schema": {
+        "type": "LocalBusiness",
+        "description": "Transportation and logistics business in Baton Rouge, Louisiana."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "disabled",
+        "recipientConfirmed": false,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "Miles",
+        "greeting": "Hi, I’m Miles, Swenzy Logistics’ AI assistant. Need help with a transportation inquiry or a quote request?",
+        "avatarBrief": "Original fictional navy and amber navigation-guide character with a subtle headset. Clearly AI, not a human employee.",
+        "knowledgeContextPath": "customers/swenzy-logistics/myndy/agent-context.md",
+        "embed": {
+          "enabled": true,
+          "agentId": "agent_1789149685_iZPVIgVIj3Fct9uiHeKdHA",
+          "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
+        }
+      }
+    }
+  ]
+}
