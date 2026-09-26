@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -44,6 +45,6 @@ export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHi
       <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "preview_ready"} onClick={()=>run("customer")}>Mark Customer Approved</button>
     </div>
     {message && <p role="status" aria-live="polite" className="wf-status">{message}</p>}
-    {prompt && <><h3>Codex Build Prompt</h3><p>{stage === "draft" ? "Draft handoff only. Approve for Build before asking Codex to create files." : "Build authorization only; deployment still requires separate approval."}</p><button type="button" className="wf-button secondary" onClick={copy}>Copy prompt for Codex</button><label className="wf-field">Build handoff<textarea readOnly value={prompt} rows={14}/></label></>}
+    {prompt && <><Link href={`/admin/ai?requestId=${requestId}&improve=1`}>Ask AI to improve this brief</Link><h3>Codex Build Prompt</h3><p>{stage === "draft" ? "Draft handoff only. Approve for Build before asking Codex to create files." : "Build authorization only; deployment still requires separate approval."}</p><button type="button" className="wf-button secondary" onClick={copy}>Copy prompt for Codex</button><label className="wf-field">Build handoff<textarea readOnly value={prompt} rows={14}/></label></>}
   </section>;
 }

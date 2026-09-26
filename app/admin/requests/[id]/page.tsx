@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const prompt = parsed.success ? codexBuildPrompt(parsed.data,stage !== "draft") : "";
   return <WebFactoryShell><PageIntro eyebrow="Private admin workspace" title={request.business} description="Review the request, generate a draft brief, and explicitly approve each build stage."/>
     <section className="wf-wrap wf-section" style={{paddingTop:0}}>
-      <Link href="/admin">Back to dashboard</Link>
+      <Link href="/admin">Back to dashboard</Link> · <Link href={`/admin/ai?requestId=${id}`}>Ask AI about this request</Link>
       <article className="wf-panel" style={{margin:"24px 0",overflowWrap:"anywhere"}}>
         <h2>Request details</h2><p>{request.name} · {request.email} · {request.phone || "No phone supplied"}</p>
         <p>{request.industry}</p><p>Website: {request.website || "Not supplied"}</p><p style={{whiteSpace:"pre-wrap"}}>{request.details}</p>

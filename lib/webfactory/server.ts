@@ -24,7 +24,7 @@ export async function isAdmin() {
 export async function issueSession() { const payload = Buffer.from(JSON.stringify({ user: process.env.WEBFACTORY_ADMIN_USER, exp: Date.now() + 8 * 3600000, nonce: randomBytes(16).toString("hex"), version: digest(process.env.WEBFACTORY_ADMIN_PASSWORD!) })).toString("base64url"); (await cookies()).set("wf_admin", `${payload}.${signature(payload)}`, { httpOnly: true, sameSite: "strict", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 8 * 3600 }); }
 export async function sameOrigin() { const h = await headers(); const origin = h.get("origin"); try { return Boolean(origin && new URL(origin).host === h.get("host")); } catch { return false; } }
 const localLimits = new Map<string, { count: number; end: number }>();
-export async function rateLimit(kind: "login" | "request" | "ai", identity: string, maximum: number) {
+export async function rateLimit(kind: "login" | "request" | "ai" | "ai_chat", identity: string, maximum: number) {
   const slot = Math.floor(Date.now() / 900000);
   const key = digest(`${process.env.WEBFACTORY_SESSION_SECRET ?? "unconfigured"}:${kind}:${identity}:${slot}`);
   // Development login can work before storage is configured. Production uses shared PostgreSQL counters.
