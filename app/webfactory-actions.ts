@@ -38,7 +38,8 @@ export async function updateRequest(_: FormState, data: FormData): Promise<FormS
   if (!await sameOrigin() || !await isAdmin()) return { error: "Please sign in again." };
   const parsed = z.object({ id: z.string().uuid(), status: z.enum(["received","reviewing","building","preview_ready","approved","on_hold"]) }).safeParse(Object.fromEntries(data));
   if (!parsed.success) return { error: "Invalid request status." };
-  try { const result = await database().query("UPDATE webfactory.requests SET status=$2,updated_at=NOW() WHERE id=$1 RETURNING id",[parsed.data.id,parsed.data.status]); if (!result.rowCount) return { error: "Request not found." }; } catch { return { error: "Could not save the status. Please try again." }; }
+  if (["building","preview_ready","approved"].includes(parsed.data.status)) return { error: "Use the request build workspace approval gates." };
+  try { const result = await database().query("UPDATE webfactory.requests SET status=$2,updated_at=NOW() WHERE id=$1 AND NOT EXISTS (SELECT 1 FROM webfactory.build_workflows WHERE request_id=$1) RETURNING id",[parsed.data.id,parsed.data.status]); if (!result.rowCount) return { error: "Request not found." }; } catch { return { error: "Could not save the status. Please try again." }; }
   revalidatePath("/admin"); revalidatePath("/processing"); return { success: "Project status updated." };
 }
 export async function sendInternalNotification(_: FormState, data: FormData): Promise<FormState> {
