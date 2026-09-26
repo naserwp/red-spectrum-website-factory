@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 const links = [
   ["#services", "Services"],
-  ["#templates-heading", "Designs"],
+  ["/designs", "Designs"],
   ["#how-it-works", "How it works"],
   ["#myndy", "Myndy AI"],
   ["#start", "Get started"],

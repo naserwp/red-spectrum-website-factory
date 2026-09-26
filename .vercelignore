@@ -1,0 +1,13 @@
+.env*
+.git
+.agents
+.codex
+.sites-runtime
+outputs
+work
+customers/**/delivery/**
+customers/**/qa/**
+customers/**/brief/**
+customers/**/*.zip
+customers/**/*.pdf
+customers/**/*.log

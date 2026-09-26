@@ -113,8 +113,8 @@
   },
   "form": {
     "provider": "sendgrid",
-    "mode": "disabled",
-    "recipientConfirmed": false,
+    "mode": "test",
+    "recipientConfirmed": true,
     "testPassed": false
   },
   "myndy": {

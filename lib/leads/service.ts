@@ -1,6 +1,6 @@
 import "server-only";
 
-import { getCustomerDelivery, getSendGridConfig, type LeadDeliveryMode } from "./config";
+import { getCustomerDelivery, getSendGridConfig, leadEmailEnabled, type LeadDeliveryMode } from "./config";
 import { sendSendGridNotification } from "./email";
 import { createLeadStore, type StoredLead } from "./store";
 import { hashValue, leadDedupeKey, type WebsiteLeadInput } from "./validation";
@@ -21,6 +21,7 @@ function retrySubject(lead: StoredLead) {
 export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInput, clientIp: string) {
   const mode = site.form.mode as LeadDeliveryMode | "disabled";
   if (mode === "disabled" || !site.form.recipientConfirmed || (mode === "live" && !site.form.testPassed)) return { state: "inactive" as const };
+  if (!leadEmailEnabled(mode)) return { state: "inactive" as const };
   const config = getSendGridConfig();
   if (!config) return { state: "unconfigured" as const };
   const store = createLeadStore(config.databaseUrl);
@@ -45,6 +46,7 @@ export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInp
 }
 
 export async function retryPendingLeadNotifications(limit = 10) {
+  if (!leadEmailEnabled("test") && !leadEmailEnabled("live")) return { attempted: 0, accepted: 0, failed: 0, disabled: true };
   const config = getSendGridConfig();
   if (!config) throw new Error("Lead delivery is not configured.");
   const store = createLeadStore(config.databaseUrl);

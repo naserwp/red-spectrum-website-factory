@@ -21,12 +21,7 @@ export function FactoryHeader() {
           aria-label="Factory navigation"
           className="flex items-center gap-1 text-sm font-bold sm:gap-3"
         >
-          <Link
-            className="px-2 py-3 hover:text-[#bd1e2c]"
-            href="/#templates-heading"
-          >
-            Templates
-          </Link>
+          <Link className="px-2 py-3 hover:text-[#bd1e2c]" href="/designs">Designs</Link>
           <Link className="px-2 py-3 hover:text-[#bd1e2c]" href="/brief">
             Brief
           </Link>

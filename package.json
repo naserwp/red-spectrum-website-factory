@@ -14,6 +14,8 @@
     "customer:new": "node scripts/create-customer.mjs",
     "customers:validate": "node scripts/validate-customers.mjs",
     "leads:migrate": "node scripts/migrate-leads.mjs",
+    "webfactory:migrate": "node --env-file=.env.local scripts/migrate-webfactory.mjs",
+    "webfactory:diagnose": "node --env-file=.env.local scripts/diagnose-webfactory-db.mjs",
     "leads:test": "node scripts/test-sendgrid-lead-backend.mjs",
     "leads:test-endpoint": "node scripts/test-lead-endpoint.mjs",
     "db:generate": "drizzle-kit generate"

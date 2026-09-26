@@ -4,13 +4,28 @@ import { notFound } from "next/navigation";
 import { CustomerWebsite } from "@/components/customer-website";
 import { getCustomerSite, getCustomerSites } from "@/lib/customers/registry";
 import { customerPages, type CustomerPage } from "@/lib/customers/schema";
+import { getArticle } from "@/lib/customers/vitality-blog";
+
+function validVitalityRoute(segments: string[] = []) {
+  if (segments.length === 2) return segments[0] === "blog" && Boolean(getArticle(segments[1]));
+  return segments.length === 1 && ["blog", "online-fitness-coaching", "personal-training", "nutrition-coaching", "body-assessment", "21-day-fitness-challenge", "privacy-policy", "terms-and-conditions", "health-and-fitness-disclaimer"].includes(segments[0]);
+}
 
 type RouteParams = { customerSlug: string; page?: string[] };
 
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getCustomerSites().flatMap((customer) => customerPages.map((page) => ({ customerSlug: customer.slug, page: page === "home" ? undefined : [page] })));
+  return getCustomerSites().flatMap((customer) => customerPages.map((page): RouteParams => ({ customerSlug: customer.slug, page: page === "home" ? undefined : [page] }))).concat([
+    { customerSlug: "360-vitality-fitness", page: ["blog"] },
+    { customerSlug: "360-vitality-fitness", page: ["online-fitness-coaching"] },
+    { customerSlug: "360-vitality-fitness", page: ["personal-training"] },
+    { customerSlug: "360-vitality-fitness", page: ["nutrition-coaching"] },
+    { customerSlug: "360-vitality-fitness", page: ["body-assessment"] },
+    { customerSlug: "360-vitality-fitness", page: ["21-day-fitness-challenge"] },
+    { customerSlug: "360-vitality-fitness", page: ["terms-and-conditions"] },
+    { customerSlug: "360-vitality-fitness", page: ["health-and-fitness-disclaimer"] },
+  ]);
 }
 
 export async function generateMetadata({ params }: { params: Promise<RouteParams> }): Promise<Metadata> {
@@ -18,11 +33,12 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   const site = getCustomerSite(customerSlug);
   if (!site) return {};
   const page = (segments?.[0] ?? "home") as CustomerPage;
-  const canonical = `https://preview.redspectrum.ai/${site.slug}${page === "home" ? "" : `/${page}`}`;
-  if (!customerPages.includes(page) || (segments?.length ?? 0) > 1) return {};
+  const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
+  const canonical = `https://preview.redspectrum.ai/${site.slug}${segments?.length ? `/${segments.join("/")}` : ""}`;
+  if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) return {};
   return {
     metadataBase: new URL("https://preview.redspectrum.ai"),
-    title: { absolute: page === "home" ? site.seo.title : `${site.pages[page].headline} | ${site.business.name}` },
+    title: { absolute: page === "home" ? site.seo.title : `${site.pages[page]?.headline ?? (segments?.[0] === "blog" && segments[1] ? getArticle(segments[1])?.title : page.replaceAll("-", " "))} | ${site.business.name}` },
     description: site.seo.description,
     alternates: { canonical },
     icons: site.branding.faviconPath ? { icon: site.branding.faviconPath, shortcut: site.branding.faviconPath } : undefined,
@@ -37,7 +53,8 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   const site = getCustomerSite(customerSlug);
   if (!site) notFound();
   const page = (segments?.[0] ?? "home") as CustomerPage;
-  if (!customerPages.includes(page) || (segments?.length ?? 0) > 1) notFound();
+  const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
+  if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) notFound();
 
   const schema = {
     "@context": "https://schema.org",
@@ -51,5 +68,5 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
     ...(site.contact.serviceAreas.status === "verified" ? { areaServed: site.contact.serviceAreas.value } : {}),
   };
 
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replaceAll("<", "\\u003c") }} /><CustomerWebsite site={site} page={page} /></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replaceAll("<", "\\u003c") }} /><CustomerWebsite site={site} page={page} route={segments ?? []} /></>;
 }

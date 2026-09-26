@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { SwenzyWebsite } from "@/components/customers/swenzy-website";
+import { JmWebsite } from "@/components/customers/jm-website";
+import { CustomerMyndy } from "@/components/customers/customer-myndy";
+import { VitalityWebsite } from "@/components/customers/vitality-website";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ArrowRight, Mail, Menu, Phone } from "lucide-react";
@@ -65,8 +68,10 @@ function InnerPage({ site, page }: { site: CustomerSite; page: Exclude<CustomerP
   </main>;
 }
 
-export function CustomerWebsite({ site, page }: { site: CustomerSite; page: CustomerPage }) {
+export function CustomerWebsite({ site, page, route = [] }: { site: CustomerSite; page: CustomerPage; route?: string[] }) {
   if (site.slug === "swenzy-logistics") return <SwenzyWebsite site={site} page={page} />;
+  if (site.slug === "jm-trucking") return <JmWebsite site={site} page={page} />;
+  if (site.slug === "360-vitality-fitness") return <VitalityWebsite site={site} route={route} />;
   const style: ThemeStyle = { backgroundColor: site.branding.surface, color: site.branding.secondary, "--site-primary": site.branding.primary };
   return <div className="min-h-screen" style={style}>
     {site.status !== "approved" && <div className="bg-amber-300 px-4 py-2 text-center text-xs font-black uppercase tracking-[.14em] text-slate-950">Customer preview · {site.status} content</div>}
@@ -75,7 +80,7 @@ export function CustomerWebsite({ site, page }: { site: CustomerSite; page: Cust
     {page === "home" && site.templateId === "ledger" && <LedgerHome site={site} />}
     {page === "home" && site.templateId === "stillwater" && <StillwaterHome site={site} />}
     {page !== "home" && <InnerPage site={site} page={page} />}
-    <div id={`myndy-${site.slug}`} data-myndy-placeholder="true" data-agent-name={site.myndy.agentName} hidden />
+    {site.myndy.embed.enabled ? <CustomerMyndy agentId={site.myndy.embed.agentId} accent={site.branding.primary} label={`Open the ${site.business.name} AI conversation assistant`} /> : <div id={`myndy-${site.slug}`} data-myndy-placeholder="true" data-agent-name={site.myndy.agentName} hidden />}
     <SiteFooter site={site} />
   </div>;
 }

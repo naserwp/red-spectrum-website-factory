@@ -11,9 +11,21 @@ const customerDelivery = {
     liveRecipient: "rs@swenzylogistics.net",
     subject: "New website lead — Swenzy Logistics",
   },
+  "jm-trucking": {
+    liveRecipient: "diamuhammad@yahoo.com",
+    subject: "New website lead — J&M Trucking Logistics",
+  },
+  "360-vitality-fitness": {
+    liveRecipient: "get360vitalityfitness@gmail.com",
+    subject: "New website lead — 360 Vitality Fitness",
+  },
 } as const;
 
 export type LeadDeliveryMode = "test" | "live";
+
+export function leadEmailEnabled(mode: LeadDeliveryMode) {
+  return (mode === "test" ? process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED : process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED) === "true";
+}
 
 export function getCustomerDelivery(site: CustomerSite, mode: LeadDeliveryMode) {
   const configured = customerDelivery[site.slug as keyof typeof customerDelivery];
@@ -32,7 +44,7 @@ export function getSendGridConfig() {
   return {
     apiKey,
     fromEmail: emailSchema.parse(fromEmail),
-    fromName: z.literal("Red Spectrum Leads").parse(fromName),
+    fromName: z.enum(["Red Spectrum Leads", "Red Spectrum WebFactory"]).parse(fromName),
     rateLimitSalt,
     databaseUrl,
   };
