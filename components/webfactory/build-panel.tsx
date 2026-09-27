@@ -3,14 +3,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory }: {
-  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean;
+export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory, customerSlug, recordedPreview, filesBuilt = false, slugConfirmed = false }: {
+  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean; customerSlug?: string; recordedPreview?: string | null; filesBuilt?: boolean; slugConfirmed?: boolean;
 }) {
   const router = useRouter();
   const [pending,setPending] = useState(false);
   const [message,setMessage] = useState("");
   const [confirmed,setConfirmed] = useState(false);
-  const [previewUrl,setPreviewUrl] = useState("");
+  const [previewUrl,setPreviewUrl] = useState((recordedPreview?.startsWith("https://")?recordedPreview:null) || (slugConfirmed && customerSlug ? `https://red-spectrum-website-factory.vercel.app/${customerSlug}` : ""));
   async function run(action: string) {
     if (pending || !confirmed) return;
     setPending(true); setMessage("");
@@ -29,22 +29,35 @@ export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHi
     try { await navigator.clipboard.writeText(prompt); setMessage("Codex Build Prompt copied."); }
     catch { setMessage("Clipboard unavailable. Select and copy the prompt from the field below."); }
   }
-  return <section className="wf-panel wf-form" aria-label="AI build workflow">
-    <h2>AI-assisted build workflow</h2>
-    <p>Stage: <strong>{stage.replaceAll("_"," ")}</strong>. No files, emails or deployments are created by these actions.</p>
-    <p>Generate sends the selected business name, industry, website and project description to OpenAI. Direct contact fields are excluded; remove sensitive information from the description before submitting a request. AI output is an unverified draft.</p>
+  const approved = ["build_approved", "preview_ready", "customer_approved"].includes(stage);
+  const previewReady = filesBuilt && ["preview_ready", "customer_approved"].includes(stage);
+  return <section id="build" className="wf-panel wf-form wf-build-handoff" aria-label="AI build workflow">
+    <div><p className="wf-section-label">03 / Build handoff</p><h2>{filesBuilt || previewReady ? "Website build & review" : "Build Customer Website"}</h2>
+    <p>{previewReady ? "A preview has been recorded by an admin. Customer approval and deployment remain separate steps." : filesBuilt ? "The customer route is verified. Review the site and QA results; deployment remains a separate authorized action." : approved ? "Website not built yet. Copy the build prompt and run Codex to create this customer website." : "Review and approve the AI brief first. Approval authorizes a build; it does not create website files."}</p></div>
+    {!filesBuilt && !previewReady && !approved && <p className="wf-status">Website not built yet. Copy the build prompt and run Codex to create this customer website. Approve the brief before running the build.</p>}
+    <dl><dt>Build status</dt><dd>{previewReady ? "Website route verified · preview recorded" : filesBuilt ? "Website route and customer identity verified" : approved ? "Build pending" : "Awaiting brief approval"}</dd><dt>Suggested slug</dt><dd>{customerSlug || "Available after brief generation"}</dd><dt>Intended preview</dt><dd>{customerSlug ? `https://red-spectrum-website-factory.vercel.app/${customerSlug}` : "Not assigned yet"}</dd></dl>
+    {filesBuilt && customerSlug && <Link className="wf-button secondary" href={`/${customerSlug}`} target="_blank">Open website in this environment ↗</Link>}
+    <p className="wf-checklist-note">The intended URL is not a published website. Confirm slug availability before building. The route and customer identity are verified server-side. QA and customer approval still require manual review.</p>
+    <details><summary>AI generation and approval controls</summary><p>Generate sends the business name, industry, website and description to OpenAI. Direct contact fields are excluded. AI output remains an unverified draft. Generation is locked after build approval.</p>
     {!available && <p className="wf-status">AI generation unavailable</p>}
-    <label className="wf-check"><input type="checkbox" checked={confirmed} onChange={e=>setConfirmed(e.target.checked)}/><span>I reviewed the request and authorize the selected action. For generation, I authorize sending these business details to OpenAI. For preview/customer approval, I have manually verified the preview or obtained customer approval.</span></label>
     <div style={{display:"flex",flexWrap:"wrap",gap:12}}>
       <button className="wf-button" disabled={pending || !confirmed || !available || stage !== "draft"} onClick={()=>run("generate")}>{pending ? "Working..." : hasHistory ? "Regenerate AI Website Brief" : "Generate AI Website Brief"}</button>
-      <button className="wf-button secondary" disabled={pending || !confirmed || !briefId || stage !== "draft"} onClick={()=>run("approve")}>Approve for Build</button>
-    </div>
-    <label className="wf-field">Customer preview URL<input type="url" value={previewUrl} onChange={e=>setPreviewUrl(e.target.value)} placeholder="https://preview.redspectrum.ai/customer-slug" disabled={stage !== "build_approved"}/></label>
+      <button className="wf-button secondary" disabled={pending || !confirmed || !briefId || !slugConfirmed || stage !== "draft"} onClick={()=>run("approve")}>Approve for Build</button>
+    </div></details>
+    <label className="wf-check"><input type="checkbox" checked={confirmed} onChange={e=>setConfirmed(e.target.checked)}/><span>I reviewed and authorize the selected action. Generation shares business details with OpenAI. Preview readiness requires completed files and QA; customer approval requires actual customer authorization.</span></label>
+    {prompt && <><div className="wf-buttons"><button type="button" className="wf-button" disabled={!slugConfirmed} onClick={copy}>Copy prompt for Codex</button><Link className="wf-button secondary" href={`/admin/ai?requestId=${requestId}&improve=1`}>Ask AI about this brief</Link></div><p>{filesBuilt ? "Original handoff retained for audit. Files already exist: do not rerun it as a new-customer build or overwrite the existing site." : approved ? "Next: run this prompt in Codex in the existing RS WebFactory project. It does not run from this page." : "Draft prompt only. Approve for Build before creating files."}</p><details><summary>Generated Codex build prompt</summary><label className="wf-field">Build handoff<textarea readOnly value={prompt} rows={12}/></label></details></>}
+    <div id="preview"><p className="wf-section-label">04 / Preview & QA</p><h3>After the website is built</h3></div>
+    <ol className="wf-checklist"><li>Create isolated customer files and register the agreed slug.</li><li>Verify every page, facts, links, images, metadata and tenant isolation.</li><li>Check layouts at 320, 768 and 1440 pixels. Run lint and production build.</li><li>Obtain separate deployment approval. After files are created and verified, paste the approved preview URL and mark Preview Ready.</li></ol>
+    <p className="wf-checklist-note">QA checklist: manual review required; no automated pass is claimed here. Customer emails, payments, lookup and automatic deployment remain inactive.</p>
+    {recordedPreview && <a className="wf-button secondary" href={recordedPreview} target="_blank" rel="noopener noreferrer">Open recorded preview ↗</a>}
+    <label className="wf-field">Customer preview URL<input type="url" value={previewUrl} onChange={e=>setPreviewUrl(e.target.value)} placeholder={customerSlug ? `https://red-spectrum-website-factory.vercel.app/${customerSlug}` : "Confirm Customer Slug above"} disabled={stage !== "build_approved"}/></label>
+    <p>Typing a preview URL does not change the build slug. <a href="#customer-slug">Edit and save Customer Slug above</a> before updating the preview.</p>
     <div style={{display:"flex",flexWrap:"wrap",gap:12}}>
-      <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "build_approved" || !previewUrl} onClick={()=>run("preview")}>Mark Preview Ready</button>
-      <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "preview_ready"} onClick={()=>run("customer")}>Mark Customer Approved</button>
+      <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "build_approved" || !slugConfirmed} onClick={()=>run("built")}>Verify Website Built</button>
+      <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "build_approved" || !filesBuilt || !previewUrl} onClick={()=>run("preview")}>Mark Preview Ready</button>
+      <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "preview_ready" || !filesBuilt} onClick={()=>run("customer")}>Mark Customer Approved</button>
     </div>
     {message && <p role="status" aria-live="polite" className="wf-status">{message}</p>}
-    {prompt && <><Link href={`/admin/ai?requestId=${requestId}&improve=1`}>Ask AI to improve this brief</Link><h3>Codex Build Prompt</h3><p>{stage === "draft" ? "Draft handoff only. Approve for Build before asking Codex to create files." : "Build authorization only; deployment still requires separate approval."}</p><button type="button" className="wf-button secondary" onClick={copy}>Copy prompt for Codex</button><label className="wf-field">Build handoff<textarea readOnly value={prompt} rows={14}/></label></>}
+    <p className="wf-status">Customer approval: <strong>{stage === "customer_approved" ? "Customer Approved" : "Not approved"}</strong>. Marking approval does not send email, take payment or publish the site.</p>
   </section>;
 }

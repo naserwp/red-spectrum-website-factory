@@ -1,11 +1,12 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { isAdmin, sameOrigin, rateLimit } from "@/lib/webfactory/server";
+import { chatSession } from "@/lib/webfactory/chat-store";
 import { generateForRequest, transitionBuild, WorkflowError } from "@/lib/webfactory/ai-workflow";
 export const runtime = "nodejs";
 export const maxDuration = 90;
 const inputSchema = z.object({
-  action: z.enum(["generate","approve","preview","customer"]),
+  action: z.enum(["generate","approve","built","preview","customer"]),
   confirmed: z.literal(true),
   briefId: z.string().uuid().optional(),
   previewUrl: z.string().url().max(500).optional(),
@@ -13,6 +14,7 @@ const inputSchema = z.object({
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!await isAdmin()) return Response.json({ error: "Please sign in." }, { status: 401 });
+  const actor="session:"+(await chatSession())!.slice(0,12);
   if (!await sameOrigin()) return Response.json({ error: "Invalid origin." }, { status: 403 });
   const { id } = await params;
   if (!z.string().uuid().safeParse(id).success) return Response.json({ error: "Invalid request." }, { status: 400 });
@@ -24,12 +26,12 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     if (input.data.action === "generate") {
       if (!process.env.OPENAI_API_KEY?.trim()) return Response.json({ error: "AI generation unavailable" }, { status: 503 });
       if (!await rateLimit("ai", "admin", 6)) return Response.json({ error: "Generation limit reached. Try again in 15 minutes." }, { status: 429 });
-      await generateForRequest(id);
+      await generateForRequest(id,actor);
     } else {
       if (!input.data.briefId) return Response.json({ error: "Select a generated brief." }, { status: 400 });
-      await transitionBuild(id,input.data.action,input.data.briefId,input.data.previewUrl);
+      await transitionBuild(id,input.data.action,input.data.briefId,input.data.previewUrl,actor);
     }
-    revalidatePath("/admin"); revalidatePath("/admin/requests/" + id); revalidatePath("/processing");
+    revalidatePath("/admin"); revalidatePath("/admin/requests/" + id); revalidatePath("/processing"); revalidatePath("/designs");
     return Response.json({ success: true }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     return Response.json({ error: error instanceof WorkflowError ? error.message : "Workflow unavailable. Check storage/configuration and try again." }, { status: 400 });

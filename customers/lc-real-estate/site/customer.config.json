@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "lc-real-estate",
+  "status": "review",
+  "templateId": "ledger",
+  "business": {
+    "name": "L&C Real Estate Investment Group",
+    "industry": "Real Estate Investment",
+    "tagline": "Perspective. Property. Possibility.",
+    "summary": "Property investment inquiries and real estate portfolio support, with Larry Lafrance as the customer-provided contact."
+  },
+  "contact": {
+    "phone": {
+      "value": "(786) 754-4181",
+      "status": "draft",
+      "source": "User-provided customer brief, 2026-09-28; owner confirmation pending"
+    },
+    "email": {
+      "value": "lafrance_47@yahoo.com",
+      "status": "draft",
+      "source": "User-provided customer brief, 2026-09-28; recipient verification pending"
+    },
+    "address": {
+      "value": "",
+      "status": "missing"
+    },
+    "serviceAreas": {
+      "value": "",
+      "status": "missing"
+    }
+  },
+  "services": [
+    {
+      "name": "Property investment inquiries",
+      "description": "Start a conversation about your real estate interests, preferred property type and the information you would like to explore.",
+      "status": "draft",
+      "source": "User-provided customer brief; final scope pending owner approval"
+    },
+    {
+      "name": "Property opportunity conversations",
+      "description": "Discuss property interests and clarify questions about potential opportunities. Availability and suitability require individual review.",
+      "status": "draft",
+      "source": "User-provided customer brief; no listings supplied"
+    },
+    {
+      "name": "Real estate portfolio support",
+      "description": "Share your broader property goals and discuss what kind of portfolio support you are seeking. Scope and availability are confirmed directly.",
+      "status": "draft",
+      "source": "User-provided customer brief; final scope pending owner approval"
+    }
+  ],
+  "pages": {
+    "home": {
+      "eyebrow": "Perspective. Property. Possibility.",
+      "headline": "Real Estate Investment Opportunities Built on Trust, Strategy, and Long-Term Value",
+      "intro": "L&C Real Estate Investment Group helps clients explore property investment opportunities with a practical, relationship-first approach.",
+      "ctaLabel": "Schedule a call"
+    },
+    "services": {
+      "headline": "Make room for a considered next step.",
+      "intro": "Real estate investment inquiries, property opportunities and portfolio conversations—starting with your priorities."
+    },
+    "about": {
+      "headline": "Good relationships. A grounded perspective.",
+      "paragraphs": [
+        "L&C Real Estate Investment Group is presented using customer-provided business information. Larry Lafrance is the point of contact."
+      ]
+    },
+    "contact": {
+      "headline": "Your next conversation starts here.",
+      "intro": "Call or email Larry directly. Inquiry form delivery is not active on this preview."
+    },
+    "privacy": {
+      "headline": "Respect for your information.",
+      "body": [
+        "Draft privacy notice for owner review. This preview represents L&C Real Estate Investment Group using customer-provided information.",
+        "When activated, the inquiry form sends your name, email, phone, investment interest, budget preference, property type, message and consent to RS WebFactory for business inquiry processing. Accepted inquiries are stored in PostgreSQL and notifications use SendGrid. Delivery is currently awaiting activation approval. Do not enter payment details, account numbers or sensitive financial information.",
+        "Phone and email links open your own calling or email application. Communications you choose to send are handled outside this website by the relevant providers and the business.",
+        "Myndy AI phone/chat, payment processing, customer lookup and marketing subscriptions are not enabled here. No customer contact information is used for tracking or automatic signup.",
+        "The hosting provider may process technical access information to serve and protect the site. Before launch, the business must confirm its data controller details, retention policy, service providers and applicable privacy rights.",
+        "For privacy questions, contact Larry Lafrance at the customer-provided email address below. This notice requires final business approval before public launch."
+      ]
+    }
+  },
+  "branding": {
+    "primary": "#102A35",
+    "secondary": "#F7F5EE",
+    "accent": "#A98444",
+    "surface": "#F7F5EE",
+    "logoPath": "/customers/lc-real-estate/logo.svg",
+    "faviconPath": "/customers/lc-real-estate/favicon.svg"
+  },
+  "images": {
+    "hero": {
+      "src": "/customers/lc-real-estate/hero.webp",
+      "alt": "AI-generated residential architecture, illustrative only; not an L&C property.",
+      "width": 1536,
+      "height": 1024
+    },
+    "gallery": [
+      {
+        "src": "/customers/lc-real-estate/meeting.webp",
+        "alt": "AI-generated meeting concept image; not L&C assets or staff.",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/lc-real-estate/commercial.webp",
+        "alt": "AI-generated commercial concept image; not L&C assets or staff.",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/lc-real-estate/office.webp",
+        "alt": "AI-generated office concept image; not L&C assets or staff.",
+        "width": 1536,
+        "height": 1024
+      }
+    ]
+  },
+  "seo": {
+    "title": "L&C Real Estate Investment Group | Property Investment Opportunities",
+    "description": "Connect with L&C Real Estate Investment Group for real estate investment inquiries, property opportunities, and consultation."
+  },
+  "schema": {
+    "type": "Organization",
+    "description": "Real estate investment inquiry website preview. Business details and service scope require owner approval."
+  },
+  "form": {
+    "provider": "sendgrid",
+    "mode": "test",
+    "recipientConfirmed": true,
+    "testPassed": false
+  },
+  "myndy": {
+    "agentName": "Clara",
+    "greeting": "Hello, I’m Clara, the planned L&C inquiry assistant. What property interests would you like to discuss with Larry?",
+    "avatarBrief": "Minimal navy circular monogram with fine gold architectural lines; no human likeness.",
+    "knowledgeContextPath": "customers/lc-real-estate/delivery/myndy-context.md",
+    "embed": {
+      "enabled": false,
+      "agentId": "",
+      "scriptUrl": ""
+    }
+  }
+}

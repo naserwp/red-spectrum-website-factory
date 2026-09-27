@@ -1,9 +1,10 @@
 import { z } from "zod";
 import { chatSession,sendChatTurn,workspaceData } from "@/lib/webfactory/chat-store";
 import { sameOrigin,rateLimit } from "@/lib/webfactory/server";
+import { reviewActions } from "@/lib/webfactory/review-actions";
 export const runtime="nodejs";
 export const maxDuration=90;
-const inputSchema=z.object({conversationId:z.string().uuid(),turnId:z.string().uuid(),requestId:z.string().uuid().optional(),customerSlug:z.string().regex(/^[a-z0-9-]+$/).max(100).optional(),message:z.string().trim().min(1).max(4000),confirmed:z.literal(true)}).strict();
+const inputSchema=z.object({conversationId:z.string().uuid(),turnId:z.string().uuid(),requestId:z.string().uuid().optional(),customerSlug:z.string().regex(/^[a-z0-9-]+$/).max(100).optional(),message:z.string().trim().min(1).max(4000),intent:z.string().refine(value=>value==='' || reviewActions.some(([id])=>id===value)).optional(),confirmed:z.literal(true)}).strict();
 export async function POST(request:Request){
   const session=await chatSession();
   if(!session)return Response.json({error:"Please sign in."},{status:401});

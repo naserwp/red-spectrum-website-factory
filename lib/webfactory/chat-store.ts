@@ -4,7 +4,8 @@ import { cookies } from "next/headers";
 import { randomUUID } from "node:crypto";
 import { database,digest,isAdmin } from "./server";
 import { getCustomerSite } from "@/lib/customers/registry";
-import { requestSlug } from "./brief-schema";
+import { requestSlug,briefSchema,codexBuildPrompt } from "./brief-schema";
+import { getLocalBuildReceipt } from "./build-receipts";
 import { askWorkspaceAI,chatSecrets } from "./chat-provider";
 import { redactChatText } from "./chat-safety";
 
@@ -17,19 +18,27 @@ export async function chatSession() {
 }
 export async function resolveChatContext(requestId?:string|null,slug?:string|null,runner:Pick<Pool,"query">=database()) {
   let title="General website planning",context="No customer selected. Ask for missing business details; do not assume facts.",customerSlug=slug || null;
+  let summary:{requestStatus?:string;buildStatus?:string;previewUrl?:string|null;localPath?:string|null;notes?:string;changes?:string;briefSummary?:string;buildPrompt?:string}={};
   if(requestId){
-    const r=await runner.query("SELECT business,industry,website,details FROM webfactory.requests WHERE id=$1",[requestId]);
+    const r=await runner.query("SELECT business,industry,website,details,status,customer_slug FROM webfactory.requests WHERE id=$1",[requestId]);
     if(!r.rows[0])throw new Error("Request unavailable");
-    const brief=await runner.query("SELECT b.brief FROM webfactory.build_workflows w JOIN webfactory.ai_briefs b ON b.id=w.active_brief_id WHERE w.request_id=$1",[requestId]);
+    const brief=await runner.query("SELECT b.brief,w.stage,w.preview_url FROM webfactory.build_workflows w LEFT JOIN webfactory.ai_briefs b ON b.id=w.active_brief_id WHERE w.request_id=$1",[requestId]);
+    const reviews=await runner.query("SELECT kind,review_status,preview_url,notes,requested_changes,content,created_at FROM webfactory.request_review_events WHERE request_id=$1 ORDER BY created_at DESC LIMIT 5",[requestId]);
     title=r.rows[0].business;
-    customerSlug=brief.rows[0]?.brief?.customerSlug || requestSlug(title,requestId);
-    context=JSON.stringify({unverifiedCustomerRequest:r.rows[0],draftBrief:brief.rows[0]?.brief || null});
+    const receipt=getLocalBuildReceipt(requestId),parsed=briefSchema.safeParse(brief.rows[0]?.brief);
+    customerSlug=r.rows[0].customer_slug || receipt?.customerSlug || requestSlug(title);
+    const latestReview=reviews.rows.find(row=>row.kind==="review");
+    const currentPrompt=parsed.success?codexBuildPrompt({...parsed.data,customerSlug:customerSlug || parsed.data.customerSlug},Boolean(r.rows[0].customer_slug) && brief.rows[0]?.stage!=="draft"):"";
+    summary={requestStatus:r.rows[0].status,buildStatus:receipt?"Local website files created":brief.rows[0]?.stage || "draft",previewUrl:brief.rows[0]?.preview_url || (r.rows[0].customer_slug?`https://preview.redspectrum.ai/${r.rows[0].customer_slug}`:null),localPath:receipt?"/"+customerSlug:null,notes:redactChatText(latestReview?.notes || "",chatSecrets()),changes:redactChatText(latestReview?.requested_changes || "",chatSecrets())};
+    summary.briefSummary=redactChatText(parsed.success?parsed.data.businessSummary:"No validated brief yet.",chatSecrets());
+    summary.buildPrompt=redactChatText(currentPrompt,chatSecrets());
+    context=JSON.stringify({unverifiedCustomerRequest:r.rows[0],customerSlug,buildStatus:receipt?"Local files created; deployment not verified":brief.rows[0]?.stage || "draft",previewUrl:brief.rows[0]?.preview_url || null,intendedPreviewUrl:r.rows[0].customer_slug?`https://preview.redspectrum.ai/${r.rows[0].customer_slug}`:null,localPreviewPath:receipt?"/"+customerSlug:null,latestAdminReviews:reviews.rows,savedSlug:r.rows[0].customer_slug || null,slugConfirmed:Boolean(r.rows[0].customer_slug),draftBrief:parsed.success?{...parsed.data,customerSlug}:null,codexBuildPrompt:currentPrompt || null});
   }else if(slug){
     const site=getCustomerSite(slug);if(!site)throw new Error("Customer unavailable");
     title=site.business.name;
     context=JSON.stringify({customerSlug:slug,existingPreviewBusiness:title,notice:"Other business facts not loaded. Ask admin for verified details."});
   }
-  return {title:redactChatText(title,chatSecrets()),context:redactChatText(context,chatSecrets()).slice(0,24000),customerSlug};
+  return {title:redactChatText(title,chatSecrets()),context:redactChatText(context,chatSecrets()).slice(0,60000),customerSlug,summary};
 }
 export async function workspaceData(session:string,conversationId?:string) {
   const db=database();
@@ -42,7 +51,7 @@ export async function workspaceData(session:string,conversationId?:string) {
   }
   return {history:history.rows,conversation,messages};
 }
-export async function sendChatTurn(session:string,input:{conversationId:string;turnId:string;requestId?:string;customerSlug?:string;message:string}) {
+export async function sendChatTurn(session:string,input:{conversationId:string;turnId:string;requestId?:string;customerSlug?:string;message:string;intent?:string}) {
   const db=database(),client=await db.connect();
   let context:string,assistantId:string;
   try{
@@ -65,13 +74,19 @@ export async function sendChatTurn(session:string,input:{conversationId:string;t
     if(count.rows[0].n>=80)throw new Error("Start a new conversation to continue.");
     assistantId=randomUUID();
     await client.query("INSERT INTO webfactory.ai_messages(id,conversation_id,turn_id,role,content,status) VALUES($1,$2,$3,'user',$4,'complete')",[randomUUID(),input.conversationId,input.turnId,redactChatText(input.message,chatSecrets())]);
-    await client.query("INSERT INTO webfactory.ai_messages(id,conversation_id,turn_id,role,status,model,created_at) VALUES($1,$2,$3,'assistant','pending',$4,NOW()+INTERVAL '1 millisecond')",[assistantId,input.conversationId,input.turnId,process.env.WEBFACTORY_AI_MODEL||"gpt-4.1-mini"]);
+    await client.query("INSERT INTO webfactory.ai_messages(id,conversation_id,turn_id,role,status,model,created_at) VALUES($1,$2,$3,'assistant','pending',$4,NOW()+INTERVAL '1 millisecond')",[assistantId,input.conversationId,input.turnId,process.env.WEBFACTORY_AI_MODEL||"gpt-6-astra"]);
     await client.query("COMMIT");
   }catch(error){await client.query("ROLLBACK");throw error;}finally{client.release();}
   try{
     const messages=(await db.query<ChatMessage>("SELECT id,role,content,status FROM webfactory.ai_messages WHERE conversation_id=$1 AND status='complete' ORDER BY created_at DESC,id DESC LIMIT 16",[input.conversationId])).rows.reverse();
     const result=await askWorkspaceAI(context,messages.map(m=>({role:m.role,content:m.content.slice(0,6000)})));
-    await db.query("UPDATE webfactory.ai_messages SET status='complete',content=$2,token_usage=$3 WHERE id=$1 AND status='pending'",[assistantId,result.content,JSON.stringify(result.usage)]);
+    const completed=await db.connect();
+    try{
+      await completed.query('BEGIN');
+      await completed.query("UPDATE webfactory.ai_messages SET status='complete',content=$2,token_usage=$3 WHERE id=$1 AND status='pending'",[assistantId,result.content,JSON.stringify(result.usage)]);
+      await completed.query("INSERT INTO webfactory.request_actions(request_id,actor,action,status_before,status_after,customer_slug,preview_url,notes,event_key) SELECT r.id,$2,$3,w.stage,w.stage,r.customer_slug,w.preview_url,'AI draft only; not applied or approved.',$4 FROM webfactory.ai_conversations c JOIN webfactory.requests r ON r.id=c.request_id LEFT JOIN webfactory.build_workflows w ON w.request_id=r.id WHERE c.id=$1 ON CONFLICT(event_key) DO NOTHING",[input.conversationId,'session:'+session.slice(0,12),input.intent==='rebuild'?'rebuild_prompt_generated':input.intent==='slug'?'slug_suggested':'ai_review_generated','chat-answer:'+assistantId]);
+      await completed.query('COMMIT');
+    }catch(error){await completed.query('ROLLBACK');throw error;}finally{completed.release();}
     return {duplicate:false};
   }catch{
     await db.query("UPDATE webfactory.ai_messages SET status='failed',failure_code='generation_failed' WHERE id=$1 AND status='pending'",[assistantId]).catch(()=>{});

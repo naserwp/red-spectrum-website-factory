@@ -12,7 +12,7 @@ const poolCache = new Map<string, Pool>();
 function getPool(connectionString: string) {
   let pool = poolCache.get(connectionString);
   if (!pool) {
-    pool = new Pool({ connectionString, max: 4, ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : undefined });
+    pool = new Pool({ connectionString, max: 4, connectionTimeoutMillis: 5000, query_timeout: 10000, ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : undefined });
     poolCache.set(connectionString, pool);
   }
   return pool;
@@ -30,6 +30,9 @@ export type StoredLead = {
   visitorPhone: string;
   requestedService: string;
   message: string;
+  investmentInterest?: string;
+  budgetRange?: string;
+  propertyType?: string;
   receivedAt: Date;
 };
 
@@ -46,6 +49,9 @@ function toLead(row: Record<string, unknown>): StoredLead {
     visitorPhone: String(row.visitor_phone),
     requestedService: String(row.requested_service),
     message: String(row.message),
+    investmentInterest: row.investment_interest ? String(row.investment_interest) : undefined,
+    budgetRange: row.budget_range ? String(row.budget_range) : undefined,
+    propertyType: row.property_type ? String(row.property_type) : undefined,
     receivedAt: new Date(String(row.received_at)),
   };
 }
@@ -70,11 +76,11 @@ export class LeadStore {
   }): Promise<{ lead: StoredLead; duplicate: boolean }> {
     const inserted = await this.pool.query(
       `INSERT INTO website_leads
-       (lead_id, customer_slug, delivery_mode, dedupe_key, notification_status, next_retry_at, recipient_email, visitor_name, visitor_email, visitor_phone, requested_service, message, received_at)
-       VALUES ($1, $2, $3, $4, 'pending', $5, $6, $7, $8, $9, $10, $11, $5)
+       (lead_id, customer_slug, delivery_mode, dedupe_key, notification_status, next_retry_at, recipient_email, visitor_name, visitor_email, visitor_phone, requested_service, message, received_at, investment_interest, budget_range, property_type)
+       VALUES ($1, $2, $3, $4, 'pending', $5, $6, $7, $8, $9, $10, $11, $5, $12, $13, $14)
        ON CONFLICT (dedupe_key) DO NOTHING
        RETURNING *`,
-      [randomUUID(), input.customerSlug, input.mode, input.dedupeKey, input.receivedAt, input.recipient, input.lead.name, input.lead.email, input.lead.phone, input.lead.service, input.lead.message],
+      [randomUUID(), input.customerSlug, input.mode, input.dedupeKey, input.receivedAt, input.recipient, input.lead.name, input.lead.email, input.lead.phone, input.lead.service, input.lead.message, input.lead.investmentInterest ?? null, input.lead.budgetRange ?? null, input.lead.propertyType ?? null],
     );
     if (inserted.rows[0]) return { lead: toLead(inserted.rows[0]), duplicate: false };
     const existing = await this.pool.query(`UPDATE website_leads SET duplicate_count = duplicate_count + 1 WHERE dedupe_key = $1 RETURNING *`, [input.dedupeKey]);
@@ -85,7 +91,7 @@ export class LeadStore {
   async claim(leadId: string): Promise<StoredLead | null> {
     const result = await this.pool.query(
       `UPDATE website_leads
-       SET attempt_count = attempt_count + 1, notification_status = 'pending'
+       SET attempt_count = attempt_count + 1, notification_status = 'pending', next_retry_at = NOW() + INTERVAL '2 minutes'
        WHERE lead_id = $1 AND notification_status IN ('pending', 'failed') AND attempt_count < $2
          AND (next_retry_at IS NULL OR next_retry_at <= NOW())
        RETURNING *`,
@@ -96,6 +102,11 @@ export class LeadStore {
 
   async markAccepted(leadId: string, providerMessageId?: string) {
     await this.pool.query(`UPDATE website_leads SET notification_status = 'accepted', accepted_at = NOW(), next_retry_at = NULL, provider_message_id = $2, last_error_code = NULL WHERE lead_id = $1`, [leadId, providerMessageId ?? null]);
+  }
+
+  async get(leadId: string): Promise<StoredLead | null> {
+    const result = await this.pool.query('SELECT * FROM website_leads WHERE lead_id=$1', [leadId]);
+    return result.rows[0] ? toLead(result.rows[0]) : null;
   }
 
   async markFailed(leadId: string, attemptCount: number, errorCode: string) {

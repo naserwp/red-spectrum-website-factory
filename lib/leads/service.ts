@@ -1,8 +1,9 @@
 import "server-only";
 
-import { getCustomerDelivery, getSendGridConfig, leadEmailEnabled, type LeadDeliveryMode } from "./config";
+import { getCustomerDelivery, getSendGridConfig, leadDeliveryAllowedForSlug, leadEmailEnabled, type LeadDeliveryMode } from "./config";
 import { sendSendGridNotification } from "./email";
-import { createLeadStore, type StoredLead } from "./store";
+import { createLeadStore } from "./store";
+import { getCustomerSite } from "@/lib/customers/registry";
 import { hashValue, leadDedupeKey, type WebsiteLeadInput } from "./validation";
 import type { CustomerSite } from "@/lib/customers/schema";
 
@@ -14,14 +15,10 @@ function errorCode(error: unknown) {
   return /^sendgrid_\d{3}$/.test(message) ? message : "send_error";
 }
 
-function retrySubject(lead: StoredLead) {
-  return lead.deliveryMode === "test" ? "[TEST] New website lead — Swenzy Logistics" : "New website lead — Swenzy Logistics";
-}
-
 export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInput, clientIp: string) {
   const mode = site.form.mode as LeadDeliveryMode | "disabled";
   if (mode === "disabled" || !site.form.recipientConfirmed || (mode === "live" && !site.form.testPassed)) return { state: "inactive" as const };
-  if (!leadEmailEnabled(mode)) return { state: "inactive" as const };
+  if (!leadEmailEnabled(mode) || !leadDeliveryAllowedForSlug(site.slug, mode)) return { state: "inactive" as const };
   const config = getSendGridConfig();
   if (!config) return { state: "unconfigured" as const };
   const store = createLeadStore(config.databaseUrl);
@@ -32,16 +29,16 @@ export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInp
   const allowed = await store.consumeRateLimit(bucketKey, new Date(windowStart + RATE_LIMIT_WINDOW_MS), RATE_LIMIT_MAXIMUM);
   if (!allowed) return { state: "rate_limited" as const };
   const persisted = await store.persist({ customerSlug: site.slug, mode, recipient: recipient.recipient, dedupeKey: leadDedupeKey(site.slug, lead, now), receivedAt: now, lead });
-  if (persisted.duplicate) return { state: "duplicate" as const, leadId: persisted.lead.leadId };
+  if (persisted.duplicate) return { state: persisted.lead.notificationStatus === "accepted" ? "duplicate" as const : "notification_pending" as const, leadId: persisted.lead.leadId };
   const claimed = await store.claim(persisted.lead.leadId);
-  if (!claimed) return { state: "accepted" as const, leadId: persisted.lead.leadId };
+  if (!claimed) return { state: "notification_pending" as const, leadId: persisted.lead.leadId };
   try {
     const messageId = await sendSendGridNotification(config, { recipient: claimed.recipientEmail, subject: recipient.subject, lead: claimed });
     await store.markAccepted(claimed.leadId, messageId);
     return { state: "accepted" as const, leadId: claimed.leadId };
   } catch (error) {
     await store.markFailed(claimed.leadId, claimed.attemptCount, errorCode(error));
-    return { state: "accepted_pending_retry" as const, leadId: claimed.leadId };
+    return { state: "notification_pending" as const, leadId: claimed.leadId };
   }
 }
 
@@ -53,10 +50,18 @@ export async function retryPendingLeadNotifications(limit = 10) {
   const leadIds = await store.pendingRetryIds(Math.min(Math.max(limit, 1), 25));
   let accepted = 0; let failed = 0;
   for (const leadId of leadIds) {
+    const pending = await store.get(leadId);
+    if (!pending || !leadEmailEnabled(pending.deliveryMode)) continue;
+    const site = getCustomerSite(pending.customerSlug);
+    if (!site || site.form.mode !== pending.deliveryMode || !site.form.recipientConfirmed || (pending.deliveryMode === "live" && !site.form.testPassed) || !leadDeliveryAllowedForSlug(site.slug, pending.deliveryMode)) continue;
+    // Never retry a disabled tenant or silently send an old lead to a changed recipient.
+    let delivery;
+    try { delivery = getCustomerDelivery(site, pending.deliveryMode); } catch { continue; }
+    if (delivery.recipient !== pending.recipientEmail) continue;
     const lead = await store.claim(leadId);
     if (!lead) continue;
     try {
-      const messageId = await sendSendGridNotification(config, { recipient: lead.recipientEmail, subject: retrySubject(lead), lead });
+      const messageId = await sendSendGridNotification(config, { recipient: lead.recipientEmail, subject: delivery.subject, lead });
       await store.markAccepted(lead.leadId, messageId); accepted++;
     } catch (error) {
       await store.markFailed(lead.leadId, lead.attemptCount, errorCode(error)); failed++;

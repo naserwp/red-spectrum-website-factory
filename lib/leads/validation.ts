@@ -10,7 +10,16 @@ export const websiteLeadSchema = z.object({
   message: z.string().trim().min(5).max(3000),
   consent: z.literal("on"),
   botcheck: z.string().max(0).optional(),
+  investmentInterest: z.string().trim().max(160).optional(),
+  budgetRange: z.string().trim().max(100).optional(),
+  propertyType: z.string().trim().max(100).optional(),
 });
+
+export const lcLeadSchema = websiteLeadSchema.extend({
+  investmentInterest: z.enum(["Property opportunities", "Portfolio support", "General consultation", "Other / not sure"]),
+  budgetRange: z.enum(["Prefer to discuss", "Under $100,000", "$100,000–$500,000", "$500,000–$1 million", "Over $1 million"]),
+  propertyType: z.enum(["Exploring options", "Residential", "Commercial", "Mixed-use"]),
+}).refine(input => input.service === input.investmentInterest);
 
 export type WebsiteLeadInput = z.infer<typeof websiteLeadSchema>;
 
@@ -26,5 +35,8 @@ export function hashValue(value: string) {
 
 export function leadDedupeKey(customerSlug: string, input: WebsiteLeadInput, receivedAt: Date) {
   const window = Math.floor(receivedAt.getTime() / (15 * 60 * 1000));
-  return hashValue([customerSlug, window, input.name.toLowerCase(), input.email.toLowerCase(), input.phone, input.service, input.message].join("\u0000"));
+  const fields = [customerSlug, window, input.name.toLowerCase(), input.email.toLowerCase(), input.phone, input.service, input.message];
+  // Preserve existing customers' dedupe keys when no investment fields are submitted.
+  if (input.investmentInterest || input.budgetRange || input.propertyType) fields.push(input.investmentInterest ?? "", input.budgetRange ?? "", input.propertyType ?? "");
+  return hashValue(fields.join("\u0000"));
 }

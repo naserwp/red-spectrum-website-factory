@@ -32,7 +32,7 @@ export async function rateLimit(kind: "login" | "request" | "ai" | "ai_chat", id
   const result = await database().query<{ count: number }>("INSERT INTO webfactory.rate_limits (key, count, expires_at) VALUES ($1,1,NOW()+INTERVAL '15 minutes') ON CONFLICT (key) DO UPDATE SET count=webfactory.rate_limits.count+1 RETURNING count", [key]);
   return result.rows[0].count <= maximum;
 }
-export type ProjectRequest = { id: string; name: string; business: string; email: string; phone: string; industry: string; website: string; details: string; status: string; notification_status: string; created_at: Date };
+export type ProjectRequest = { id: string; name: string; business: string; email: string; phone: string; industry: string; website: string; details: string; customer_slug?: string | null; slug_confirmed_at?: Date | null; status: string; notification_status: string; created_at: Date };
 export async function listRequests(): Promise<ProjectRequest[]> { if (!await isAdmin()) throw new Error("Unauthorized"); return (await database().query<ProjectRequest>("SELECT id,name,business,email,phone,industry,website,details,status,notification_status,created_at FROM webfactory.requests ORDER BY created_at DESC LIMIT 100")).rows; }
 export function notificationReady() { return process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED === "true" && Boolean(process.env.SENDGRID_API_KEY && process.env.LEADS_FROM_EMAIL && process.env.WEBFACTORY_REQUEST_NOTIFY_EMAIL); }
 function escape(value: string) { return value.replace(/[&<>"']/g, x => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[x]!)); }

@@ -4,7 +4,7 @@ import ts from 'typescript';
 const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(name=>{if(name==='server-only')return {};if(name in deps)return deps[name];throw Error(name);},m,m.exports);return m.exports;};
 const rules=load('lib/webfactory/slug-rules.ts',{});
 const sites=JSON.parse(readFileSync('customers/manifest.json','utf8')).customers;
-const catalog=load('lib/webfactory/preview-catalog.ts',{'next/headers':{},'@/lib/customers/registry':{getCustomerSites:()=>sites},'./build-receipts':{getLocalBuildReceipt:()=>null},'./server':{},'./slug-rules':rules});
+const catalog=load('lib/webfactory/preview-catalog.ts',{'next/headers':{},'@/lib/customers/registry':{getCustomerSites:()=>sites},'./build-receipts':{getLocalBuildReceipt:()=>null},'./server':{},'./slug-rules':rules,'./route-readiness':{verifyCustomerRoute:async()=>false,localCustomerUrl:(slug,host)=>host.startsWith('localhost:')?'http://'+host+'/'+slug:null}});
 const row={id:'private-request-id',business:'Synthetic Studio',industry:'Design',status:'reviewing',customer_slug:'synthetic-studio',stage:'build_approved',preview_url:'https://preview.redspectrum.ai/synthetic-studio',review_status:null,review_url:null,updated_at:new Date(),action_count:'3',email:'private@example.invalid',phone:'5551234567',notes:'PRIVATE_CANARY',brief:{secret:'PRIVATE_CANARY'}};
 const publicCards=catalog.assemblePreviewCards([row],false),pending=publicCards.find(c=>c.slug===row.customer_slug);
 assert.equal(pending.href,null);assert.equal(pending.status,'build approved');
@@ -22,7 +22,7 @@ assert.equal(await catalog.resolvePreviewLink(slug,urls.primary,'webfactory.reds
 assert.equal(await catalog.resolvePreviewLink(slug,urls.fallback,'webfactory.redspectrum.ai',async()=>true),urls.fallback);
 assert.equal(await catalog.resolvePreviewLink(slug,null,'webfactory.redspectrum.ai',async()=>true),urls.primary);
 assert.equal(await catalog.resolvePreviewLink(slug,null,'preview.redspectrum.ai',async()=>false),null);
-assert.equal(await catalog.resolvePreviewLink(slug,null,'localhost:3012',async()=>false),'/'+slug);
+assert.equal(await catalog.resolvePreviewLink(slug,null,'localhost:3012',async()=>false),null);
 const checked=[];
 await catalog.resolvePreviewLink(slug,'https://evil.invalid/private','webfactory.redspectrum.ai',async url=>{checked.push(url);return false;});
 assert.deepEqual(checked,[urls.primary,urls.fallback]);

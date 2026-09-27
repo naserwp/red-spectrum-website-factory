@@ -4,6 +4,7 @@ import { JmWebsite } from "@/components/customers/jm-website";
 import { CustomerMyndy } from "@/components/customers/customer-myndy";
 import { VitalityWebsite } from "@/components/customers/vitality-website";
 import { Jm0616StudioWebsite } from "@/components/customers/jm0616studio-website";
+import { LcWebsite } from "@/components/customers/lc-website";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ArrowRight, Mail, Menu, Phone } from "lucide-react";
@@ -70,6 +71,7 @@ function InnerPage({ site, page }: { site: CustomerSite; page: Exclude<CustomerP
 }
 
 export function CustomerWebsite({ site, page, route = [] }: { site: CustomerSite; page: CustomerPage; route?: string[] }) {
+  if (site.slug === "lc-real-estate") return <LcWebsite site={site} page={page} />;
   if (site.slug === "jm0616studio") return <Jm0616StudioWebsite site={site} page={page} />;
   if (site.slug === "swenzy-logistics") return <SwenzyWebsite site={site} page={page} />;
   if (site.slug === "jm-trucking") return <JmWebsite site={site} page={page} />;

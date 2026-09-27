@@ -6,8 +6,14 @@ function escapeHtml(value: string) {
 
 function renderRows(lead: StoredLead) {
   return [
+    ["Customer/site", lead.customerSlug === "lc-real-estate" ? "L&C Real Estate Investment Group" : lead.customerSlug],
+    ["Source", `${lead.customerSlug} website`],
     ["Lead ID", lead.leadId], ["Received", lead.receivedAt.toISOString()], ["Name", lead.visitorName],
-    ["Email", lead.visitorEmail], ["Phone", lead.visitorPhone], ["Requested service", lead.requestedService], ["Message", lead.message],
+    ["Email", lead.visitorEmail], ["Phone", lead.visitorPhone], ["Requested service", lead.requestedService],
+    ...(lead.investmentInterest ? [["Investment interest", lead.investmentInterest]] : []),
+    ...(lead.budgetRange ? [["Budget range", lead.budgetRange]] : []),
+    ...(lead.propertyType ? [["Preferred property type", lead.propertyType]] : []),
+    ["Message", lead.message],
   ];
 }
 
@@ -34,6 +40,6 @@ export async function sendSendGridNotification(config: { apiKey: string; fromEma
     }),
     signal: AbortSignal.timeout(10_000),
   });
-  if (!response.ok) throw new Error(`sendgrid_${response.status}`);
+  if (response.status !== 202) throw new Error(`sendgrid_${response.status}`);
   return response.headers.get("x-message-id") ?? undefined;
 }

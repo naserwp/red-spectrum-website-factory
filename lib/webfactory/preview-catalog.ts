@@ -4,6 +4,7 @@ import {getCustomerSites} from "@/lib/customers/registry";
 import {getLocalBuildReceipt} from "./build-receipts";
 import {database,isAdmin} from "./server";
 import {slugError,slugFromPreviewUrl,previewUrls} from "./slug-rules";
+import {verifyCustomerRoute,localCustomerUrl} from "./route-readiness";
 
 export type PreviewCard={key:string;name:string;industry:string;description:string;slug:string|null;image:string|null;status:'building'|'build approved'|'preview ready'|'changes requested'|'approved';href:string|null;admin?:{requestStatus:string;requestHref:string;updatedAt:string;actionCount:number}};
 type RequestRow={id:string;business:string;industry:string;status:string;customer_slug:string|null;stage:string|null;preview_url:string|null;review_status:string|null;review_url:string|null;updated_at:Date|string;action_count?:string};
@@ -31,7 +32,7 @@ export function assemblePreviewCards(rows:RequestRow[],admin:boolean):PreviewCar
   }
   return [...cards.values()];
 }
-async function reachable(url:string){try{return (await fetch(url,{method:'HEAD',redirect:'error',signal:AbortSignal.timeout(1500),cache:'no-store'})).status===200;}catch{return false;}}
+async function reachable(url:string){const slug=slugFromPreviewUrl(url);return Boolean(slug && await verifyCustomerRoute(slug,url));}
 export async function resolvePreviewLink(slug:string,saved:string|null|undefined,host:string,check:(url:string)=>Promise<boolean>=reachable):Promise<string|null>{
   if(slugError(slug))return null;
   const urls=previewUrls(slug);
@@ -43,7 +44,8 @@ export async function resolvePreviewLink(slug:string,saved:string|null|undefined
   if(await ready(urls.primary))return urls.primary;
   if(await ready(urls.fallback))return urls.fallback;
   // Undeployed registered sites remain inspectable locally, never linked as live previews.
-  return /^(localhost|127\.0\.0\.1)(:\d+)?$/.test(host)?`/${slug}`:null;
+  const local=localCustomerUrl(slug,host);
+  return local && await check(local)?`/${slug}`:null;
 }
 export async function customerPreviewCatalog(){
   const admin=await isAdmin(),host=(await headers()).get('host') || '';
@@ -58,7 +60,9 @@ export async function customerPreviewCatalog(){
   await Promise.all(cards.filter(card=>card.href && card.slug).map(async card=>{
     const row=rows.find(row=>row.customer_slug===card.slug || getLocalBuildReceipt(row.id)?.customerSlug===card.slug);
     const saved=row?.preview_url || row?.review_url;
-    card.href=await resolvePreviewLink(card.slug!,saved,host);
+    card.href=await resolvePreviewLink(card.slug!,saved,host,url=>verifyCustomerRoute(card.slug!,url));
+    if(card.href && !['approved','changes requested'].includes(card.status))card.status='preview ready';
   }));
+  for(const card of cards)if(!card.href)card.status='building';
   return {cards,admin,unavailable};
 }

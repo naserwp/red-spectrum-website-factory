@@ -1,0 +1,10 @@
+{
+  "requestId": "1d9e135c-8376-4464-9fe6-15cf3ae82756",
+  "business": "L&C Real Estate Investment Group",
+  "customerSlug": "lc-real-estate",
+  "status": "local_files_created",
+  "deploymentStatus": "verification_pending",
+  "localPreview": "http://localhost:3012/lc-real-estate",
+  "plannedPreview": "https://red-spectrum-website-factory.vercel.app/lc-real-estate",
+  "note": "Exact supplied contact matched; this request has the approved build workflow. Historical brief preserved; saved request slug is canonical. Not customer approval."
+}

@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(name=>name==='server-only'?{}:deps[name],m,m.exports);return m.exports;};
+const sites=JSON.parse(readFileSync('customers/manifest.json','utf8')).customers;
+const rules=load('lib/webfactory/slug-rules.ts',{});
+const readiness=load('lib/webfactory/route-readiness.ts',{'@/lib/customers/registry':{getCustomerSite:slug=>sites.find(s=>s.slug===slug)},'./slug-rules':rules});
+const original=globalThis.fetch,site=sites[0],url=rules.previewUrls(site.slug).fallback;
+try{
+  let called=false;
+  globalThis.fetch=async()=>{called=true;return new Response('Not a customer',{status:200,headers:{'content-type':'text/html'}});};
+  assert.equal(await readiness.verifyCustomerRoute('nasirtesting',rules.previewUrls('nasirtesting').fallback),false);assert.equal(called,false);
+  assert.equal(await readiness.verifyCustomerRoute(site.slug,'https://example.invalid/'+site.slug),false);assert.equal(called,false);
+  assert.equal(await readiness.verifyCustomerRoute(site.slug,url),false);
+  globalThis.fetch=async()=>new Response('<script type="application/ld+json">'+JSON.stringify({name:sites[1].business.name,url:rules.previewUrls(sites[1].slug).primary})+'</script>',{headers:{'content-type':'text/html'}});
+  assert.equal(await readiness.verifyCustomerRoute(site.slug,url),false);
+  globalThis.fetch=async()=>new Response('<script type="application/ld+json">'+JSON.stringify({name:site.business.name,url:rules.previewUrls(site.slug).primary})+'</script>',{headers:{'content-type':'text/html'}});
+  assert.equal(await readiness.verifyCustomerRoute(site.slug,url),true);
+}finally{globalThis.fetch=original;}
+for(const site of sites)assert.equal(await readiness.verifyCustomerRoute(site.slug,'http://localhost:3012/'+site.slug),true,site.slug);
+assert.equal((await fetch('http://localhost:3012/nasirtesting')).status,404);
+console.log('PASS: actual registered local routes; Nasir 404; wrong tenant, generic 200, unknown slug and unapproved host rejected.');

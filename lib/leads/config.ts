@@ -7,6 +7,11 @@ import type { CustomerSite } from "@/lib/customers/schema";
 const emailSchema = z.string().trim().email().max(200);
 
 const customerDelivery = {
+  "lc-real-estate": {
+    liveRecipient: "accountexec@theredspectrum.com",
+    testRecipient: "nasir@factiiv.io",
+    subject: "New website lead — L&C Real Estate Investment Group",
+  },
   "swenzy-logistics": {
     liveRecipient: "rs@swenzylogistics.net",
     subject: "New website lead — Swenzy Logistics",
@@ -27,10 +32,23 @@ export function leadEmailEnabled(mode: LeadDeliveryMode) {
   return (mode === "test" ? process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED : process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED) === "true";
 }
 
+/**
+ * The two flags above are a single global switch per mode — turning one on would activate every customer currently in
+ * that mode, not just the one being brought online. When an allowlist is configured for a mode, it additionally
+ * restricts delivery in that mode to the listed slugs; leaving it unset preserves today's global-only behavior for
+ * every other customer, so activating one new customer never changes another customer's delivery.
+ */
+export function leadDeliveryAllowedForSlug(slug: string, mode: LeadDeliveryMode) {
+  const raw = (mode === "test" ? process.env.WEBFACTORY_LEAD_TEST_ACTIVE_SLUGS : process.env.WEBFACTORY_LEAD_LIVE_ACTIVE_SLUGS)?.trim();
+  if (!raw) return true;
+  return raw.split(",").map((value) => value.trim()).filter(Boolean).includes(slug);
+}
+
 export function getCustomerDelivery(site: CustomerSite, mode: LeadDeliveryMode) {
   const configured = customerDelivery[site.slug as keyof typeof customerDelivery];
   if (!configured) throw new Error(`No trusted delivery configuration exists for ${site.slug}.`);
-  const recipient = mode === "test" ? process.env.LEADS_TEST_TO_EMAIL : configured.liveRecipient;
+  const testRecipient = "testRecipient" in configured ? configured.testRecipient : process.env.LEADS_TEST_TO_EMAIL;
+  const recipient = mode === "test" ? testRecipient : configured.liveRecipient;
   return { recipient: emailSchema.parse(recipient), subject: mode === "test" ? `[TEST] ${configured.subject}` : configured.subject };
 }
 
