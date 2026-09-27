@@ -3,6 +3,129 @@
   "customers": [
     {
       "schemaVersion": "1.0",
+      "slug": "jm0616studio",
+      "status": "review",
+      "templateId": "ledger",
+      "business": {
+        "name": "JM0616STUDIO LLC",
+        "industry": "Creative studio",
+        "tagline": "A different point of view.",
+        "summary": "JM0616STUDIO LLC is a creative studio focused on visual and creative work, as described in the customer request."
+      },
+      "contact": {
+        "phone": {
+          "value": "(929) 630-3716",
+          "status": "draft",
+          "source": "Customer request 8123ed03-4d92-405f-8673-0269b930f5db; owner verification pending"
+        },
+        "email": {
+          "value": "shop@jm0616.studio",
+          "status": "draft",
+          "source": "Customer request 8123ed03-4d92-405f-8673-0269b930f5db; owner verification pending"
+        },
+        "address": {
+          "value": "",
+          "status": "missing"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Creative studio projects",
+          "description": "Share the visual project you have in mind. Specific services, deliverables and availability need confirmation directly with the studio.",
+          "status": "draft",
+          "source": "Customer describes creative work but calls photography/videography likely, not confirmed."
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "JM0616STUDIO LLC / Creative studio",
+          "headline": "A different point of view.",
+          "intro": "A space for visual ideas. Explore the direction, then start a conversation about what you have in mind.",
+          "ctaLabel": "Start a conversation"
+        },
+        "services": {
+          "headline": "Begin with the idea.",
+          "intro": "Tell the studio what you want to create. The right scope starts with a conversation, not a preset package."
+        },
+        "about": {
+          "headline": "Room for a new perspective.",
+          "paragraphs": [
+            "JM0616STUDIO LLC is a creative studio focused on visual and creative work.",
+            "This preview explores an editorial identity: considered composition, generous space and imagery that does the talking.",
+            "The studio biography, team introduction and creative process will be added after the business supplies and approves them."
+          ]
+        },
+        "contact": {
+          "headline": "What are you imagining?",
+          "intro": "Share the starting point: your idea, what you need and when you would like to make it happen."
+        },
+        "privacy": {
+          "headline": "Privacy, plainly.",
+          "body": [
+            "Draft privacy notice for this review preview. The business must approve the final policy before launch.",
+            "The inquiry form is inactive and does not submit or store the information you type. No chat assistant or payment collection is enabled on this preview.",
+            "Using an email or telephone link opens your own application. Any message or call you choose to send is handled outside this preview by your provider and the business.",
+            "The website host may process technical access information, such as IP address and request logs, to serve and protect this website. Retention, hosting provider details and applicable rights must be confirmed before launch.",
+            "For privacy questions, use the customer-provided contact information on the Contact page. The recipient and final data-handling process require owner confirmation."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#171717",
+        "secondary": "#F4F2EE",
+        "accent": "#C9C5BC",
+        "surface": "#F8F7F4",
+        "logoPath": "/customers/jm0616studio/logo.svg",
+        "faviconPath": "/customers/jm0616studio/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/jm0616studio/paper-study.webp",
+          "alt": "AI-generated concept study: sculptural ivory paper against charcoal concrete. Not customer portfolio work.",
+          "width": 1536,
+          "height": 1024
+        },
+        "gallery": [
+          {
+            "src": "/customers/jm0616studio/material-study.webp",
+            "alt": "AI-generated concept study: glass sphere and steel cube on limestone. Not customer portfolio work.",
+            "width": 1024,
+            "height": 1536
+          }
+        ]
+      },
+      "seo": {
+        "title": "JM0616STUDIO LLC | Creative Studio Preview",
+        "description": "Explore a new visual direction for JM0616STUDIO LLC. Creative studio website preview with concept imagery and project inquiry information."
+      },
+      "schema": {
+        "type": "Organization",
+        "description": "Creative studio website preview for JM0616STUDIO LLC. Business details pending final owner review."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "disabled",
+        "recipientConfirmed": false,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "JmMyndy",
+        "greeting": "Hello. What would you like to create? I can help you prepare an inquiry for JM0616STUDIO.",
+        "avatarBrief": "Original monochrome aperture-inspired abstract orb; no human likeness or claims of being a team member.",
+        "knowledgeContextPath": "customers/jm0616studio/delivery/myndy-context.md",
+        "embed": {
+          "enabled": false,
+          "agentId": "",
+          "scriptUrl": ""
+        }
+      }
+    },
+    {
+      "schemaVersion": "1.0",
       "slug": "swenzy-logistics",
       "status": "review",
       "templateId": "forge",
