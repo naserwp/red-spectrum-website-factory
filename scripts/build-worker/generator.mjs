@@ -1,5 +1,6 @@
 import {mkdir,readFile,writeFile,lstat} from 'node:fs/promises';
 import path from 'node:path';
+import {generateUniqueManagement,writeUniqueManagement} from './unique-management.mjs';
 import {customerBuildPath} from '../../lib/webfactory/build-paths.ts';
 import {generateV2,writeV2} from './generator-v2.mjs';
 import {customerSiteSchema,customerManifestSchema} from '../../lib/customers/schema.ts';
@@ -10,6 +11,7 @@ export function validateScope(slug,files){
  if(!files.length || files.some(f=>!customerBuildPath(slug,f)))throw Error('SCOPE_REJECTED');
 }
 export async function generateDesign(job,env,request=fetch){
+ if(job.customerSlug==='unique-management-group')return generateUniqueManagement(job);
  if(job.instructionVersion==='customer-site-v2')return generateV2(job,env,request);
  if(!env.OPENAI_API_KEY)throw Error('PROVIDER_UNAVAILABLE');
  const model=env.WEBFACTORY_AI_MODEL || 'gpt-4.1-mini';
@@ -23,6 +25,7 @@ export async function generateDesign(job,env,request=fetch){
  return {...output,provider:{name:'openai',model}};
 }
 export async function writeCustomer(root,job,design){
+ if(design.contract==='umg-reviewed-1')return writeUniqueManagement(root,job);
  if(design.contract==='2.0')return writeV2(root,job,design);
  const slug=job.customerSlug;if(slugError(slug) || job.brief.customerSlug!==slug)throw Error('SCOPE_REJECTED');
  const manifest=customerManifestSchema.parse(JSON.parse(await readFile(path.join(root,'customers/manifest.json'),'utf8')));

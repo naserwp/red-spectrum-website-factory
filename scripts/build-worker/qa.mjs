@@ -2,6 +2,7 @@ import {command,cleanEnv,launch,stop} from './runtime.mjs';
 import {createServer} from 'node:net';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
+import {verifyManagementPage} from './unique-management-qa.mjs';
 import {qaMessages} from '../../lib/webfactory/qa-diagnostics.ts';
 import {settleImages} from './image-readiness.mjs';
 export class QaFailure extends Error {
@@ -61,6 +62,7 @@ export async function runQa(repo,job,site,env,check=async()=>{}){
       await browserStep(record,()=>browser('eval',`document.querySelector('header details').open=false`),page,width,'browser-check');
      }
     }
+    if(job.customerSlug==='unique-management-group')await verifyManagementPage({browser,record,page,width,repo,job,env});
    }
   }
   return {checks:{route_identity:true,required_pages:true,tenant_isolation:true,navigation:true,metadata:true,public_privacy:true,mobile_320_768_1440:true,lint:true,production_build:true},results:record.results};

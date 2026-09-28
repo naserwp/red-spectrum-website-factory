@@ -36,15 +36,25 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
   const canonical = `https://preview.redspectrum.ai/${site.slug}${segments?.length ? `/${segments.join("/")}` : ""}`;
   if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) return {};
+  const management = site.slug === 'unique-management-group';
+  const managementSeo = {
+    home: ['Unique Management Group LLC | Management & Consulting', site.seo.description],
+    services: ['Management & Consulting Services | Unique Management Group', 'Explore seven services: administrative, business, general and real estate management, plus reorganizational, location and records consulting.'],
+    about: ['About Unique Management Group LLC | Bronx, New York', 'Meet Unique Management Group LLC. A management and consulting approach built around structure, clarity, execution and practical direction.'],
+    contact: ['Contact Unique Management Group LLC | Aminul Haque', 'Contact Aminul Haque at Unique Management Group LLC. Call 347-666-3929 or email info@uniquemanagementgroup.com to discuss your needs.'],
+    privacy: ['Preview Privacy Notice | Unique Management Group LLC', 'Learn about the inactive inquiry form, direct contact links and privacy arrangements for the Unique Management Group website preview.'],
+  };
+  const title = management ? managementSeo[page][0] : page === 'home' ? site.seo.title : `${site.pages[page]?.headline ?? (segments?.[0] === 'blog' && segments[1] ? getArticle(segments[1])?.title : page.replaceAll('-', ' '))} | ${site.business.name}`;
+  const description = management ? managementSeo[page][1] : site.seo.description;
   return {
     metadataBase: new URL("https://preview.redspectrum.ai"),
-    title: { absolute: page === "home" ? site.seo.title : `${site.pages[page]?.headline ?? (segments?.[0] === "blog" && segments[1] ? getArticle(segments[1])?.title : page.replaceAll("-", " "))} | ${site.business.name}` },
-    description: site.seo.description,
+    title: { absolute: title },
+    description,
     alternates: { canonical },
     icons: site.branding.faviconPath ? { icon: site.branding.faviconPath, shortcut: site.branding.faviconPath } : undefined,
     robots: { index: false, follow: false },
-    openGraph: { title: site.seo.title, description: site.seo.description, url: canonical, type: "website", siteName: site.business.name, images: [{ url: site.images.hero.src, alt: site.images.hero.alt }] },
-    twitter: { card: "summary_large_image", title: site.seo.title, description: site.seo.description, images: [site.images.hero.src] },
+    openGraph: { title: management ? title : site.seo.title, description, url: canonical, type: "website", siteName: site.business.name, images: [{ url: site.images.hero.src, alt: site.images.hero.alt }] },
+    twitter: { card: "summary_large_image", title: management ? title : site.seo.title, description, images: [site.images.hero.src] },
   };
 }
 

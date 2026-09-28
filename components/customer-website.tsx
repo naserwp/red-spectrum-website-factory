@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { UniqueManagementWebsite } from './customers/unique-management-website';
 import { GeneratedSite } from './generated-site';
 import { SwenzyWebsite } from "@/components/customers/swenzy-website";
 import { JmWebsite } from "@/components/customers/jm-website";
@@ -77,6 +78,7 @@ function InnerPage({ site, page }: { site: CustomerSite; page: Exclude<CustomerP
 }
 
 export function CustomerWebsite({ site, page, route = [] }: { site: CustomerSite; page: CustomerPage; route?: string[] }) {
+  if(site.slug==='unique-management-group')return <UniqueManagementWebsite site={site} page={page}/>;
   if(site.design?.version==='2.0'||site.design?.version==='3.0')return <GeneratedSite site={site} page={page}/>;
   if (site.slug === "lc-real-estate") return <LcWebsite site={site} page={page} />;
   if (site.slug === "jm0616studio") return <Jm0616StudioWebsite site={site} page={page} />;
