@@ -6,6 +6,7 @@ import pg from 'pg';
 import ts from 'typescript';
 import {z} from 'zod';
 import {runPipeline} from './build-worker/pipeline.mjs';
+import {verifyProtectedPreview} from '../lib/webfactory/preview-verification.ts';
 const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(n=>{if(n==='server-only')return {};if(n in deps)return deps[n];throw Error('Unexpected dependency');},m,m.exports);return m.exports;};
 const diagnostics=load('lib/webfactory/qa-diagnostics.ts',{});
 const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':diagnostics}),executor=load('lib/webfactory/build-executor.ts',{});
@@ -15,7 +16,7 @@ const schema='wf_worker_test_'+randomBytes(6).toString('hex');
 const rewrite=sql=>sql.replaceAll('webfactory.',schema+'.');
 const wrapped={query:(s,p)=>db.query(rewrite(s),p),connect:async()=>{const c=await db.connect();return {query:(s,p)=>c.query(rewrite(s),p),release:()=>c.release()};}};
 const digest=s=>createHash('sha256').update(s).digest('hex');
-const worker=load('lib/webfactory/build-worker.ts',{'node:crypto':{randomBytes},'./server':{database:()=>wrapped,digest,secureEqual:(a,b)=>timingSafeEqual(Buffer.from(digest(a)),Buffer.from(digest(b)))},'./worker-contract':contract,'./build-executor':executor});
+const worker=load('lib/webfactory/build-worker.ts',{'node:crypto':{randomBytes},'./server':{database:()=>wrapped,digest,secureEqual:(a,b)=>timingSafeEqual(Buffer.from(digest(a)),Buffer.from(digest(b)))},'./worker-contract':contract,'./build-executor':executor,'./preview-verification':{verifyProtectedPreview},'@/lib/customers/registry':{getCustomerSites:()=>[]}});
 const saved={secret:process.env.WEBFACTORY_BUILD_WORKER_SECRET,executor:process.env.WEBFACTORY_BUILD_EXECUTOR,token:process.env.VERCEL_TOKEN};const realFetch=globalThis.fetch;
 const req=randomUUID(),brief=randomUUID(),slug='synthetic-worker';
 async function queued(){const id=randomUUID();await wrapped.query("INSERT INTO webfactory.website_build_jobs(id,request_id,customer_slug,brief_id,approved_brief,instructions,submission_id,status,executor,created_by) VALUES($1,$2,$3,$4,'{}','Synthetic',$5,'queued','controlled-worker-v1','test')",[id,req,slug,brief,randomUUID()]);return id;}
@@ -41,7 +42,7 @@ try{
  for(const stage of contract.workerStages.slice(1))await worker.workerOperation({action:'progress',...s,stage});
  const complete={action:'complete',...s,baselineSha:'a'.repeat(40),resultSha:'b'.repeat(40),branch:`webfactory/build/${s.jobId}-${slug}`,changedFiles:['customers/manifest.json'],previewUrl:`https://synthetic-preview.vercel.app/${slug}`,deploymentReference:'dpl_synthetic',qa:Object.fromEntries(executor.requiredBuildChecks.map(k=>[k,true])),provider:{name:'openai',model:'synthetic'}};
  process.env.VERCEL_TOKEN='synthetic-not-real';
- globalThis.fetch=async url=>String(url).startsWith('https://api.vercel.com/')?Response.json({projectId:'prj_HV68RI67tT0LXTfEA1mguG6F3Ddo',target:null,readyState:'READY',url:'synthetic-preview.vercel.app',meta:{githubCommitSha:'b'.repeat(40)}}):new Response('<meta name="robots" content="noindex"><script type="application/ld+json">'+JSON.stringify({name:'Synthetic Worker',url:`https://preview.redspectrum.ai/${slug}`})+'</script>');
+ globalThis.fetch=async url=>String(url).startsWith('https://api.vercel.com/')?Response.json({projectId:'prj_HV68RI67tT0LXTfEA1mguG6F3Ddo',target:null,readyState:'READY',url:'synthetic-preview.vercel.app',meta:{githubCommitSha:'b'.repeat(40)}}):new Response('<title>Synthetic</title><meta name="robots" content="noindex"><script type="application/ld+json">'+JSON.stringify({name:'Synthetic Worker',url:`https://preview.redspectrum.ai/${slug}`})+'</script>'+['','/services','/about','/contact','/privacy'].map(p=>`<a href="/${slug}${p}">Link</a>`).join(''));
  await assert.rejects(()=>worker.workerOperation({...complete,changedFiles:['.env.local']}));await assert.rejects(()=>worker.workerOperation({...complete,qa:{}}));
  const verifiedFetch=globalThis.fetch;globalThis.fetch=async()=>new Response('Wrong customer');await assert.rejects(()=>worker.workerOperation(complete));globalThis.fetch=verifiedFetch;
  assert.equal((await worker.workerOperation(complete)).status,'ready_for_review');
@@ -68,6 +69,19 @@ try{
  let regenerated=false,completed=false;
  const resumeOps={check:async()=>{},progress:async()=>{},resume:async()=>({repo:{},design:{provider:{}},site:{},files:[]}),generate:async()=>{regenerated=true;},qa:async()=>({}),deploy:async()=>({}),verify:async()=>{},complete:async()=>{completed=true;},fail:async()=>{}};
  assert.equal(await runPipeline({resumeQa:true},resumeOps),'ready_for_review');assert.equal(regenerated,false);assert.equal(completed,true);
+ const stages=[];completed=false;
+ assert.equal(await runPipeline({resumePreview:true},{check:async()=>{},resumePreview:async()=>({deployment:{},site:{}}),progress:async s=>stages.push(s),verify:async()=>{},complete:async()=>{completed=true;},fail:async()=>assert.fail('Recovery failed')}),'ready_for_review');
+ assert.deepEqual(stages,['preview_verifying']);assert.equal(completed,true);
+ const recoveryId=await queued();
+ const recovery={artifactSha:'d'.repeat(64),deployment:{sha:'b'.repeat(40),reference:'dpl_synthetic',url:'https://synthetic-preview.vercel.app'},qa:complete.qa};
+ await wrapped.query('UPDATE webfactory.website_build_jobs SET qa_result=$2 WHERE id=$1',[recoveryId,JSON.stringify({resumePreview:true,previewRecovery:recovery,checkpoint:{artifactSha:'d'.repeat(64),baselineSha:'a'.repeat(40)}})]);
+ const recoveryClaim=await worker.workerOperation({action:'claim',workerId:'preview-recovery'});assert.equal(recoveryClaim.job.resumePreview,true);
+ await assert.rejects(()=>worker.workerOperation({action:'progress',jobId:recoveryId,lease:recoveryClaim.lease,stage:'qa_running'}));
+ await worker.workerOperation({action:'progress',jobId:recoveryId,lease:recoveryClaim.lease,stage:'preview_verifying'});
+ const recoveryComplete={...complete,jobId:recoveryId,lease:recoveryClaim.lease,branch:`webfactory/build/${recoveryId}-${slug}`};
+ await assert.rejects(()=>worker.workerOperation({...recoveryComplete,resultSha:'e'.repeat(40)}));
+ await assert.rejects(()=>worker.workerOperation({...recoveryComplete,deploymentReference:'dpl_other'}));
+ assert.equal((await worker.workerOperation(recoveryComplete)).status,'ready_for_review');
  for(const path of ['.env','app/page.tsx',`public/customers/other/hero.svg`,`customers/${slug}/../other/config.json`])assert.equal(contract.allowedBuildPath(slug,path),false);
  for(const boundary of ['checkout','generate','apply','validate','build','qa','deploy','verify','complete']){
   let failed=false,finished=false;const operations={check:async()=>{},progress:async()=>{},checkout:async()=>({}),generate:async()=>({provider:{}}),apply:async()=>({}),validate:async()=>[],build:async()=>{},qa:async()=>({}),deploy:async()=>({}),verify:async()=>{},complete:async()=>{finished=true;},fail:async()=>{failed=true;}};

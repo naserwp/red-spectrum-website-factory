@@ -6,6 +6,7 @@ import {runPipeline} from './pipeline.mjs';
 import {generateDesign,writeCustomer,validateScope,verifyManifestDiff} from './generator.mjs';
 import {runQa} from './qa.mjs';
 import {saveCheckpoint,loadCheckpoint} from './checkpoint.mjs';
+import {verifyProtectedPreview} from '../../lib/webfactory/preview-verification.ts';
 
 const env=process.env;
 const required=['WEBFACTORY_BUILD_CONTROL_URL','WEBFACTORY_BUILD_WORKER_SECRET','WEBFACTORY_BUILD_ROOT','WEBFACTORY_BUILD_BASE_SHA','OPENAI_API_KEY','AGENT_BROWSER_CLI'];
@@ -32,12 +33,7 @@ async function vercelGet(endpoint){
 }
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 async function pages(base,job,site){
- for(const page of ['','/services','/about','/contact','/privacy']){
-  const response=await fetch(base+'/'+job.customerSlug+page,{redirect:'error',signal:AbortSignal.timeout(10000)});if(!response.ok)throw Error('PREVIEW_VERIFICATION_FAILED');
-  const html=await response.text();
-  const identity=[...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].some(m=>{try{const d=JSON.parse(m[1]);return d.name===site.business.name && d.url===`https://preview.redspectrum.ai/${job.customerSlug}`;}catch{return false;}});
-  if(!identity || !html.includes('noindex') || !html.includes('<title>') || html.includes(job.requestId) || html.includes(job.briefId) || html.includes('BUILD_WORKER_SECRET'))throw Error('PREVIEW_VERIFICATION_FAILED');
- }
+ return verifyProtectedPreview({previewUrl:base.url+'/'+job.customerSlug,deploymentReference:base.reference,resultSha:base.sha,slug:job.customerSlug,business:site.business.name},{apiGet:vercelGet,privateValues:[job.id,job.requestId,job.briefId]});
 }
 async function execute(job,lease){
  let cancelled=false,lost=false;const heartbeat=async()=>{try{cancelled=(await api({action:'heartbeat',jobId:job.id,lease})).cancelRequested;}catch{lost=true;}};
@@ -48,6 +44,15 @@ async function execute(job,lease){
  let baselineManifest,checkpointMetadata;
  try{return await runPipeline(job,{
   check,progress,
+  async resumePreview(){
+   const dir=path.join(root,job.id),c=await loadCheckpoint(dir,job),saved=job.previewRecovery;
+   if(!saved||saved.artifactSha!==c.artifactSha||!saved.qa||Object.values(saved.qa).some(v=>v!==true)||await command('git',['branch','--show-current'],dir)!==branch||await command('git',['rev-parse','HEAD'],dir)!==saved.deployment.sha||await command('git',['status','--porcelain'],dir))throw Error('SCOPE_REJECTED');
+   if(await command('git',['rev-parse','HEAD^'],dir)!==c.baseline)throw Error('SCOPE_REJECTED');
+   const changed=(await command('git',['diff','--name-only',c.baseline,'HEAD'],dir)).split('\n').filter(Boolean).sort();
+   validateScope(job.customerSlug,changed);if(JSON.stringify(changed)!==JSON.stringify([...c.files].sort()))throw Error('SCOPE_REJECTED');
+   const site=JSON.parse(await readFile(path.join(dir,`customers/${job.customerSlug}/site/customer.config.json`),'utf8'));
+   return {repo:{dir,baseline:c.baseline},files:c.files,qa:saved.qa,deployment:saved.deployment,provider:c.provider,site};
+  },
   async checkpoint(repo,_job,files,provider){
    const c=await saveCheckpoint(repo,job,files,provider);
    checkpointMetadata={artifactSha:c.artifactSha,baselineSha:c.baseline,provider:c.provider};
@@ -105,7 +110,7 @@ async function execute(job,lease){
     await pause(10000);
    }throw Error('DEPLOYMENT_FAILED');
   },
-  verify:(deployment,_job,site)=>pages(deployment.url,job,site),
+  verify:(deployment,_job,site)=>pages(deployment,job,site),
   async complete({repo,files,qa,deployment,provider}){await api({action:'complete',jobId:job.id,lease,baselineSha:repo.baseline,resultSha:deployment.sha,branch,changedFiles:files,qa,previewUrl:deployment.url+'/'+job.customerSlug,deploymentReference:deployment.reference,provider});},
   async fail(code,diagnostics){if(lost)return;try{await api(cancelled?{action:'cancel_ack',jobId:job.id,lease}:{action:'fail',jobId:job.id,lease,...(diagnostics?{diagnostics}:{}),code:['PROVIDER_UNAVAILABLE','PROVIDER_FAILED','INVALID_OUTPUT','SCOPE_REJECTED','LINT_FAILED','BUILD_FAILED','QA_FAILED','DEPLOYMENT_FAILED','PREVIEW_VERIFICATION_FAILED','CONFIGURATION_MISSING'].includes(code)?code:'WORKER_INTERRUPTED'});}catch{}},
  });}finally{clearInterval(timer);}

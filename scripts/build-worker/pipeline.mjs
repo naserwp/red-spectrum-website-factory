@@ -2,6 +2,13 @@
 export async function runPipeline(job,ops){
  const step=async(stage,fn)=>{await ops.check();await ops.progress(stage);return fn();};
  try{
+  if(job.resumePreview){
+   await ops.check();
+   const recovered=await ops.resumePreview(job);
+   await step('preview_verifying',()=>ops.verify(recovered.deployment,job,recovered.site));
+   await ops.check();await ops.complete(recovered);
+   return 'ready_for_review';
+  }
   let repo,design,site,files;
   if(job.resumeQa){
    await ops.check();({repo,design,site,files}=await ops.resume(job));
