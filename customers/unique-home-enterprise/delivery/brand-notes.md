@@ -1,0 +1,2 @@
+Explored three logo concepts: (1) Open-frame 'UH' with architectural linework in oxidized brass, evoking a modern plan drawing; (2) Interlocking monogram, geometric, precise, forest green outlines; (3) Ligature serif combining U and H within a subtle home-shaped contour. Open-frame concept selected for its clarity, architectural character, and editorial compatibility.
+Image direction: asymmetric, focus on architectural spaces and interiors, not people or branded projects

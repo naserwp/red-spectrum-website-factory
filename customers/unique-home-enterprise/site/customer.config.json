@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "1.0",
+  "design": {
+    "version": "2.0",
+    "hero": "editorial",
+    "navigation": "balanced",
+    "typography": "editorial",
+    "spacing": "generous",
+    "palette": "forest",
+    "logo": "open-frame",
+    "pages": {
+      "home": [
+        {
+          "kind": "split",
+          "eyebrow": "Welcome to UNIQUE HOME ENTERPRISE LLC",
+"heading": "Your home. Your questions. A clear beginning.",
+"body": "Share what you have in mind for your home or property. Contact UNIQUE HOME ENTERPRISE LLC to ask questions and confirm current offerings before making plans.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How We Work",
+          "heading": "Inquiry-Led Capabilities",
+          "body": "Ready for a conversation—each home is unique. Let’s discuss your requirements and confirm specifics directly. Outline your needs, and we'll explain how we can assist, step by step.",
+          "image": 1,
+          "reverse": false
+        },
+        {
+          "kind": "image",
+          "eyebrow": "A Sense of Place",
+          "heading": "Visual Interlude",
+          "body": "A curated sequence of architectural and interior imagery showcases the environments we admire—never company projects, always inspiration.",
+          "image": 2,
+          "reverse": false
+        },
+        {
+          "kind": "columns",
+          "eyebrow": "Our Approach",
+          "heading": "Clarity, Integrity & Direct Dialogue",
+"body": "Use the first conversation to outline your needs, ask questions and clarify whether an available service fits. Confirm scope and arrangements directly before proceeding.",
+          "image": 3,
+          "reverse": false
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Next Steps",
+          "heading": "Contact–Discuss–Confirm",
+"body": "Outline your property needs, discuss current offerings and confirm any next steps directly. Availability and scope require confirmation.",
+          "image": 4,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Editorial Perspective",
+          "heading": "Environments of Distinction",
+"body": "Consider the spaces that matter to you. Bring your priorities and questions to an initial conversation. The imagery here offers visual inspiration, not examples of company work.",
+          "image": 5,
+          "reverse": false
+        },
+        {
+          "kind": "contact",
+          "eyebrow": "Start a Conversation",
+          "heading": "Direct Contact Details",
+"body": "For questions about current offerings, use the contact page to reach the company directly. Confirm the details relevant to your inquiry before proceeding.",
+          "image": 6,
+          "reverse": false
+        }
+      ],
+      "services": [
+        {
+          "kind": "columns",
+          "eyebrow": "Home Services",
+          "heading": "Unverified Capabilities",
+          "body": "To confirm available property-related services, please describe your needs in detail. We will clarify which requests can be accommodated.",
+          "image": 1,
+          "reverse": false
+        },
+        {
+          "kind": "split",
+          "eyebrow": "Step-by-Step Support",
+          "heading": "Discuss Your Project",
+          "body": "Every property is different. We invite you to start a conversation and specify your requirements. Together, we can explore the best approach.",
+          "image": 4,
+          "reverse": false
+        },
+        {
+          "kind": "image",
+          "eyebrow": "Illustrative Environments",
+          "heading": "Careful Attention",
+"body": "The photographs explore residential spaces and architectural details. They are illustrative inspiration, not completed company work or evidence of particular services.",
+          "image": 7,
+          "reverse": false
+        }
+      ],
+      "about": [
+        {
+          "kind": "statement",
+          "eyebrow": "Who We Are",
+          "heading": "UNIQUE HOME ENTERPRISE LLC",
+"body": "UNIQUE HOME ENTERPRISE LLC welcomes inquiries about home and property needs. Specific offerings require direct confirmation; this preview does not represent a verified service catalog.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "split",
+          "eyebrow": "Our Method",
+          "heading": "Guided By Precision and Care",
+"body": "Start with your questions, the context of your inquiry and the details you would like to clarify. Discuss scope directly before deciding what comes next.",
+          "image": 2,
+          "reverse": true
+        },
+        {
+          "kind": "columns",
+          "eyebrow": "Values",
+          "heading": "Transparency and Directness",
+"body": "A useful conversation starts with clear questions. Ask about current offerings, availability and any arrangements that need confirmation.",
+          "image": 3,
+          "reverse": false
+        }
+      ],
+      "contact": [
+        {
+          "kind": "contact",
+          "eyebrow": "Reach Out",
+          "heading": "Contact UNIQUE HOME ENTERPRISE LLC",
+          "body": "Please direct all inquiries to:\nAminul Haque\n20397 Rte 19 Ste 228\nCranberry Twp, PA 16066\nPhone: 516-699-2281\nEmail: niha_aminul@hotmail.com\n\nAll communications will be individually reviewed. No electronic form is active at this time.",
+          "image": 5,
+          "reverse": false
+        }
+      ],
+      "privacy": [
+        {
+          "kind": "statement",
+          "eyebrow": "Privacy Notice",
+          "heading": "How Your Information Is Handled",
+"body": "Draft notice for business and legal review. This preview inquiry form is disabled and does not submit information. Phone and email links open your chosen applications. Final data-handling, hosting, cookie and retention arrangements require confirmation before launch; no unverified commitments are made here.",
+          "image": 6,
+          "reverse": false
+        }
+      ]
+    },
+    "imageDirection": "asymmetric, focus on architectural spaces and interiors, not people or branded projects",
+    "brandNotes": "Explored three logo concepts: (1) Open-frame 'UH' with architectural linework in oxidized brass, evoking a modern plan drawing; (2) Interlocking monogram, geometric, precise, forest green outlines; (3) Ligature serif combining U and H within a subtle home-shaped contour. Open-frame concept selected for its clarity, architectural character, and editorial compatibility."
+  },
+  "slug": "unique-home-enterprise",
+  "status": "draft",
+  "templateId": "ledger",
+  "business": {
+    "name": "UNIQUE HOME ENTERPRISE LLC",
+    "industry": "Home services",
+    "tagline": "A considered beginning.",
+    "summary": "Connect with UNIQUE HOME ENTERPRISE LLC to discuss your needs and confirm current offerings."
+  },
+  "contact": {
+    "person": {
+      "value": "Aminul Haque",
+      "status": "draft",
+      "source": "Customer-provided; publication review pending"
+    },
+    "phone": {
+      "value": "516-699-2281",
+      "status": "draft",
+      "source": "Admin-provided customer facts; final publication review pending"
+    },
+    "email": {
+      "value": "niha_aminul@hotmail.com",
+      "status": "draft",
+      "source": "Admin-provided customer facts; final publication review pending"
+    },
+    "address": {
+      "value": "20397 Rte 19\nSte 228\nCranberry Twp, PA 16066",
+      "status": "draft",
+      "source": "Admin-provided customer facts; final publication review pending"
+    },
+    "serviceAreas": {
+      "value": "",
+      "status": "missing"
+    }
+  },
+  "services": [
+    {
+      "name": "Discuss your needs",
+      "description": "Specific services and availability require direct confirmation.",
+      "status": "draft"
+    }
+  ],
+  "pages": {
+    "home": {
+      "eyebrow": "UNIQUE HOME ENTERPRISE LLC",
+"headline": "Your home. Your questions. A clear beginning.",
+"intro": "Share what you have in mind for your home or property. Contact UNIQUE HOME ENTERPRISE LLC to ask questions and confirm current offerings before making plans.",
+      "ctaLabel": "Start a conversation"
+    },
+    "services": {
+      "headline": "Your needs. A clear starting point.",
+      "intro": "Discuss what you have in mind and confirm current offerings directly before making plans."
+    },
+    "about": {
+      "headline": "A name. A conversation. A beginning.",
+      "paragraphs": [
+        "Connect with UNIQUE HOME ENTERPRISE LLC to discuss your needs and confirm current offerings."
+      ]
+    },
+    "contact": {
+      "headline": "What do you have in mind?",
+      "intro": "Contact details are customer-provided and subject to final publication review."
+    },
+    "privacy": {
+      "headline": "Privacy, clearly explained.",
+      "body": [
+        "DRAFT — Business and legal review required before publication.",
+        "The inquiry form in this preview is disabled and does not submit information. Myndy, payments and lead delivery are inactive.",
+        "If you choose a phone or email link, your phone or email application handles that communication. Do not send payment credentials or sensitive personal information.",
+        "Hosting infrastructure may process technical request information to serve and secure pages. Confirm the final hosting, retention and privacy arrangements before launch."
+      ]
+    }
+  },
+  "branding": {
+    "primary": "#294b3e",
+    "secondary": "#15382e",
+    "accent": "#9c8356",
+    "surface": "#f7f4eb",
+    "logoPath": "/customers/unique-home-enterprise/logo.svg",
+    "faviconPath": "/customers/unique-home-enterprise/favicon.svg"
+  },
+  "images": {
+    "hero": {
+      "src": "/customers/unique-home-enterprise/images/image-0.webp",
+      "alt": "Illustrative residential architecture and interior photograph 1; not a company project",
+      "width": 1600,
+      "height": 1061
+    },
+    "gallery": [
+      {
+        "src": "/customers/unique-home-enterprise/images/image-1.webp",
+        "alt": "Illustrative residential architecture and interior photograph 2; not a company project",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-2.webp",
+        "alt": "Illustrative residential architecture and interior photograph 3; not a company project",
+        "width": 1600,
+        "height": 1088
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-3.webp",
+        "alt": "Illustrative residential architecture and interior photograph 4; not a company project",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-4.webp",
+        "alt": "Illustrative residential architecture and interior photograph 5; not a company project",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-5.webp",
+        "alt": "Illustrative residential architecture and interior photograph 6; not a company project",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-6.webp",
+        "alt": "Illustrative residential architecture and interior photograph 7; not a company project",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-7.webp",
+        "alt": "Illustrative residential architecture and interior photograph 8; not a company project",
+        "width": 1600,
+        "height": 1067
+      }
+    ]
+  },
+  "seo": {
+    "title": "UNIQUE HOME ENTERPRISE LLC",
+    "description": "Contact UNIQUE HOME ENTERPRISE LLC to discuss your needs and confirm current offerings."
+  },
+  "schema": {
+    "type": "Organization",
+    "description": "Connect with UNIQUE HOME ENTERPRISE LLC to discuss your needs and confirm current offerings."
+  },
+  "form": {
+    "provider": "sendgrid",
+    "mode": "disabled",
+    "recipientConfirmed": false,
+    "testPassed": false
+  },
+  "myndy": {
+    "agentName": "Welcome Guide",
+    "greeting": "How can I help you prepare your inquiry?",
+    "avatarBrief": "A restrained abstract brand mark, not a person.",
+    "knowledgeContextPath": "customers/unique-home-enterprise/myndy/agent-context.md",
+    "embed": {
+      "enabled": false,
+      "agentId": "",
+      "scriptUrl": ""
+    }
+  }
+}

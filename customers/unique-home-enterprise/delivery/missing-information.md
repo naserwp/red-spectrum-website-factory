@@ -1,0 +1,1 @@
+SERVICE LIST REQUIRES CUSTOMER CONFIRMATION. Also confirm service areas, hours, address usage, contact details, privacy terms and image/brand approval. No independent public business identity was assumed.
