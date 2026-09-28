@@ -5,7 +5,7 @@ import ts from 'typescript';
 import {z} from 'zod';
 const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(name=>deps[name],m,m.exports);return m.exports;};
 const diagnostics=load('lib/webfactory/qa-diagnostics.ts',{}),executor=load('lib/webfactory/build-executor.ts',{});
-const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':diagnostics});
+const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':diagnostics,'./build-paths':load('lib/webfactory/build-paths.ts',{})});
 const {verifiedBuildEvidence}=load('lib/webfactory/build-evidence.ts',{'./worker-contract':contract,'./build-executor':executor});
 const context={requestId:randomUUID(),briefId:randomUUID(),slug:'synthetic'},id=randomUUID();
 const job={id,request_id:context.requestId,customer_slug:context.slug,brief_id:context.briefId,status:'ready_for_review',baseline_sha:'a'.repeat(40),result_sha:'b'.repeat(40),build_branch:`webfactory/build/${id}-synthetic`,changed_files:['customers/manifest.json'],preview_url:'https://synthetic-preview.vercel.app/synthetic',deployment_reference:'dpl_synthetic',provider_metadata:{name:'openai',model:'synthetic'},qa_result:{...Object.fromEntries(executor.requiredBuildChecks.map(k=>[k,true])),preview_access:{preview_deployment_exists:true,preview_authenticated_access_verified:true,preview_customer_identity_verified:true,preview_public_access:'protected',pages:['/','/services','/about','/contact','/privacy']}}};

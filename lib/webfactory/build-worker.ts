@@ -35,7 +35,7 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
    if(process.env.WEBFACTORY_BUILD_EXECUTOR!=="controlled-worker-v1")throw Error("Disabled");
    const job=(await c.query("SELECT * FROM webfactory.website_build_jobs WHERE status='queued' AND executor='controlled-worker-v1' AND cancel_requested=false ORDER BY created_at FOR UPDATE SKIP LOCKED LIMIT 1")).rows[0];
    if(!job){await c.query("COMMIT");return {job:null};}
-   const current=(await c.query("SELECT r.customer_slug,r.business,r.industry,w.active_brief_id,w.stage FROM webfactory.requests r JOIN webfactory.build_workflows w ON w.request_id=r.id WHERE r.id=$1",[job.request_id])).rows[0];
+   const current=(await c.query("SELECT r.customer_slug,r.business,r.industry,r.email,r.phone,w.active_brief_id,w.stage FROM webfactory.requests r JOIN webfactory.build_workflows w ON w.request_id=r.id WHERE r.id=$1",[job.request_id])).rows[0];
    if(!current || current.customer_slug!==job.customer_slug || current.active_brief_id!==job.brief_id || !["build_approved","preview_ready"].includes(current.stage)){
     await c.query("UPDATE webfactory.website_build_jobs SET status='failed',error_category='INPUT_CHANGED',finished_at=now() WHERE id=$1",[job.id]);
     await c.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'failed','INPUT_CHANGED',$2)",[job.id,input.workerId]);await c.query("COMMIT");return {job:null};
@@ -43,7 +43,7 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
    const lease=randomBytes(32).toString("hex");
    await c.query("UPDATE webfactory.website_build_jobs SET status='claimed',worker_id=$2,lease_hash=$3,lease_expires_at=now()+interval '2 minutes',started_at=now(),progress_code='claimed' WHERE id=$1",[job.id,input.workerId,digest(lease)]);
    await c.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'claimed','worker_claimed',$2)",[job.id,input.workerId]);await c.query("COMMIT");
-   return {job:{id:job.id,requestId:job.request_id,customerSlug:job.customer_slug,briefId:job.brief_id,brief:job.approved_brief,instructionVersion:job.instruction_version,requestedChanges:job.requested_changes,business:current.business,industry:current.industry,resumeQa:job.qa_result?.resume===true,resumePreview:job.qa_result?.resumePreview===true,previewRecovery:job.qa_result?.previewRecovery,checkpoint:job.qa_result?.checkpoint},lease};
+   return {job:{id:job.id,requestId:job.request_id,customerSlug:job.customer_slug,briefId:job.brief_id,brief:job.approved_brief,instructionVersion:job.instruction_version,requestedChanges:job.requested_changes,business:current.business,industry:current.industry,contact:{email:current.email,phone:current.phone},resumeQa:job.qa_result?.resume===true,resumePreview:job.qa_result?.resumePreview===true,previewRecovery:job.qa_result?.previewRecovery,checkpoint:job.qa_result?.checkpoint},lease};
   }
   const j=(await c.query("SELECT * FROM webfactory.website_build_jobs WHERE id=$1 AND lease_hash=$2 AND lease_expires_at>now() AND status IN ('claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying') FOR UPDATE",[input.jobId,digest(input.lease)])).rows[0];
   if(!j)throw Error("Lease expired");
@@ -79,6 +79,10 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
    if(!resume&&workerStages[at+1]!==input.stage)throw Error("Invalid transition");status=input.stage;code=input.stage;
   }
   if(input.action==="complete"){
+     if(j.instruction_version==='customer-site-v2'){
+      const results=j.qa_result?.attempts?.at(-1)?.results || [];
+      if(results.some((r:{status:string})=>r.status!=='passed')||!['','/services','/about','/contact','/privacy'].every(page=>[320,375,768,1024,1440,1920].every(viewport=>results.some((r:{page:string;viewport:number;check_name:string;status:string})=>r.page===page&&r.viewport===viewport&&r.check_name==='mobile-overflow'&&r.status==='passed'))))throw Error('Six-width QA required');
+     }
    if(j.status!=="preview_verifying" || input.branch!==`webfactory/build/${j.id}-${j.customer_slug}` || !input.changedFiles.every(file=>allowedBuildPath(j.customer_slug,file)))throw Error("Invalid artifacts");
    if(j.qa_result?.resumePreview){
     const saved=j.qa_result.previewRecovery;

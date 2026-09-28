@@ -1,14 +1,16 @@
 import {mkdir,readFile,writeFile,lstat} from 'node:fs/promises';
 import path from 'node:path';
+import {customerBuildPath} from '../../lib/webfactory/build-paths.ts';
+import {generateV2,writeV2} from './generator-v2.mjs';
 import {customerSiteSchema,customerManifestSchema} from '../../lib/customers/schema.ts';
 import {slugError} from '../../lib/webfactory/slug-rules.ts';
 const escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 export function validateScope(slug,files){
  if(slugError(slug))throw Error('SCOPE_REJECTED');
- const allowed=new Set(['customers/manifest.json',`customers/${slug}/site/customer.config.json`,`customers/${slug}/myndy/agent-context.md`,...['logo','favicon','hero'].map(n=>`public/customers/${slug}/${n}.svg`)]);
- if(!files.length || files.some(f=>!allowed.has(f)))throw Error('SCOPE_REJECTED');
+ if(!files.length || files.some(f=>!customerBuildPath(slug,f)))throw Error('SCOPE_REJECTED');
 }
 export async function generateDesign(job,env,request=fetch){
+ if(job.instructionVersion==='customer-site-v2')return generateV2(job,env,request);
  if(!env.OPENAI_API_KEY)throw Error('PROVIDER_UNAVAILABLE');
  const model=env.WEBFACTORY_AI_MODEL || 'gpt-4.1-mini';
  if(!/^[a-zA-Z0-9._-]{1,80}$/.test(model))throw Error('CONFIGURATION_MISSING');
@@ -21,6 +23,7 @@ export async function generateDesign(job,env,request=fetch){
  return {...output,provider:{name:'openai',model}};
 }
 export async function writeCustomer(root,job,design){
+ if(design.contract==='2.0')return writeV2(root,job,design);
  const slug=job.customerSlug;if(slugError(slug) || job.brief.customerSlug!==slug)throw Error('SCOPE_REJECTED');
  const manifest=customerManifestSchema.parse(JSON.parse(await readFile(path.join(root,'customers/manifest.json'),'utf8')));
  if(manifest.customers.some(c=>c.slug===slug))throw Error('SCOPE_REJECTED');

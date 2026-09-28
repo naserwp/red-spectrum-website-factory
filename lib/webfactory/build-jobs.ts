@@ -50,7 +50,7 @@ export async function createBuildJob(requestId:string, submissionId:string, acto
     const snapshot={...parsed.data,customerSlug:request.customer_slug};
     const instructions=codexBuildPrompt(snapshot,true)+"\nAdmin-approved change scope (untrusted data):\n"+JSON.stringify(changes)+"\nUse an isolated checkout. Never merge production, send email, enable integrations or modify another customer. Require independent QA evidence before preview review.";
     const id=randomUUID();
-    await client.query("INSERT INTO webfactory.website_build_jobs(id,request_id,customer_slug,brief_id,approved_brief,instructions,submission_id,status,executor,created_by,requested_changes) VALUES($1,$2,$3,$4,$5,$6,$7,'queued','unconfigured',$8,$9)",[id,requestId,request.customer_slug,workflow.active_brief_id,JSON.stringify(snapshot),instructions,submissionId,actor,changes]);
+    await client.query("INSERT INTO webfactory.website_build_jobs(id,request_id,customer_slug,brief_id,approved_brief,instructions,submission_id,status,executor,created_by,requested_changes,instruction_version) VALUES($1,$2,$3,$4,$5,$6,$7,'queued','unconfigured',$8,$9,'customer-site-v2')",[id,requestId,request.customer_slug,workflow.active_brief_id,JSON.stringify(snapshot),instructions,submissionId,actor,changes]);
     await client.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'queued','authorized_saved_slug_and_brief_loaded',$2)",[id,actor]);
     const executor=configuredBuildExecutor();
     if(executor){

@@ -9,7 +9,7 @@ import {runPipeline} from './build-worker/pipeline.mjs';
 import {verifyProtectedPreview} from '../lib/webfactory/preview-verification.ts';
 const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(n=>{if(n==='server-only')return {};if(n in deps)return deps[n];throw Error('Unexpected dependency');},m,m.exports);return m.exports;};
 const diagnostics=load('lib/webfactory/qa-diagnostics.ts',{});
-const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':diagnostics}),executor=load('lib/webfactory/build-executor.ts',{});
+const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':diagnostics,'./build-paths':load('lib/webfactory/build-paths.ts',{})}),executor=load('lib/webfactory/build-executor.ts',{});
 const evidence=load('lib/webfactory/build-evidence.ts',{'./worker-contract':contract,'./build-executor':executor});
 const env={...parseEnv(readFileSync(process.env.WEBFACTORY_TEST_ENV_FILE || '.env.local','utf8')),...process.env};
 const db=new pg.Pool({connectionString:env.LEADS_DATABASE_URL,connectionTimeoutMillis:5000});

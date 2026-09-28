@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { GeneratedSite } from './generated-site';
 import { SwenzyWebsite } from "@/components/customers/swenzy-website";
 import { JmWebsite } from "@/components/customers/jm-website";
 import { CustomerMyndy } from "@/components/customers/customer-myndy";
@@ -76,6 +77,7 @@ function InnerPage({ site, page }: { site: CustomerSite; page: Exclude<CustomerP
 }
 
 export function CustomerWebsite({ site, page, route = [] }: { site: CustomerSite; page: CustomerPage; route?: string[] }) {
+  if(site.design?.version==='2.0')return <GeneratedSite site={site} page={page}/>;
   if (site.slug === "lc-real-estate") return <LcWebsite site={site} page={page} />;
   if (site.slug === "jm0616studio") return <Jm0616StudioWebsite site={site} page={page} />;
   if (site.slug === "swenzy-logistics") return <SwenzyWebsite site={site} page={page} />;

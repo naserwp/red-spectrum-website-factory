@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { designSchema } from './design-contract.ts';
 
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const hexPattern = /^#[0-9a-fA-F]{6}$/;
@@ -28,6 +29,7 @@ const serviceSchema = z.object({
 
 export const customerSiteSchema = z.object({
   schemaVersion: z.literal("1.0"),
+  design: designSchema.optional(),
   slug: z.string().regex(slugPattern),
   status: z.enum(["draft", "review", "approved"]),
   templateId: z.enum(["forge", "ledger", "stillwater"]),
@@ -38,6 +40,7 @@ export const customerSiteSchema = z.object({
     summary: z.string().trim().min(1),
   }),
   contact: z.object({
+    person: verifiedTextSchema.optional(),
     phone: verifiedTextSchema,
     email: verifiedTextSchema,
     address: verifiedTextSchema,
@@ -86,7 +89,7 @@ export const customerSiteSchema = z.object({
   const localAssets = [site.branding.logoPath, site.branding.faviconPath, site.images.hero.src, ...site.images.gallery.map((image) => image.src)].filter(Boolean);
 
   for (const asset of localAssets) {
-    if (!asset.startsWith(assetPrefix)) context.addIssue({ code: "custom", path: ["images"], message: `Customer assets must begin with ${assetPrefix}` });
+    if (!asset.startsWith(assetPrefix) || asset.includes('..') || /[\\?#%]/.test(asset)) context.addIssue({ code: "custom", path: ["images"], message: `Customer assets must remain within ${assetPrefix}` });
   }
   if (site.form.mode !== "disabled" && !site.form.recipientConfirmed) context.addIssue({ code: "custom", path: ["form"], message: "Testing and live delivery require a confirmed recipient." });
   if (site.form.mode === "live" && !site.form.testPassed) context.addIssue({ code: "custom", path: ["form"], message: "Live delivery requires a recorded passing test." });

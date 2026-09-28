@@ -47,7 +47,7 @@ export async function runQa(repo,job,site,env,check=async()=>{}){
    record.assert('tenant-isolation',!otherNames.some(name=>html.includes(name)),page);
    await browserStep(record,()=>browser('open',base+'/'+job.customerSlug+page),page,0,'browser-launch');
    await browserStep(record,()=>browser('snapshot','-i'),page,0,'browser-check');
-   for(const width of [320,768,1440]){
+   for(const width of (site.design?.version==='2.0'?[320,375,768,1024,1440,1920]:[320,768,1440])){
     await browserStep(record,()=>browser('set','viewport',String(width),'1000'),page,width,'browser-check');
     // Wait for image completion, then assert success; do not conceal broken images.
     await browserStep(record,()=>browser('eval',`Promise.all([...document.images].map(i=>i.complete?Promise.resolve():new Promise(r=>{i.addEventListener('load',r,{once:true});i.addEventListener('error',r,{once:true});setTimeout(r,5000)}))).then(()=>true)`),page,width,'browser-check');
