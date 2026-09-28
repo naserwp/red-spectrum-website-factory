@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "unique-home-enterprise",
+  "status": "draft",
+  "templateId": "stillwater",
+  "business": {
+    "name": "UNIQUE HOME ENTERPRISE LLC",
+    "industry": "Home services",
+    "tagline": "Draft — Reliable Home Services Tailored to You",
+    "summary": "Draft — UNIQUE HOME ENTERPRISE LLC operates in the home services industry, providing various verified home-related services. Further specific services are currently unverified and pending confirmation."
+  },
+  "contact": {
+    "phone": {
+      "value": "",
+      "status": "missing"
+    },
+    "email": {
+      "value": "",
+      "status": "missing"
+    },
+    "address": {
+      "value": "",
+      "status": "missing"
+    },
+    "serviceAreas": {
+      "value": "",
+      "status": "missing"
+    }
+  },
+  "services": [
+    {
+      "name": "Pending verification of specific home services offered; placeholder service list to be replaced upon confirmation",
+      "description": "Draft scope. Contact details and service availability require customer confirmation.",
+      "status": "draft"
+    }
+  ],
+  "pages": {
+    "home": {
+      "eyebrow": "Draft customer preview",
+      "headline": "Reliable Home Services Tailored to You",
+      "intro": "Draft — Providing professional and trustworthy home solutions with customer satisfaction as our priority.",
+      "ctaLabel": "Request information"
+    },
+    "services": {
+      "headline": "Services",
+      "intro": "Draft service outline — customer verification required."
+    },
+    "about": {
+      "headline": "About UNIQUE HOME ENTERPRISE LLC",
+      "paragraphs": [
+        "Draft — UNIQUE HOME ENTERPRISE LLC operates in the home services industry, providing various verified home-related services. Further specific services are currently unverified and pending confirmation."
+      ]
+    },
+    "contact": {
+      "headline": "Start a conversation",
+      "intro": "This preview does not collect or send inquiries. Contact details await verification."
+    },
+    "privacy": {
+      "headline": "Privacy — draft notice",
+      "body": [
+        "Preview only. Inquiry delivery, payments, analytics and AI assistants are not enabled for this customer.",
+        "The final privacy notice must be reviewed against actual services and retention practices before launch."
+      ]
+    }
+  },
+  "branding": {
+    "primary": "#203A56",
+    "secondary": "#12263A",
+    "accent": "#D4B884",
+    "surface": "#FAF9F6",
+    "logoPath": "/customers/unique-home-enterprise/logo.svg",
+    "faviconPath": "/customers/unique-home-enterprise/favicon.svg"
+  },
+  "images": {
+    "hero": {
+      "src": "/customers/unique-home-enterprise/hero.svg",
+      "alt": "Original abstract concept illustration; not a customer property or completed project",
+      "width": 1600,
+      "height": 1000
+    },
+    "gallery": []
+  },
+  "seo": {
+    "title": "UNIQUE HOME ENTERPRISE LLC | Draft preview",
+    "description": "Draft website preview for UNIQUE HOME ENTERPRISE LLC. Content requires customer verification."
+  },
+  "schema": {
+    "type": "Organization",
+    "description": "Draft — UNIQUE HOME ENTERPRISE LLC operates in the home services industry, providing various verified home-related services. Further specific services are currently unverified and pending confirmation."
+  },
+  "form": {
+    "provider": "sendgrid",
+    "mode": "disabled",
+    "recipientConfirmed": false,
+    "testPassed": false
+  },
+  "myndy": {
+    "agentName": "Aminul",
+    "greeting": "Assistant setup pending verification.",
+    "avatarBrief": "Friendly and professional virtual assistant with a helpful demeanor",
+    "knowledgeContextPath": "customers/unique-home-enterprise/myndy/agent-context.md",
+    "embed": {
+      "enabled": false,
+      "agentId": "",
+      "scriptUrl": ""
+    }
+  }
+}
