@@ -3,10 +3,12 @@ import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const source=readFileSync('app/api/branded-preview/[slug]/[[...path]]/route.ts','utf8');
 const rewrite=source.match(/html=html\.replace\(.*dpl=.*;/)[0];
+const cssRewrite=source.match(/css=css\.replace\([\s\S]*?\);return/)[0].replace(/return$/,'');
 for(const separator of ['?','&amp;','&','\\u0026']){
- const context={html:'/api/branded-preview/example/_next/image'+separator+'dpl=dpl_abc123'};
- vm.runInNewContext(rewrite,context);
- assert.equal(context.html,'/api/branded-preview/example/_next/image');
+  const context={html:'/api/branded-preview/example/_next/image'+separator+'dpl=dpl_abc123'};
+  vm.runInNewContext(rewrite,context);
+  assert.equal(context.html,'/api/branded-preview/example/_next/image');
+  const cssContext={css:'url(/_next/static/media/font.woff2'+separator+'dpl=dpl_abc123)'};vm.runInNewContext(cssRewrite,cssContext);assert.equal(cssContext.css,'url(/_next/static/media/font.woff2)');
 }
 const assetPattern=source.match(/const asset=(\/\^_next.*?\/)\.test/)[1];
 const accepts=path=>vm.runInNewContext(`${assetPattern}.test(path)`,{path});
@@ -25,4 +27,4 @@ assert(!stripped.html.includes('bundle.js')&&!stripped.html.includes('hydrate()'
 assert(stripped.html.includes('application/ld+json'));
 const unchanged={html:html.replace('unique-home-v3','other-site')};vm.runInNewContext(strip,unchanged);
 assert(unchanged.html.includes('bundle.js'));
-console.log('PASS: deployment hints stripped, real Turbopack filenames allowed, traversal and unsafe asset guards preserved.');
+console.log('PASS: HTML/CSS deployment hints stripped, real Turbopack filenames allowed, traversal and unsafe asset guards preserved.');

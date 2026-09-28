@@ -32,7 +32,10 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string;
   const upstream=await fetch(target,{headers:bypass?{'x-vercel-protection-bypass':bypass}:{},redirect:'error',cache:'no-store',signal:AbortSignal.timeout(20000)});
   if(!upstream.ok)throw Error();
   const headers={'Content-Type':upstream.headers.get('content-type')||'application/octet-stream','Cache-Control':'private, no-store','X-Robots-Tag':'noindex, nofollow','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
-  if(!page)return new Response(upstream.body,{headers});
+   if(!page){
+    if(requested.endsWith('.css')){let css=await upstream.text();if(css.length>4000000)throw Error();css=css.replace(/(?:\?|&amp;|&|\\u0026)dpl=dpl_[a-zA-Z0-9]+/g,'');return new Response(css,{headers});}
+    return new Response(upstream.body,{headers});
+   }
   let html=await upstream.text();if(html.length>4000000)throw Error();
   // Only assets are rewritten. Customer navigation remains on the branded origin.
   html=html.replaceAll('/_next/',`/api/branded-preview/${slug}/_next/`).replaceAll(`/customers/${slug}/`,`/api/branded-preview/${slug}/customers/${slug}/`);
