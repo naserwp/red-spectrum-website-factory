@@ -3,8 +3,10 @@ import type { CSSProperties } from 'react';
 import type { CustomerSite,CustomerPage } from '@/lib/customers/schema';
 import type { SiteDesign } from '@/lib/customers/design-contract';
 import './generated-site.css';
+import {UniqueHomeV3} from './unique-home-v3';
 const titles={home:'Home',services:'Capabilities',about:'About',contact:'Contact',privacy:'Privacy'};
 export function GeneratedSite({site,page}:{site:CustomerSite;page:CustomerPage}){
+ if(site.slug==='unique-home-enterprise'&&site.design?.version==='3.0')return <UniqueHomeV3 site={site} page={page}/>;
  const d=site.design!;const root='/'+site.slug;const images=[site.images.hero,...site.images.gallery];
  const photo=(index:number,priority=false)=>{const p=images[index%images.length];return <Image src={p.src} alt={p.alt} width={p.width} height={p.height} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 70vw, 1400px" priority={priority}/>;};
  const contact=<a className="gs-button" href={root+'/contact'}>Start a conversation <span aria-hidden>↗</span></a>;

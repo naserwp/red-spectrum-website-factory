@@ -1,0 +1,52 @@
+import Image from 'next/image';
+import {Cormorant_Garamond,DM_Sans} from 'next/font/google';
+import type {CustomerPage,CustomerSite} from '@/lib/customers/schema';
+import './unique-home-v3.css';
+
+const display=Cormorant_Garamond({subsets:['latin'],weight:['400','500','600'],display:'swap',variable:'--uh-display'});
+const body=DM_Sans({subsets:['latin'],display:'swap',variable:'--uh-body'});
+const names:Record<CustomerPage,string>={home:'Home',services:'Capabilities',about:'About',contact:'Contact',privacy:'Privacy'};
+
+export function UniqueHomeV3({site,page}:{site:CustomerSite;page:CustomerPage}){
+ const base=`/${site.slug}`,photos=[site.images.hero,...site.images.gallery],sections=site.design!.pages;
+ const photo=(index:number,extra='',priority=false,sizes='(max-width: 700px) 100vw, 50vw')=>{
+  const image=photos[index];return <figure className={`uh-photo ${extra}`}><Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes={sizes} priority={priority}/><figcaption>Illustrative architectural imagery · not a company project</figcaption></figure>;
+ };
+ const link=(label:string,to:string,extra='')=><a className={`uh-link ${extra}`} href={base+to}>{label}<span aria-hidden="true">↗</span></a>;
+ const contact=<div className="uh-contact-links"><a href={`tel:${site.contact.phone.value.replace(/[^\d+]/g,'')}`}>{site.contact.phone.value}</a><a href={`mailto:${site.contact.email.value}`}>{site.contact.email.value}</a></div>;
+ const steps=<ol className="uh-steps"><li><span>01 /</span><strong>Tell us what you need</strong></li><li><span>02 /</span><strong>Discuss the details</strong></li><li><span>03 /</span><strong>Confirm the next step</strong></li></ol>;
+ const nav=(mobile=false)=><nav aria-label={mobile?'Mobile navigation':'Main navigation'}>{(['home','services','about','contact'] as CustomerPage[]).map(key=><a key={key} href={base+(key==='home'?'':`/${key}`)} aria-current={page===key?'page':undefined}>{names[key]}</a>)}</nav>;
+ return <div className={`unique-home-v3 ${display.variable} ${body.variable}`}>
+  <a className="uh-skip" href="#main">Skip to content</a>
+  <header className="uh-header"><a className="uh-logo" href={base} aria-label={`${site.business.name} home`}><Image src={site.branding.logoPath} alt={site.business.name} width={310} height={80} priority/></a>{nav()}<div className="uh-header-end">{link('Start a conversation','/contact','uh-header-contact')}<details className="uh-menu"><summary>Menu <span aria-hidden="true">☰</span></summary>{nav(true)}</details></div></header>
+  <main id="main">
+   {page==='home'&&<>
+    <section className="uh-hero">{photo(0,'uh-hero-photo',true,'100vw')}<div className="uh-hero-shade"/><div className="uh-hero-copy"><p className="uh-kicker uh-light">UNIQUE HOME ENTERPRISE LLC <span> / A more considered beginning</span></p><h1>Spaces start<br/>with <em>a conversation.</em></h1><p>{site.pages.home.intro}</p><div className="uh-hero-actions">{link('Start a conversation','/contact','uh-light-button')}<a href={base+'/about'} className="uh-quiet-link">Get to know us <span aria-hidden="true">↗</span></a></div></div><div className="uh-hero-note">01 / 05 <span>Explore the possibilities</span></div></section>
+    <section className="uh-intro uh-shell"><p className="uh-kicker">An invitation to begin</p><h2>Every home holds a different <em>question.</em></h2><div><p>{sections.home[0].body}</p><p>Begin with your priorities. Current offerings and project fit can be confirmed directly with the company.</p>{link('Discuss your needs','/services')}</div></section>
+    <section className="uh-story uh-shell"><div className="uh-story-main">{photo(9,'uh-story-tall')}<span className="uh-image-index">01 — A sense of place</span></div><div className="uh-story-aside"><p className="uh-kicker">A closer perspective</p><h2>Attention to the <em>details</em> that matter.</h2><p>Explore what you have in mind for your property. The images here offer architectural inspiration, not examples of completed company work.</p>{photo(3,'uh-story-small')}{link('More about Unique Home','/about')}</div></section>
+    <section className="uh-capabilities"><div className="uh-shell uh-capabilities-inner"><p className="uh-kicker">Start with your property</p><h2>Tell us what your space <em>needs.</em></h2><div><p>Questions about a home or property deserve a clear starting point. Describe your priorities and contact UNIQUE HOME ENTERPRISE LLC to confirm current services, availability and fit.</p>{link('Explore the conversation','/services','uh-outline-link')}</div></div></section>
+    <section className="uh-image-break">{photo(10,'uh-break-photo',false,'100vw')}<div className="uh-break-copy"><span>02 — Architectural perspective</span><p>More room to imagine what comes next.</p></div></section>
+    <section className="uh-process uh-shell"><div><p className="uh-kicker">A simple way forward</p><h2>First, we <em>listen.</em></h2></div><p>Use a direct conversation to clarify the details that matter to you. Scope and next steps are confirmed with the company.</p>{steps}</section>
+    <section className="uh-final-contact uh-shell"><p className="uh-kicker">The next chapter starts here</p><h2>What do you have <em>in mind?</em></h2>{link('Get in touch','/contact','uh-dark-button')}</section>
+   </>}
+   {page==='services'&&<>
+    <section className="uh-page-intro uh-shell"><p className="uh-kicker">01 / Capabilities</p><h1>Start with what your <em>property needs.</em></h1><div><p>{site.pages.services.intro}</p>{link('Begin a conversation','/contact')}</div></section>
+    <section className="uh-services-visual uh-shell">{photo(1,'uh-services-primary')}{photo(5,'uh-services-secondary')}<p>Every space has its own context. These images are illustrative, and do not represent company projects or a list of available services.</p></section>
+    <section className="uh-services-dialogue uh-shell"><span className="uh-kicker">The conversation</span><div><h2>Bring your questions. We’ll start <em>there.</em></h2><p>Describe the property, the work you are considering and any details you would like to clarify. Contact the company directly to confirm current offerings, availability and whether the request is a fit.</p>{link('Contact Unique Home','/contact')}</div></section>
+    <section className="uh-process uh-shell"><div><p className="uh-kicker">How to begin</p><h2>Three clear <em>steps.</em></h2></div><p>A direct exchange helps establish what is possible before any arrangements are made.</p>{steps}</section>
+   </>}
+   {page==='about'&&<>
+    <section className="uh-about-hero">{photo(2,'uh-about-image',true,'100vw')}<div className="uh-about-copy"><p className="uh-kicker uh-light">02 / About Unique Home</p><h1>A name for the conversations that <em>shape home.</em></h1></div></section>
+    <section className="uh-about-statement uh-shell"><p className="uh-kicker">UNIQUE HOME ENTERPRISE LLC</p><h2>Good questions are the beginning of a clearer <em>direction.</em></h2><p>{site.business.summary} Your priorities and the property&apos;s context guide the conversation. Confirm available services and arrangements directly before proceeding.</p></section>
+    <section className="uh-about-grid uh-shell"><div>{photo(4,'uh-about-grid-main')}</div><div><p className="uh-kicker">The approach</p><h2>Considered in every <em>detail.</em></h2><p>Start with the specifics that matter to you. Ask about scope, availability and the next step. Nothing on this preview presents illustrative spaces as company work.</p>{photo(6,'uh-about-grid-small')}</div></section>
+    <section className="uh-about-location uh-shell"><div><p className="uh-kicker">Where to reach us</p><h2>A direct line to the <em>conversation.</em></h2></div><div><p>{site.contact.person?.value}<br/>{site.business.name}</p><address>{site.contact.address.value}</address>{contact}{link('Contact details','/contact')}</div></section>
+   </>}
+   {page==='contact'&&<>
+    <section className="uh-contact-hero uh-shell"><div><p className="uh-kicker">03 / Contact</p><h1>Let’s talk about <em>your space.</em></h1><p>Share your questions with UNIQUE HOME ENTERPRISE LLC. Current offerings, availability and next steps can be confirmed directly.</p>{contact}</div>{photo(11,'uh-contact-photo',true,'(max-width: 700px) 100vw, 48vw')}</section>
+    <section className="uh-contact-detail uh-shell"><div><p className="uh-kicker">Direct details</p><h2>Begin wherever feels <em>right.</em></h2><address><strong>{site.contact.person?.value}</strong><br/>{site.business.name}<br/>{site.contact.address.value}</address><p>Address and contact details were supplied for this preview. No service area or business hours are implied.</p></div><div className="uh-inquiry"><p className="uh-kicker">Online inquiry</p><h3>Prefer to write it down?</h3><p>The preview form is currently inactive. Please use the phone or email link above to reach the company.</p><fieldset disabled><label>Name<input autoComplete="off"/></label><label>Email<input type="email" autoComplete="off"/></label><label>Your message<textarea rows={3}/></label><button type="button">Online form unavailable</button></fieldset><a href={base+'/privacy'}>Read the privacy notice ↗</a></div></section>
+   </>}
+   {page==='privacy'&&<section className="uh-privacy uh-shell"><div className="uh-privacy-side"><p className="uh-kicker">04 / Privacy</p><h1>Privacy, in clear <em>terms.</em></h1><p>Information about this preview’s current contact options.</p>{link('Contact us','/contact')}</div><article><p className="uh-kicker">How this preview works</p>{site.pages.privacy.body.map((text,index)=><div key={text}><span>0{index+1}</span><p>{text}</p></div>)}</article></section>}
+  </main>
+  <footer className="uh-footer"><div className="uh-footer-top"><Image src={`/customers/${site.slug}/logo-dark.svg`} alt={site.business.name} width={310} height={80}/><h2>Begin with a <em>conversation.</em></h2>{link('Get in touch','/contact','uh-footer-cta')}</div><div className="uh-footer-bottom"><div><span>© 2026 {site.business.name}</span><span>Architectural imagery is illustrative, not company projects.</span></div><nav aria-label="Footer navigation">{(['home','services','about','contact','privacy'] as CustomerPage[]).map(key=><a key={key} href={base+(key==='home'?'':`/${key}`)}>{names[key]}</a>)}</nav><a href="https://www.theredspectrum.com/">Website designed by Red Spectrum</a></div></footer>
+ </div>;
+}
