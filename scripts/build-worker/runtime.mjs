@@ -28,7 +28,7 @@ export const command=(cmd,args,cwd,extra={},timeout=600000,input)=>new Promise((
  }
  const child=launch(cmd,args,{cwd,env:{...cleanEnv,...extra},stdio:[input===undefined?'ignore':'pipe','pipe','pipe']});let out='';
  if(input!==undefined){child.stdin.on('error',()=>{});child.stdin.end(input);}
- const timer=setTimeout(()=>{stop(child);reject(Error('WORKER_INTERRUPTED'));},timeout);
+ const timer=setTimeout(()=>{stop(child);reject(Object.assign(Error('WORKER_INTERRUPTED'),{code:'COMMAND_TIMEOUT'}));},timeout);
  child.stdout.on('data',x=>{out+=x;if(out.length>4000000)stop(child);});child.stderr.on('data',()=>{});
  child.on('error',()=>{clearTimeout(timer);reject(Error('WORKER_INTERRUPTED'));});
  child.on('close',code=>{clearTimeout(timer);if(code===0)resolve(out.trim());else reject(Error('WORKER_INTERRUPTED'));});

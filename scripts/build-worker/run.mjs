@@ -1,9 +1,11 @@
-import {command,cleanEnv,launch,stop,stopAll,assertRoot} from './runtime.mjs';
+import {command,stopAll,assertRoot} from './runtime.mjs';
 import {mkdir,readFile,lstat,realpath} from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {runPipeline} from './pipeline.mjs';
 import {generateDesign,writeCustomer,validateScope,verifyManifestDiff} from './generator.mjs';
+import {runQa} from './qa.mjs';
+import {saveCheckpoint,loadCheckpoint} from './checkpoint.mjs';
 
 const env=process.env;
 const required=['WEBFACTORY_BUILD_CONTROL_URL','WEBFACTORY_BUILD_WORKER_SECRET','WEBFACTORY_BUILD_ROOT','WEBFACTORY_BUILD_BASE_SHA','OPENAI_API_KEY','AGENT_BROWSER_CLI'];
@@ -46,6 +48,17 @@ async function execute(job,lease){
  let baselineManifest;
  try{return await runPipeline(job,{
   check,progress,
+  async checkpoint(repo,_job,files,provider){
+   const c=await saveCheckpoint(repo,job,files,provider);
+   await api({action:'qa_checkpoint',jobId:job.id,lease,artifactSha:c.artifactSha,baselineSha:repo.baseline,provider});
+  },
+  async resume(){
+   const dir=path.join(root,job.id),c=await loadCheckpoint(dir,job);
+   if(await command('git',['branch','--show-current'],dir)!==branch||await command('git',['rev-parse','HEAD'],dir)!==c.baseline)throw Error('SCOPE_REJECTED');
+   validateScope(job.customerSlug,c.files);
+   const site=JSON.parse(await readFile(path.join(dir,`customers/${job.customerSlug}/site/customer.config.json`),'utf8'));
+   return {repo:{dir,baseline:c.baseline},design:{provider:c.provider},site,files:c.files};
+  },
   async checkout(){
    if(!/^[a-f0-9-]{36}$/.test(job.id) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(job.customerSlug))throw Error('SCOPE_REJECTED');
    const dir=path.join(root,job.id);if(path.dirname(dir)!==root)throw Error('SCOPE_REJECTED');
@@ -70,23 +83,9 @@ async function execute(job,lease){
    try{await command('npm',['run','build'],repo.dir);}catch{throw Error('BUILD_FAILED');}
   },
   async qa(repo,_job,site){
-   // Start production server without database, email, payment, admin or provider secrets.
-   const port=43127,base=`http://127.0.0.1:${port}`;
-   const server=launch(process.execPath,['node_modules/next/dist/bin/next','start','--port',String(port)],{cwd:repo.dir,env:cleanEnv,stdio:'ignore'});
-   const browser=(...args)=>command(process.execPath,[env.AGENT_BROWSER_CLI,'--session','worker-'+job.id,...args],repo.dir,{...(env.AGENT_BROWSER_EXECUTABLE_PATH?{AGENT_BROWSER_EXECUTABLE_PATH:env.AGENT_BROWSER_EXECUTABLE_PATH}:{})},60000);
-   try{
-    let ready=false;for(let n=0;n<30;n++){await check();try{if((await fetch(base,{signal:AbortSignal.timeout(1000)})).ok){ready=true;break;}}catch{}await pause(1000);}if(!ready)throw Error('QA_FAILED');
-    await pages(base,job,site);
-    for(const page of ['','/services','/about','/contact','/privacy']){
-     await browser('open',base+'/'+job.customerSlug+page);
-     for(const width of [320,768,1440]){
-      await browser('set','viewport',String(width),'1000');
-      const checks=JSON.parse(await browser('eval',`({overflow:document.documentElement.scrollWidth>innerWidth,images:Array.from(document.images).every(i=>i.complete&&i.naturalWidth>0),leak:Array.from(document.querySelectorAll('a[href^="/"]')).some(a=>!a.getAttribute('href').startsWith('/${job.customerSlug}')),error:!!document.querySelector('[data-nextjs-dialog]')})`));
-      if(checks.overflow || !checks.images || checks.leak || checks.error)throw Error('QA_FAILED');
-     }
-    }
-    return {route_identity:true,required_pages:true,tenant_isolation:true,navigation:true,metadata:true,public_privacy:true,mobile_320_768_1440:true,lint:true,production_build:true};
-   }catch{throw Error('QA_FAILED');}finally{try{await browser('close');}catch{}stop(server);}
+   const qa=await runQa(repo,job,site,env,check);
+   await api({action:'qa_report',jobId:job.id,lease,diagnostics:qa.results});
+   return qa.checks;
   },
   async deploy(repo,_job,files){
    await check();validateScope(job.customerSlug,files);
@@ -105,7 +104,7 @@ async function execute(job,lease){
   },
   verify:(deployment,_job,site)=>pages(deployment.url,job,site),
   async complete({repo,files,qa,deployment,provider}){await api({action:'complete',jobId:job.id,lease,baselineSha:repo.baseline,resultSha:deployment.sha,branch,changedFiles:files,qa,previewUrl:deployment.url+'/'+job.customerSlug,deploymentReference:deployment.reference,provider});},
-  async fail(code){if(lost)return;try{await api(cancelled?{action:'cancel_ack',jobId:job.id,lease}:{action:'fail',jobId:job.id,lease,code:['PROVIDER_UNAVAILABLE','PROVIDER_FAILED','INVALID_OUTPUT','SCOPE_REJECTED','LINT_FAILED','BUILD_FAILED','QA_FAILED','DEPLOYMENT_FAILED','PREVIEW_VERIFICATION_FAILED','CONFIGURATION_MISSING'].includes(code)?code:'WORKER_INTERRUPTED'});}catch{}},
+  async fail(code,diagnostics){if(lost)return;try{await api(cancelled?{action:'cancel_ack',jobId:job.id,lease}:{action:'fail',jobId:job.id,lease,...(diagnostics?{diagnostics}:{}),code:['PROVIDER_UNAVAILABLE','PROVIDER_FAILED','INVALID_OUTPUT','SCOPE_REJECTED','LINT_FAILED','BUILD_FAILED','QA_FAILED','DEPLOYMENT_FAILED','PREVIEW_VERIFICATION_FAILED','CONFIGURATION_MISSING'].includes(code)?code:'WORKER_INTERRUPTED'});}catch{}},
  });}finally{clearInterval(timer);}
 }
 // One job at a time; process supervisor restarts the poller. Never recover by force-pushing.

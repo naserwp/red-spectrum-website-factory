@@ -1,7 +1,7 @@
 import "server-only";
 import { randomBytes } from "node:crypto";
 import { database,digest,secureEqual } from "./server";
-import { workerStages,allowedBuildPath,workerInput } from "./worker-contract";
+import { workerStages,allowedBuildPath,workerInput,qaMessages } from "./worker-contract";
 import { requiredBuildChecks } from "./build-executor";
 import type { z } from "zod";
 const project="prj_HV68RI67tT0LXTfEA1mguG6F3Ddo";
@@ -10,7 +10,7 @@ export async function getVerifiedWorkerPreview(requestId:string,slug:string,brie
  try{
   const j=(await database().query("SELECT j.*,r.business FROM webfactory.website_build_jobs j JOIN webfactory.requests r ON r.id=j.request_id JOIN webfactory.build_workflows w ON w.request_id=r.id WHERE j.request_id=$1 AND j.customer_slug=$2 AND r.customer_slug=$2 AND j.brief_id=$3 AND w.active_brief_id=$3 AND j.status='ready_for_review' AND ($4::text IS NULL OR j.preview_url=$4) ORDER BY j.created_at DESC LIMIT 1",[requestId,slug,briefId,url || null])).rows[0];
   if(!j)return null;
-  const input=workerInput.parse({action:"complete",jobId:j.id,lease:"0".repeat(64),baselineSha:j.baseline_sha,resultSha:j.result_sha,branch:j.build_branch,changedFiles:j.changed_files,previewUrl:j.preview_url,deploymentReference:j.deployment_reference,qa:j.qa_result,provider:j.provider_metadata});
+  const input=workerInput.parse({action:"complete",jobId:j.id,lease:"0".repeat(64),baselineSha:j.baseline_sha,resultSha:j.result_sha,branch:j.build_branch,changedFiles:j.changed_files,previewUrl:j.preview_url,deploymentReference:j.deployment_reference,qa:Object.fromEntries(requiredBuildChecks.map(key=>[key,j.qa_result[key]===true])),provider:j.provider_metadata});
   if(input.action!=="complete")return null;
   await verifyPreview(input,slug,j.business);return j.preview_url;
  }catch{return null;}
@@ -52,7 +52,7 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
    const lease=randomBytes(32).toString("hex");
    await c.query("UPDATE webfactory.website_build_jobs SET status='claimed',worker_id=$2,lease_hash=$3,lease_expires_at=now()+interval '2 minutes',started_at=now(),progress_code='claimed' WHERE id=$1",[job.id,input.workerId,digest(lease)]);
    await c.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'claimed','worker_claimed',$2)",[job.id,input.workerId]);await c.query("COMMIT");
-   return {job:{id:job.id,requestId:job.request_id,customerSlug:job.customer_slug,briefId:job.brief_id,brief:job.approved_brief,instructionVersion:job.instruction_version,requestedChanges:job.requested_changes,business:current.business,industry:current.industry},lease};
+   return {job:{id:job.id,requestId:job.request_id,customerSlug:job.customer_slug,briefId:job.brief_id,brief:job.approved_brief,instructionVersion:job.instruction_version,requestedChanges:job.requested_changes,business:current.business,industry:current.industry,resumeQa:job.qa_result?.resume===true,checkpoint:job.qa_result?.checkpoint},lease};
   }
   const j=(await c.query("SELECT * FROM webfactory.website_build_jobs WHERE id=$1 AND lease_hash=$2 AND lease_expires_at>now() AND status IN ('claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying') FOR UPDATE",[input.jobId,digest(input.lease)])).rows[0];
   if(!j)throw Error("Lease expired");
@@ -65,11 +65,27 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
    await c.query("UPDATE webfactory.website_build_jobs SET lease_expires_at=now()+interval '2 minutes' WHERE id=$1",[j.id]);await c.query("COMMIT");return {cancelRequested:j.cancel_requested};
   }
   if(j.cancel_requested && input.action!=="cancel_ack" && input.action!=="fail")throw Error("Cancellation pending");
+  if(input.action==='qa_checkpoint'){
+   if(j.status!=='building'||j.qa_result?.checkpoint)throw Error('Invalid checkpoint');
+   await c.query("UPDATE webfactory.website_build_jobs SET qa_result=jsonb_set(qa_result,'{checkpoint}',$2::jsonb) WHERE id=$1",[j.id,JSON.stringify({artifactSha:input.artifactSha,baselineSha:input.baselineSha,provider:input.provider})]);
+   await c.query('COMMIT');return {status:j.status};
+  }
+  if(input.action==='qa_report' || (input.action==='fail' && input.diagnostics)){
+   if(j.status!=='qa_running')throw Error('Invalid diagnostic stage');
+   const results=input.diagnostics!;
+   if(input.action==='qa_report' && results.some(r=>r.status==='failed'))throw Error('Invalid success report');
+   await c.query("UPDATE webfactory.website_build_jobs SET qa_result=jsonb_set(qa_result,'{attempts}',COALESCE(qa_result->'attempts','[]'::jsonb)||$2::jsonb) WHERE id=$1",[j.id,JSON.stringify([{results:results.map(r=>({...r,safe_message:r.status==='failed'?qaMessages[r.check_name]:'Check passed.'})),recorded_at:new Date().toISOString()}])]);
+   if(input.action==='qa_report'){
+    await c.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'qa_running','qa_checks_passed',$2)",[j.id,j.worker_id]);
+    await c.query('COMMIT');return {status:j.status};
+   }
+  }
   let status:string=j.status,code:string=j.progress_code;
   if(input.action==="cancel_ack"){if(!j.cancel_requested)throw Error("No cancellation");status="cancelled";code="cancel_acknowledged";}
   if(input.action==="fail"){status="failed";code=input.code;}
   if(input.action==="progress"){
-   const at=workerStages.indexOf(j.status);if(workerStages[at+1]!==input.stage)throw Error("Invalid transition");status=input.stage;code=input.stage;
+   const at=workerStages.indexOf(j.status);const resume=j.qa_result?.resume===true&&j.qa_result?.checkpoint&&j.status==='claimed'&&input.stage==='qa_running';
+   if(!resume&&workerStages[at+1]!==input.stage)throw Error("Invalid transition");status=input.stage;code=input.stage;
   }
   if(input.action==="complete"){
    if(j.status!=="preview_verifying" || input.branch!==`webfactory/build/${j.id}-${j.customer_slug}` || !input.changedFiles.every(file=>allowedBuildPath(j.customer_slug,file)))throw Error("Invalid artifacts");
@@ -77,7 +93,7 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
    if(current.customer_slug!==j.customer_slug || current.active_brief_id!==j.brief_id)throw Error("Input changed");
    await verifyPreview(input,j.customer_slug,current.business);
    status="ready_for_review";code="preview_verified";
-   await c.query("UPDATE webfactory.website_build_jobs SET baseline_sha=$2,result_sha=$3,build_branch=$4,changed_files=$5,qa_result=$6,preview_url=$7,deployment_reference=$8,provider_metadata=$9 WHERE id=$1",[j.id,input.baselineSha,input.resultSha,input.branch,JSON.stringify(input.changedFiles),JSON.stringify(input.qa),input.previewUrl,input.deploymentReference,JSON.stringify(input.provider)]);
+   await c.query("UPDATE webfactory.website_build_jobs SET baseline_sha=$2,result_sha=$3,build_branch=$4,changed_files=$5,qa_result=qa_result||$6::jsonb,preview_url=$7,deployment_reference=$8,provider_metadata=$9 WHERE id=$1",[j.id,input.baselineSha,input.resultSha,input.branch,JSON.stringify(input.changedFiles),JSON.stringify(input.qa),input.previewUrl,input.deploymentReference,JSON.stringify(input.provider)]);
    await c.query("INSERT INTO webfactory.request_actions(request_id,actor,action,status_before,status_after,customer_slug,preview_url,notes) VALUES($1,$2,'website_built','build_approved','build_approved',$3,$4,'Worker QA and isolated deployment identity verified; admin readiness remains separate.')",[j.request_id,j.worker_id,j.customer_slug,input.previewUrl]);
   }
   await c.query("UPDATE webfactory.website_build_jobs SET status=$2,progress_code=$3,error_category=CASE WHEN $2='failed' THEN $3 ELSE error_category END,finished_at=CASE WHEN $2 IN ('failed','cancelled','ready_for_review') THEN now() ELSE NULL END WHERE id=$1",[j.id,status,code]);

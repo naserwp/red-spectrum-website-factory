@@ -23,13 +23,18 @@ function SiteHeader({ site }: { site: CustomerSite }) {
   const root = `/${site.slug}`;
   const rounded = site.templateId === "stillwater";
   return <header className={rounded ? "relative z-20 mx-auto mt-5 max-w-6xl px-4" : "border-b border-current/20"}>
-    <div className={`mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-5 px-5 ${rounded ? "rounded-full bg-white/95 shadow-lg" : ""}`}>
-      <Link href={root} className="shrink-0"><SiteLogo site={site} /></Link>
+    <div className={`mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-3 px-5 sm:gap-5 ${rounded ? "rounded-full bg-white/95 shadow-lg" : ""}`}>
+      <Link href={root} className="min-w-0 shrink [&_img]:max-w-full [&_span]:break-words"><SiteLogo site={site} /></Link>
       <nav aria-label={`${site.business.name} navigation`} className="hidden items-center gap-7 text-sm font-bold md:flex">
         <Link href={root}>Home</Link><Link href={`${root}/services`}>Services</Link><Link href={`${root}/about`}>About</Link><Link href={`${root}/contact`}>Contact</Link>
       </nav>
-      <Link href={`${root}/contact`} className={`min-h-11 px-4 py-3 text-sm font-bold text-white ${rounded ? "rounded-full" : ""}`} style={{ backgroundColor: site.branding.primary }}>Request information</Link>
-      <Menu className="md:hidden" aria-label="Navigation available through the contact action and page footer" />
+      <Link href={`${root}/contact`} className={`hidden min-h-11 px-4 py-3 text-sm font-bold text-white md:block ${rounded ? "rounded-full" : ""}`} style={{ backgroundColor: site.branding.primary }}>Request information</Link>
+      <details className="relative shrink-0 md:hidden">
+        <summary className="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded-full focus-visible:outline-2"><Menu className="h-6 w-6 shrink-0" aria-hidden="true" /><span className="sr-only">Open navigation</span></summary>
+        <nav aria-label="Mobile customer navigation" className="absolute right-0 top-full mt-2 grid w-52 max-w-[calc(100vw-4rem)] rounded-xl border bg-white p-2 text-sm font-bold text-slate-900 shadow-lg">
+          <Link className="min-h-11 px-3 py-3" href={root}>Home</Link><Link className="min-h-11 px-3 py-3" href={`${root}/services`}>Services</Link><Link className="min-h-11 px-3 py-3" href={`${root}/about`}>About</Link><Link className="min-h-11 px-3 py-3" href={`${root}/contact`}>Contact</Link><Link className="min-h-11 px-3 py-3" href={`${root}/privacy`}>Privacy</Link>
+        </nav>
+      </details>
     </div>
   </header>;
 }
@@ -61,7 +66,7 @@ function ServicePreview({ site }: { site: CustomerSite }) {
 function InnerPage({ site, page }: { site: CustomerSite; page: Exclude<CustomerPage, "home"> }) {
   const root = `/${site.slug}`;
   const heading = site.pages[page].headline;
-  return <main className="mx-auto max-w-6xl px-5 py-14 lg:py-24"><p className="text-sm font-bold uppercase tracking-[.18em]" style={{ color: site.branding.primary }}>{page}</p><h1 className="mt-4 max-w-4xl text-5xl font-black leading-[.98] tracking-[-.04em] sm:text-7xl">{heading}</h1>
+  return <main className="mx-auto max-w-6xl px-5 py-14 lg:py-24"><p className="text-sm font-bold uppercase tracking-[.18em]" style={{ color: site.branding.primary }}>{page}</p><h1 className="mt-4 max-w-4xl break-words text-5xl font-black leading-[.98] tracking-[-.04em] sm:text-7xl">{heading}</h1>
     {page === "services" && <><p className="mt-7 max-w-3xl text-lg leading-8 opacity-75">{site.pages.services.intro}</p><div className="mt-12 grid gap-5 md:grid-cols-2">{site.services.map((service)=><article key={service.name} className="border-t-4 bg-white p-6" style={{ borderColor: site.branding.primary }}><h2 className="text-2xl font-bold">{service.name}</h2><p className="mt-3 leading-7 opacity-75">{service.description}</p>{service.status === "draft" && <p className="mt-5 text-xs font-black uppercase text-amber-800">Draft content</p>}</article>)}</div></>}
     {page === "about" && <div className="mt-10 max-w-3xl space-y-6 text-lg leading-8">{site.pages.about.paragraphs.map((paragraph)=><p key={paragraph}>{paragraph}</p>)}</div>}
     {page === "contact" && <div className="mt-10 grid gap-10 lg:grid-cols-[.7fr_1.3fr]"><aside className="space-y-5"><p className="text-lg leading-8 opacity-75">{site.pages.contact.intro}</p>{site.contact.phone.value && <a className="flex gap-3 font-bold" href={`tel:${site.contact.phone.value}`}><Phone />{site.contact.phone.value}</a>}{site.contact.email.value && <a className="flex gap-3 font-bold" href={`mailto:${site.contact.email.value}`}><Mail />{site.contact.email.value}</a>}{site.contact.address.value && <p>{site.contact.address.value}</p>}</aside><div className="bg-white p-5 text-slate-900 shadow-xl sm:p-8"><CustomerContactForm accent={site.branding.primary} customerSlug={site.slug} /></div></div>}

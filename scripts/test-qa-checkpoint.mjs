@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {mkdtemp,mkdir,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import {saveCheckpoint,loadCheckpoint} from './build-worker/checkpoint.mjs';
+import {command} from './build-worker/runtime.mjs';
+await mkdir('work',{recursive:true});const dir=await mkdtemp(path.resolve('work/qa-checkpoint-test-'));
+await command('git',['init'],dir);await mkdir(path.join(dir,'.next'),{recursive:true});
+await writeFile(path.join(dir,'.gitignore'),'.next/\n');await writeFile(path.join(dir,'source.txt'),'synthetic source');await writeFile(path.join(dir,'.next/BUILD_ID'),'synthetic-build');
+const job={id:'synthetic-checkpoint',customerSlug:'synthetic'},repo={dir,baseline:'a'.repeat(40)},provider={name:'openai',model:'synthetic'};
+const c=await saveCheckpoint(repo,job,['source.txt'],provider);job.checkpoint={artifactSha:c.artifactSha,baselineSha:c.baseline,provider};
+assert.equal((await loadCheckpoint(dir,job)).artifactSha,c.artifactSha);
+await assert.rejects(()=>loadCheckpoint(dir,{...job,customerSlug:'other'}));
+await writeFile(path.join(dir,'source.txt'),'changed source');await assert.rejects(()=>loadCheckpoint(dir,job));
+await writeFile(path.join(dir,'source.txt'),'synthetic source');await writeFile(path.join(dir,'.next/BUILD_ID'),'changed-build');await assert.rejects(()=>loadCheckpoint(dir,job));
+console.log('PASS: same artifact accepted; wrong customer, changed source and changed compiled artifact refused. Synthetic fixture retained.');

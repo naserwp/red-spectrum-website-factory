@@ -12,7 +12,22 @@ export async function listBuildJobs(requestId: string) {
   // Explicit projection: private brief/instructions never included in polling responses.
   const jobs = (await database().query("SELECT id,customer_slug,status,executor,created_at,finished_at,error_category,progress_code,changed_files,qa_result,preview_url FROM webfactory.website_build_jobs WHERE request_id=$1 ORDER BY created_at DESC LIMIT 20",[requestId])).rows;
   const events = (await database().query("SELECT e.job_id,e.created_at,e.status,e.code FROM webfactory.website_build_job_events e WHERE e.job_id=ANY($1::uuid[]) ORDER BY e.id DESC LIMIT 100",[jobs.map(j=>j.id)])).rows;
-  return { jobs, events, executorConfigured: Boolean(configuredBuildExecutor()) };
+  return { jobs:jobs.map(j=>({...j,qaRetryAvailable:j.status==='failed'&&j.error_category==='QA_FAILED'&&Boolean(j.qa_result?.checkpoint)&&Number(j.qa_result?.retryCount||0)<3})), events, executorConfigured: Boolean(configuredBuildExecutor()) };
+}
+export async function retryBuildQa(requestId:string,jobId:string,actor:string){
+ if(!configuredBuildExecutor())throw new BuildJobError('Controlled worker is not configured.');
+ const c=await database().connect();try{
+  await c.query('BEGIN');
+  const r=(await c.query('SELECT customer_slug FROM webfactory.requests WHERE id=$1 FOR UPDATE',[requestId])).rows[0];
+  const w=(await c.query('SELECT stage,active_brief_id FROM webfactory.build_workflows WHERE request_id=$1 FOR UPDATE',[requestId])).rows[0];
+  const j=(await c.query('SELECT * FROM webfactory.website_build_jobs WHERE id=$1 AND request_id=$2 FOR UPDATE',[jobId,requestId])).rows[0];
+  if(!j||j.executor!=='controlled-worker-v1'||j.status!=='failed'||j.error_category!=='QA_FAILED'||!j.qa_result?.checkpoint)throw new BuildJobError('This build has no immutable QA checkpoint. Review preserved files; a corrected revision is required.');
+  if(r?.customer_slug!==j.customer_slug||w?.active_brief_id!==j.brief_id||!['build_approved','preview_ready'].includes(w?.stage))throw new BuildJobError('Saved slug or approved brief changed. QA retry refused.');
+  if(Number(j.qa_result.retryCount||0)>=3)throw new BuildJobError('QA retry limit reached. Review the failure before rebuilding.');
+  if((await c.query("SELECT id FROM webfactory.website_build_jobs WHERE request_id=$1 AND status NOT IN ('failed','cancelled','ready_for_review','changes_requested')",[requestId])).rowCount)throw new BuildJobError('Another build is active.');
+  await c.query("UPDATE webfactory.website_build_jobs SET status='queued',progress_code='qa_retry_queued',error_category=NULL,finished_at=NULL,lease_hash=NULL,lease_expires_at=NULL,cancel_requested=false,qa_result=qa_result||$2::jsonb WHERE id=$1",[jobId,JSON.stringify({resume:true,retryCount:Number(j.qa_result.retryCount||0)+1})]);
+  await c.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'queued','qa_retry_same_artifact',$2)",[jobId,actor]);await c.query('COMMIT');
+ }catch(e){await c.query('ROLLBACK');throw e;}finally{c.release();}
 }
 export async function createBuildJob(requestId:string, submissionId:string, actor:string, changes:string) {
   const client=await database().connect();
