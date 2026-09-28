@@ -45,15 +45,17 @@ async function execute(job,lease){
  const check=async()=>{await heartbeat();if(cancelled || lost)throw Error('WORKER_INTERRUPTED');};
  const progress=stage=>api({action:'progress',jobId:job.id,lease,stage});
  const branch=`webfactory/build/${job.id}-${job.customerSlug}`;
- let baselineManifest;
+ let baselineManifest,checkpointMetadata;
  try{return await runPipeline(job,{
   check,progress,
   async checkpoint(repo,_job,files,provider){
    const c=await saveCheckpoint(repo,job,files,provider);
+   checkpointMetadata={artifactSha:c.artifactSha,baselineSha:c.baseline,provider:c.provider};
    await api({action:'qa_checkpoint',jobId:job.id,lease,artifactSha:c.artifactSha,baselineSha:repo.baseline,provider});
   },
   async resume(){
    const dir=path.join(root,job.id),c=await loadCheckpoint(dir,job);
+   checkpointMetadata=job.checkpoint;
    if(await command('git',['branch','--show-current'],dir)!==branch||await command('git',['rev-parse','HEAD'],dir)!==c.baseline)throw Error('SCOPE_REJECTED');
    validateScope(job.customerSlug,c.files);
    const site=JSON.parse(await readFile(path.join(dir,`customers/${job.customerSlug}/site/customer.config.json`),'utf8'));
@@ -89,6 +91,7 @@ async function execute(job,lease){
   },
   async deploy(repo,_job,files){
    await check();validateScope(job.customerSlug,files);
+   await loadCheckpoint(repo.dir,{...job,checkpoint:checkpointMetadata});
    await command('git',['add','--',...files],repo.dir);
    await command('git',['-c','user.name=RS WebFactory Build Worker','-c','user.email=build-worker@users.noreply.github.com','commit','-m',`Build preview for ${job.customerSlug}`],repo.dir);
    const sha=await command('git',['rev-parse','HEAD'],repo.dir);await check();

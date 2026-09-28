@@ -36,3 +36,35 @@ Regression commands:
 - `node scripts/test-build-generator.mjs` (synthetic local files only)
 
 No customer email, payment, lookup, DNS or approval settings are changed.
+
+## Checkpoint version 2: contained Next.js dependency links
+
+Job `be19fdd6-cd63-4313-9c75-c8c187486024` completed lint/build but the old
+checkpoint walker rejected every symlink. Its `.next/node_modules/pg-587764f78a6c7a9c`
+link resolves to `node_modules/pg` inside that same isolated job directory.
+
+Keep compiled `.next` output in the private immutable fingerprint: this permits
+QA to exercise the exact preserved compilation instead of silently rebuilding
+with changed dependencies or configuration. Git still excludes `.next`. The
+checkpoint contains source/config, compiled bytes, dependency-link canonical
+mapping and linked dependency contents. Mutable `.next/cache` bytes are excluded
+from the digest, but its paths are still checked for unsafe links.
+
+Only framework links under `.next/node_modules` (including nested dependency
+links reached from there) may resolve into this workspace's `node_modules`.
+Canonical `realpath` plus platform-aware `path.relative` containment checks reject
+external, main-checkout, other-job, broken, secret/config, cyclic and arbitrary
+source links. Source symlinks remain forbidden. Traversal is bounded. Checkpoint
+storage itself cannot be redirected by `.git` or checkpoint-file links. Version 1
+checkpoints are not silently accepted as version 2. Recheck the fingerprint before
+deployment as well as before resumed QA.
+
+`scripts/recover-preserved-checkpoint.mjs` defaults to read-only preflight and is
+hard-bound to this approved failed job, baseline and artifact fingerprint. With
+`--queue-same-artifact`, it records a private immutable checkpoint, locks/rechecks
+approval, slug and absence of active jobs, then requeues the SAME job with
+`resume:true` and an explicit recovery event. It cannot create a new job or invoke
+AI. It refuses repeats after successful queueing. The original model name was not
+persisted before failure; metadata explicitly says `original-model-unrecorded`,
+not an invented observed model. No schema change or control-plane deployment is
+required: the existing checkpoint resume protocol is reused.
