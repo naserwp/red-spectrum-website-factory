@@ -5,7 +5,7 @@ import path from 'node:path';
 import {customerBuildPath} from '../lib/webfactory/build-paths.ts';
 import {designSchema} from '../lib/customers/design-contract.ts';
 import {customerManifestSchema} from '../lib/customers/schema.ts';
-import {generateV2,logoSvg,approvedLocalImages} from './build-worker/generator-v2.mjs';
+import {generateV2,logoSvg,approvedLocalImages,parseGeneratedDesign} from './build-worker/generator-v2.mjs';
 const s={kind:'split',eyebrow:'Introduction',heading:'A considered beginning',body:'Contact the company to discuss your needs.',image:0,reverse:false};
 const d={version:'2.0',hero:'editorial',navigation:'balanced',typography:'editorial',spacing:'generous',palette:'forest',logo:'open-frame',pages:{home:Array(6).fill(s),services:[s,s],about:[s,s],contact:[s],privacy:[s]},imageDirection:'Illustrative spaces',brandNotes:'Three geometric concepts reviewed.'};
 assert(designSchema.safeParse(d).success);
@@ -16,6 +16,9 @@ const manifest=customerManifestSchema.parse(JSON.parse(await readFile('customers
 for(const src of ['/customers/other/image.webp','https://tracker.example/a','/customers/'+manifest.customers[0].slug+'/../secret']){const m=structuredClone(manifest);m.customers[0].images.hero.src=src;assert(!customerManifestSchema.safeParse(m).success);}
 assert(logoSvg('Example Studio LLC','interlock','#123456','#ffffff').includes('<svg'));assert(!logoSvg('<script>','ligature','#123456','#fff').includes('<script>'));
 const output=await generateV2({business:'Synthetic',industry:'Design',brief:{brandDirection:'Editorial'},requestedChanges:'Untrusted data'}, {OPENAI_API_KEY:'test'},async()=>Response.json({status:'completed',output:[{content:[{type:'output_text',text:JSON.stringify(d)}]}]}));assert.equal(output.contract,'2.0');
+assert.throws(()=>parseGeneratedDesign({output:[]}),e=>e.validationCodes[0]==='invalid_json');
+assert.throws(()=>parseGeneratedDesign({output:[{content:[{type:'output_text',text:JSON.stringify({...d,brandNotes:''})}]}]}),e=>e.validationCodes.includes('too_small')&&!JSON.stringify(e).includes('brandNotes'));
+await generateV2({business:'Synthetic',industry:'Design',brief:{},requestedChanges:''},{OPENAI_API_KEY:'test'},async(_url,init)=>{const schema=JSON.parse(init.body).text.format.schema;assert.equal(schema.properties.brandNotes.minLength,1);assert.equal(schema.properties.pages.properties.home.minItems,5);assert.equal(schema.properties.pages.properties.home.items.properties.image.maximum,11);return Response.json({status:'completed',output:[{content:[{type:'output_text',text:JSON.stringify(d)}]}]});});
 const qa=await readFile('scripts/build-worker/qa.mjs','utf8');assert(qa.includes('320,375,768,1024,1440,1920'));
 const tmp=await mkdtemp(path.join(os.tmpdir(),'wf-assets-'));
 try{
