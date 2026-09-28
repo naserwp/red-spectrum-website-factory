@@ -1,0 +1,61 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {parseEnv} from 'node:util';
+import {randomUUID,randomBytes,createHash,timingSafeEqual} from 'node:crypto';
+import pg from 'pg';
+import ts from 'typescript';
+import {z} from 'zod';
+import {runPipeline} from './build-worker/pipeline.mjs';
+const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(n=>{if(n==='server-only')return {};if(n in deps)return deps[n];throw Error('Unexpected dependency');},m,m.exports);return m.exports;};
+const contract=load('lib/webfactory/worker-contract.ts',{zod:{z}}),executor=load('lib/webfactory/build-executor.ts',{});
+const env={...parseEnv(readFileSync(process.env.WEBFACTORY_TEST_ENV_FILE || '.env.local','utf8')),...process.env};
+const db=new pg.Pool({connectionString:env.LEADS_DATABASE_URL,connectionTimeoutMillis:5000});
+const schema='wf_worker_test_'+randomBytes(6).toString('hex');
+const rewrite=sql=>sql.replaceAll('webfactory.',schema+'.');
+const wrapped={query:(s,p)=>db.query(rewrite(s),p),connect:async()=>{const c=await db.connect();return {query:(s,p)=>c.query(rewrite(s),p),release:()=>c.release()};}};
+const digest=s=>createHash('sha256').update(s).digest('hex');
+const worker=load('lib/webfactory/build-worker.ts',{'node:crypto':{randomBytes},'./server':{database:()=>wrapped,digest,secureEqual:(a,b)=>timingSafeEqual(Buffer.from(digest(a)),Buffer.from(digest(b)))},'./worker-contract':contract,'./build-executor':executor});
+const saved={secret:process.env.WEBFACTORY_BUILD_WORKER_SECRET,executor:process.env.WEBFACTORY_BUILD_EXECUTOR,token:process.env.VERCEL_TOKEN};const realFetch=globalThis.fetch;
+const req=randomUUID(),brief=randomUUID(),slug='synthetic-worker';
+async function queued(){const id=randomUUID();await wrapped.query("INSERT INTO webfactory.website_build_jobs(id,request_id,customer_slug,brief_id,approved_brief,instructions,submission_id,status,executor,created_by) VALUES($1,$2,$3,$4,'{}','Synthetic',$5,'queued','controlled-worker-v1','test')",[id,req,slug,brief,randomUUID()]);return id;}
+try{
+ await db.query(`CREATE SCHEMA ${schema}`);
+ for(const table of ['requests','ai_briefs','build_workflows','request_actions'])await db.query(`CREATE TABLE ${schema}.${table} (LIKE webfactory.${table} INCLUDING ALL)`);
+ await db.query(rewrite(readFileSync('db/migrations/0008_webfactory_build_jobs.sql','utf8')));await db.query(rewrite(readFileSync('db/migrations/0009_webfactory_build_worker.sql','utf8')));
+ await wrapped.query("INSERT INTO webfactory.requests(id,submission_id,access_hash,name,business,email,industry,details,customer_slug) VALUES($1,$2,'test','Synthetic','Synthetic Worker','qa@example.invalid','Test','Test',$3)",[req,randomUUID(),slug]);
+ await wrapped.query("INSERT INTO webfactory.ai_briefs(id,request_id,status,model,brief) VALUES($1,$2,'generated','test','{}')",[brief,req]);
+ await wrapped.query("INSERT INTO webfactory.build_workflows(request_id,active_brief_id,stage) VALUES($1,$2,'build_approved')",[req,brief]);
+ process.env.WEBFACTORY_BUILD_WORKER_SECRET=randomBytes(32).toString('hex');process.env.WEBFACTORY_BUILD_EXECUTOR='controlled-worker-v1';
+ assert.equal(worker.workerAuthorized(null),false);assert.equal(worker.workerAuthorized('Bearer wrong'),false);assert.equal(worker.workerAuthorized('Bearer '+process.env.WEBFACTORY_BUILD_WORKER_SECRET),true);
+ await queued();const claims=await Promise.all([worker.workerOperation({action:'claim',workerId:'a'}),worker.workerOperation({action:'claim',workerId:'b'})]);assert.equal(claims.filter(c=>c.job).length,1);const claim=claims.find(c=>c.job),base={jobId:claim.job.id,lease:claim.lease};
+ await assert.rejects(()=>worker.workerOperation({action:'heartbeat',jobId:base.jobId,lease:'0'.repeat(64)}));
+ assert.equal((await worker.workerOperation({action:'heartbeat',...base})).cancelRequested,false);
+ await assert.rejects(()=>worker.workerOperation({action:'progress',...base,stage:'building'}));
+ await wrapped.query('UPDATE webfactory.website_build_jobs SET cancel_requested=true WHERE id=$1',[base.jobId]);
+ assert.equal((await worker.workerOperation({action:'heartbeat',...base})).cancelRequested,true);await worker.workerOperation({action:'cancel_ack',...base});
+ await queued();const stale=await worker.workerOperation({action:'claim',workerId:'a'});await wrapped.query("UPDATE webfactory.website_build_jobs SET lease_expires_at=now()-interval '1 second' WHERE id=$1",[stale.job.id]);
+ assert.equal((await worker.workerOperation({action:'claim',workerId:'b'})).job,null);await assert.rejects(()=>worker.workerOperation({action:'progress',jobId:stale.job.id,lease:stale.lease,stage:'planning'}));
+ assert.equal((await wrapped.query('SELECT error_category FROM webfactory.website_build_jobs WHERE id=$1',[stale.job.id])).rows[0].error_category,'WORKER_LEASE_EXPIRED');
+ await queued();const success=await worker.workerOperation({action:'claim',workerId:'a'}),s={jobId:success.job.id,lease:success.lease};
+ for(const stage of contract.workerStages.slice(1))await worker.workerOperation({action:'progress',...s,stage});
+ const complete={action:'complete',...s,baselineSha:'a'.repeat(40),resultSha:'b'.repeat(40),branch:`webfactory/build/${s.jobId}-${slug}`,changedFiles:['customers/manifest.json'],previewUrl:`https://synthetic-preview.vercel.app/${slug}`,deploymentReference:'dpl_synthetic',qa:Object.fromEntries(executor.requiredBuildChecks.map(k=>[k,true])),provider:{name:'openai',model:'synthetic'}};
+ process.env.VERCEL_TOKEN='synthetic-not-real';
+ globalThis.fetch=async url=>String(url).startsWith('https://api.vercel.com/')?Response.json({projectId:'prj_HV68RI67tT0LXTfEA1mguG6F3Ddo',target:null,readyState:'READY',url:'synthetic-preview.vercel.app',meta:{githubCommitSha:'b'.repeat(40)}}):new Response('<meta name="robots" content="noindex"><script type="application/ld+json">'+JSON.stringify({name:'Synthetic Worker',url:`https://preview.redspectrum.ai/${slug}`})+'</script>');
+ await assert.rejects(()=>worker.workerOperation({...complete,changedFiles:['.env.local']}));await assert.rejects(()=>worker.workerOperation({...complete,qa:{}}));
+ const verifiedFetch=globalThis.fetch;globalThis.fetch=async()=>new Response('Wrong customer');await assert.rejects(()=>worker.workerOperation(complete));globalThis.fetch=verifiedFetch;
+ assert.equal((await worker.workerOperation(complete)).status,'ready_for_review');
+ assert.equal((await wrapped.query('SELECT stage FROM webfactory.build_workflows WHERE request_id=$1',[req])).rows[0].stage,'build_approved');
+ for(const path of ['.env','app/page.tsx',`public/customers/other/hero.svg`,`customers/${slug}/../other/config.json`])assert.equal(contract.allowedBuildPath(slug,path),false);
+ for(const boundary of ['checkout','generate','apply','validate','build','qa','deploy','verify','complete']){
+  let failed=false,finished=false;const operations={check:async()=>{},progress:async()=>{},checkout:async()=>({}),generate:async()=>({provider:{}}),apply:async()=>({}),validate:async()=>[],build:async()=>{},qa:async()=>({}),deploy:async()=>({}),verify:async()=>{},complete:async()=>{finished=true;},fail:async()=>{failed=true;}};
+  operations[boundary]=async()=>{throw Error('Synthetic failure');};assert.equal(await runPipeline({},operations),'failed');assert.equal(failed,true);assert.equal(finished,false);
+ }
+ for(const [boundary,code] of [['generate','PROVIDER_FAILED'],['build','LINT_FAILED'],['build','BUILD_FAILED'],['qa','QA_FAILED'],['deploy','DEPLOYMENT_FAILED'],['verify','PREVIEW_VERIFICATION_FAILED']]){
+  let recorded;const ops={check:async()=>{},progress:async()=>{},checkout:async()=>({}),generate:async()=>({provider:{}}),apply:async()=>({}),validate:async()=>[],build:async()=>{},qa:async()=>({}),deploy:async()=>({}),verify:async()=>{},complete:async()=>{},fail:async c=>{recorded=c;}};ops[boundary]=async()=>{throw Error(code);};assert.equal(await runPipeline({},ops),'failed');assert.equal(recorded,code);
+ }
+ console.log('PASS: isolated DB worker auth, atomic/duplicate claims, heartbeat, lease fencing, cancellation, ordered progress, forbidden scope, QA gates, mocked verified completion; all pipeline failure boundaries. No real provider, push or deployment.');
+}finally{
+ globalThis.fetch=realFetch;for(const [key,value] of [['WEBFACTORY_BUILD_WORKER_SECRET',saved.secret],['WEBFACTORY_BUILD_EXECUTOR',saved.executor],['VERCEL_TOKEN',saved.token]])if(value===undefined)delete process.env[key];else process.env[key]=value;
+ // Exact schema created by this test only; no application/customer tables removed.
+ await db.query(`DROP SCHEMA IF EXISTS ${schema} CASCADE`);await db.end();
+}

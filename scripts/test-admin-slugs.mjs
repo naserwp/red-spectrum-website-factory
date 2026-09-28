@@ -7,7 +7,7 @@ import pg from 'pg';
 import {z} from 'zod';
 import * as safety from '../lib/webfactory/chat-safety.ts';
 const load=(file,deps)=>{const testModule={exports:{}};const code=ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;new Function('require','module','exports',code)(name=>{if(name==='server-only')return {};if(name in deps)return deps[name];throw Error('Unexpected dependency '+name);},testModule,testModule.exports);return testModule.exports;};
-const env={...parseEnv(readFileSync('.env.local','utf8')),...process.env};
+const env={...parseEnv(readFileSync(process.env.WEBFACTORY_TEST_ENV_FILE || '.env.local','utf8')),...process.env};
 const pool=new pg.Pool({connectionString:env.LEADS_DATABASE_URL,connectionTimeoutMillis:5000});
 const rules=load('lib/webfactory/slug-rules.ts',{}),briefTools=load('lib/webfactory/brief-schema.ts',{zod:{z}});
 const manifest=JSON.parse(readFileSync('customers/manifest.json','utf8'));
@@ -17,7 +17,7 @@ const service=load('lib/webfactory/slugs.ts',{'./server':server,'@/lib/customers
 const provider={chatSecrets:()=>[],askWorkspaceAI:()=>{throw Error('No external AI calls allowed');}};
 const chat=load('lib/webfactory/chat-store.ts',{'./server':server,'pg':{},'next/headers':{},'node:crypto':{randomUUID},'@/lib/customers/registry':registry,'./brief-schema':briefTools,'./build-receipts':receipts,'./chat-provider':provider,'./chat-safety':safety});
 let routeReady=false;
-const workflow=load('lib/webfactory/ai-workflow.ts',{'./server':server,'node:crypto':{randomUUID},'./brief-schema':briefTools,'./ai-provider':{},'./route-readiness':{verifyCustomerRoute:async()=>routeReady,localCustomerUrl:()=>null},'next/headers':{headers:async()=>new Map()},'./slug-rules':rules});
+const workflow=load('lib/webfactory/ai-workflow.ts',{'./build-worker':{getVerifiedWorkerPreview:async()=>null},'./server':server,'node:crypto':{randomUUID},'./brief-schema':briefTools,'./ai-provider':{},'./route-readiness':{verifyCustomerRoute:async()=>routeReady,localCustomerUrl:()=>null},'next/headers':{headers:async()=>new Map()},'./slug-rules':rules});
 const ids=[randomUUID(),randomUUID(),randomUUID()],briefId=randomUUID(),session='synthetic-slug-session',slug='qa-slug-'+randomUUID().slice(0,8),nextSlug=slug+'-new',raceSlug=slug+'-race';
 const draft={customerSlug:'old-ai-suggestion',businessSummary:'Synthetic only',brandDirection:'Draft',colorDirection:'Draft',logoConcept:'Draft',pages:briefTools.pageNames.map(name=>({name,purpose:'Draft',sections:[]})),services:[],seo:{title:'Draft',metaDescription:'Draft'},hero:{heading:'Draft',body:'Draft'},ctaCopy:[],myndy:{agentName:'Draft',avatarBrief:'Draft',greeting:'Draft',context:'Draft',faqs:[],qualificationFlow:[],escalationRules:[]},imagePrompts:[],customerEmailDraft:'Unsent draft',smsDraft:'Unsent draft',missingInformation:[],verificationNotes:[]};
 try{

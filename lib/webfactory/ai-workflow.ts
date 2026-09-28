@@ -7,6 +7,7 @@ import { verifyCustomerRoute } from "./route-readiness";
 import { localCustomerUrl } from "./route-readiness";
 import { headers } from "next/headers";
 import { previewUrls } from "./slug-rules";
+import { getVerifiedWorkerPreview } from "./build-worker";
 
 export class WorkflowError extends Error {}
 export type BuildState = { stage: string; active_brief_id: string | null; preview_url: string | null };
@@ -91,14 +92,15 @@ export async function transitionBuild(id: string, action: string, briefId: strin
     const transitions: Record<string, [string,string,string]> = { approve: ["draft","build_approved","building"], preview: ["build_approved","preview_ready","preview_ready"], customer: ["preview_ready","customer_approved","approved"] };
     const next = transitions[action];
     if (!next || current.stage !== next[0]) throw new WorkflowError("Complete the preceding review step first.");
+    const workerPreview=(action==="preview" || action==="customer")?await getVerifiedWorkerPreview(id,request.customer_slug,briefId,action==="preview"?previewUrl:current.preview_url):null;
     if (action === "preview") {
       const url = new URL(previewUrl || "");
       const buildSlug = request.customer_slug;
-      if (!["preview.redspectrum.ai","red-spectrum-website-factory.vercel.app"].includes(url.hostname) || url.protocol !== "https:" || url.username || url.password || url.search || url.hash || url.pathname !== "/" + buildSlug) throw new WorkflowError("Enter this customer's exact HTTPS preview URL on the approved preview host.");
+      if (!workerPreview && (!["preview.redspectrum.ai","red-spectrum-website-factory.vercel.app"].includes(url.hostname) || url.protocol !== "https:" || url.username || url.password || url.search || url.hash || url.pathname !== "/" + buildSlug)) throw new WorkflowError("Enter this customer's exact HTTPS preview URL on the approved preview host.");
     }
     if(action === "preview" || action === "customer"){
       const verifiedUrl=action === "preview"?previewUrl:current.preview_url;
-      if(!verifiedUrl || !await verifyCustomerRoute(request.customer_slug,verifiedUrl))throw new WorkflowError("Build pending: the saved slug must resolve to this registered customer's website before preview readiness or approval.");
+      if(!verifiedUrl || (!workerPreview && !await verifyCustomerRoute(request.customer_slug,verifiedUrl)))throw new WorkflowError("Build pending: the saved slug must resolve to this registered customer's website before preview readiness or approval.");
       await client.query("INSERT INTO webfactory.request_actions(request_id,actor,action,status_before,status_after,customer_slug,preview_url,notes,event_key) VALUES($1,$2,'website_built',$3,$3,$4,$5,'Customer route and identity verified; QA still requires admin review.',$6) ON CONFLICT(event_key) DO NOTHING",[id,actor,current.stage,request.customer_slug,verifiedUrl,`built:${id}:${briefId}:${request.customer_slug}`]);
     }
     await client.query("UPDATE webfactory.build_workflows SET stage=$2,preview_url=COALESCE($3,preview_url),updated_at=NOW() WHERE request_id=$1", [id,next[1],previewUrl || null]);

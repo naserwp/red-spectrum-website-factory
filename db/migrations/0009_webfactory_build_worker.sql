@@ -1,0 +1,17 @@
+BEGIN;
+ALTER TABLE webfactory.website_build_jobs DROP CONSTRAINT IF EXISTS website_build_jobs_status_check;
+ALTER TABLE webfactory.website_build_jobs ADD CONSTRAINT website_build_jobs_status_check CHECK(status IN ('queued','claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying','ready_for_review','changes_requested','failed','cancelled'));
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS lease_hash text;
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS lease_expires_at timestamptz;
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS worker_id text;
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS cancel_requested boolean NOT NULL DEFAULT false;
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS baseline_sha text;
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS result_sha text;
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS build_branch text;
+ALTER TABLE webfactory.website_build_jobs ADD COLUMN IF NOT EXISTS provider_metadata jsonb NOT NULL DEFAULT '{}';
+DROP INDEX IF EXISTS webfactory.website_build_one_active_request;
+DROP INDEX IF EXISTS webfactory.website_build_one_active_slug;
+CREATE UNIQUE INDEX website_build_one_active_request ON webfactory.website_build_jobs(request_id) WHERE status IN ('queued','claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying');
+CREATE UNIQUE INDEX website_build_one_active_slug ON webfactory.website_build_jobs(customer_slug) WHERE status IN ('queued','claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying');
+CREATE INDEX IF NOT EXISTS website_build_queue ON webfactory.website_build_jobs(created_at) WHERE status='queued';
+COMMIT;

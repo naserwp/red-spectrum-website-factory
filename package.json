@@ -6,6 +6,9 @@
     "node": ">=22.13.0"
   },
   "scripts": {
+    "build-worker": "node scripts/build-worker/launcher.mjs run",
+    "build-worker:setup": "node scripts/build-worker/launcher.mjs setup",
+    "build-worker:test": "node scripts/build-worker/launcher.mjs test",
     "install:ci": "node scripts/install-ci.mjs",
     "dev": "next dev",
     "build": "npm run customers:validate && next build",
