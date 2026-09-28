@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "nasirtesting",
+  "status": "draft",
+  "templateId": "ledger",
+  "business": {
+    "name": "Nasir test",
+    "industry": "Tech service",
+    "tagline": "Draft — Welcome to Nasir test - Your Trusted Tech Partner",
+    "summary": "Draft — Nasir test is a tech service company seeking a simple website."
+  },
+  "contact": {
+    "phone": {
+      "value": "",
+      "status": "missing"
+    },
+    "email": {
+      "value": "",
+      "status": "missing"
+    },
+    "address": {
+      "value": "",
+      "status": "missing"
+    },
+    "serviceAreas": {
+      "value": "",
+      "status": "missing"
+    }
+  },
+  "services": [
+    {
+      "name": "Tech support",
+      "description": "Draft scope. Contact details and service availability require customer confirmation.",
+      "status": "draft"
+    },
+    {
+      "name": "Network setup",
+      "description": "Draft scope. Contact details and service availability require customer confirmation.",
+      "status": "draft"
+    },
+    {
+      "name": "Software installation",
+      "description": "Draft scope. Contact details and service availability require customer confirmation.",
+      "status": "draft"
+    },
+    {
+      "name": "System maintenance",
+      "description": "Draft scope. Contact details and service availability require customer confirmation.",
+      "status": "draft"
+    }
+  ],
+  "pages": {
+    "home": {
+      "eyebrow": "Draft customer preview",
+      "headline": "Welcome to Nasir test - Your Trusted Tech Partner",
+      "intro": "Draft — Providing reliable and professional tech services tailored to your needs.",
+      "ctaLabel": "Request information"
+    },
+    "services": {
+      "headline": "Services",
+      "intro": "Draft service outline — customer verification required."
+    },
+    "about": {
+      "headline": "About Nasir test",
+      "paragraphs": [
+        "Draft — Nasir test is a tech service company seeking a simple website."
+      ]
+    },
+    "contact": {
+      "headline": "Start a conversation",
+      "intro": "This preview does not collect or send inquiries. Contact details await verification."
+    },
+    "privacy": {
+      "headline": "Privacy — draft notice",
+      "body": [
+        "Preview only. Inquiry delivery, payments, analytics and AI assistants are not enabled for this customer.",
+        "The final privacy notice must be reviewed against actual services and retention practices before launch."
+      ]
+    }
+  },
+  "branding": {
+    "primary": "#343434",
+    "secondary": "#161616",
+    "accent": "#D8BE9B",
+    "surface": "#FAF9F6",
+    "logoPath": "/customers/nasirtesting/logo.svg",
+    "faviconPath": "/customers/nasirtesting/favicon.svg"
+  },
+  "images": {
+    "hero": {
+      "src": "/customers/nasirtesting/hero.svg",
+      "alt": "Original abstract concept illustration; not a customer property or completed project",
+      "width": 1600,
+      "height": 1000
+    },
+    "gallery": []
+  },
+  "seo": {
+    "title": "Nasir test | Draft preview",
+    "description": "Draft website preview for Nasir test. Content requires customer verification."
+  },
+  "schema": {
+    "type": "Organization",
+    "description": "Draft — Nasir test is a tech service company seeking a simple website."
+  },
+  "form": {
+    "provider": "sendgrid",
+    "mode": "disabled",
+    "recipientConfirmed": false,
+    "testPassed": false
+  },
+  "myndy": {
+    "agentName": "Nasir Assistant",
+    "greeting": "Assistant setup pending verification.",
+    "avatarBrief": "A friendly, professional tech support avatar themed with orange and red colors",
+    "knowledgeContextPath": "customers/nasirtesting/myndy/agent-context.md",
+    "embed": {
+      "enabled": false,
+      "agentId": "",
+      "scriptUrl": ""
+    }
+  }
+}
