@@ -6,9 +6,9 @@ export const dynamic='force-dynamic';
 export async function GET(request:Request,{params}:{params:Promise<{slug:string;path?:string[]}>}){
  try{
   const {slug,path=[]}=await params;const url=new URL(request.url);
-  if(url.hostname!=='preview.redspectrum.ai'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||path.some(p=>p.includes('..')||/[\\%]/.test(p)))return new Response('Not found',{status:404});
+  if(url.hostname!=='preview.redspectrum.ai'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||path.some(p=>p==='..'||p==='.'||/[\\%/]/.test(p)))return new Response('Not found',{status:404});
   const requested=path.join('/');const page=['','services','about','contact','privacy'].includes(requested);
-  const asset=/^_next\/static\/[a-zA-Z0-9_./-]+\.(?:js|css|woff2?)$/.test(requested)||new RegExp(`^customers/${slug}/(?:images/image-(?:[0-9]|1[01])\\.webp|(?:logo|logo-dark|mark|favicon|hero)\\.svg)$`).test(requested);
+  const asset=/^_next\/static\/[a-zA-Z0-9_./~-]+\.(?:js|css|woff2?)$/.test(requested)||new RegExp(`^customers/${slug}/(?:images/image-(?:[0-9]|1[01])\\.webp|(?:logo|logo-dark|mark|favicon|hero)\\.svg)$`).test(requested);
   if(!page&&!asset&&requested!=='_next/image')return new Response('Not found',{status:404});
   if(requested==='_next/image'){
    const source=url.searchParams.get('url')||'';
@@ -31,6 +31,9 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string;
   let html=await upstream.text();if(html.length>4000000)throw Error();
   // Only assets are rewritten. Customer navigation remains on the branded origin.
   html=html.replaceAll('/_next/',`/api/branded-preview/${slug}/_next/`).replaceAll(`/customers/${slug}/`,`/api/branded-preview/${slug}/customers/${slug}/`);
+  // Vercel's deployment hint would route these proxy URLs to the customer
+  // deployment instead of this control plane. The verified mapping selects it.
+  html=html.replace(/(?:\?|&amp;|&|\\u0026)dpl=dpl_[a-zA-Z0-9]+/g,'');
   // Encoded Next image input must remain the deployment-local source, not the proxy path.
   return new Response(html,{headers});
  }catch{return new Response('Preview temporarily unavailable',{status:503,headers:{'Cache-Control':'no-store'}});}
