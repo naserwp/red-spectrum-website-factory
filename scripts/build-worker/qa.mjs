@@ -3,13 +3,14 @@ import {createServer} from 'node:net';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {qaMessages} from '../../lib/webfactory/qa-diagnostics.ts';
+import {settleImages} from './image-readiness.mjs';
 export class QaFailure extends Error {
  constructor(results){super('QA_FAILED');this.results=results;}
 }
 export function recorder(){
  const results=[];
- return {results,assert(name,ok,page='',viewport=0,start=Date.now()){
-  results.push({check_name:name,status:ok?'passed':'failed',page,viewport,duration:Math.max(0,Date.now()-start),timestamp:new Date().toISOString()});
+ return {results,assert(name,ok,page='',viewport=0,start=Date.now(),details={}){
+  results.push({check_name:name,status:ok?'passed':'failed',page,viewport,duration:Math.max(0,Date.now()-start),timestamp:new Date().toISOString(),...details});
   if(!ok)throw new QaFailure([...results]);
  }};
 }
@@ -21,7 +22,7 @@ export function checkHtml(record,html,status,job,site,page){
  record.assert('privacy',![job.requestId,job.briefId,'BUILD_WORKER_SECRET','LEADS_DATABASE_URL','OPENAI_API_KEY'].filter(Boolean).some(s=>html.includes(s)),page);
 }
 export function checkBrowser(record,c,page,width){
- for(const [name,ok] of [['mobile-overflow',!c.overflow],['images',c.images],['tenant-isolation',!c.leak],['page-error',!c.error]])record.assert(name,ok,page,width);
+ for(const [name,ok] of [['mobile-overflow',!c.overflow],['images',c.images],['tenant-isolation',!c.leak],['page-error',!c.error]])record.assert(name,ok,page,width,Date.now(),name==='images'&&c.imageFailures?.length?{imageFailures:c.imageFailures}:{});
 }
 export async function browserStep(record,fn,page,width,name){
  const start=Date.now();try{return await fn();}catch(error){record.assert(error?.code==='COMMAND_TIMEOUT'?'browser-timeout':name,false,page,width,start);}
@@ -49,10 +50,10 @@ export async function runQa(repo,job,site,env,check=async()=>{}){
    await browserStep(record,()=>browser('snapshot','-i'),page,0,'browser-check');
    for(const width of (site.design?.version==='2.0'?[320,375,768,1024,1440,1920]:[320,768,1440])){
     await browserStep(record,()=>browser('set','viewport',String(width),'1000'),page,width,'browser-check');
-    // Wait for image completion, then assert success; do not conceal broken images.
-    await browserStep(record,()=>browser('eval',`Promise.all([...document.images].map(i=>i.complete?Promise.resolve():new Promise(r=>{i.addEventListener('load',r,{once:true});i.addEventListener('error',r,{once:true});setTimeout(r,5000)}))).then(()=>true)`),page,width,'browser-check');
+    await browserStep(record,()=>browser('open',base+'/'+job.customerSlug+page),page,width,'browser-launch');
+    const settled=await browserStep(record,async()=>JSON.parse(await browser('eval',`(${settleImages.toString()})()`)),page,width,'browser-check');
     const c=await browserStep(record,async()=>JSON.parse(await browser('eval',`({overflow:document.documentElement.scrollWidth>innerWidth,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0),leak:[...document.querySelectorAll('a[href^="/"]')].some(a=>{const p=a.getAttribute('href').split(/[?#]/)[0];return p!=='/${job.customerSlug}'&&!p.startsWith('/${job.customerSlug}/')}),error:!!document.querySelector('[data-nextjs-dialog]')})`)),page,width,'browser-check');
-    checkBrowser(record,c,page,width);
+    c.imageFailures=settled.failures;checkBrowser(record,c,page,width);
     if(width===320){
      const menu=await browserStep(record,()=>browser('eval',`(()=>{const d=document.querySelector('header details');if(!d)return false;d.open=true;return true})()`),page,width,'browser-check');
      if(JSON.parse(menu)){

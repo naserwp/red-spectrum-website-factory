@@ -16,6 +16,9 @@ export function launch(cmd,args,options={}){
  children.add(child);child.once('close',()=>children.delete(child));return child;
 }
 export const command=(cmd,args,cwd,extra={},timeout=600000,input)=>new Promise((resolve,reject)=>{
+ const category=cmd==='npm'?args[0]==='ci'?'install':args[0]==='run'&&['lint','build'].includes(args[1])?args[1]:null:null;
+ let summary='exit_nonzero';
+ const failure=(reason,exitCode=null)=>Object.assign(Error('WORKER_INTERRUPTED'),{...(reason==='timeout'?{code:'COMMAND_TIMEOUT'}:{}),...(category?{commandFailure:{stage:'building',category,exitCode,summary:reason}}:{})});
  // Native Windows browser daemon can inherit wrapper pipes; bypass its JS shim.
  const browserBinary=args[0]?.endsWith('agent-browser.js')?path.join(path.dirname(args[0]),`agent-browser-win32-${process.arch}.exe`):null;
  if(windows&&browserBinary&&existsSync(browserBinary)){cmd=browserBinary;args=args.slice(1);}
@@ -28,10 +31,11 @@ export const command=(cmd,args,cwd,extra={},timeout=600000,input)=>new Promise((
  }
  const child=launch(cmd,args,{cwd,env:{...cleanEnv,...extra},stdio:[input===undefined?'ignore':'pipe','pipe','pipe']});let out='';
  if(input!==undefined){child.stdin.on('error',()=>{});child.stdin.end(input);}
- const timer=setTimeout(()=>{stop(child);reject(Object.assign(Error('WORKER_INTERRUPTED'),{code:'COMMAND_TIMEOUT'}));},timeout);
- child.stdout.on('data',x=>{out+=x;if(out.length>4000000)stop(child);});child.stderr.on('data',()=>{});
- child.on('error',()=>{clearTimeout(timer);reject(Error('WORKER_INTERRUPTED'));});
- child.on('close',code=>{clearTimeout(timer);if(code===0)resolve(out.trim());else reject(Error('WORKER_INTERRUPTED'));});
+ const timer=setTimeout(()=>{stop(child);reject(failure('timeout'));},timeout);
+ const classify=x=>{const s=String(x);if(/EPERM|EACCES/.test(s))summary='permission_denied';else if(/ENOMEM|heap out of memory/i.test(s))summary='out_of_memory';else if(/ENOSPC/.test(s))summary='disk_full';else if(/Type error:|error TS\d+/.test(s))summary='typescript_error';};
+ child.stdout.on('data',x=>{classify(x);out+=x;if(out.length>4000000){summary='output_limit';stop(child);}});child.stderr.on('data',classify);
+ child.on('error',()=>{clearTimeout(timer);reject(failure('spawn_failed'));});
+ child.on('close',(code,signal)=>{clearTimeout(timer);if(code===0)resolve(out.trim());else reject(failure(signal?'terminated':summary,code));});
  if(windows&&browserBinary)child.on('exit',code=>{clearTimeout(timer);setTimeout(()=>{child.stdout.destroy();child.stderr.destroy();if(code===0)resolve(out.trim());else reject(Error('WORKER_INTERRUPTED'));},50);});
 });
 export function assertRoot(root,checkout){

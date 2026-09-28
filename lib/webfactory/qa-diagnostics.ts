@@ -15,4 +15,4 @@ export const qaMessages = {
   'artifact-integrity': 'The saved build artifact changed or is unavailable. QA retry refused.',
 } as const;
 export type QaCheckName = keyof typeof qaMessages;
-export type QaDiagnostic = {check_name:QaCheckName;status:'passed'|'failed';page:string;viewport:number;duration:number;timestamp:string};
+export type QaDiagnostic = {check_name:QaCheckName;status:'passed'|'failed';page:string;viewport:number;duration:number;timestamp:string;imageFailures?:{index:number;state:'broken'|'timeout';asset?:string}[]};

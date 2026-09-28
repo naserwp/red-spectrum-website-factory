@@ -25,5 +25,5 @@ export async function runPipeline(job,ops){
   await step('preview_verifying',()=>ops.verify(deployment,job,site));
   await ops.check();await ops.complete({repo,files,qa,deployment,provider:design.provider});
   return 'ready_for_review';
- }catch(error){await ops.fail(error.message,error.results);return 'failed';}
+ }catch(error){await ops.fail(error.message,error.results,error.commandFailure);return 'failed';}
 }

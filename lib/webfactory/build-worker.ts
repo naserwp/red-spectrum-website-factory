@@ -73,7 +73,13 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
   }
   let status:string=j.status,code:string=j.progress_code;
   if(input.action==="cancel_ack"){if(!j.cancel_requested)throw Error("No cancellation");status="cancelled";code="cancel_acknowledged";}
-  if(input.action==="fail"){status="failed";code=input.code;}
+  if(input.action==="fail"){
+   if(input.commandFailure){
+    if(j.status!=='building')throw Error('Invalid command diagnostic stage');
+    await c.query("UPDATE webfactory.website_build_jobs SET qa_result=jsonb_set(qa_result,'{commandFailure}',$2::jsonb) WHERE id=$1",[j.id,JSON.stringify(input.commandFailure)]);
+   }
+   status="failed";code=input.code;
+  }
   if(input.action==="progress"){
    const at=workerStages.indexOf(j.status);const resume=j.qa_result?.checkpoint&&j.status==='claimed'&&((j.qa_result?.resume===true&&input.stage==='qa_running')||(j.qa_result?.resumePreview===true&&j.qa_result?.previewRecovery&&input.stage==='preview_verifying'));
    if(!resume&&workerStages[at+1]!==input.stage)throw Error("Invalid transition");status=input.stage;code=input.stage;
