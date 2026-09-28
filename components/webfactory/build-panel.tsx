@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { BuildConsole } from "./build-console";
 
-export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory, customerSlug, recordedPreview, filesBuilt = false, slugConfirmed = false }: {
-  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean; customerSlug?: string; recordedPreview?: string | null; filesBuilt?: boolean; slugConfirmed?: boolean;
+export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory, customerSlug, recordedPreview, filesBuilt = false, slugConfirmed = false, workerProtection }: {
+  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean; customerSlug?: string; recordedPreview?: string | null; filesBuilt?: boolean; slugConfirmed?: boolean; workerProtection?: 'protected'|'public';
 }) {
   const router = useRouter();
   const [pending,setPending] = useState(false);
@@ -37,7 +37,7 @@ export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHi
     <p>{previewReady ? "A preview has been recorded by an admin. Customer approval and deployment remain separate steps." : filesBuilt ? "The customer route is verified. Review the site and QA results; deployment remains a separate authorized action." : approved ? "Website not built yet. Start a tracked build below. Repository execution requires a configured build executor." : "Review and approve the AI brief first. Approval authorizes a build; it does not create website files."}</p></div>
     {!filesBuilt && !previewReady && !approved && <p className="wf-status">Website not built yet. Copy the build prompt and run Codex to create this customer website. Approve the brief before running the build.</p>}
     <dl><dt>Build status</dt><dd>{previewReady ? "Website route verified · preview recorded" : filesBuilt ? "Website route and customer identity verified" : approved ? "Build pending" : "Awaiting brief approval"}</dd><dt>Suggested slug</dt><dd>{customerSlug || "Available after brief generation"}</dd><dt>Intended preview</dt><dd>{customerSlug ? `https://red-spectrum-website-factory.vercel.app/${customerSlug}` : "Not assigned yet"}</dd></dl>
-    {filesBuilt && customerSlug && <Link className="wf-button secondary" href={`/${customerSlug}`} target="_blank">Open website in this environment ↗</Link>}
+    {filesBuilt && recordedPreview && <a className="wf-button secondary" href={recordedPreview} target="_blank" rel="noreferrer">Open verified website ↗</a>}
     <p className="wf-checklist-note">The intended URL is not a published website. Confirm slug availability before building. The route and customer identity are verified server-side. QA and customer approval still require manual review.</p>
     <details><summary>AI generation and approval controls</summary><p>Generate sends the business name, industry, website and description to OpenAI. Direct contact fields are excluded. AI output remains an unverified draft. Generation is locked after build approval.</p>
     {!available && <p className="wf-status">AI generation unavailable</p>}
@@ -50,15 +50,16 @@ export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHi
     {prompt && <details><summary>Advanced / Manual Build Fallback</summary><div className="wf-buttons"><button type="button" className="wf-button secondary" disabled={!slugConfirmed} onClick={copy}>Copy Codex Build Prompt</button><Link className="wf-button secondary" href={`/admin/ai?requestId=${requestId}&improve=1`}>Generate rebuild prompt / QA checklist</Link></div><p>Use an authorized local Codex session only when the automated executor is unavailable. Existing customer files must not be overwritten.</p><label className="wf-field">Build handoff<textarea readOnly value={prompt} rows={12}/></label></details>}
     <div id="preview"><p className="wf-section-label">04 / Preview & QA</p><h3>After the website is built</h3></div>
     <ol className="wf-checklist"><li>Create isolated customer files and register the agreed slug.</li><li>Verify every page, facts, links, images, metadata and tenant isolation.</li><li>Check layouts at 320, 768 and 1440 pixels. Run lint and production build.</li><li>Obtain separate deployment approval. After files are created and verified, paste the approved preview URL and mark Preview Ready.</li></ol>
-    <p className="wf-checklist-note">QA checklist: manual review required; no automated pass is claimed here. Customer emails, payments, lookup and automatic deployment remain inactive.</p>
+    {workerProtection ? <div className="wf-status" role="status"><strong>Website Built: Verified ✓</strong><p>QA: Passed · Preview: Verified ({workerProtection === 'protected' ? 'Protected' : 'Public'})</p><p>Ready for admin review. The Build Engine already verified the build; no second manual build verification is required. Review the preview, then confirm authorization to enable Mark Preview Ready.</p></div> : <p className="wf-checklist-note">QA checklist: manual review required; no automated pass is claimed here. Customer emails, payments, lookup and automatic deployment remain inactive.</p>}
     {recordedPreview && <a className="wf-button secondary" href={recordedPreview} target="_blank" rel="noopener noreferrer">Open recorded preview ↗</a>}
     <label className="wf-field">Customer preview URL<input type="url" value={previewUrl} onChange={e=>setPreviewUrl(e.target.value)} placeholder={customerSlug ? `https://red-spectrum-website-factory.vercel.app/${customerSlug}` : "Confirm Customer Slug above"} disabled={stage !== "build_approved"}/></label>
     <p>Typing a preview URL does not change the build slug. <a href="#customer-slug">Edit and save Customer Slug above</a> before updating the preview.</p>
     <div style={{display:"flex",flexWrap:"wrap",gap:12}}>
-      <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "build_approved" || !slugConfirmed} onClick={()=>run("built")}>Verify Website Built</button>
-      <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "build_approved" || !filesBuilt || !previewUrl} onClick={()=>run("preview")}>Mark Preview Ready</button>
+      {!workerProtection && <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "build_approved" || !slugConfirmed} onClick={()=>run("built")}>Verify Website Built</button>}
+      <button className="wf-button secondary" disabled={pending || !confirmed || !slugConfirmed || !briefId || stage !== "build_approved" || !filesBuilt || !previewUrl} onClick={()=>run("preview")}>Mark Preview Ready</button>
       <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "preview_ready" || !filesBuilt} onClick={()=>run("customer")}>Mark Customer Approved</button>
     </div>
+    {!confirmed && stage==='build_approved' && filesBuilt && <p role="status">Confirm “I reviewed and authorize the selected action” above to enable Mark Preview Ready. Nothing is approved automatically.</p>}
     {message && <p role="status" aria-live="polite" className="wf-status">{message}</p>}
     <p className="wf-status">Customer approval: <strong>{stage === "customer_approved" ? "Customer Approved" : "Not approved"}</strong>. Marking approval does not send email, take payment or publish the site.</p>
   </section>;

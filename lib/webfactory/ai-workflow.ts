@@ -81,6 +81,9 @@ export async function transitionBuild(id: string, action: string, briefId: strin
     if (!b.rows[0] || !briefSchema.safeParse(b.rows[0].brief).success) throw new WorkflowError("A valid generated brief is required.");
     if(action === "built"){
       if(current.stage!=="build_approved")throw new WorkflowError("Approve the build first.");
+      // The worker already recorded Website Built after QA and authenticated
+      // preview verification. Do not re-probe a production route or log it twice.
+      if(await getVerifiedWorkerPreview(id,request.customer_slug,briefId)){await client.query('COMMIT');return;}
       const urls=previewUrls(request.customer_slug);
       const candidates=[localCustomerUrl(request.customer_slug,(await headers()).get('host') || ''),urls.fallback,urls.primary].filter((url):url is string=>Boolean(url));
       let verifiedUrl:string|null=null;
@@ -101,7 +104,7 @@ export async function transitionBuild(id: string, action: string, briefId: strin
     if(action === "preview" || action === "customer"){
       const verifiedUrl=action === "preview"?previewUrl:current.preview_url;
       if(!verifiedUrl || (!workerPreview && !await verifyCustomerRoute(request.customer_slug,verifiedUrl)))throw new WorkflowError("Build pending: the saved slug must resolve to this registered customer's website before preview readiness or approval.");
-      await client.query("INSERT INTO webfactory.request_actions(request_id,actor,action,status_before,status_after,customer_slug,preview_url,notes,event_key) VALUES($1,$2,'website_built',$3,$3,$4,$5,'Customer route and identity verified; QA still requires admin review.',$6) ON CONFLICT(event_key) DO NOTHING",[id,actor,current.stage,request.customer_slug,verifiedUrl,`built:${id}:${briefId}:${request.customer_slug}`]);
+      if(!workerPreview)await client.query("INSERT INTO webfactory.request_actions(request_id,actor,action,status_before,status_after,customer_slug,preview_url,notes,event_key) VALUES($1,$2,'website_built',$3,$3,$4,$5,'Customer route and identity verified; QA still requires admin review.',$6) ON CONFLICT(event_key) DO NOTHING",[id,actor,current.stage,request.customer_slug,verifiedUrl,`built:${id}:${briefId}:${request.customer_slug}`]);
     }
     await client.query("UPDATE webfactory.build_workflows SET stage=$2,preview_url=COALESCE($3,preview_url),updated_at=NOW() WHERE request_id=$1", [id,next[1],previewUrl || null]);
     await client.query("UPDATE webfactory.requests SET status=$2,updated_at=NOW() WHERE id=$1", [id,next[2]]);

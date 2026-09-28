@@ -5,16 +5,18 @@ import { workerStages,allowedBuildPath,workerInput,qaMessages } from "./worker-c
 import { requiredBuildChecks } from "./build-executor";
 import {verifyProtectedPreview} from './preview-verification';
 import {getCustomerSites} from '@/lib/customers/registry';
+import {verifiedBuildEvidence} from './build-evidence';
 import type { z } from "zod";
 export function workerAuthorized(header:string|null){const secret=process.env.WEBFACTORY_BUILD_WORKER_SECRET;return Boolean(secret && secret.length>=32 && header?.startsWith("Bearer ") && secureEqual(header.slice(7),secret));}
-export async function getVerifiedWorkerPreview(requestId:string,slug:string,briefId:string,url?:string|null):Promise<string|null>{
+export async function getVerifiedWorkerBuild(requestId:string,slug:string,briefId:string,url?:string|null){
  try{
   const j=(await database().query("SELECT j.*,r.business FROM webfactory.website_build_jobs j JOIN webfactory.requests r ON r.id=j.request_id JOIN webfactory.build_workflows w ON w.request_id=r.id WHERE j.request_id=$1 AND j.customer_slug=$2 AND r.customer_slug=$2 AND j.brief_id=$3 AND w.active_brief_id=$3 AND j.status='ready_for_review' AND ($4::text IS NULL OR j.preview_url=$4) ORDER BY j.created_at DESC LIMIT 1",[requestId,slug,briefId,url || null])).rows[0];
   if(!j)return null;
-  const input=workerInput.parse({action:"complete",jobId:j.id,lease:"0".repeat(64),baselineSha:j.baseline_sha,resultSha:j.result_sha,branch:j.build_branch,changedFiles:j.changed_files,previewUrl:j.preview_url,deploymentReference:j.deployment_reference,qa:Object.fromEntries(requiredBuildChecks.map(key=>[key,j.qa_result[key]===true])),provider:j.provider_metadata});
-  if(input.action!=="complete")return null;
-  await verifyPreview(input,slug,j.business,[j.request_id,j.brief_id]);return j.preview_url;
+  return verifiedBuildEvidence(j,{requestId,slug,briefId});
  }catch{return null;}
+}
+export async function getVerifiedWorkerPreview(requestId:string,slug:string,briefId:string,url?:string|null):Promise<string|null>{
+ return (await getVerifiedWorkerBuild(requestId,slug,briefId,url))?.previewUrl || null;
 }
 async function verifyPreview(input:Extract<z.infer<typeof workerInput>,{action:"complete"}>,slug:string,business:string,privateValues:string[]=[]){
  if(!process.env.VERCEL_TOKEN || !requiredBuildChecks.every(key=>input.qa[key]===true))throw Error("Unverified");

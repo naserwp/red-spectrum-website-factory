@@ -16,8 +16,8 @@ const server={database:()=>pool},receipts={getLocalBuildReceipt:()=>null};
 const service=load('lib/webfactory/slugs.ts',{'./server':server,'@/lib/customers/registry':registry,'./build-receipts':receipts,'./slug-rules':rules});
 const provider={chatSecrets:()=>[],askWorkspaceAI:()=>{throw Error('No external AI calls allowed');}};
 const chat=load('lib/webfactory/chat-store.ts',{'./server':server,'pg':{},'next/headers':{},'node:crypto':{randomUUID},'@/lib/customers/registry':registry,'./brief-schema':briefTools,'./build-receipts':receipts,'./chat-provider':provider,'./chat-safety':safety});
-let routeReady=false;
-const workflow=load('lib/webfactory/ai-workflow.ts',{'./build-worker':{getVerifiedWorkerPreview:async()=>null},'./server':server,'node:crypto':{randomUUID},'./brief-schema':briefTools,'./ai-provider':{},'./route-readiness':{verifyCustomerRoute:async()=>routeReady,localCustomerUrl:()=>null},'next/headers':{headers:async()=>new Map()},'./slug-rules':rules});
+let routeReady=false,workerPreview=null;
+const workflow=load('lib/webfactory/ai-workflow.ts',{'./build-worker':{getVerifiedWorkerPreview:async(_id,_slug,_brief,url)=>!url||url===workerPreview?workerPreview:null},'./server':server,'node:crypto':{randomUUID},'./brief-schema':briefTools,'./ai-provider':{},'./route-readiness':{verifyCustomerRoute:async()=>routeReady,localCustomerUrl:()=>null},'next/headers':{headers:async()=>new Map()},'./slug-rules':rules});
 const ids=[randomUUID(),randomUUID(),randomUUID()],briefId=randomUUID(),session='synthetic-slug-session',slug='qa-slug-'+randomUUID().slice(0,8),nextSlug=slug+'-new',raceSlug=slug+'-race';
 const draft={customerSlug:'old-ai-suggestion',businessSummary:'Synthetic only',brandDirection:'Draft',colorDirection:'Draft',logoConcept:'Draft',pages:briefTools.pageNames.map(name=>({name,purpose:'Draft',sections:[]})),services:[],seo:{title:'Draft',metaDescription:'Draft'},hero:{heading:'Draft',body:'Draft'},ctaCopy:[],myndy:{agentName:'Draft',avatarBrief:'Draft',greeting:'Draft',context:'Draft',faqs:[],qualificationFlow:[],escalationRules:[]},imagePrompts:[],customerEmailDraft:'Unsent draft',smsDraft:'Unsent draft',missingInformation:[],verificationNotes:[]};
 try{
@@ -54,6 +54,16 @@ try{
   const actions=await service.getRequestActions(ids[0]);
   for(const action of ['request_created','ai_brief_generated','slug_suggested','slug_updated','website_built','build_approved','preview_url_saved','preview_ready_marked'])assert.ok(actions.some(a=>a.action===action),action);
   assert.ok(actions.some(a=>a.actor.startsWith('session:')));
+  // Reset this disposable fixture only to exercise the protected-worker path.
+  await pool.query("UPDATE webfactory.build_workflows SET stage='build_approved',preview_url=NULL WHERE request_id=$1",[ids[0]]);
+  routeReady=false;workerPreview='https://synthetic-protected.vercel.app/'+nextSlug;
+  await assert.rejects(()=>workflow.transitionBuild(ids[0],'customer',briefId),/preceding/);
+  const count=(await service.getRequestActions(ids[0])).length;await workflow.transitionBuild(ids[0],'built',briefId);
+  assert.equal((await service.getRequestActions(ids[0])).length,count);
+  await assert.rejects(()=>workflow.transitionBuild(ids[0],'preview',briefId,'https://wrong.vercel.app/'+nextSlug));
+  await workflow.transitionBuild(ids[0],'preview',briefId,workerPreview,'session:synthetic');
+  assert.equal((await pool.query('SELECT stage FROM webfactory.build_workflows WHERE request_id=$1',[ids[0]])).rows[0].stage,'preview_ready');
+  console.log('PASS: legacy manual route approval and protected worker approval; built verification idempotent; wrong URL rejected; customer approval remains separate.');
   console.log('PASS: slug syntax/reserved names, registry conflicts, cross-request conflicts, concurrent unique reservation, stale-save rejection, reapproval after slug change, built-route lock, saved-slug AI context/prompts, approval gates and action logs.');
 }finally{
   await pool.query('DELETE FROM webfactory.request_review_events WHERE request_id=ANY($1::uuid[])',[ids]);

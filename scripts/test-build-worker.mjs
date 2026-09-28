@@ -10,13 +10,14 @@ import {verifyProtectedPreview} from '../lib/webfactory/preview-verification.ts'
 const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(n=>{if(n==='server-only')return {};if(n in deps)return deps[n];throw Error('Unexpected dependency');},m,m.exports);return m.exports;};
 const diagnostics=load('lib/webfactory/qa-diagnostics.ts',{});
 const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':diagnostics}),executor=load('lib/webfactory/build-executor.ts',{});
+const evidence=load('lib/webfactory/build-evidence.ts',{'./worker-contract':contract,'./build-executor':executor});
 const env={...parseEnv(readFileSync(process.env.WEBFACTORY_TEST_ENV_FILE || '.env.local','utf8')),...process.env};
 const db=new pg.Pool({connectionString:env.LEADS_DATABASE_URL,connectionTimeoutMillis:5000});
 const schema='wf_worker_test_'+randomBytes(6).toString('hex');
 const rewrite=sql=>sql.replaceAll('webfactory.',schema+'.');
 const wrapped={query:(s,p)=>db.query(rewrite(s),p),connect:async()=>{const c=await db.connect();return {query:(s,p)=>c.query(rewrite(s),p),release:()=>c.release()};}};
 const digest=s=>createHash('sha256').update(s).digest('hex');
-const worker=load('lib/webfactory/build-worker.ts',{'node:crypto':{randomBytes},'./server':{database:()=>wrapped,digest,secureEqual:(a,b)=>timingSafeEqual(Buffer.from(digest(a)),Buffer.from(digest(b)))},'./worker-contract':contract,'./build-executor':executor,'./preview-verification':{verifyProtectedPreview},'@/lib/customers/registry':{getCustomerSites:()=>[]}});
+const worker=load('lib/webfactory/build-worker.ts',{'node:crypto':{randomBytes},'./server':{database:()=>wrapped,digest,secureEqual:(a,b)=>timingSafeEqual(Buffer.from(digest(a)),Buffer.from(digest(b)))},'./worker-contract':contract,'./build-executor':executor,'./preview-verification':{verifyProtectedPreview},'./build-evidence':evidence,'@/lib/customers/registry':{getCustomerSites:()=>[]}});
 const saved={secret:process.env.WEBFACTORY_BUILD_WORKER_SECRET,executor:process.env.WEBFACTORY_BUILD_EXECUTOR,token:process.env.VERCEL_TOKEN};const realFetch=globalThis.fetch;
 const req=randomUUID(),brief=randomUUID(),slug='synthetic-worker';
 async function queued(){const id=randomUUID();await wrapped.query("INSERT INTO webfactory.website_build_jobs(id,request_id,customer_slug,brief_id,approved_brief,instructions,submission_id,status,executor,created_by) VALUES($1,$2,$3,$4,'{}','Synthetic',$5,'queued','controlled-worker-v1','test')",[id,req,slug,brief,randomUUID()]);return id;}
@@ -46,6 +47,10 @@ try{
  await assert.rejects(()=>worker.workerOperation({...complete,changedFiles:['.env.local']}));await assert.rejects(()=>worker.workerOperation({...complete,qa:{}}));
  const verifiedFetch=globalThis.fetch;globalThis.fetch=async()=>new Response('Wrong customer');await assert.rejects(()=>worker.workerOperation(complete));globalThis.fetch=verifiedFetch;
  assert.equal((await worker.workerOperation(complete)).status,'ready_for_review');
+ assert.equal((await worker.getVerifiedWorkerBuild(req,slug,brief)).previewUrl,complete.previewUrl);
+ assert.equal(await worker.getVerifiedWorkerBuild(req,'other',brief),null);
+ assert.equal(await worker.getVerifiedWorkerBuild(req,slug,randomUUID()),null);
+ assert.equal(await worker.getVerifiedWorkerPreview(req,slug,brief,'https://other.vercel.app/'+slug),null);
  assert.equal((await wrapped.query('SELECT stage FROM webfactory.build_workflows WHERE request_id=$1',[req])).rows[0].stage,'build_approved');
  await queued();const diagnosticJob=await worker.workerOperation({action:'claim',workerId:'qa-test'}),q={jobId:diagnosticJob.job.id,lease:diagnosticJob.lease};
  for(const stage of ['planning','generating','applying_changes','validating','building'])await worker.workerOperation({action:'progress',...q,stage});
