@@ -16,6 +16,7 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "customer:new": "node scripts/create-customer.mjs",
     "customers:validate": "node scripts/validate-customers.mjs",
+    "recovery-evidence:test": "node scripts/test-recovery-evidence.mjs",
     "leads:migrate": "node scripts/migrate-leads.mjs",
     "webfactory:migrate": "node --env-file=.env.local scripts/migrate-webfactory.mjs",
     "webfactory:diagnose": "node --env-file=.env.local scripts/diagnose-webfactory-db.mjs",
