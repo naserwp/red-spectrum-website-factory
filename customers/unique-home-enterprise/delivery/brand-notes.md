@@ -1,0 +1,3 @@
+V3 B2B identity: interlocking geometric UH strokes and a refined UNIQUE HOME wordmark. It deliberately avoids a roof or contractor symbol. Charcoal, warm ivory and restrained brass support marketing, consulting, advertising and real-estate-oriented business contexts without implying a regulated service. Final trademark/brand approval remains pending.
+
+The primary and light logo, compact mark and favicon are in `public/customers/unique-home-enterprise/`. Twelve optimized illustrative assets are inventoried in `image-inventory.json`. Ten were generated specifically for the B2B revision, and two are neutral architectural images from the prior V3 exploration. They are not company projects, properties, clients, or offices.

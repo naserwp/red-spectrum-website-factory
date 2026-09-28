@@ -1,0 +1,110 @@
+[
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-0.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-39fc756f-776a-4740-ad8b-0338be7baa55.png",
+    "sha256": "e9e0c53a3be83ffeb26c8beaca4e88de64e9bb43fe462c6ef5df1ba84c948708",
+    "bytes": 105632,
+    "width": 1600,
+    "height": 686
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-1.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-daab6821-cd02-4968-bdce-e3aabe0d58a3.png",
+    "sha256": "1d0cbfc61ee9dd7f4db481788cdd4b1268539bc3b21589fd06db67d8a6a6200d",
+    "bytes": 110878,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-2.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-152ff8b8-07c0-4157-b83d-5d8483270dab.png",
+    "sha256": "6b7af569c935b8c369b3d4bef11953059d6283763c04985d433470d9eaae1646",
+    "bytes": 83728,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-3.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-65a885b6-76c5-4a01-ab6c-0e2264e7e04f.png",
+    "sha256": "a3559cf5aeb674f81ea56ae8e8e3ff3e9e0d2a406cb02fa7c82c00cb2e5209b2",
+    "bytes": 102830,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-4.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-241e87b8-fa71-4b3f-9487-9412a1b201be.png",
+    "sha256": "24c3923ec1b7dd72e5d75feca4a925d78ded23084324dcc3dd55af6b820c996d",
+    "bytes": 173588,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-5.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-a14b45d5-ea92-480a-a16c-9e7bac185f50.png",
+    "sha256": "bf1d86a22d76457513a333c3ea12c51383f4e785b233e1a1dd1ce90b2b0caf78",
+    "bytes": 100038,
+    "width": 1600,
+    "height": 686
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-6.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-ddf5269d-6cc7-4627-a487-12b439590b55.png",
+    "sha256": "796dcec292e85f8b6f4d90802592c3063cf93d557e405dbd782d74357f5a8975",
+    "bytes": 75140,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-7.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-db91b157-98a0-4fd2-9a26-0bbc2a6e1f98.png",
+    "sha256": "430a2bd41fbf2beebc2a61b2a2a9e2975d3abc09b355123434be5e2789024ef9",
+    "bytes": 125510,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-8.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-ce043aac-d985-47f0-9baa-eb32788cb599.png",
+    "sha256": "38ebbfbfc8bfe47fb68ed301c6799ffeeda18e8e12358c26d9ef391460a7c873",
+    "bytes": 162548,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-9.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "exec-25f96135-5a94-4bdd-9555-dfc1ddd4c797.png",
+    "sha256": "74e5cdadae62584ac6ed2c1fd01dfbdb5579fe3c1b6f9cb85544cac3f8412a92",
+    "bytes": 71560,
+    "width": 1536,
+    "height": 1024
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-10.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "previous V3 generated architectural stairwell",
+    "sha256": "7e9624a44168aa575a598f8d80c60758814381b24e977e4e1e563e71f504bfc3",
+    "bytes": 85112,
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "file": "public/customers/unique-home-enterprise/images/image-11.webp",
+    "provenance": "AI-generated illustrative image",
+    "source": "previous V3 generated architectural planning desk",
+    "sha256": "ccc57a1fc7e0d18ff3217e5770e0c17d43877d60a7be266104ba73d4a7fd9273",
+    "bytes": 118108,
+    "width": 1536,
+    "height": 1024
+  }
+]

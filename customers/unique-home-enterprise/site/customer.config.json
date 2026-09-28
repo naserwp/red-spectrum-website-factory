@@ -1,0 +1,314 @@
+{
+  "schemaVersion": "1.0",
+  "design": {
+    "version": "3.0",
+    "hero": "editorial",
+    "navigation": "balanced",
+    "typography": "editorial",
+    "spacing": "generous",
+    "palette": "ink",
+    "logo": "interlock",
+    "pages": {
+      "home": [
+        {
+          "kind": "split",
+          "eyebrow": "Business in perspective",
+          "heading": "Strategy. Visibility. Opportunity.",
+          "body": "Marketing, consulting and advertising for business objectives with a real-estate-oriented perspective.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "A considered approach",
+          "heading": "Clarity before scope",
+          "body": "Begin with the business objective and define the next step through direct discussion.",
+          "image": 1,
+          "reverse": false
+        },
+        {
+          "kind": "columns",
+          "eyebrow": "What we do",
+          "heading": "Three disciplines",
+          "body": "Marketing, consulting and advertising are broad starting points for a conversation.",
+          "image": 2,
+          "reverse": false
+        },
+        {
+          "kind": "image",
+          "eyebrow": "Commercial context",
+          "heading": "The setting changes. The objective matters.",
+          "body": "Illustrative imagery reflects a business and architectural perspective, not company projects.",
+          "image": 5,
+          "reverse": false
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "How we work",
+          "heading": "Start. Define. Confirm.",
+          "body": "Start the conversation, define the objective, then confirm scope and next steps.",
+          "image": 6,
+          "reverse": false
+        }
+      ],
+      "services": [
+        {
+          "kind": "columns",
+          "eyebrow": "What we do",
+          "heading": "Business objectives first",
+          "body": "Marketing, consulting and advertising support are discussed directly to establish appropriate scope.",
+          "image": 1,
+          "reverse": false
+        },
+        {
+          "kind": "split",
+          "eyebrow": "Real estate context",
+          "heading": "Business and place",
+          "body": "Real-estate-oriented business objectives can be discussed to determine fit and scope.",
+          "image": 4,
+          "reverse": false
+        }
+      ],
+      "about": [
+        {
+          "kind": "statement",
+          "eyebrow": "About",
+          "heading": "Perspective for the work ahead",
+          "body": "UNIQUE HOME ENTERPRISE LLC is a B2B business with marketing, consulting, advertising and real-estate-oriented context.",
+          "image": 7,
+          "reverse": false
+        },
+        {
+          "kind": "image",
+          "eyebrow": "Approach",
+          "heading": "Clarity is a strong place to begin",
+          "body": "Listen closely, define the objective and confirm scope directly.",
+          "image": 9,
+          "reverse": false
+        }
+      ],
+      "contact": [
+        {
+          "kind": "contact",
+          "eyebrow": "Contact",
+          "heading": "Discuss the objective",
+          "body": "Reach the company directly by telephone or email. The online form is inactive.",
+          "image": 11,
+          "reverse": false
+        }
+      ],
+      "privacy": [
+        {
+          "kind": "statement",
+          "eyebrow": "Privacy",
+          "heading": "Privacy in clear terms",
+          "body": "The online form and chat are inactive on this preview. Phone and email links open the visitor's own applications.",
+          "image": 10,
+          "reverse": false
+        }
+      ]
+    },
+    "imageDirection": "Twelve optimized illustrative images: generated business, commercial architecture, strategy and advertising scenes. No company projects, clients or properties are depicted.",
+    "brandNotes": "The selected geometric UH framework mark uses interlocking vertical forms without a roof or trade-service symbol. Charcoal, warm ivory and restrained brass convey B2B clarity."
+  },
+  "slug": "unique-home-enterprise",
+  "status": "draft",
+  "templateId": "ledger",
+  "business": {
+    "name": "UNIQUE HOME ENTERPRISE LLC",
+    "industry": "B2B marketing, consulting and advertising",
+    "tagline": "Strategy. Visibility. Opportunity.",
+    "summary": "UNIQUE HOME ENTERPRISE LLC is a B2B company working across marketing, consulting and advertising in a real-estate-oriented business context."
+  },
+  "contact": {
+    "person": {
+      "value": "Aminul Haque",
+      "status": "draft",
+      "source": "Customer-provided; final confirmation pending"
+    },
+    "phone": {
+      "value": "516-699-2281",
+      "status": "draft",
+      "source": "Customer-provided; final confirmation pending"
+    },
+    "email": {
+      "value": "niha_aminul@hotmail.com",
+      "status": "draft",
+      "source": "Customer-provided; final confirmation pending"
+    },
+    "address": {
+      "value": "20397 Rte 19\nSte 228\nCranberry Twp, PA 16066",
+      "status": "draft",
+      "source": "Customer-provided correspondence address; use and visitation not confirmed"
+    },
+    "serviceAreas": {
+      "value": "",
+      "status": "missing"
+    }
+  },
+  "services": [
+    {
+      "name": "Marketing",
+      "description": "High-level marketing support and business visibility; detailed scope confirmed directly.",
+      "status": "draft",
+      "source": "Customer-provided category"
+    },
+    {
+      "name": "Consulting",
+      "description": "Business-oriented consultation and strategic discussion; detailed scope confirmed directly.",
+      "status": "draft",
+      "source": "Customer-provided category"
+    },
+    {
+      "name": "Advertising",
+      "description": "Advertising-oriented business support; channels and deliverables confirmed directly.",
+      "status": "draft",
+      "source": "Customer-provided category"
+    },
+    {
+      "name": "Real-estate-oriented business context",
+      "description": "Business objectives involving real-estate-related opportunities may be discussed for fit and scope.",
+      "status": "draft",
+      "source": "Customer-provided context; regulated activities unverified"
+    }
+  ],
+  "pages": {
+    "home": {
+      "eyebrow": "UNIQUE HOME ENTERPRISE LLC",
+      "headline": "Strategy. Visibility. Opportunity.",
+      "intro": "Marketing, consulting and advertising for business objectives—with a real-estate-oriented perspective.",
+      "ctaLabel": "Discuss your goals"
+    },
+    "services": {
+      "headline": "Built around the objective.",
+      "intro": "Marketing, consulting and advertising are the starting points. Specific scope is confirmed directly."
+    },
+    "about": {
+      "headline": "Perspective for the work ahead.",
+      "paragraphs": [
+        "UNIQUE HOME ENTERPRISE LLC is a B2B company working across marketing, consulting and advertising in a real-estate-oriented business context."
+      ]
+    },
+    "contact": {
+      "headline": "Let's discuss the objective.",
+      "intro": "Reach UNIQUE HOME ENTERPRISE LLC directly by phone or email."
+    },
+    "privacy": {
+      "headline": "Privacy, in clear terms.",
+      "body": [
+        "The online inquiry form and chat are inactive on this preview. Nothing entered in the form is submitted. Use the phone or email links to contact the company directly.",
+        "If you choose a phone or email link, your phone or email application handles that communication. Do not send payment credentials or sensitive personal information.",
+        "Hosting infrastructure may process technical request information to serve and secure pages. Contact the company for final privacy arrangements before sharing sensitive information."
+      ]
+    }
+  },
+  "branding": {
+    "primary": "#252723",
+    "secondary": "#202421",
+    "accent": "#a38a60",
+    "surface": "#f6f4ed",
+    "logoPath": "/customers/unique-home-enterprise/logo.svg",
+    "faviconPath": "/customers/unique-home-enterprise/favicon.svg"
+  },
+  "images": {
+    "hero": {
+      "src": "/customers/unique-home-enterprise/images/image-0.webp",
+      "alt": "Illustrative commercial architecture and city skyline at dusk",
+      "width": 1600,
+      "height": 686
+    },
+    "gallery": [
+      {
+        "src": "/customers/unique-home-enterprise/images/image-1.webp",
+        "alt": "Illustrative brand-planning materials on a desk",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-2.webp",
+        "alt": "Illustrative professionals in a modern meeting room",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-3.webp",
+        "alt": "Illustrative blank display in a commercial setting",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-4.webp",
+        "alt": "Illustrative commercial building exterior",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-5.webp",
+        "alt": "Illustrative city business district skyline",
+        "width": 1600,
+        "height": 686
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-6.webp",
+        "alt": "Illustrative strategic planning conversation",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-7.webp",
+        "alt": "Illustrative creative workspace with city view",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-8.webp",
+        "alt": "Illustrative refined commercial lobby",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-9.webp",
+        "alt": "Illustrative architectural stone and glass detail",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-10.webp",
+        "alt": "Illustrative sculptural architectural stairwell",
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "src": "/customers/unique-home-enterprise/images/image-11.webp",
+        "alt": "Illustrative architectural planning desk",
+        "width": 1536,
+        "height": 1024
+      }
+    ]
+  },
+  "seo": {
+    "title": "UNIQUE HOME ENTERPRISE LLC | Business Strategy & Visibility",
+    "description": "Explore marketing, consulting and advertising conversations with UNIQUE HOME ENTERPRISE LLC, a B2B company with a real-estate-oriented business perspective."
+  },
+  "schema": {
+    "type": "Organization",
+    "description": "B2B marketing, consulting and advertising with a real-estate-oriented business context."
+  },
+  "form": {
+    "provider": "sendgrid",
+    "mode": "disabled",
+    "recipientConfirmed": false,
+    "testPassed": false
+  },
+  "myndy": {
+    "agentName": "Unique Home Guide",
+    "greeting": "How can I help you prepare a business inquiry?",
+    "avatarBrief": "A restrained abstract geometric UH framework mark, not a person.",
+    "knowledgeContextPath": "customers/unique-home-enterprise/myndy/agent-context.md",
+    "embed": {
+      "enabled": false,
+      "agentId": "",
+      "scriptUrl": ""
+    }
+  }
+}

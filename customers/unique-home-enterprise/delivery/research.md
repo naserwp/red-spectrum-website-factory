@@ -1,0 +1,1 @@
+The business name, Aminul Haque contact details, and B2B categories (marketing, consulting, advertising, real-estate purposes) were provided for this request. They are pending final customer verification. No independently verified public profile, license or regulated-service authorization is claimed. Never attribute similarly named businesses or shared-address occupants.
