@@ -92,18 +92,18 @@
   {
     "file": "public/customers/unique-home-enterprise/images/image-10.webp",
     "provenance": "AI-generated illustrative image",
-    "source": "previous V3 generated architectural stairwell",
-    "sha256": "7e9624a44168aa575a598f8d80c60758814381b24e977e4e1e563e71f504bfc3",
-    "bytes": 85112,
-    "width": 1600,
-    "height": 900
+    "source": "exec-daf7f124-0f25-4ca0-ad65-fafa9b6276ff.png",
+    "sha256": "a66f8a223514f8ab71833d283939fc62c31a49e306ebe710462eb119c9e56c27",
+    "bytes": 134052,
+    "width": 1536,
+    "height": 1024
   },
   {
     "file": "public/customers/unique-home-enterprise/images/image-11.webp",
     "provenance": "AI-generated illustrative image",
-    "source": "previous V3 generated architectural planning desk",
-    "sha256": "ccc57a1fc7e0d18ff3217e5770e0c17d43877d60a7be266104ba73d4a7fd9273",
-    "bytes": 118108,
+    "source": "exec-2e4729e3-420a-46a4-a102-166f82f101a5.png",
+    "sha256": "d973792b4feb75bbd2952feebfb95f3c4de9ee5cf3194a91fa1fc078f7ddc044",
+    "bytes": 141310,
     "width": 1536,
     "height": 1024
   }
