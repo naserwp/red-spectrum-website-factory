@@ -68,3 +68,24 @@ AI. It refuses repeats after successful queueing. The original model name was no
 persisted before failure; metadata explicitly says `original-model-unrecorded`,
 not an invented observed model. No schema change or control-plane deployment is
 required: the existing checkpoint resume protocol is reused.
+
+### Preserved-revision outcome, 2026-09-28
+
+The same job recovered with fingerprint
+`bcd3ec4dec6ae84f30e78925442de1538f22d46859b3e17f5f40b5e1d9407da5`.
+It skipped generation and passed 92 QA checks against the preserved compilation.
+The worker created isolated commit `b9732f1dbe3876b67ef5f51cbdb68e619eff1a99`,
+changing only the six allowed customer/manifest paths, and pushed its build branch.
+The existing Vercel project created preview `dpl_9yBgHkpsmgVv8NL2EN9fGqQuGRQq`.
+
+The preview is READY on Vercel, but unauthenticated HTTPS redirects (302) to
+Vercel `/sso-api`. The current worker/control-plane verification requires direct
+HTTP 200, so it stopped at preview verification; the exception is currently stored
+as `WORKER_INTERRUPTED`. Authenticated `vercel curl` can render Nasir. Deployment
+protection was NOT disabled, and no additional recovery was submitted. A reviewed
+protected-preview verification path is needed before retrying this same deployed
+artifact. The existing QA-only recovery expects HEAD at baseline, so it must NOT
+be used now that the worker has committed/pushed the artifact.
+
+Website Built/Preview Ready/Customer Approved were not recorded. The workflow
+remains Build Approved. No production promotion, main merge, email or DNS change.

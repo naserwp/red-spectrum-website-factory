@@ -50,10 +50,11 @@ try{
   await loadCheckpoint(dir,{id,customerSlug:slug,checkpoint:metadata});
   assert.deepEqual(checkpoint.files,files);
   await db.query('BEGIN');await db.query("SET LOCAL statement_timeout='10s'");
-  // Queue writes/claims cannot race this one-time global no-active-job check.
-  await db.query('LOCK TABLE webfactory.website_build_jobs IN SHARE ROW EXCLUSIVE MODE');
   const current=(await db.query('SELECT customer_slug FROM webfactory.requests WHERE id=$1 FOR UPDATE',[requestId])).rows[0];
   const workflow=(await db.query('SELECT stage,active_brief_id FROM webfactory.build_workflows WHERE request_id=$1 FOR UPDATE',[requestId])).rows[0];
+  // Follow the existing request/workflow/job lock order. Queue writes/claims
+  // cannot race this one-time global no-active-job check.
+  await db.query('LOCK TABLE webfactory.website_build_jobs IN SHARE ROW EXCLUSIVE MODE');
   assert.equal(current.customer_slug,slug);assert.equal(workflow.stage,'build_approved');assert.equal(workflow.active_brief_id,row.brief_id);
   assert.equal((await db.query("SELECT id FROM webfactory.website_build_jobs WHERE status NOT IN ('failed','cancelled','ready_for_review','changes_requested')")).rowCount,0);
   const updated=await db.query("UPDATE webfactory.website_build_jobs SET status='queued',progress_code='checkpoint_recovery_queued',error_category=NULL,finished_at=NULL,lease_hash=NULL,lease_expires_at=NULL,cancel_requested=false,qa_result=qa_result||$2::jsonb WHERE id=$1 AND status='failed' AND error_category='SCOPE_REJECTED' AND NOT (qa_result ? 'checkpoint')",[id,JSON.stringify({checkpoint:metadata,resume:true,retryCount:1,recovery:{sourceJobId:id,artifactSha:expectedFingerprint,reason:'contained_next_dependency_link_checkpoint_fix',originalFailure:'SCOPE_REJECTED',providerModelEvidence:'not persisted by original attempt',newGeneration:false,recordedAt:new Date().toISOString()}})]);
