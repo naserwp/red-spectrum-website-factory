@@ -77,7 +77,7 @@
           "headline": "Respect for your information.",
           "body": [
             "Draft privacy notice for owner review. This preview represents L&C Real Estate Investment Group using customer-provided information.",
-          "When activated, the inquiry form sends your name, email, phone, investment interest, budget preference, property type, message and consent to RS WebFactory for business inquiry processing. Accepted inquiries are stored in PostgreSQL and notifications use SendGrid. Delivery is currently awaiting activation approval. Do not enter payment details, account numbers or sensitive financial information.",
+            "When activated, the inquiry form sends your name, email, phone, investment interest, budget preference, property type, message and consent to RS WebFactory for business inquiry processing. Accepted inquiries are stored in PostgreSQL and notifications use SendGrid. Delivery is currently awaiting activation approval. Do not enter payment details, account numbers or sensitive financial information.",
             "Phone and email links open your own calling or email application. Communications you choose to send are handled outside this website by the relevant providers and the business.",
             "Myndy AI phone/chat, payment processing, customer lookup and marketing subscriptions are not enabled here. No customer contact information is used for tracking or automatic signup.",
             "The hosting provider may process technical access information to serve and protect the site. Before launch, the business must confirm its data controller details, retention policy, service providers and applicable privacy rights.",
@@ -400,26 +400,622 @@
           "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
         }
       }
+    },
+    {
+      "schemaVersion": "1.0",
+      "slug": "jm-trucking",
+      "status": "review",
+      "templateId": "forge",
+      "business": {
+        "name": "J&M Trucking Logistics LLC",
+        "industry": "Trucking & logistics",
+        "tagline": "Your freight. Our focus.",
+        "summary": "J&M Trucking Logistics LLC is based in Birmingham, Alabama."
+      },
+      "contact": {
+        "phone": {
+          "value": "(205) 771-8234",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        "email": {
+          "value": "diamuhammad@yahoo.com",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        "address": {
+          "value": "Birmingham, Alabama",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Trucking inquiries",
+          "description": "Share freight, pickup, destination and timing so J&M can discuss your requirements.",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        {
+          "name": "Logistics conversations",
+          "description": "Talk through shipment locations, access and special considerations.",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        {
+          "name": "Freight quote requests",
+          "description": "Send shipment details to begin a quote conversation; pricing and availability require confirmation.",
+          "status": "draft",
+          "source": "Existing customer website source"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "Trucking & logistics · Birmingham, Alabama",
+          "headline": "Your freight. Our focus.",
+          "intro": "Every shipment starts with a conversation. Connect with J&M Trucking Logistics to discuss your freight and plan the next step.",
+          "ctaLabel": "Request a quote"
+        },
+        "services": {
+          "headline": "Your shipment. Let’s work through the details.",
+          "intro": "Start with what you need to move. J&M will discuss the shipment and confirm what is possible."
+        },
+        "about": {
+          "headline": "It starts with a conversation.",
+          "paragraphs": [
+            "J&M Trucking Logistics LLC is based in Birmingham, Alabama.",
+            "Reach out to discuss freight, route, timing and the details that need attention. Equipment, cargo suitability and coverage are confirmed directly."
+          ]
+        },
+        "contact": {
+          "headline": "Let’s get the conversation moving.",
+          "intro": "Have a question or shipment in mind? Contact J&M Trucking Logistics to discuss the next step."
+        },
+        "privacy": {
+          "headline": "Privacy Policy",
+          "body": [
+            "This preview policy is pending customer review.",
+            "Form submissions are in internal test mode and notify only the authorized Red Spectrum test inbox. They do not reach J&M Trucking Logistics.",
+            "Do not submit sensitive personal or financial information through the website form."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#D95A28",
+        "secondary": "#12243B",
+        "accent": "#F2A65A",
+        "surface": "#F8F5EF",
+        "logoPath": "/customers/jm-trucking/brand/logo-light.svg",
+        "faviconPath": "/customers/jm-trucking/brand/favicon.png"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/jm-trucking/images/highway-hero.webp",
+          "alt": "Illustrative unbranded semi truck on a country highway at sunrise.",
+          "width": 1536,
+          "height": 1024
+        },
+        "gallery": [
+          {
+            "src": "/customers/jm-trucking/images/freight-detail.webp",
+            "alt": "Illustrative freight trailer beside loading bays.",
+            "width": 1536,
+            "height": 1024
+          },
+          {
+            "src": "/customers/jm-trucking/images/alabama-road.webp",
+            "alt": "Illustrative freight truck on a wooded road.",
+            "width": 1536,
+            "height": 1024
+          }
+        ]
+      },
+      "seo": {
+        "title": "J&M Trucking Logistics | Birmingham Freight",
+        "description": "Discuss trucking, logistics and freight quote requests with J&M Trucking Logistics in Birmingham, Alabama."
+      },
+      "schema": {
+        "type": "LocalBusiness",
+        "description": "Trucking and logistics business based in Birmingham, Alabama."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "test",
+        "recipientConfirmed": true,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "J&M assistant",
+        "greeting": "Contact J&M Trucking Logistics to discuss your freight.",
+        "avatarBrief": "No Myndy agent configured.",
+        "knowledgeContextPath": "customers/jm-trucking/myndy/agent-context.md",
+        "embed": {
+          "enabled": false,
+          "agentId": "",
+          "scriptUrl": ""
+        }
+      }
+    },
+    {
+      "schemaVersion": "1.0",
+      "slug": "360-vitality-fitness",
+      "status": "review",
+      "templateId": "stillwater",
+      "business": {
+        "name": "360 Vitality Fitness LLC",
+        "industry": "Fitness, mobility & nutrition coaching",
+        "tagline": "Build Strength. Move Better.",
+        "summary": "360 Vitality Fitness LLC provides online fitness, nutrition and mobility coaching, with Chicago sessions by request."
+      },
+      "contact": {
+        "phone": {
+          "value": "(877) 696-7333",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        "email": {
+          "value": "get360vitalityfitness@gmail.com",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        "address": {
+          "value": "Chicago, IL",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        "serviceAreas": {
+          "value": "Online coaching · Chicago sessions by request",
+          "status": "draft",
+          "source": "Existing customer website source"
+        }
+      },
+      "services": [
+        {
+          "name": "Online Fitness Coaching",
+          "description": "Personalized workouts and ongoing guidance that work around your schedule.",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        {
+          "name": "Personal Training",
+          "description": "One-on-one guidance shaped around your goals, ability and routine.",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        {
+          "name": "Nutrition Coaching",
+          "description": "Practical nutrition accountability without restrictive promises or extremes.",
+          "status": "draft",
+          "source": "Existing customer website source"
+        },
+        {
+          "name": "Body Assessment",
+          "description": "A fitness-focused starting point for understanding movement and planning next steps.",
+          "status": "draft",
+          "source": "Existing customer website source"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "Online coaching · Chicago sessions by request",
+          "headline": "Build strength. Move better. Feel like yourself again.",
+          "intro": "Personalized online fitness, nutrition and mobility coaching for busy adults who want sustainable progress without extreme routines.",
+          "ctaLabel": "Request a consultation"
+        },
+        "services": {
+          "headline": "Support for your next healthy step.",
+          "intro": "Explore practical coaching shaped around your goals, ability and routine."
+        },
+        "about": {
+          "headline": "Meet Angela Williams.",
+          "paragraphs": [
+            "Angela Williams founded 360 Vitality Fitness LLC to help people approach fitness with confidence, clarity and consistency.",
+            "Credentials and customer-approved headshot remain pending confirmation before publication."
+          ]
+        },
+        "contact": {
+          "headline": "Ready to take your next healthy step?",
+          "intro": "Tell 360 Vitality what you want to improve and identify a practical place to begin."
+        },
+        "privacy": {
+          "headline": "Privacy Policy",
+          "body": [
+            "This preview policy is pending customer review.",
+            "Form submissions are in internal test mode and notify only the authorized Red Spectrum test inbox. They do not reach 360 Vitality Fitness.",
+            "This website does not provide medical advice. Consult an appropriate professional regarding individual health concerns."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#1D6B62",
+        "secondary": "#173C43",
+        "accent": "#E6A95C",
+        "surface": "#FAF8F2",
+        "logoPath": "/customers/360-vitality-fitness/brand/logo.png",
+        "faviconPath": "/customers/360-vitality-fitness/brand/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/360-vitality-fitness/images/hero.png",
+          "alt": "Illustrative fitness coach guiding adults through approachable strength exercises.",
+          "width": 1600,
+          "height": 1067
+        },
+        "gallery": [
+          {
+            "src": "/customers/360-vitality-fitness/images/assessment.webp",
+            "alt": "Illustrative balance assessment for fitness coaching.",
+            "width": 1536,
+            "height": 1024
+          },
+          {
+            "src": "/customers/360-vitality-fitness/images/coaching.webp",
+            "alt": "Illustrative online fitness coaching at home.",
+            "width": 1536,
+            "height": 1024
+          }
+        ]
+      },
+      "seo": {
+        "title": "360 Vitality Fitness | Coaching & Mobility",
+        "description": "Explore online fitness, mobility and nutrition coaching with 360 Vitality Fitness LLC."
+      },
+      "schema": {
+        "type": "HealthAndBeautyBusiness",
+        "description": "Fitness, mobility and nutrition coaching for busy adults."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "test",
+        "recipientConfirmed": true,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "360 Vitality assistant",
+        "greeting": "Contact 360 Vitality Fitness to discuss coaching.",
+        "avatarBrief": "No Myndy agent configured.",
+        "knowledgeContextPath": "customers/360-vitality-fitness/myndy/agent-context.md",
+        "embed": {
+          "enabled": false,
+          "agentId": "",
+          "scriptUrl": ""
+        }
+      }
+    },
+    {
+      "schemaVersion": "1.0",
+      "design": {
+        "version": "2.0",
+        "hero": "editorial",
+        "navigation": "balanced",
+        "typography": "modern",
+        "spacing": "compact",
+        "palette": "ink",
+        "logo": "interlock",
+        "pages": {
+          "home": [
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Complexity, managed.",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Complexity, managed.",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Complexity, managed.",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Complexity, managed.",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Complexity, managed.",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            }
+          ],
+          "services": [
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Management and consulting",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Seven connected services",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            }
+          ],
+          "about": [
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Structure. Clarity. Execution.",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Our purpose",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            }
+          ],
+          "contact": [
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "A conversation. A clearer path.",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            }
+          ],
+          "privacy": [
+            {
+              "kind": "statement",
+              "eyebrow": "Unique Management Group",
+              "heading": "Privacy preview notice",
+              "body": "Management and consulting for business, operations, and property.",
+              "image": 0,
+              "reverse": false
+            }
+          ]
+        },
+        "imageDirection": "Licensed illustrative offices, collaboration, planning, commercial buildings and New York. Never presented as actual customer projects or personnel.",
+        "brandNotes": "Preserve the official blue vector logo unchanged. Palette: official navy #00378c, electric blue #2b6cf5, sky #beebfc. Original green #24c848 documented but not used for small-text UI. Custom editorial layout with crisp rules, deliberate imagery and accessible contrast. No new logo identity."
+      },
+      "slug": "unique-management-group",
+      "status": "review",
+      "templateId": "ledger",
+      "business": {
+        "name": "Unique Management Group LLC",
+        "industry": "Management and consulting",
+        "tagline": "Complexity, managed.",
+        "summary": "Management and consulting for business operations, organizational direction, and real estate."
+      },
+      "contact": {
+        "person": {
+          "value": "AMINUL HAQUE",
+          "status": "verified",
+          "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+        },
+        "phone": {
+          "value": "347-666-3929",
+          "status": "verified",
+          "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+        },
+        "email": {
+          "value": "info@uniquemanagementgroup.com",
+          "status": "verified",
+          "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+        },
+        "address": {
+          "value": "2505 AQUEDUCT AVE\nSTE 5E\nBRONX, NY 10458",
+          "status": "verified",
+          "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Administrative Management",
+          "description": "Streamline day-to-day administrative operations with a focus on productivity, coordination, and control.",
+          "status": "verified",
+          "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+        },
+        {
+          "name": "Reorganizational Consulting",
+          "description": "Review how your business is structured and consider changes that support efficiency, scalability, and renewed growth.",
+          "status": "verified",
+          "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+        },
+        {
+          "name": "Site Location Consulting",
+          "description": "Assess office or facility placement in the context of your business needs and operational priorities.",
+          "status": "verified",
+          "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+        },
+        {
+          "name": "Business Management",
+          "description": "Strategic advice focused on company structure, performance, and profitability.",
+          "status": "verified",
+          "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+        },
+        {
+          "name": "General Management",
+          "description": "A broad consulting perspective on organizational, operational, and leadership challenges.",
+          "status": "verified",
+          "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+        },
+        {
+          "name": "Records Management",
+          "description": "Develop more organized approaches to data and records, with attention to compliance and security needs.",
+          "status": "verified",
+          "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+        },
+        {
+          "name": "Real Estate Management",
+          "description": "Property oversight spanning rentals, maintenance, tenant relations, and property performance.",
+          "status": "verified",
+          "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "Business. People. Property.",
+          "headline": "Complexity, managed.",
+          "intro": "Management and consulting for businesses and property owners ready to move forward.",
+          "ctaLabel": "Discuss your needs"
+        },
+        "services": {
+          "headline": "Better structure. Greater clarity.",
+          "intro": "Seven complementary management and consulting services."
+        },
+        "about": {
+          "headline": "Structure. Clarity. Execution.",
+          "paragraphs": [
+            "Our mission is to simplify complex operations through management and consulting."
+          ]
+        },
+        "contact": {
+          "headline": "A conversation. A clearer path.",
+          "intro": "Connect with Aminul Haque to discuss your management and consulting needs."
+        },
+        "privacy": {
+          "headline": "Clear about your information.",
+          "body": [
+            "Preview form inactive. Direct phone and email links use your chosen application.",
+            "Hosting infrastructure may process technical information. Final privacy arrangements require review."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#00378c",
+        "secondary": "#102443",
+        "accent": "#2b6cf5",
+        "surface": "#fafbf9",
+        "logoPath": "/customers/unique-management-group/logo.svg",
+        "faviconPath": "/customers/unique-management-group/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/unique-management-group/images/image-0.webp",
+          "alt": "Daylit contemporary workspace with long shared tables; illustrative, not a company project or team",
+          "width": 1600,
+          "height": 1068
+        },
+        "gallery": [
+          {
+            "src": "/customers/unique-management-group/images/image-1.webp",
+            "alt": "People collaborating around a work table; illustrative, not a company project or team",
+            "width": 1067,
+            "height": 1600
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-2.webp",
+            "alt": "Organized office interior with shared workspaces; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 801
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-3.webp",
+            "alt": "Office workspace illustrating administrative organization; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 801
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-4.webp",
+            "alt": "Business documents being reviewed at a table; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 801
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-5.webp",
+            "alt": "Commercial building facade viewed from street level; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-6.webp",
+            "alt": "Computer displaying business information and charts; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 855
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-7.webp",
+            "alt": "Collaborative work setting illustrating organizational management; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-8.webp",
+            "alt": "Plans and technical documents arranged for review; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 675
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-9.webp",
+            "alt": "House keys illustrating residential property management; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 901
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-10.webp",
+            "alt": "Contemporary building exterior and architectural details; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "src": "/customers/unique-management-group/images/image-11.webp",
+            "alt": "New York city skyline and surrounding buildings; illustrative, not a company project or team",
+            "width": 1200,
+            "height": 800
+          }
+        ]
+      },
+      "seo": {
+        "title": "Unique Management Group LLC | Management & Consulting",
+        "description": "Business, administrative and real estate management, with organizational, records and location consulting. Contact Unique Management Group LLC in the Bronx."
+      },
+      "schema": {
+        "type": "Organization",
+        "description": "Management and consulting for business operations, organizational direction, and real estate."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "disabled",
+        "recipientConfirmed": false,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "Unique Management Guide",
+        "greeting": "Please contact the business directly.",
+        "avatarBrief": "Existing brand identity only.",
+        "knowledgeContextPath": "customers/unique-management-group/myndy/agent-context.md",
+        "embed": {
+          "enabled": false,
+          "agentId": "",
+          "scriptUrl": ""
+        }
+      }
     }
-  ,{
-  "schemaVersion":"1.0","slug":"jm-trucking","status":"review","templateId":"forge",
-  "business":{"name":"J&M Trucking Logistics LLC","industry":"Trucking & logistics","tagline":"Your freight. Our focus.","summary":"J&M Trucking Logistics LLC is based in Birmingham, Alabama."},
-  "contact":{"phone":{"value":"(205) 771-8234","status":"draft","source":"Existing customer website source"},"email":{"value":"diamuhammad@yahoo.com","status":"draft","source":"Existing customer website source"},"address":{"value":"Birmingham, Alabama","status":"draft","source":"Existing customer website source"},"serviceAreas":{"value":"","status":"missing"}},
-  "services":[{"name":"Trucking inquiries","description":"Share freight, pickup, destination and timing so J&M can discuss your requirements.","status":"draft","source":"Existing customer website source"},{"name":"Logistics conversations","description":"Talk through shipment locations, access and special considerations.","status":"draft","source":"Existing customer website source"},{"name":"Freight quote requests","description":"Send shipment details to begin a quote conversation; pricing and availability require confirmation.","status":"draft","source":"Existing customer website source"}],
-  "pages":{"home":{"eyebrow":"Trucking & logistics · Birmingham, Alabama","headline":"Your freight. Our focus.","intro":"Every shipment starts with a conversation. Connect with J&M Trucking Logistics to discuss your freight and plan the next step.","ctaLabel":"Request a quote"},"services":{"headline":"Your shipment. Let’s work through the details.","intro":"Start with what you need to move. J&M will discuss the shipment and confirm what is possible."},"about":{"headline":"It starts with a conversation.","paragraphs":["J&M Trucking Logistics LLC is based in Birmingham, Alabama.","Reach out to discuss freight, route, timing and the details that need attention. Equipment, cargo suitability and coverage are confirmed directly."]},"contact":{"headline":"Let’s get the conversation moving.","intro":"Have a question or shipment in mind? Contact J&M Trucking Logistics to discuss the next step."},"privacy":{"headline":"Privacy Policy","body":["This preview policy is pending customer review.","Form submissions are in internal test mode and notify only the authorized Red Spectrum test inbox. They do not reach J&M Trucking Logistics.","Do not submit sensitive personal or financial information through the website form."]}},
-  "branding":{"primary":"#D95A28","secondary":"#12243B","accent":"#F2A65A","surface":"#F8F5EF","logoPath":"/customers/jm-trucking/brand/logo-light.svg","faviconPath":"/customers/jm-trucking/brand/favicon.png"},
-  "images":{"hero":{"src":"/customers/jm-trucking/images/highway-hero.webp","alt":"Illustrative unbranded semi truck on a country highway at sunrise.","width":1536,"height":1024},"gallery":[{"src":"/customers/jm-trucking/images/freight-detail.webp","alt":"Illustrative freight trailer beside loading bays.","width":1536,"height":1024},{"src":"/customers/jm-trucking/images/alabama-road.webp","alt":"Illustrative freight truck on a wooded road.","width":1536,"height":1024}]},
-  "seo":{"title":"J&M Trucking Logistics | Birmingham Freight","description":"Discuss trucking, logistics and freight quote requests with J&M Trucking Logistics in Birmingham, Alabama."},"schema":{"type":"LocalBusiness","description":"Trucking and logistics business based in Birmingham, Alabama."},"form":{"provider":"sendgrid","mode":"test","recipientConfirmed":true,"testPassed":false},"myndy":{"agentName":"J&M assistant","greeting":"Contact J&M Trucking Logistics to discuss your freight.","avatarBrief":"No Myndy agent configured.","knowledgeContextPath":"customers/jm-trucking/myndy/agent-context.md","embed":{"enabled":false,"agentId":"","scriptUrl":""}}
-}
-  ,{
-  "schemaVersion":"1.0","slug":"360-vitality-fitness","status":"review","templateId":"stillwater",
-  "business":{"name":"360 Vitality Fitness LLC","industry":"Fitness, mobility & nutrition coaching","tagline":"Build Strength. Move Better.","summary":"360 Vitality Fitness LLC provides online fitness, nutrition and mobility coaching, with Chicago sessions by request."},
-  "contact":{"phone":{"value":"(877) 696-7333","status":"draft","source":"Existing customer website source"},"email":{"value":"get360vitalityfitness@gmail.com","status":"draft","source":"Existing customer website source"},"address":{"value":"Chicago, IL","status":"draft","source":"Existing customer website source"},"serviceAreas":{"value":"Online coaching · Chicago sessions by request","status":"draft","source":"Existing customer website source"}},
-  "services":[{"name":"Online Fitness Coaching","description":"Personalized workouts and ongoing guidance that work around your schedule.","status":"draft","source":"Existing customer website source"},{"name":"Personal Training","description":"One-on-one guidance shaped around your goals, ability and routine.","status":"draft","source":"Existing customer website source"},{"name":"Nutrition Coaching","description":"Practical nutrition accountability without restrictive promises or extremes.","status":"draft","source":"Existing customer website source"},{"name":"Body Assessment","description":"A fitness-focused starting point for understanding movement and planning next steps.","status":"draft","source":"Existing customer website source"}],
-  "pages":{"home":{"eyebrow":"Online coaching · Chicago sessions by request","headline":"Build strength. Move better. Feel like yourself again.","intro":"Personalized online fitness, nutrition and mobility coaching for busy adults who want sustainable progress without extreme routines.","ctaLabel":"Request a consultation"},"services":{"headline":"Support for your next healthy step.","intro":"Explore practical coaching shaped around your goals, ability and routine."},"about":{"headline":"Meet Angela Williams.","paragraphs":["Angela Williams founded 360 Vitality Fitness LLC to help people approach fitness with confidence, clarity and consistency.","Credentials and customer-approved headshot remain pending confirmation before publication."]},"contact":{"headline":"Ready to take your next healthy step?","intro":"Tell 360 Vitality what you want to improve and identify a practical place to begin."},"privacy":{"headline":"Privacy Policy","body":["This preview policy is pending customer review.","Form submissions are in internal test mode and notify only the authorized Red Spectrum test inbox. They do not reach 360 Vitality Fitness.","This website does not provide medical advice. Consult an appropriate professional regarding individual health concerns."]}},
-  "branding":{"primary":"#1D6B62","secondary":"#173C43","accent":"#E6A95C","surface":"#FAF8F2","logoPath":"/customers/360-vitality-fitness/brand/logo.png","faviconPath":"/customers/360-vitality-fitness/brand/favicon.svg"},
-  "images":{"hero":{"src":"/customers/360-vitality-fitness/images/hero.png","alt":"Illustrative fitness coach guiding adults through approachable strength exercises.","width":1600,"height":1067},"gallery":[{"src":"/customers/360-vitality-fitness/images/assessment.webp","alt":"Illustrative balance assessment for fitness coaching.","width":1536,"height":1024},{"src":"/customers/360-vitality-fitness/images/coaching.webp","alt":"Illustrative online fitness coaching at home.","width":1536,"height":1024}]},
-  "seo":{"title":"360 Vitality Fitness | Coaching & Mobility","description":"Explore online fitness, mobility and nutrition coaching with 360 Vitality Fitness LLC."},"schema":{"type":"HealthAndBeautyBusiness","description":"Fitness, mobility and nutrition coaching for busy adults."},"form":{"provider":"sendgrid","mode":"test","recipientConfirmed":true,"testPassed":false},"myndy":{"agentName":"360 Vitality assistant","greeting":"Contact 360 Vitality Fitness to discuss coaching.","avatarBrief":"No Myndy agent configured.","knowledgeContextPath":"customers/360-vitality-fitness/myndy/agent-context.md","embed":{"enabled":false,"agentId":"","scriptUrl":""}}
-}
   ]
 }

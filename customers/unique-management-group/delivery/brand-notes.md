@@ -1,0 +1,2 @@
+Preserve the official blue vector logo unchanged. Palette: official navy #00378c, electric blue #2b6cf5, sky #beebfc. Original green #24c848 documented but not used for small-text UI. Custom editorial layout with crisp rules, deliberate imagery and accessible contrast. No new logo identity.
+Existing logo preserved byte-for-byte; favicon crops the existing icon without changing geometry. Footer uses an unmodified blue logo on white. Brand expansion: ink #102443, muted #4c5d74, background #fafbf9, surface #eaf4fa, border #d1dbe7, interaction #00245c.

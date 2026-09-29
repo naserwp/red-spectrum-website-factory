@@ -1,0 +1,141 @@
+[
+  {
+    "file": "public/customers/unique-management-group/images/image-0.webp",
+    "source": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Daylit contemporary workspace with long shared tables",
+    "sha256": "e95949cde94c28db2f5206ab92568d9719816da6de50dda26db7cb2388a00960",
+    "bytes": 110628,
+    "width": 1600,
+    "height": 1068
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-1.webp",
+    "source": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "People collaborating around a work table",
+    "sha256": "c8558f5b85bb792efd0af1843df8c007cdc5f2f0d6764577b2b155cae928e2e5",
+    "bytes": 119500,
+    "width": 1067,
+    "height": 1600
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-2.webp",
+    "source": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Organized office interior with shared workspaces",
+    "sha256": "f0d045d257425bc353d2dd99ba0f05f8a67c337764807a1be1876be2a1bf7279",
+    "bytes": 54486,
+    "width": 1200,
+    "height": 801
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-3.webp",
+    "source": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Office workspace illustrating administrative organization",
+    "sha256": "30d59cc709ca4d8c81033cfd1c3ea560a5eaa73ff426183aa8d4565af204b9d2",
+    "bytes": 45832,
+    "width": 1200,
+    "height": 801
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-4.webp",
+    "source": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Business documents being reviewed at a table",
+    "sha256": "930af9ecdcb716da5e87b6912ea9655b66d2c150bf94fe65db399299c274baa7",
+    "bytes": 55540,
+    "width": 1200,
+    "height": 801
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-5.webp",
+    "source": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Commercial building facade viewed from street level",
+    "sha256": "bca260a147ed6bcacdc787c414a22df7b5de9a93971f40d5a27004355904a167",
+    "bytes": 140126,
+    "width": 1200,
+    "height": 800
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-6.webp",
+    "source": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Computer displaying business information and charts",
+    "sha256": "e4aab1bdecb7175b77828e5c3c45d4e74e3385b6fd20af6dca9eb91ef07d5924",
+    "bytes": 47540,
+    "width": 1200,
+    "height": 855
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-7.webp",
+    "source": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Collaborative work setting illustrating organizational management",
+    "sha256": "2480b0b948ba8671ddbead3607c61b484746f57eedf9154edbb798a188c6777b",
+    "bytes": 101294,
+    "width": 1200,
+    "height": 800
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-8.webp",
+    "source": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Plans and technical documents arranged for review",
+    "sha256": "0761467d3346970e8086ac31f510374d92699476c33893168aad4e1f40e7ab94",
+    "bytes": 41910,
+    "width": 1200,
+    "height": 675
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-9.webp",
+    "source": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "House keys illustrating residential property management",
+    "sha256": "7d34b49e964f534c52a610bbf8c712296afa496835cc7733cccf2fcec978e668",
+    "bytes": 34846,
+    "width": 1200,
+    "height": 901
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-10.webp",
+    "source": "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "Contemporary building exterior and architectural details",
+    "sha256": "03c382e3ffcb6b51dcae112e79add8a702f43f16fa062eecba5987c99a1d16e3",
+    "bytes": 272708,
+    "width": 1200,
+    "height": 800
+  },
+  {
+    "file": "public/customers/unique-management-group/images/image-11.webp",
+    "source": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1800&q=85",
+    "provenance": "licensed",
+    "license": "https://unsplash.com/license",
+    "description": "New York city skyline and surrounding buildings",
+    "sha256": "2b41c842bcdc19a62a28fe8e2370783358683e24f5068593432417e2ec636d0c",
+    "bytes": 137036,
+    "width": 1200,
+    "height": 800
+  },
+  {
+    "file": "public/customers/unique-management-group/logo.svg",
+    "source": "https://uniquemanagementgroup.com/wp-content/uploads/2025/10/Unique-Management-Group-Logo.svg",
+    "provenance": "customer-owned official website identity; retention explicitly requested",
+    "sha256": "946bcdb8f1c4a2554a10091a224a2c182342e09692b1086fd81a0e927b7cf6f0",
+    "cleanup": "None. Original vector byte-for-byte. Compact variants change viewport only; logo-dark is the original on a white placard."
+  }
+]

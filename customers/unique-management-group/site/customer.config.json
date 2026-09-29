@@ -1,0 +1,331 @@
+{
+  "schemaVersion": "1.0",
+  "design": {
+    "version": "2.0",
+    "hero": "editorial",
+    "navigation": "balanced",
+    "typography": "modern",
+    "spacing": "compact",
+    "palette": "ink",
+    "logo": "interlock",
+    "pages": {
+      "home": [
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Complexity, managed.",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Complexity, managed.",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Complexity, managed.",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Complexity, managed.",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Complexity, managed.",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        }
+      ],
+      "services": [
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Management and consulting",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Seven connected services",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        }
+      ],
+      "about": [
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Structure. Clarity. Execution.",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Our purpose",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        }
+      ],
+      "contact": [
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "A conversation. A clearer path.",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        }
+      ],
+      "privacy": [
+        {
+          "kind": "statement",
+          "eyebrow": "Unique Management Group",
+          "heading": "Privacy preview notice",
+          "body": "Management and consulting for business, operations, and property.",
+          "image": 0,
+          "reverse": false
+        }
+      ]
+    },
+    "imageDirection": "Licensed illustrative offices, collaboration, planning, commercial buildings and New York. Never presented as actual customer projects or personnel.",
+    "brandNotes": "Preserve the official blue vector logo unchanged. Palette: official navy #00378c, electric blue #2b6cf5, sky #beebfc. Original green #24c848 documented but not used for small-text UI. Custom editorial layout with crisp rules, deliberate imagery and accessible contrast. No new logo identity."
+  },
+  "slug": "unique-management-group",
+  "status": "review",
+  "templateId": "ledger",
+  "business": {
+    "name": "Unique Management Group LLC",
+    "industry": "Management and consulting",
+    "tagline": "Complexity, managed.",
+    "summary": "Management and consulting for business operations, organizational direction, and real estate."
+  },
+  "contact": {
+    "person": {
+      "value": "AMINUL HAQUE",
+      "status": "verified",
+      "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+    },
+    "phone": {
+      "value": "347-666-3929",
+      "status": "verified",
+      "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+    },
+    "email": {
+      "value": "info@uniquemanagementgroup.com",
+      "status": "verified",
+      "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+    },
+    "address": {
+      "value": "2505 AQUEDUCT AVE\nSTE 5E\nBRONX, NY 10458",
+      "status": "verified",
+      "source": "CUSTOMER PROVIDED — explicit September 29, 2026 redesign instruction"
+    },
+    "serviceAreas": {
+      "value": "",
+      "status": "missing"
+    }
+  },
+  "services": [
+    {
+      "name": "Administrative Management",
+      "description": "Streamline day-to-day administrative operations with a focus on productivity, coordination, and control.",
+      "status": "verified",
+      "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+    },
+    {
+      "name": "Reorganizational Consulting",
+      "description": "Review how your business is structured and consider changes that support efficiency, scalability, and renewed growth.",
+      "status": "verified",
+      "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+    },
+    {
+      "name": "Site Location Consulting",
+      "description": "Assess office or facility placement in the context of your business needs and operational priorities.",
+      "status": "verified",
+      "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+    },
+    {
+      "name": "Business Management",
+      "description": "Strategic advice focused on company structure, performance, and profitability.",
+      "status": "verified",
+      "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+    },
+    {
+      "name": "General Management",
+      "description": "A broad consulting perspective on organizational, operational, and leadership challenges.",
+      "status": "verified",
+      "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+    },
+    {
+      "name": "Records Management",
+      "description": "Develop more organized approaches to data and records, with attention to compliance and security needs.",
+      "status": "verified",
+      "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+    },
+    {
+      "name": "Real Estate Management",
+      "description": "Property oversight spanning rentals, maintenance, tenant relations, and property performance.",
+      "status": "verified",
+      "source": "CURRENT OFFICIAL WEBSITE — https://uniquemanagementgroup.com/services/; scope subject to customer review"
+    }
+  ],
+  "pages": {
+    "home": {
+      "eyebrow": "Business. People. Property.",
+      "headline": "Complexity, managed.",
+      "intro": "Management and consulting for businesses and property owners ready to move forward.",
+      "ctaLabel": "Discuss your needs"
+    },
+    "services": {
+      "headline": "Better structure. Greater clarity.",
+      "intro": "Seven complementary management and consulting services."
+    },
+    "about": {
+      "headline": "Structure. Clarity. Execution.",
+      "paragraphs": [
+        "Our mission is to simplify complex operations through management and consulting."
+      ]
+    },
+    "contact": {
+      "headline": "A conversation. A clearer path.",
+      "intro": "Connect with Aminul Haque to discuss your management and consulting needs."
+    },
+    "privacy": {
+      "headline": "Clear about your information.",
+      "body": [
+        "Preview form inactive. Direct phone and email links use your chosen application.",
+        "Hosting infrastructure may process technical information. Final privacy arrangements require review."
+      ]
+    }
+  },
+  "branding": {
+    "primary": "#00378c",
+    "secondary": "#102443",
+    "accent": "#2b6cf5",
+    "surface": "#fafbf9",
+    "logoPath": "/customers/unique-management-group/logo.svg",
+    "faviconPath": "/customers/unique-management-group/favicon.svg"
+  },
+  "images": {
+    "hero": {
+      "src": "/customers/unique-management-group/images/image-0.webp",
+      "alt": "Daylit contemporary workspace with long shared tables; illustrative, not a company project or team",
+      "width": 1600,
+      "height": 1068
+    },
+    "gallery": [
+      {
+        "src": "/customers/unique-management-group/images/image-1.webp",
+        "alt": "People collaborating around a work table; illustrative, not a company project or team",
+        "width": 1067,
+        "height": 1600
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-2.webp",
+        "alt": "Organized office interior with shared workspaces; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 801
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-3.webp",
+        "alt": "Office workspace illustrating administrative organization; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 801
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-4.webp",
+        "alt": "Business documents being reviewed at a table; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 801
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-5.webp",
+        "alt": "Commercial building facade viewed from street level; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 800
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-6.webp",
+        "alt": "Computer displaying business information and charts; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 855
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-7.webp",
+        "alt": "Collaborative work setting illustrating organizational management; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 800
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-8.webp",
+        "alt": "Plans and technical documents arranged for review; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 675
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-9.webp",
+        "alt": "House keys illustrating residential property management; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 901
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-10.webp",
+        "alt": "Contemporary building exterior and architectural details; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 800
+      },
+      {
+        "src": "/customers/unique-management-group/images/image-11.webp",
+        "alt": "New York city skyline and surrounding buildings; illustrative, not a company project or team",
+        "width": 1200,
+        "height": 800
+      }
+    ]
+  },
+  "seo": {
+    "title": "Unique Management Group LLC | Management & Consulting",
+    "description": "Business, administrative and real estate management, with organizational, records and location consulting. Contact Unique Management Group LLC in the Bronx."
+  },
+  "schema": {
+    "type": "Organization",
+    "description": "Management and consulting for business operations, organizational direction, and real estate."
+  },
+  "form": {
+    "provider": "sendgrid",
+    "mode": "disabled",
+    "recipientConfirmed": false,
+    "testPassed": false
+  },
+  "myndy": {
+    "agentName": "Unique Management Guide",
+    "greeting": "Please contact the business directly.",
+    "avatarBrief": "Existing brand identity only.",
+    "knowledgeContextPath": "customers/unique-management-group/myndy/agent-context.md",
+    "embed": {
+      "enabled": false,
+      "agentId": "",
+      "scriptUrl": ""
+    }
+  }
+}
