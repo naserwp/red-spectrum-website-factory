@@ -5,6 +5,8 @@ import { CustomerWebsite } from "@/components/customer-website";
 import { getCustomerSite, getCustomerSites } from "@/lib/customers/registry";
 import { customerPages, type CustomerPage } from "@/lib/customers/schema";
 import { getArticle } from "@/lib/customers/vitality-blog";
+import { headers } from "next/headers";
+import { customerDomainForHost } from "@/lib/customers/domains";
 
 function validVitalityRoute(segments: string[] = []) {
   if (segments.length === 2) return segments[0] === "blog" && Boolean(getArticle(segments[1]));
@@ -34,15 +36,18 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   if (!site) return {};
   const page = (segments?.[0] ?? "home") as CustomerPage;
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
-  const canonical = `https://preview.redspectrum.ai/${site.slug}${segments?.length ? `/${segments.join("/")}` : ""}`;
+  const host = (await headers()).get("x-forwarded-host") ?? (await headers()).get("host") ?? "";
+  const domain = customerDomainForHost(host);
+  const production = domain?.slug === site.slug;
+  const canonical = production ? `https://${domain.canonicalHost}${segments?.length ? `/${segments.join("/")}` : ""}` : `https://preview.redspectrum.ai/${site.slug}${segments?.length ? `/${segments.join("/")}` : ""}`;
   if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) return {};
   return {
-    metadataBase: new URL("https://preview.redspectrum.ai"),
+    metadataBase: new URL(production ? `https://${domain.canonicalHost}` : "https://preview.redspectrum.ai"),
     title: { absolute: page === "home" ? site.seo.title : `${site.pages[page]?.headline ?? (segments?.[0] === "blog" && segments[1] ? getArticle(segments[1])?.title : page.replaceAll("-", " "))} | ${site.business.name}` },
     description: site.seo.description,
     alternates: { canonical },
     icons: site.branding.faviconPath ? { icon: site.branding.faviconPath, shortcut: site.branding.faviconPath } : undefined,
-    robots: { index: false, follow: false },
+    robots: production ? { index: true, follow: true } : { index: false, follow: false },
     openGraph: { title: site.seo.title, description: site.seo.description, url: canonical, type: "website", siteName: site.business.name, images: [{ url: site.images.hero.src, alt: site.images.hero.alt }] },
     twitter: { card: "summary_large_image", title: site.seo.title, description: site.seo.description, images: [site.images.hero.src] },
   };
@@ -56,12 +61,15 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
   if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) notFound();
 
+  const host = (await headers()).get("x-forwarded-host") ?? (await headers()).get("host") ?? "";
+  const domain = customerDomainForHost(host);
+  const production = domain?.slug === site.slug;
   const schema = {
     "@context": "https://schema.org",
     "@type": site.schema.type,
     name: site.business.name,
     description: site.schema.description,
-    url: `https://preview.redspectrum.ai/${site.slug}`,
+    url: production ? `https://${domain.canonicalHost}` : `https://preview.redspectrum.ai/${site.slug}`,
     ...(site.contact.phone.status === "verified" ? { telephone: site.contact.phone.value } : {}),
     ...(site.contact.email.status === "verified" ? { email: site.contact.email.value } : {}),
     ...(site.contact.address.status === "verified" ? { address: site.contact.address.value } : {}),
