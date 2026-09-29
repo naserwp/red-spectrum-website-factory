@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
 import type { CustomerPage, CustomerSite } from '@/lib/customers/schema';
+import { headers } from 'next/headers';
+import { customerDomainForHost } from '@/lib/customers/domains';
 import './unique-home-b2b.css';
 
 const display = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], display: 'swap', variable: '--uh-display' });
@@ -16,8 +18,10 @@ const capabilities = [
   { number: '04', title: 'Real estate context', image: 4, copy: 'Real-estate-oriented business opportunities and objectives can be discussed directly to determine fit and scope.' },
 ] as const;
 
-export function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: CustomerPage }) {
-  const base = `/${site.slug}`;
+export async function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: CustomerPage }) {
+  const requestHeaders = await headers();
+  const domain = customerDomainForHost(requestHeaders.get('x-forwarded-host') ?? '') ?? customerDomainForHost(requestHeaders.get('host') ?? '');
+  const base = domain?.slug === site.slug ? '' : `/${site.slug}`;
   const photos = [site.images.hero, ...site.images.gallery];
   const route = (key: CustomerPage) => base + (key === 'home' ? '' : `/${key}`);
   const image = (index: number, className = '', priority = false, sizes = '(max-width: 767px) 100vw, 50vw') => {

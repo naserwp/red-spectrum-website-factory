@@ -12,6 +12,9 @@ export function proxy(request:NextRequest){
     if(host==='www.uniquehomeenterprise.com'){
       const canonical=request.nextUrl.clone();canonical.hostname=domain.canonicalHost;return NextResponse.redirect(canonical,308);
     }
+    if(path===`/${domain.slug}`||path.startsWith(`/${domain.slug}/`)){
+      const canonical=request.nextUrl.clone();canonical.pathname=path.slice(domain.slug.length+1)||'/';return NextResponse.redirect(canonical,308);
+    }
     if(path==='/admin'||path.startsWith('/admin/')||path==='/api'||path.startsWith('/api/')||path.startsWith('/_next/static/')===false&&path.startsWith('/_next/')===false&&path.startsWith('/customers/')===false&&!['/','/services','/services/','/about','/about/','/contact','/contact/','/privacy','/privacy/'].includes(path))return new NextResponse('Not found',{status:404});
     if(path.startsWith('/customers/')&&!/^\/customers\/unique-home-enterprise\/(?:images\/image-(?:[0-9]|1[01])\.webp|(?:logo|logo-dark|mark|favicon)\.svg)$/.test(path))return new NextResponse('Not found',{status:404});
     if(path.startsWith('/_next/image')){
