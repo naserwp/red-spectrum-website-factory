@@ -2,7 +2,10 @@ import {NextRequest,NextResponse} from 'next/server';
 import {customerDomainForHost} from '@/lib/customers/domains';
 // Routing only. Authentication stays in route handlers.
 export function proxy(request:NextRequest){
-  const host=(request.headers.get('x-forwarded-host') ?? request.headers.get('host') ?? request.nextUrl.hostname).split(',')[0].trim().toLowerCase().replace(/:\d+$/, '');
+  const hosts=[request.headers.get('x-forwarded-host'),request.headers.get('host'),request.nextUrl.hostname]
+    .flatMap(value=>value?.split(',') ?? [])
+    .map(value=>value.trim().toLowerCase().replace(/:\d+$/, '').replace(/\.+$/, ''));
+  const host=hosts.find(value=>customerDomainForHost(value)) ?? '';
   const domain=customerDomainForHost(host);
   if(domain){
     const path=request.nextUrl.pathname;

@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   if (!site) return {};
   const page = (segments?.[0] ?? "home") as CustomerPage;
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
-  const host = (await headers()).get("x-forwarded-host") ?? (await headers()).get("host") ?? "";
-  const domain = customerDomainForHost(host);
+  const requestHeaders = await headers();
+  const domain = customerDomainForHost(requestHeaders.get("x-forwarded-host") ?? "") ?? customerDomainForHost(requestHeaders.get("host") ?? "");
   const production = domain?.slug === site.slug;
   const canonical = production ? `https://${domain.canonicalHost}${segments?.length ? `/${segments.join("/")}` : ""}` : `https://preview.redspectrum.ai/${site.slug}${segments?.length ? `/${segments.join("/")}` : ""}`;
   if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) return {};
@@ -61,8 +61,8 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
   if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) notFound();
 
-  const host = (await headers()).get("x-forwarded-host") ?? (await headers()).get("host") ?? "";
-  const domain = customerDomainForHost(host);
+  const requestHeaders = await headers();
+  const domain = customerDomainForHost(requestHeaders.get("x-forwarded-host") ?? "") ?? customerDomainForHost(requestHeaders.get("host") ?? "");
   const production = domain?.slug === site.slug;
   const schema = {
     "@context": "https://schema.org",

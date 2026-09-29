@@ -12,5 +12,6 @@ export const customerDomains: Record<string, CustomerDomainRecord> = {
 };
 
 export function customerDomainForHost(host: string) {
-  return customerDomains[host.trim().toLowerCase().replace(/:\d+$/, "")];
+  const normalized = host.trim().toLowerCase().replace(/:\d+$/, "").replace(/\.+$/, "");
+  return customerDomains[normalized];
 }
