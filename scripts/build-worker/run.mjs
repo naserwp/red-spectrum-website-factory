@@ -3,6 +3,7 @@ import {mkdir,readFile,lstat,realpath} from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {runPipeline} from './pipeline.mjs';
+import {batches} from './evidence-batches.mjs';
 import {generateDesign,writeCustomer,validateScope,verifyManifestDiff} from './generator.mjs';
 import {runQa} from './qa.mjs';
 import {saveCheckpoint,loadCheckpoint} from './checkpoint.mjs';
@@ -32,6 +33,16 @@ async function vercelGet(endpoint){
  const r=await fetch('https://api.vercel.com'+endpoint,{headers:{Authorization:`Bearer ${env.VERCEL_TOKEN}`},signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('DEPLOYMENT_FAILED');return r.json();
 }
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
+// The control plane refuses a worker request body over 24 kB, and a full
+// five-page, six-width sweep plus accessibility audits records more QA evidence
+// than that. An oversized body is rejected before the revision can record its own
+// outcome, which loses an otherwise clean build. Evidence is therefore sent as
+// ordered, byte-budgeted batches the control plane validates and appends
+// individually: nothing is dropped, and a batch that contains a failure is still
+// refused by the control plane exactly as before.
+async function reportQaEvidence(jobId,lease,diagnostics){
+ for(const batch of batches(diagnostics))await api({action:'qa_report',jobId,lease,diagnostics:batch});
+}
 async function pages(base,job,site){
  return verifyProtectedPreview({previewUrl:base.url+'/'+job.customerSlug,deploymentReference:base.reference,resultSha:base.sha,slug:job.customerSlug,business:site.business.name},{apiGet:vercelGet,privateValues:[job.id,job.requestId,job.briefId]});
 }
@@ -91,7 +102,7 @@ async function execute(job,lease){
   },
   async qa(repo,_job,site){
    const qa=await runQa(repo,job,site,env,check);
-   await api({action:'qa_report',jobId:job.id,lease,diagnostics:qa.results});
+   await reportQaEvidence(job.id,lease,qa.results);
    return qa.checks;
   },
   async deploy(repo,_job,files){
@@ -112,7 +123,7 @@ async function execute(job,lease){
   },
   verify:(deployment,_job,site)=>pages(deployment,job,site),
   async complete({repo,files,qa,deployment,provider}){await api({action:'complete',jobId:job.id,lease,baselineSha:repo.baseline,resultSha:deployment.sha,branch,changedFiles:files,qa,previewUrl:deployment.url+'/'+job.customerSlug,deploymentReference:deployment.reference,provider});},
-  async fail(code,diagnostics,commandFailure){if(lost)return;try{await api(cancelled?{action:'cancel_ack',jobId:job.id,lease}:{action:'fail',jobId:job.id,lease,...(diagnostics?{diagnostics}:{}),...(commandFailure?{commandFailure}:{}),code:['PROVIDER_UNAVAILABLE','PROVIDER_FAILED','INVALID_OUTPUT','SCOPE_REJECTED','LINT_FAILED','BUILD_FAILED','QA_FAILED','DEPLOYMENT_FAILED','PREVIEW_VERIFICATION_FAILED','CONFIGURATION_MISSING'].includes(code)?code:'WORKER_INTERRUPTED'});}catch{}},
+  async fail(code,diagnostics,commandFailure){if(lost)return;try{const groups=diagnostics?batches(diagnostics):[],last=groups.pop();if(diagnostics)for(const batch of groups)await api({action:'qa_report',jobId:job.id,lease,diagnostics:batch});await api(cancelled?{action:'cancel_ack',jobId:job.id,lease}:{action:'fail',jobId:job.id,lease,...(last?{diagnostics:last}:{}),...(commandFailure?{commandFailure}:{}),code:['PROVIDER_UNAVAILABLE','PROVIDER_FAILED','INVALID_OUTPUT','SCOPE_REJECTED','LINT_FAILED','BUILD_FAILED','QA_FAILED','DEPLOYMENT_FAILED','PREVIEW_VERIFICATION_FAILED','CONFIGURATION_MISSING'].includes(code)?code:'WORKER_INTERRUPTED'});}catch{}},
  });}finally{clearInterval(timer);}
 }
 // One job at a time; process supervisor restarts the poller. Never recover by force-pushing.
