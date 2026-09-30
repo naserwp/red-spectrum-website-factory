@@ -111,14 +111,14 @@
   },
   {
     "file": "public/customers/unique-management-group/images/image-10.webp",
-    "source": "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1800&q=85",
-    "provenance": "licensed",
+    "source": "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=85",
+    "provenance": "Licensed illustrative photograph, visually reviewed; not a client property",
     "license": "https://unsplash.com/license",
-    "description": "Contemporary building exterior and architectural details",
-    "sha256": "03c382e3ffcb6b51dcae112e79add8a702f43f16fa062eecba5987c99a1d16e3",
-    "bytes": 272708,
-    "width": 1200,
-    "height": 800
+    "description": "Contemporary building exterior with geometric architectural details",
+    "sha256": "843ea08c212732cafa47cfb97e99884d8690e97ee49b3f1f7685c4a4b3e31557",
+    "bytes": 93060,
+    "width": 1400,
+    "height": 933
   },
   {
     "file": "public/customers/unique-management-group/images/image-11.webp",
@@ -170,12 +170,13 @@
   },
   {
     "file": "public/customers/unique-management-group/images/image-15.webp",
-    "source": "https://images.unsplash.com/photo-1486591978090-58e619d37fe7?auto=format&fit=crop&w=1600&q=85",
+    "source": "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1400&q=85",
+    "provenance": "Licensed illustrative photograph, visually reviewed; not a client property",
     "license": "https://unsplash.com/license",
-    "provenance": "Licensed illustrative photograph; not company personnel or property",
-    "sha256": "137e06383d2bdab254361c5bfc94d6e984313655253ce4dddeb3965cd05a6a67",
+    "description": "Residential building exterior in a landscaped neighborhood",
+    "sha256": "2f00842792531abb6f7289fa525356d004ed5cf25c5843fe88b29348a147a113",
+    "bytes": 116482,
     "width": 1400,
-    "height": 934,
-    "bytes": 33758
+    "height": 934
   }
 ]

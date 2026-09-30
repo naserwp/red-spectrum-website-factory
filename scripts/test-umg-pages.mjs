@@ -2,11 +2,12 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { parseEnv } from 'node:util';
 import assert from 'node:assert/strict';
+import { resolve } from 'node:path';
 const env = parseEnv(readFileSync('../../.env.worker.local', 'utf8'));
 const cli = env.AGENT_BROWSER_CLI;
 const base = process.env.UMG_QA_ORIGIN || 'http://localhost:3217';
 const root = '/unique-management-group';
-const dir = 'customers/unique-management-group/qa/delivery';
+const dir = resolve(process.env.UMG_QA_DIR || 'customers/unique-management-group/qa/delivery');
 mkdirSync(dir, { recursive: true });
 const browser = (...args) => execFileSync(process.execPath, [cli, '--session', 'umg-delivery', ...args], { encoding: 'utf8', timeout: 90000 });
 const evaluate = script => JSON.parse(execFileSync(process.execPath, [cli, '--session', 'umg-delivery', 'eval', '--stdin'], { input: script, encoding: 'utf8', timeout: 90000 }));
@@ -28,7 +29,10 @@ for (const path of paths) {
     assert.equal(result.alt && result.labels && result.description && result.og, true, path + ' semantics');
     assert.equal(result.bad, false, path + ' legacy content'); assert.equal(result.myndy, 0);
     assert.deepEqual(result.violations, [], path + ' accessibility ' + width);
-    if (['', '/services', '/contact'].includes(path) && [320, 1440].includes(width)) browser('screenshot', dir + '/' + (path.slice(1) || 'home') + '-' + width + '.png', '--full');
+    if (['', '/services', '/contact'].includes(path) && [320, 1440].includes(width)) {
+      assert.equal(evaluate(`(async()=>{const images=[...document.images];images.forEach(i=>i.loading='eager');await Promise.all(images.map(i=>i.decode().catch(()=>{})));return images.every(i=>i.naturalWidth>0);})()`), true, path + ' responsive images');
+      browser('screenshot', dir + '/' + (path.slice(1) || 'home') + '-' + width + '.png', '--full');
+    }
   }
   console.log('PASS: ' + (path || '/') + ' — six widths, accessibility, metadata, no legacy content, no Myndy.');
 }

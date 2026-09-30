@@ -12,6 +12,7 @@ This delivery serves UMG directly on the branded preview host, with a tenant-spe
 - Existing official logo retained byte-for-byte; navy, blue, and sky palette preserved.
 - Sixteen local optimized WebP photographs. Source URLs, Unsplash license reference, dimensions, byte sizes, and hashes are in image-inventory.json. Photographs are illustrative, not actual team, office, clients, or properties.
 - Contact form active on the branded preview. Server validation, consent, honeypot, rate limiting, durable PostgreSQL persistence, duplicate suppression, and SendGrid notification. Only recipient: info@uniquemanagementgroup.com. Visitor email is Reply-To. Optional company is preserved in the stored message and notification.
+- Activation uses WEBFACTORY_UMG_CONTACT_ENABLED=true in the existing Vercel project, alongside the existing mail master switch. No other tenant allowlist was changed.
 - UMG Myndy widget and contact integration remain disabled. No new Myndy secret or dependency.
 - Successful submissions redirect to the branded thank-you page. Failures retain inputs. All preview pages, including thank-you, are noindex; thank-you is absent from navigation and sitemap enumeration.
 
