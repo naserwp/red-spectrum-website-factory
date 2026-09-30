@@ -4,6 +4,7 @@ import type { CustomerPage, CustomerSite } from '@/lib/customers/schema';
 import { headers } from 'next/headers';
 import { customerDomainForHost } from '@/lib/customers/domains';
 import { UniqueHomeInquiryForm } from '@/components/unique-home-inquiry-form';
+import { UniqueHomeMyndy } from '@/components/unique-home-myndy';
 import './unique-home-b2b.css';
 
 const display = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], display: 'swap', variable: '--uh-display' });
@@ -62,8 +63,9 @@ export async function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: 
         <section className="ub-contact-hero ub-shell"><div><p className="ub-eyebrow">03 / Contact</p><h1>Let’s discuss the <em>objective.</em></h1><p>For marketing, consulting, advertising or a real-estate-related business inquiry, reach UNIQUE HOME ENTERPRISE LLC directly.</p><div className="ub-direct">{phone}{email}</div></div>{image(11, '', true)}</section>
         <section className="ub-contact-body ub-shell"><div><p className="ub-eyebrow">Direct contact</p><h2>Begin the <em>conversation.</em></h2><p><strong>{site.contact.person?.value}</strong><br />{site.business.name}</p><address>{site.contact.address.value}</address><p className="ub-small">Please confirm any in-person visit, business hours and service territory directly before making arrangements.</p></div><div className="ub-inquiry"><p className="ub-eyebrow">Online inquiry</p><h3>Prefer to write it down?</h3><UniqueHomeInquiryForm active={domain?.slug === site.slug && site.form.mode !== 'disabled'} /><a href={route('privacy')}>Read the privacy notice ↗</a></div></section>
       </>}
-      {page === 'privacy' && <section className="ub-privacy ub-shell"><div><p className="ub-eyebrow">04 / Privacy</p><h1>Privacy, in clear <em>terms.</em></h1><p>How this preview’s current contact options work.</p></div><article>{site.pages.privacy.body.map((text, index) => <div key={text}><span>0{index + 1}</span><p>{text}</p></div>)}</article></section>}
+       {page === 'privacy' && <section className="ub-privacy ub-shell"><div><p className="ub-eyebrow">04 / Privacy</p><h1>Privacy, in clear <em>terms.</em></h1><p>How this website’s contact options work.</p></div><article>{site.pages.privacy.body.map((text, index) => <div key={text}><span>0{index + 1}</span><p>{text}</p></div>)}</article></section>}
     </main>
     <footer className="ub-footer"><div className="ub-footer-main ub-shell"><div><Image src={`/customers/${site.slug}/logo-dark.svg`} alt={site.business.name} width={286} height={68} /><p>Marketing · Consulting · Advertising</p></div><div><p className="ub-eyebrow">A direct conversation</p><h2>What’s your next <em>move?</em></h2>{button('Get in touch', route('contact'))}</div></div><div className="ub-footer-bottom ub-shell"><span>© 2026 {site.business.name}</span><nav aria-label="Footer navigation">{[...pages, { key: 'privacy' as CustomerPage, label: 'Privacy' }].map(item => <a key={item.key} href={route(item.key)}>{item.label}</a>)}</nav><a href="https://www.theredspectrum.com/">Website designed by Red Spectrum</a></div></footer>
-  </div>;
+     {site.myndy.embed.enabled && site.myndy.embed.agentId === 'agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw' && domain?.slug === site.slug && <UniqueHomeMyndy agentId={site.myndy.embed.agentId} accent={site.branding.primary} />}
+   </div>;
 }
