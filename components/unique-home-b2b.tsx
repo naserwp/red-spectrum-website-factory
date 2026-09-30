@@ -24,7 +24,7 @@ export async function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: 
   const domain = customerDomainForHost(requestHeaders.get('x-forwarded-host') ?? '') ?? customerDomainForHost(requestHeaders.get('host') ?? '');
   const base = domain?.slug === site.slug ? '' : `/${site.slug}`;
   const photos = [site.images.hero, ...site.images.gallery];
-  const route = (key: CustomerPage) => base + (key === 'home' ? '' : `/${key}`);
+  const route = (key: CustomerPage) => key === 'home' ? (base || '/') : base + `/${key}`;
   const image = (index: number, className = '', priority = false, sizes = '(max-width: 767px) 100vw, 50vw') => {
     const item = photos[index];
     return <figure className={`ub-photo ${className}`}><Image src={item.src} alt={item.alt} width={item.width} height={item.height} sizes={sizes} priority={priority} /></figure>;
@@ -35,7 +35,7 @@ export async function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: 
   const email = <a href={`mailto:${site.contact.email.value}`}>{site.contact.email.value}</a>;
   return <div className={`unique-home-v3 unique-home-b2b ${display.variable} ${body.variable}`}>
     <a className="ub-skip" href="#main">Skip to content</a>
-    <header className="ub-header"><a className="ub-brand" href={base} aria-label={`${site.business.name} home`}><Image src={site.branding.logoPath} alt={site.business.name} width={286} height={68} priority /></a>{nav('Main navigation')}<div className="ub-header-end">{button('Start a conversation', route('contact'), true)}<details className="ub-menu"><summary>Menu <span aria-hidden="true">☰</span></summary>{nav('Mobile navigation')}</details></div></header>
+    <header className="ub-header"><a className="ub-brand" href={route('home')} aria-label={`${site.business.name} home`}><Image src={site.branding.logoPath} alt={site.business.name} width={286} height={68} priority /></a>{nav('Main navigation')}<div className="ub-header-end">{button('Start a conversation', route('contact'), true)}<details className="ub-menu"><summary>Menu <span aria-hidden="true">☰</span></summary>{nav('Mobile navigation')}</details></div></header>
     <main id="main">
       {page === 'home' && <>
         <section className="ub-hero">{image(0, 'ub-hero-image', true, '100vw')}<div className="ub-hero-overlay" /><div className="ub-hero-copy"><p className="ub-eyebrow">UNIQUE HOME ENTERPRISE LLC <span> / Business in perspective</span></p><h1>Strategy.<br />Visibility.<br /><em>Opportunity.</em></h1><p>Marketing, consulting and advertising for business objectives—with a real-estate-oriented perspective.</p><div className="ub-actions">{button('Discuss your goals', route('contact'))}<a className="ub-text-link" href={route('services')}>Explore what we do <span aria-hidden="true">↗</span></a></div></div><div className="ub-hero-foot"><span>Business first. Conversation led.</span><span>01 / 04</span></div></section>
