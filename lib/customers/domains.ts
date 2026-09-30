@@ -15,3 +15,20 @@ export function customerDomainForHost(host: string) {
   const normalized = host.trim().toLowerCase().replace(/:\d+$/, "").replace(/\.+$/, "");
   return customerDomains[normalized];
 }
+
+export function canonicalCustomerUrl(slug: string) {
+  const host = Object.values(customerDomains).find((domain) => domain.slug === slug)?.canonicalHost;
+  return host ? `https://${host}` : null;
+}
+
+// Only an exact canonical customer origin counts. Preview-host slug URLs stay separate.
+export function slugFromCanonicalCustomerUrl(value: string) {
+  try {
+    const url = new URL(value.trim());
+    if (url.protocol !== "https:" || url.username || url.password || url.port || url.search || url.hash || url.pathname !== "/") return null;
+    const domain = customerDomainForHost(url.hostname);
+    return domain && url.hostname === domain.canonicalHost ? domain.slug : null;
+  } catch {
+    return null;
+  }
+}

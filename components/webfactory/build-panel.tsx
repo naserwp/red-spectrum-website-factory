@@ -4,14 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { BuildConsole } from "./build-console";
 
-export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory, customerSlug, recordedPreview, filesBuilt = false, slugConfirmed = false, workerProtection }: {
-  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean; customerSlug?: string; recordedPreview?: string | null; filesBuilt?: boolean; slugConfirmed?: boolean; workerProtection?: 'protected'|'public';
+export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory, customerSlug, recordedPreview, liveReviewUrl, filesBuilt = false, slugConfirmed = false, workerProtection }: {
+  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean; customerSlug?: string; recordedPreview?: string | null; liveReviewUrl?: string | null; filesBuilt?: boolean; slugConfirmed?: boolean; workerProtection?: 'protected'|'public';
 }) {
   const router = useRouter();
   const [pending,setPending] = useState(false);
   const [message,setMessage] = useState("");
   const [confirmed,setConfirmed] = useState(false);
-  const [previewUrl,setPreviewUrl] = useState((recordedPreview?.startsWith("https://")?recordedPreview:null) || (slugConfirmed && customerSlug ? `https://red-spectrum-website-factory.vercel.app/${customerSlug}` : ""));
+  const [previewUrl,setPreviewUrl] = useState(liveReviewUrl || (recordedPreview?.startsWith("https://")?recordedPreview:null) || (slugConfirmed && customerSlug ? `https://red-spectrum-website-factory.vercel.app/${customerSlug}` : ""));
   async function run(action: string) {
     if (pending || !confirmed) return;
     setPending(true); setMessage("");
@@ -59,7 +59,7 @@ export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHi
       <button className="wf-button secondary" disabled={pending || !confirmed || !slugConfirmed || !briefId || stage !== "build_approved" || !filesBuilt || !previewUrl} onClick={()=>run("preview")}>Mark Preview Ready</button>
       <button className="wf-button secondary" disabled={pending || !confirmed || stage !== "preview_ready" || !filesBuilt} onClick={()=>run("customer")}>Mark Customer Approved</button>
     </div>
-    {!confirmed && stage==='build_approved' && filesBuilt && <p role="status">Confirm “I reviewed and authorize the selected action” above to enable Mark Preview Ready. Nothing is approved automatically.</p>}
+    {!confirmed && stage==='build_approved' && filesBuilt && <p role="status">Check “I reviewed and authorize the selected action,” then submit Mark Preview Ready. After it is saved, check the box again to submit Mark Customer Approved. Nothing is approved automatically.</p>}
     {message && <p role="status" aria-live="polite" className="wf-status">{message}</p>}
     <p className="wf-status">Customer approval: <strong>{stage === "customer_approved" ? "Customer Approved" : "Not approved"}</strong>. Marking approval does not send email, take payment or publish the site.</p>
   </section>;

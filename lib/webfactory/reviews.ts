@@ -1,6 +1,8 @@
 import "server-only";
 import { z } from "zod";
 import { database } from "./server";
+import { slugFromCanonicalCustomerUrl } from "@/lib/customers/domains";
+import { slugFromPreviewUrl } from "./slug-rules";
 import { verifyCustomerRoute } from "./route-readiness";
 import { redactChatText } from "./chat-safety";
 import { chatSecrets } from "./chat-provider";
@@ -37,7 +39,7 @@ export async function saveReview(session:string,input:z.infer<typeof reviewInput
     if(["building","rebuilding","changes_requested"].includes(input.status)&&(!workflow || workflow.stage==="draft"))throw new Error("Approve the build before recording build or change status.");
     if(input.previewUrl){
       const url=new URL(input.previewUrl);
-      if(url.protocol!=="https:" || !["preview.redspectrum.ai","red-spectrum-website-factory.vercel.app"].includes(url.hostname) || url.port || url.username || url.password || url.search || url.hash || url.pathname!=="/"+slug)throw new Error("Use this customer's exact URL on an approved preview host.");
+      if(slugFromPreviewUrl(url.href)!==slug && slugFromCanonicalCustomerUrl(url.href)!==slug)throw new Error("Use this customer's exact preview URL or registered canonical website.");
     }
     if(["preview_ready","approved"].includes(input.status) && (!slug || !await verifyCustomerRoute(slug,input.previewUrl || workflow?.preview_url || "")))throw new Error("Build pending: customer route verification is required.");
     let content="";

@@ -4,7 +4,8 @@ import ts from 'typescript';
 const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(name=>name==='server-only'?{}:deps[name],m,m.exports);return m.exports;};
 const sites=JSON.parse(readFileSync('customers/manifest.json','utf8')).customers;
 const rules=load('lib/webfactory/slug-rules.ts',{});
-const readiness=load('lib/webfactory/route-readiness.ts',{'@/lib/customers/registry':{getCustomerSite:slug=>sites.find(s=>s.slug===slug)},'./slug-rules':rules});
+const domains=load('lib/customers/domains.ts',{});
+const readiness=load('lib/webfactory/route-readiness.ts',{'@/lib/customers/registry':{getCustomerSite:slug=>sites.find(s=>s.slug===slug)},'@/lib/customers/domains':domains,'./slug-rules':rules});
 const original=globalThis.fetch,site=sites[0],url=rules.previewUrls(site.slug).fallback;
 try{
   let called=false;
@@ -16,6 +17,11 @@ try{
   assert.equal(await readiness.verifyCustomerRoute(site.slug,url),false);
   globalThis.fetch=async()=>new Response('<script type="application/ld+json">'+JSON.stringify({name:site.business.name,url:rules.previewUrls(site.slug).primary})+'</script>',{headers:{'content-type':'text/html'}});
   assert.equal(await readiness.verifyCustomerRoute(site.slug,url),true);
+  const canonical='https://uniquehomeenterprise.com';
+  globalThis.fetch=async()=>new Response('<script type="application/ld+json">'+JSON.stringify({name:'UNIQUE HOME ENTERPRISE LLC',url:canonical})+'</script>',{headers:{'content-type':'text/html'}});
+  assert.equal(await readiness.verifyCustomerRoute('unique-home-enterprise',canonical),true);
+  assert.equal(await readiness.verifyCustomerRoute('unique-home-enterprise','https://www.uniquehomeenterprise.com'),false);
+  assert.equal(await readiness.verifyCustomerRoute('unique-management-group',canonical),false);
 }finally{globalThis.fetch=original;}
 for(const site of sites)assert.equal(await readiness.verifyCustomerRoute(site.slug,'http://localhost:3012/'+site.slug),true,site.slug);
 assert.equal((await fetch('http://localhost:3012/nasirtesting')).status,404);

@@ -6,7 +6,8 @@ import { briefSchema, requestSlug } from "./brief-schema";
 import { verifyCustomerRoute } from "./route-readiness";
 import { localCustomerUrl } from "./route-readiness";
 import { headers } from "next/headers";
-import { previewUrls } from "./slug-rules";
+import { slugFromCanonicalCustomerUrl } from "@/lib/customers/domains";
+import { previewUrls, slugFromPreviewUrl } from "./slug-rules";
 import { getVerifiedWorkerPreview } from "./build-worker";
 
 export class WorkflowError extends Error {}
@@ -99,7 +100,7 @@ export async function transitionBuild(id: string, action: string, briefId: strin
     if (action === "preview") {
       const url = new URL(previewUrl || "");
       const buildSlug = request.customer_slug;
-      if (!workerPreview && (!["preview.redspectrum.ai","red-spectrum-website-factory.vercel.app"].includes(url.hostname) || url.protocol !== "https:" || url.username || url.password || url.search || url.hash || url.pathname !== "/" + buildSlug)) throw new WorkflowError("Enter this customer's exact HTTPS preview URL on the approved preview host.");
+      if (!workerPreview && slugFromPreviewUrl(url.href) !== buildSlug && slugFromCanonicalCustomerUrl(url.href) !== buildSlug) throw new WorkflowError("Enter this customer's exact HTTPS preview URL or its registered canonical website.");
     }
     if(action === "preview" || action === "customer"){
       const verifiedUrl=action === "preview"?previewUrl:current.preview_url;

@@ -3,6 +3,7 @@ import {headers} from "next/headers";
 import {getCustomerSites} from "@/lib/customers/registry";
 import {getLocalBuildReceipt} from "./build-receipts";
 import {database,isAdmin} from "./server";
+import {canonicalCustomerUrl} from "@/lib/customers/domains";
 import {slugError,slugFromPreviewUrl,previewUrls} from "./slug-rules";
 import {verifyCustomerRoute,localCustomerUrl} from "./route-readiness";
 
@@ -43,6 +44,8 @@ export async function resolvePreviewLink(slug:string,saved:string|null|undefined
   // A working customer page verifies DNS, TLS and route readiness together.
   if(await ready(urls.primary))return urls.primary;
   if(await ready(urls.fallback))return urls.fallback;
+  const canonical=canonicalCustomerUrl(slug);
+  if(canonical && await check(canonical))return canonical;
   // Undeployed registered sites remain inspectable locally, never linked as live previews.
   const local=localCustomerUrl(slug,host);
   return local && await check(local)?`/${slug}`:null;
