@@ -22,6 +22,11 @@ try{
   assert.equal(await readiness.verifyCustomerRoute('unique-home-enterprise',canonical),true);
   assert.equal(await readiness.verifyCustomerRoute('unique-home-enterprise','https://www.uniquehomeenterprise.com'),false);
   assert.equal(await readiness.verifyCustomerRoute('unique-management-group',canonical),false);
+  const branded='https://preview.redspectrum.ai/unique-management-group';
+  globalThis.fetch=async()=>new Response('<link rel="canonical" href="'+branded+'"><title>Unique Management Group LLC | Consulting</title>',{headers:{'content-type':'text/html'}});
+  assert.equal(await readiness.verifyCustomerRoute('unique-management-group',branded),true);
+  globalThis.fetch=async()=>new Response('<link rel="canonical" href="https://preview.redspectrum.ai/other"><title>Unique Management Group LLC</title>',{headers:{'content-type':'text/html'}});
+  assert.equal(await readiness.verifyCustomerRoute('unique-management-group',branded),false);
 }finally{globalThis.fetch=original;}
 for(const site of sites)assert.equal(await readiness.verifyCustomerRoute(site.slug,'http://localhost:3012/'+site.slug),true,site.slug);
 assert.equal((await fetch('http://localhost:3012/nasirtesting')).status,404);

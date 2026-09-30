@@ -13,9 +13,15 @@ export async function verifyCustomerRoute(slug:string,url:string):Promise<boolea
     const response=await fetch(url,{redirect:'error',cache:'no-store',signal:AbortSignal.timeout(4000)});
     if(response.status!==200 || !response.headers.get('content-type')?.includes('text/html'))return false;
     const html=await response.text();
-    return [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].some(match=>{
-      try{const data=JSON.parse(match[1]);const accepted=new Set([`https://preview.redspectrum.ai/${slug}`,canonicalCustomerUrl(slug)].filter(Boolean));return data.name===site.business.name && accepted.has(data.url);}catch{return false;}
+    const accepted=new Set([`https://preview.redspectrum.ai/${slug}`,canonicalCustomerUrl(slug)].filter(Boolean));
+    const structured=[...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].some(match=>{
+      try{const data=JSON.parse(match[1]);return data.name===site.business.name && accepted.has(data.url);}catch{return false;}
     });
+    if(structured)return true;
+    // Some reviewed previews are server-rendered without JSON-LD. Require both the exact canonical URL and business name.
+    const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+    const title=(html.match(/<title>([^<]*)<\/title>/)?.[1] || "").replaceAll("&amp;","&").replaceAll("&#39;","'");
+    return Boolean(canonical && accepted.has(canonical) && title.includes(site.business.name));
   }catch{return false;}
 }
 
