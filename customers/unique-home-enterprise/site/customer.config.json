@@ -121,11 +121,6 @@
     "summary": "UNIQUE HOME ENTERPRISE LLC is a B2B company working across marketing, consulting and advertising in a real-estate-oriented business context."
   },
   "contact": {
-    "person": {
-      "value": "Aminul Haque",
-      "status": "draft",
-      "source": "Customer-provided; final confirmation pending"
-    },
     "phone": {
       "value": "516-699-2281",
       "status": "draft",
@@ -137,9 +132,8 @@
       "source": "Customer/admin-confirmed business email"
     },
     "address": {
-      "value": "20397 Rte 19\nSte 228\nCranberry Twp, PA 16066",
-      "status": "draft",
-      "source": "Customer-provided correspondence address; use and visitation not confirmed"
+      "value": "",
+      "status": "missing"
     },
     "serviceAreas": {
       "value": "",
