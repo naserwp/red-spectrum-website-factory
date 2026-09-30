@@ -6,9 +6,9 @@ import { briefSchema, requestSlug } from "./brief-schema";
 import { verifyCustomerRoute } from "./route-readiness";
 import { localCustomerUrl } from "./route-readiness";
 import { headers } from "next/headers";
-import { slugFromCanonicalCustomerUrl } from "@/lib/customers/domains";
-import { previewUrls, slugFromPreviewUrl } from "./slug-rules";
-import { getVerifiedWorkerPreview } from "./build-worker";
+import { previewUrls } from "./slug-rules";
+import { getVerifiedWorkerBuild, getVerifiedWorkerPreview } from "./build-worker";
+import { canonicalBrandedPreview, isCustomerFacingPreview } from "./workflow-state";
 
 export class WorkflowError extends Error {}
 export type BuildState = { stage: string; active_brief_id: string | null; preview_url: string | null };
@@ -96,22 +96,21 @@ export async function transitionBuild(id: string, action: string, briefId: strin
     const transitions: Record<string, [string,string,string]> = { approve: ["draft","build_approved","building"], preview: ["build_approved","preview_ready","preview_ready"], customer: ["preview_ready","customer_approved","approved"] };
     const next = transitions[action];
     if (!next || current.stage !== next[0]) throw new WorkflowError("Complete the preceding review step first.");
-    const workerPreview=(action==="preview" || action==="customer")?await getVerifiedWorkerPreview(id,request.customer_slug,briefId,action==="preview"?previewUrl:current.preview_url):null;
+    const workerBuild=(action==="preview" || action==="customer")?await getVerifiedWorkerBuild(id,request.customer_slug,briefId):null;
     if (action === "preview") {
-      const url = new URL(previewUrl || "");
-      const buildSlug = request.customer_slug;
-      if (!workerPreview && slugFromPreviewUrl(url.href) !== buildSlug && slugFromCanonicalCustomerUrl(url.href) !== buildSlug) throw new WorkflowError("Enter this customer's exact HTTPS preview URL or its registered canonical website.");
+      if (!previewUrl || previewUrl !== canonicalBrandedPreview(request.customer_slug) || !isCustomerFacingPreview(request.customer_slug,previewUrl)) throw new WorkflowError("Use this customer's exact branded preview URL.");
     }
     if(action === "preview" || action === "customer"){
       const verifiedUrl=action === "preview"?previewUrl:current.preview_url;
-      if(!verifiedUrl || (!workerPreview && !await verifyCustomerRoute(request.customer_slug,verifiedUrl)))throw new WorkflowError("Build pending: the saved slug must resolve to this registered customer's website before preview readiness or approval.");
-      if(!workerPreview)await client.query("INSERT INTO webfactory.request_actions(request_id,actor,action,status_before,status_after,customer_slug,preview_url,notes,event_key) VALUES($1,$2,'website_built',$3,$3,$4,$5,'Customer route and identity verified; QA still requires admin review.',$6) ON CONFLICT(event_key) DO NOTHING",[id,actor,current.stage,request.customer_slug,verifiedUrl,`built:${id}:${briefId}:${request.customer_slug}`]);
+      if(!workerBuild || !verifiedUrl || !await verifyCustomerRoute(request.customer_slug,verifiedUrl))throw new WorkflowError("Build pending: verified build evidence and the branded customer preview are both required before readiness or approval.");
+      const audit=JSON.stringify({canonicalPreview:verifiedUrl,rawDeployment:{id:workerBuild.jobId,url:workerBuild.previewUrl,reference:workerBuild.deploymentReference},artifact:{commit:workerBuild.artifactCommit,fingerprint:workerBuild.artifactFingerprint},qa:"passed",identity:"canonical URL, business identity, and tenant isolation verified",authorization:"explicit admin confirmation"});
+      await client.query("SELECT set_config('webfactory.workflow_notes',$1,true)",[audit]);
     }
-    await client.query("UPDATE webfactory.build_workflows SET stage=$2,preview_url=COALESCE($3,preview_url),updated_at=NOW() WHERE request_id=$1", [id,next[1],previewUrl || null]);
+    await client.query("UPDATE webfactory.build_workflows SET stage=$2,preview_url=COALESCE($3,preview_url),updated_at=NOW() WHERE request_id=$1", [id,next[1],action === "preview" ? canonicalBrandedPreview(request.customer_slug) : null]);
     await client.query("UPDATE webfactory.requests SET status=$2,updated_at=NOW() WHERE id=$1", [id,next[2]]);
     await client.query("INSERT INTO webfactory.build_events(request_id,brief_id,event) VALUES($1,$2,$3)", [id,briefId,next[1]]);
     if(action==="preview" || action==="customer"){
-      await client.query("INSERT INTO webfactory.request_review_events(id,request_id,customer_slug,kind,review_status,preview_url,notes,requested_changes,admin_session_hash) SELECT $1,$2,$3,'review',$4,$5,COALESCE((SELECT notes FROM webfactory.request_review_events WHERE request_id=$2 AND kind='review' ORDER BY created_at DESC LIMIT 1),''),COALESCE((SELECT requested_changes FROM webfactory.request_review_events WHERE request_id=$2 AND kind='review' ORDER BY created_at DESC LIMIT 1),''),'gated-build-action'",[randomUUID(),id,request.customer_slug,action==="customer"?"approved":"preview_ready",previewUrl || current.preview_url || ""]);
+      await client.query("INSERT INTO webfactory.request_review_events(id,request_id,customer_slug,kind,review_status,preview_url,notes,requested_changes,admin_session_hash) SELECT $1,$2,$3,'review',$4,$5,COALESCE((SELECT notes FROM webfactory.request_review_events WHERE request_id=$2 AND kind='review' ORDER BY created_at DESC LIMIT 1),''),COALESCE((SELECT requested_changes FROM webfactory.request_review_events WHERE request_id=$2 AND kind='review' ORDER BY created_at DESC LIMIT 1),''),'gated-build-action'",[randomUUID(),id,request.customer_slug,action==="customer"?"approved":"preview_ready",canonicalBrandedPreview(request.customer_slug)]);
     }
     await client.query("COMMIT");
   } catch (error) { await client.query("ROLLBACK"); throw error; }

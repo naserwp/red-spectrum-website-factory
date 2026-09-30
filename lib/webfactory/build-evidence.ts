@@ -1,6 +1,6 @@
 import {workerInput,allowedBuildPath} from './worker-contract';
 import {requiredBuildChecks} from './build-executor';
-export type VerifiedBuild = {jobId:string;previewUrl:string;protection:'protected'|'public';qaPassed:true};
+export type VerifiedBuild = {jobId:string;previewUrl:string;deploymentReference:string;artifactCommit:string;artifactFingerprint:string;protection:'protected'|'public';qaPassed:true};
 // Only server-recorded completed evidence for the CURRENT request/slug/brief counts.
 // Browser input, a URL alone, a website_built log, or an unfinished job is not proof.
 export function verifiedBuildEvidence(job:Record<string,unknown>,context:{requestId:string;slug:string;briefId:string}):VerifiedBuild|null{
@@ -15,6 +15,6 @@ export function verifiedBuildEvidence(job:Record<string,unknown>,context:{reques
   if(!parsed.success||parsed.data.action!=='complete'||!parsed.data.changedFiles.every(file=>allowedBuildPath(context.slug,file))||job.build_branch!==`webfactory/build/${job.id}-${context.slug}`)return null;
   const url=new URL(String(job.preview_url));
   if(url.protocol!=='https:'||!/^[a-z0-9-]+\.vercel\.app$/.test(url.hostname)||url.username||url.password||url.port||url.search||url.hash||url.pathname!==`/${context.slug}`)return null;
-  return {jobId:String(job.id),previewUrl:url.href,protection:access.preview_public_access as 'protected'|'public',qaPassed:true};
+   return {jobId:String(job.id),previewUrl:url.href,deploymentReference:String(job.deployment_reference),artifactCommit:String(job.result_sha),artifactFingerprint:String(job.baseline_sha),protection:access.preview_public_access as 'protected'|'public',qaPassed:true};
  }catch{return null;}
 }

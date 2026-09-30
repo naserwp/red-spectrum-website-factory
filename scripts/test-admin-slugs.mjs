@@ -17,7 +17,7 @@ const service=load('lib/webfactory/slugs.ts',{'./server':server,'@/lib/customers
 const provider={chatSecrets:()=>[],askWorkspaceAI:()=>{throw Error('No external AI calls allowed');}};
 const chat=load('lib/webfactory/chat-store.ts',{'./server':server,'pg':{},'next/headers':{},'node:crypto':{randomUUID},'@/lib/customers/registry':registry,'./brief-schema':briefTools,'./build-receipts':receipts,'./chat-provider':provider,'./chat-safety':safety});
 let routeReady=false,workerPreview=null;
-const workflow=load('lib/webfactory/ai-workflow.ts',{'./build-worker':{getVerifiedWorkerPreview:async(_id,_slug,_brief,url)=>!url||url===workerPreview?workerPreview:null},'./server':server,'node:crypto':{randomUUID},'./brief-schema':briefTools,'./ai-provider':{},'./route-readiness':{verifyCustomerRoute:async()=>routeReady,localCustomerUrl:()=>null},'next/headers':{headers:async()=>new Map()},'./slug-rules':rules,'@/lib/customers/domains':{slugFromCanonicalCustomerUrl:()=>null}});
+const workflow=load('lib/webfactory/ai-workflow.ts',{'./build-worker':{getVerifiedWorkerBuild:async()=>workerPreview?{jobId:'synthetic-job',previewUrl:workerPreview,deploymentReference:'synthetic-deployment',artifactCommit:'synthetic-commit',artifactFingerprint:'synthetic-fingerprint',protection:'protected',qaPassed:true}:null,getVerifiedWorkerPreview:async()=>workerPreview},'./server':server,'node:crypto':{randomUUID},'./brief-schema':briefTools,'./ai-provider':{},'./route-readiness':{verifyCustomerRoute:async()=>routeReady,localCustomerUrl:()=>null},'next/headers':{headers:async()=>new Map()},'./slug-rules':rules,'./workflow-state':{canonicalBrandedPreview:slug=>'https://preview.redspectrum.ai/'+slug,isCustomerFacingPreview:(slug,url)=>url==='https://preview.redspectrum.ai/'+slug}});
 const ids=[randomUUID(),randomUUID(),randomUUID()],briefId=randomUUID(),session='synthetic-slug-session',slug='qa-slug-'+randomUUID().slice(0,8),nextSlug=slug+'-new',raceSlug=slug+'-race';
 const draft={customerSlug:'old-ai-suggestion',businessSummary:'Synthetic only',brandDirection:'Draft',colorDirection:'Draft',logoConcept:'Draft',pages:briefTools.pageNames.map(name=>({name,purpose:'Draft',sections:[]})),services:[],seo:{title:'Draft',metaDescription:'Draft'},hero:{heading:'Draft',body:'Draft'},ctaCopy:[],myndy:{agentName:'Draft',avatarBrief:'Draft',greeting:'Draft',context:'Draft',faqs:[],qualificationFlow:[],escalationRules:[]},imagePrompts:[],customerEmailDraft:'Unsent draft',smsDraft:'Unsent draft',missingInformation:[],verificationNotes:[]};
 try{
@@ -47,21 +47,23 @@ try{
   await workflow.transitionBuild(ids[0],'approve',briefId,undefined,'session:synthetic');
   await assert.rejects(()=>workflow.transitionBuild(ids[0],'preview',briefId,'https://preview.redspectrum.ai/'+nextSlug,'session:synthetic'),/Build pending/);
   await assert.rejects(()=>workflow.transitionBuild(ids[0],'built',briefId,undefined,'session:synthetic'),/Build pending/);
-  routeReady=true;
-  await workflow.transitionBuild(ids[0],'built',briefId,undefined,'session:synthetic');
-  await workflow.transitionBuild(ids[0],'preview',briefId,'https://preview.redspectrum.ai/'+nextSlug,'session:synthetic');
+   routeReady=true;
+   await workflow.transitionBuild(ids[0],'built',briefId,undefined,'session:synthetic');
+   workerPreview='https://synthetic-protected.vercel.app/'+nextSlug;
+   await workflow.transitionBuild(ids[0],'preview',briefId,'https://preview.redspectrum.ai/'+nextSlug,'session:synthetic');
   await assert.rejects(()=>service.setRequestSlug(ids[0],slug,true,session,nextSlug),/migration/);
   const actions=await service.getRequestActions(ids[0]);
   for(const action of ['request_created','ai_brief_generated','slug_suggested','slug_updated','website_built','build_approved','preview_url_saved','preview_ready_marked'])assert.ok(actions.some(a=>a.action===action),action);
   assert.ok(actions.some(a=>a.actor.startsWith('session:')));
   // Reset this disposable fixture only to exercise the protected-worker path.
   await pool.query("UPDATE webfactory.build_workflows SET stage='build_approved',preview_url=NULL WHERE request_id=$1",[ids[0]]);
-  routeReady=false;workerPreview='https://synthetic-protected.vercel.app/'+nextSlug;
+   routeReady=false;workerPreview='https://synthetic-protected.vercel.app/'+nextSlug;
   await assert.rejects(()=>workflow.transitionBuild(ids[0],'customer',briefId),/preceding/);
   const count=(await service.getRequestActions(ids[0])).length;await workflow.transitionBuild(ids[0],'built',briefId);
   assert.equal((await service.getRequestActions(ids[0])).length,count);
-  await assert.rejects(()=>workflow.transitionBuild(ids[0],'preview',briefId,'https://wrong.vercel.app/'+nextSlug));
-  await workflow.transitionBuild(ids[0],'preview',briefId,workerPreview,'session:synthetic');
+   await assert.rejects(()=>workflow.transitionBuild(ids[0],'preview',briefId,'https://wrong.vercel.app/'+nextSlug));
+   routeReady=true;
+   await workflow.transitionBuild(ids[0],'preview',briefId,'https://preview.redspectrum.ai/'+nextSlug,'session:synthetic');
   assert.equal((await pool.query('SELECT stage FROM webfactory.build_workflows WHERE request_id=$1',[ids[0]])).rows[0].stage,'preview_ready');
   console.log('PASS: legacy manual route approval and protected worker approval; built verification idempotent; wrong URL rejected; customer approval remains separate.');
   console.log('PASS: slug syntax/reserved names, registry conflicts, cross-request conflicts, concurrent unique reservation, stale-save rejection, reapproval after slug change, built-route lock, saved-slug AI context/prompts, approval gates and action logs.');
