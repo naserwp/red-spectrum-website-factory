@@ -29,7 +29,7 @@ const site=registry.getCustomerSite('unique-home-enterprise');
 assert.equal(site.form.mode,'live');assert.equal(site.form.recipientConfirmed,true);
 const other=registry.getCustomerSite('lc-real-estate');
 const config=load('lib/leads/config.ts'),validation=load('lib/leads/validation.ts'),email=load('lib/leads/email.ts');
-assert.equal(config.getCustomerDelivery(site,'live').recipient,'niha_aminul@hotmail.com');
+assert.equal(config.getCustomerDelivery(site,'live').recipient,'contact@uniquehomeenterprise.com');
 assert.equal(config.getCustomerDelivery(other,'live').recipient,'accountexec@theredspectrum.com');
 assert.notEqual(config.getCustomerDelivery(other,'live').recipient,config.getCustomerDelivery(site,'live').recipient);
 assert.ok(config.getSendGridConfig(),'Required config missing or invalid');
@@ -67,7 +67,7 @@ try{
     assert.equal(url,'https://api.sendgrid.com/v3/mail/send');
     lastPayload=JSON.parse(options.body);sendCount++;
     assert.equal(lastPayload.personalizations.length,1);
-    assert.equal(lastPayload.personalizations[0].to[0].email,'niha_aminul@hotmail.com');
+    assert.equal(lastPayload.personalizations[0].to[0].email,'contact@uniquehomeenterprise.com');
     assert.equal(lastPayload.personalizations[0].cc,undefined);assert.equal(lastPayload.personalizations[0].bcc,undefined);
     assert.equal(lastPayload.reply_to.email,base.email);
     assert.ok(lastPayload.content[0].value.includes('UNIQUE HOME ENTERPRISE LLC'));
@@ -78,7 +78,7 @@ try{
   assert.equal(good.body.message,'Thank you. Your inquiry has been received.');
   const persisted=(await admin.query('SELECT * FROM '+schema+'.website_leads WHERE lead_id=$1',[good.body.leadId])).rows[0];
   assert.equal(persisted.customer_slug,'unique-home-enterprise');assert.equal(persisted.notification_status,'accepted');
-  assert.equal(persisted.recipient_email,'niha_aminul@hotmail.com');
+  assert.equal(persisted.recipient_email,'contact@uniquehomeenterprise.com');
   assert.equal(persisted.requested_service,'Consulting');
   assert.ok(lastPayload.content[1].value.includes('&lt;script&gt;'));
   assert.equal((await submit()).body.duplicate,true);assert.equal(sendCount,1);

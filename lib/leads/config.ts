@@ -25,7 +25,7 @@ const customerDelivery = {
     subject: "New website lead — 360 Vitality Fitness",
   },
   "unique-home-enterprise": {
-    liveRecipient: "niha_aminul@hotmail.com",
+    liveRecipient: "contact@uniquehomeenterprise.com",
     subject: "New website lead — UNIQUE HOME ENTERPRISE LLC",
   },
 } as const;
