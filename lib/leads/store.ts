@@ -110,7 +110,7 @@ export class LeadStore {
   }
 
   async claimMyndy(leadId: string) {
-    const result = await this.pool.query(`UPDATE website_leads SET myndy_sync_status = 'sending', myndy_sync_attempts = myndy_sync_attempts + 1 WHERE lead_id = $1 AND customer_slug = 'unique-home-enterprise' AND delivery_mode = 'live' AND notification_status = 'accepted' AND myndy_sync_status IS NULL RETURNING lead_id`, [leadId]);
+    const result = await this.pool.query(`UPDATE website_leads SET myndy_sync_status = 'sending', myndy_sync_attempts = myndy_sync_attempts + 1 WHERE lead_id = $1 AND customer_slug = 'unique-home-enterprise' AND delivery_mode = 'live' AND notification_status = 'accepted' AND (myndy_sync_status IS NULL OR (myndy_sync_status = 'failed' AND myndy_last_error LIKE 'myndy_422%' AND myndy_sync_attempts < 3)) RETURNING lead_id`, [leadId]);
     return result.rows.length === 1;
   }
 

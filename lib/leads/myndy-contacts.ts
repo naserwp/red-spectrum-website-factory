@@ -25,10 +25,19 @@ export async function syncUniqueHomeContact(lead: StoredLead) {
     }),
     signal: AbortSignal.timeout(10_000),
   });
-  if (!response.ok) throw new Error(`myndy_${response.status}`);
+  if (!response.ok) {
+    if (response.status === 422) {
+      const body = await response.json().catch(() => null) as { detail?: unknown } | null;
+      const fields = Array.isArray(body?.detail) ? body.detail.flatMap((item: { type?: unknown; loc?: unknown }) =>
+        item.type === "missing" && Array.isArray(item.loc) ? item.loc.filter((part: unknown) => typeof part === "string" && part !== "body" && /^[a-zA-Z_]{1,40}$/.test(part)) : [],
+      ).slice(0, 5).join("_") : "";
+      if (fields) throw new Error(`myndy_422_missing_${fields}`);
+    }
+    throw new Error(`myndy_${response.status}`);
+  }
 }
 
 export function safeMyndyError(error: unknown) {
   const message = error instanceof Error ? error.message : "myndy_unavailable";
-  return /^myndy_(?:\d{3}|unconfigured|tenant_mismatch|unavailable)$/.test(message) ? message : "myndy_unavailable";
+  return /^myndy_(?:\d{3}|422_missing_[a-zA-Z_]{1,200}|unconfigured|tenant_mismatch|unavailable)$/.test(message) ? message : "myndy_unavailable";
 }

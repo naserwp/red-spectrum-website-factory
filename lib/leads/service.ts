@@ -47,7 +47,10 @@ export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInp
   const allowed = await store.consumeRateLimit(bucketKey, new Date(windowStart + RATE_LIMIT_WINDOW_MS), RATE_LIMIT_MAXIMUM);
   if (!allowed) return { state: "rate_limited" as const };
   const persisted = await store.persist({ customerSlug: site.slug, mode, recipient: recipient.recipient, dedupeKey: leadDedupeKey(site.slug, lead, now), receivedAt: now, lead });
-  if (persisted.duplicate) return { state: persisted.lead.notificationStatus === "accepted" ? "duplicate" as const : "notification_pending" as const, leadId: persisted.lead.leadId };
+  if (persisted.duplicate) {
+    if (persisted.lead.notificationStatus === "accepted") await syncContact(store, persisted.lead);
+    return { state: persisted.lead.notificationStatus === "accepted" ? "duplicate" as const : "notification_pending" as const, leadId: persisted.lead.leadId };
+  }
   const claimed = await store.claim(persisted.lead.leadId);
   if (!claimed) return { state: "notification_pending" as const, leadId: persisted.lead.leadId };
   try {
