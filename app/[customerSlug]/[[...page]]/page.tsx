@@ -8,6 +8,14 @@ import { customerPages, type CustomerPage } from "@/lib/customers/schema";
 import { getArticle } from "@/lib/customers/vitality-blog";
 import { headers } from "next/headers";
 import { customerDomainForHost } from "@/lib/customers/domains";
+import { UniqueManagementWebsite } from '@/components/customers/unique-management-website';
+import { umgService, validUmgRoute } from '@/lib/customers/umg-services';
+
+async function umgPreviewAllowed() {
+  const h = await headers();
+  const host = (h.get('host') || '').split(':')[0];
+  return host === 'preview.redspectrum.ai' || (process.env.NODE_ENV !== 'production' && host === 'localhost');
+}
 
 function validVitalityRoute(segments: string[] = []) {
   if (segments.length === 2) return segments[0] === "blog" && Boolean(getArticle(segments[1]));
@@ -36,6 +44,14 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   const { customerSlug, page: segments } = await params;
   const site = getCustomerSite(customerSlug);
   if (!site) return {};
+  if (customerSlug === 'unique-management-group') {
+    if (!await umgPreviewAllowed() || !validUmgRoute(segments)) return {};
+    const service = segments?.[1] ? umgService(segments[1]) : undefined;
+    const title = service ? `${service.name} | ${site.business.name}` : segments?.[0] === 'thank-you' ? `Thank you | ${site.business.name}` : segments?.[0] ? `${segments[0][0].toUpperCase() + segments[0].slice(1)} | ${site.business.name}` : site.seo.title;
+    const description = service?.overview || site.seo.description;
+    const canonical = `https://preview.redspectrum.ai/${site.slug}${segments?.length ? '/' + segments.join('/') : ''}`;
+    return { title: { absolute: title }, description, robots: { index: false, follow: false }, alternates: { canonical }, icons: { icon: site.branding.faviconPath }, openGraph: { title, description, url: canonical, type: 'website', images: [{ url: `https://preview.redspectrum.ai${site.images.hero.src}`, alt: site.images.hero.alt }] } };
+  }
   if (customerSlug === "unique-home-enterprise" && segments?.length === 1 && segments[0] === "thank-you") {
     const requestHeaders = await headers();
     const domain = customerDomainForHost(requestHeaders.get("x-forwarded-host") ?? "") ?? customerDomainForHost(requestHeaders.get("host") ?? "");
@@ -69,6 +85,10 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   const { customerSlug, page: segments } = await params;
   const site = getCustomerSite(customerSlug);
   if (!site) notFound();
+  if (customerSlug === 'unique-management-group') {
+    if (!await umgPreviewAllowed() || !validUmgRoute(segments)) notFound();
+    return <UniqueManagementWebsite site={site} route={segments}/>;
+  }
   if (customerSlug === "unique-home-enterprise" && segments?.length === 1 && segments[0] === "thank-you") return <UniqueHomeB2B site={site} page="thank-you" />;
   const page = (segments?.[0] ?? "home") as CustomerPage;
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);

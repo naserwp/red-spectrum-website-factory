@@ -1,0 +1,1 @@
+Confirm service scope and service area, walk-in/address usage and hours, privacy arrangements, testimonial authenticity/permission, optional logo typography alignment and imagery approval. No EIN supplied or published. No verified lead recipient. No launch or customer approval.

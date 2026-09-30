@@ -7,6 +7,10 @@ import type { CustomerSite } from "@/lib/customers/schema";
 const emailSchema = z.string().trim().email().max(200);
 
 const customerDelivery = {
+  "unique-management-group": {
+    liveRecipient: "info@uniquemanagementgroup.com",
+    subject: "New website inquiry — Unique Management Group LLC",
+  },
   "lc-real-estate": {
     liveRecipient: "accountexec@theredspectrum.com",
     testRecipient: "nasir@factiiv.io",
@@ -43,6 +47,8 @@ export function leadEmailEnabled(mode: LeadDeliveryMode) {
  * every other customer, so activating one new customer never changes another customer's delivery.
  */
 export function leadDeliveryAllowedForSlug(slug: string, mode: LeadDeliveryMode) {
+  // UMG's authorized branded-preview form has its own activation gate, preserving every existing tenant allowlist.
+  if (slug === 'unique-management-group' && mode === 'live') return process.env.WEBFACTORY_UMG_CONTACT_ENABLED === 'true';
   const raw = (mode === "test" ? process.env.WEBFACTORY_LEAD_TEST_ACTIVE_SLUGS : process.env.WEBFACTORY_LEAD_LIVE_ACTIVE_SLUGS)?.trim();
   if (!raw) return true;
   return raw.split(",").map((value) => value.trim()).filter(Boolean).includes(slug);

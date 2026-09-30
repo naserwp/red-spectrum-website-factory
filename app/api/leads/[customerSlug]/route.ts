@@ -1,7 +1,7 @@
 import { customerDomainForHost } from "@/lib/customers/domains";
 import { getCustomerSite } from "@/lib/customers/registry";
 import { acceptWebsiteLead } from "@/lib/leads/service";
-import { hasForbiddenDeliveryField, websiteLeadSchema, lcLeadSchema, uniqueHomeLeadSchema } from "@/lib/leads/validation";
+import { hasForbiddenDeliveryField, websiteLeadSchema, lcLeadSchema, uniqueHomeLeadSchema, umgLeadSchema } from "@/lib/leads/validation";
 
 export const runtime = "nodejs";
 
@@ -10,6 +10,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ cus
   const site = getCustomerSite(customerSlug);
   if (!site) return Response.json({ ok: false, message: "Website not found." }, { status: 404 });
   const origin = request.headers.get("origin");
+  if (customerSlug === 'unique-management-group' && (new URL(request.url).hostname !== 'preview.redspectrum.ai' || origin !== 'https://preview.redspectrum.ai')) return Response.json({ ok: false, message: 'Please submit from this website.' }, { status: 403 });
   if (origin) {
     let allowed = origin === new URL(request.url).origin;
     if (!allowed) {
@@ -26,7 +27,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ cus
   const rawValues = Object.fromEntries(formData.entries());
   if ([...formData.values()].some(value => typeof value !== "string") || [...formData.keys()].length !== Object.keys(rawValues).length) return Response.json({ ok: false, message: "Please check the required fields." }, { status: 400 });
   if (hasForbiddenDeliveryField(rawValues)) return Response.json({ ok: false, message: "Please check the required fields." }, { status: 400 });
-  const parsed = (customerSlug === "lc-real-estate" ? lcLeadSchema : customerSlug === "unique-home-enterprise" ? uniqueHomeLeadSchema : websiteLeadSchema).safeParse(rawValues);
+  const parsed = (customerSlug === 'unique-management-group' ? umgLeadSchema : customerSlug === "lc-real-estate" ? lcLeadSchema : customerSlug === "unique-home-enterprise" ? uniqueHomeLeadSchema : websiteLeadSchema).safeParse(rawValues);
   if (!parsed.success) return Response.json({ ok: false, message: "Please check the required fields." }, { status: 400 });
   const clientIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   try {

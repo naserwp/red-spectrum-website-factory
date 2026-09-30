@@ -28,6 +28,12 @@ export const lcLeadSchema = websiteLeadSchema.extend({
   propertyType: z.enum(["Exploring options", "Residential", "Commercial", "Mixed-use"]),
 }).refine(input => input.service === input.investmentInterest);
 
+export const umgLeadSchema = websiteLeadSchema.extend({
+  company: z.string().trim().max(160).optional(),
+  message: z.string().trim().min(5).max(2800),
+  service: z.enum(['Administrative Management', 'Reorganizational Consulting', 'Site Location Consulting', 'Business Management', 'General Management', 'Records Management', 'Real Estate Management', 'General Consulting Inquiry']),
+}).transform(({ company, ...lead }) => ({ ...lead, message: company ? `Company: ${company}\n\n${lead.message}` : lead.message }));
+
 export type WebsiteLeadInput = z.infer<typeof websiteLeadSchema>;
 
 const forbiddenDeliveryFields = new Set(["recipient", "sender", "from", "to", "mode", "deliverymode"]);
