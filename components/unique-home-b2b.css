@@ -134,6 +134,13 @@
 .ub-inquiry label{display:block;font-size:12px;margin:13px 0}
 .ub-inquiry input,.ub-inquiry select,.ub-inquiry textarea{display:block;width:100%;border:0;border-bottom:1px solid #807e75;background:transparent;padding:10px 0;font:inherit;resize:vertical;color:var(--ink)}
 .ub-inquiry button{min-height:46px;border:0;background:var(--dark);color:white;padding:10px 15px;opacity:.65}
+.ub-inquiry form button{opacity:1;cursor:pointer}
+.ub-inquiry form button:disabled{opacity:.65;cursor:wait}
+.ub-inquiry .ub-honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ub-inquiry .ub-consent{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.45;margin:18px 0}
+.ub-inquiry .ub-consent input{width:auto;display:inline;padding:0;border:0;margin-top:3px}
+.ub-inquiry .ub-form-status,.ub-inquiry .ub-form-error{margin:16px 0 0;font-size:14px;max-width:44ch}
+.ub-inquiry .ub-form-error{color:#7a2e2e}
 .ub-inquiry>a{font-size:12px;text-decoration:underline}
 .ub-privacy{padding-block:135px 165px;display:grid;grid-template-columns:.9fr 1.1fr;gap:10%;min-height:700px}
 .ub-privacy h1{max-width:10ch;margin:25px 0}

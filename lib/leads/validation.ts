@@ -15,6 +15,13 @@ export const websiteLeadSchema = z.object({
   propertyType: z.string().trim().max(100).optional(),
 });
 
+export const uniqueHomeInquiryAreas = ["Marketing", "Consulting", "Advertising", "Real estate-related inquiry", "General business inquiry"] as const;
+
+export const uniqueHomeLeadSchema = websiteLeadSchema.extend({
+  phone: z.string().trim().max(40).optional().transform((value) => value ?? ""),
+  service: z.enum(uniqueHomeInquiryAreas),
+});
+
 export const lcLeadSchema = websiteLeadSchema.extend({
   investmentInterest: z.enum(["Property opportunities", "Portfolio support", "General consultation", "Other / not sure"]),
   budgetRange: z.enum(["Prefer to discuss", "Under $100,000", "$100,000–$500,000", "$500,000–$1 million", "Over $1 million"]),

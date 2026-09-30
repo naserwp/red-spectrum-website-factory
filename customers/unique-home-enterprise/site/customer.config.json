@@ -196,7 +196,7 @@
     "privacy": {
       "headline": "Privacy, in clear terms.",
       "body": [
-        "The online inquiry form and chat are inactive on this preview. Nothing entered in the form is submitted. Use the phone or email links to contact the company directly.",
+        "The online inquiry form on this website sends your message to UNIQUE HOME ENTERPRISE LLC so the company can respond to this inquiry. Chat is not active. Phone and email links open your own applications.",
         "If you choose a phone or email link, your phone or email application handles that communication. Do not send payment credentials or sensitive personal information.",
         "Hosting infrastructure may process technical request information to serve and secure pages. Contact the company for final privacy arrangements before sharing sensitive information."
       ]
@@ -296,9 +296,9 @@
   },
   "form": {
     "provider": "sendgrid",
-    "mode": "disabled",
-    "recipientConfirmed": false,
-    "testPassed": false
+    "mode": "live",
+    "recipientConfirmed": true,
+    "testPassed": true
   },
   "myndy": {
     "agentName": "Unique Home Guide",

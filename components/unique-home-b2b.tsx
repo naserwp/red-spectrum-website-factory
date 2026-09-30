@@ -3,6 +3,7 @@ import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
 import type { CustomerPage, CustomerSite } from '@/lib/customers/schema';
 import { headers } from 'next/headers';
 import { customerDomainForHost } from '@/lib/customers/domains';
+import { UniqueHomeInquiryForm } from '@/components/unique-home-inquiry-form';
 import './unique-home-b2b.css';
 
 const display = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], display: 'swap', variable: '--uh-display' });
@@ -59,7 +60,7 @@ export async function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: 
       </>}
       {page === 'contact' && <>
         <section className="ub-contact-hero ub-shell"><div><p className="ub-eyebrow">03 / Contact</p><h1>Let’s discuss the <em>objective.</em></h1><p>For marketing, consulting, advertising or a real-estate-related business inquiry, reach UNIQUE HOME ENTERPRISE LLC directly.</p><div className="ub-direct">{phone}{email}</div></div>{image(11, '', true)}</section>
-        <section className="ub-contact-body ub-shell"><div><p className="ub-eyebrow">Direct contact</p><h2>Begin the <em>conversation.</em></h2><p><strong>{site.contact.person?.value}</strong><br />{site.business.name}</p><address>{site.contact.address.value}</address><p className="ub-small">Please confirm any in-person visit, business hours and service territory directly before making arrangements.</p></div><div className="ub-inquiry"><p className="ub-eyebrow">Online inquiry</p><h3>Prefer to write it down?</h3><p>Online submission is not active on this preview. Please use the direct phone or email links.</p><fieldset disabled><label>Name<input name="name" autoComplete="off" /></label><label>Email<input name="email" type="email" autoComplete="off" /></label><label>Inquiry area<select name="area" defaultValue=""><option value="">Choose an area</option><option>Marketing</option><option>Consulting</option><option>Advertising</option><option>Real estate-related inquiry</option><option>General business inquiry</option></select></label><label>Message<textarea name="message" rows={4} /></label><button type="button">Online inquiry unavailable</button></fieldset><a href={route('privacy')}>Read the privacy notice ↗</a></div></section>
+        <section className="ub-contact-body ub-shell"><div><p className="ub-eyebrow">Direct contact</p><h2>Begin the <em>conversation.</em></h2><p><strong>{site.contact.person?.value}</strong><br />{site.business.name}</p><address>{site.contact.address.value}</address><p className="ub-small">Please confirm any in-person visit, business hours and service territory directly before making arrangements.</p></div><div className="ub-inquiry"><p className="ub-eyebrow">Online inquiry</p><h3>Prefer to write it down?</h3><UniqueHomeInquiryForm active={domain?.slug === site.slug && site.form.mode !== 'disabled'} /><a href={route('privacy')}>Read the privacy notice ↗</a></div></section>
       </>}
       {page === 'privacy' && <section className="ub-privacy ub-shell"><div><p className="ub-eyebrow">04 / Privacy</p><h1>Privacy, in clear <em>terms.</em></h1><p>How this preview’s current contact options work.</p></div><article>{site.pages.privacy.body.map((text, index) => <div key={text}><span>0{index + 1}</span><p>{text}</p></div>)}</article></section>}
     </main>

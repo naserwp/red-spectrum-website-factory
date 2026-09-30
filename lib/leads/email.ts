@@ -6,8 +6,8 @@ function escapeHtml(value: string) {
 
 function renderRows(lead: StoredLead) {
   return [
-    ["Customer/site", lead.customerSlug === "lc-real-estate" ? "L&C Real Estate Investment Group" : lead.customerSlug],
-    ["Source", `${lead.customerSlug} website`],
+    ["Customer/site", lead.customerSlug === "lc-real-estate" ? "L&C Real Estate Investment Group" : lead.customerSlug === "unique-home-enterprise" ? "UNIQUE HOME ENTERPRISE LLC" : lead.customerSlug],
+    ["Source", lead.customerSlug === "unique-home-enterprise" ? "uniquehomeenterprise.com" : `${lead.customerSlug} website`],
     ["Lead ID", lead.leadId], ["Received", lead.receivedAt.toISOString()], ["Name", lead.visitorName],
     ["Email", lead.visitorEmail], ["Phone", lead.visitorPhone], ["Requested service", lead.requestedService],
     ...(lead.investmentInterest ? [["Investment interest", lead.investmentInterest]] : []),
