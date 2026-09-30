@@ -886,7 +886,7 @@
           "body": [
             "The online inquiry form on this website sends your message to UNIQUE HOME ENTERPRISE LLC so the company can respond to this inquiry. Phone and email links open your own applications.",
             "If you choose a phone or email link, your phone or email application handles that communication. Do not send payment credentials or sensitive personal information.",
-            "The online inquiry form is active. The AI chat assistant is currently unavailable. Phone and email links open your own applications. Do not send payment credentials or sensitive personal information.",
+            "The Myndy chat widget is loaded on this website. Loading it connects your browser to Myndy; messages or voice interactions you choose to initiate may be processed by Myndy. Chat is optional and does not confirm service scope. Do not share sensitive information.",
             "Hosting infrastructure and the widget provider may process technical request information needed to serve their services. Contact the company for final privacy arrangements before sharing sensitive information."
           ]
         }
@@ -995,9 +995,9 @@
         "avatarBrief": "A restrained abstract geometric UH framework mark, not a person.",
         "knowledgeContextPath": "customers/unique-home-enterprise/myndy/agent-context.md",
         "embed": {
-        "enabled": false,
-        "agentId": "",
-        "scriptUrl": ""
+        "enabled": true,
+        "agentId": "agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw",
+        "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
         }
       }
     }

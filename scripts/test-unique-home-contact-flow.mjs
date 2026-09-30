@@ -12,8 +12,8 @@ const leads = readFileSync("lib/leads/config.ts", "utf8");
 
 assert.equal(config.contact.email.value, "contact@uniquehomeenterprise.com");
 assert.equal(site.contact.email.value, "contact@uniquehomeenterprise.com");
-assert.equal(config.myndy.embed.enabled, false);
-assert.equal(config.myndy.embed.agentId, "");
+assert.equal(config.myndy.embed.enabled, true);
+assert.equal(config.myndy.embed.agentId, "agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw");
 assert.equal(config.form.mode, "live");
 for (const source of [JSON.stringify(config), JSON.stringify(site), renderer, form, route]) {
   assert.equal(source.includes("niha_aminul@hotmail.com"), false);
@@ -26,6 +26,6 @@ assert.match(form, /!response\.ok \|\| body\.ok !== true/);
 assert.match(proxy, /'\/thank-you'/);
 assert.match(route, /robots: \{ index: false, follow: false \}/);
 assert.match(leads, /liveRecipient: "contact@uniquehomeenterprise\.com"/);
-assert.doesNotMatch(renderer, /myndy-convai-widget\.es\.js/);
+assert.match(renderer, /myndyActive && <UniqueHomeMyndy/);
 
-console.log("PASS: UNIQUE HOME public business email, thank-you redirect, noindex route, held chat widget, and unchanged lead recipient.");
+console.log("PASS: UNIQUE HOME public business email, thank-you redirect, noindex route, and unchanged lead recipient.");

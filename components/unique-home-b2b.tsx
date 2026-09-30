@@ -4,6 +4,7 @@ import type { CustomerPage, CustomerSite } from '@/lib/customers/schema';
 import { headers } from 'next/headers';
 import { customerDomainForHost } from '@/lib/customers/domains';
 import { UniqueHomeInquiryForm } from '@/components/unique-home-inquiry-form';
+import { UniqueHomeMyndy } from '@/components/unique-home-myndy';
 import './unique-home-b2b.css';
 
 const display = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], display: 'swap', variable: '--uh-display' });
@@ -35,7 +36,8 @@ export async function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: 
   const nav = (label: string) => <nav aria-label={label}>{pages.map(item => <a key={item.key} href={route(item.key)} aria-current={page === item.key ? 'page' : undefined}>{item.label}</a>)}</nav>;
   const phone = <a href={`tel:${site.contact.phone.value.replace(/[^\d+]/g, '')}`}>{site.contact.phone.value}</a>;
   const email = <a href={`mailto:${site.contact.email.value}`}>{site.contact.email.value}</a>;
-  return <div className={`unique-home-v3 unique-home-b2b ${display.variable} ${body.variable}`}>
+  const myndyActive = site.slug === "unique-home-enterprise" && site.myndy.embed.enabled && site.myndy.embed.agentId === "agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw" && site.myndy.embed.scriptUrl === "https://widget.myndy.ai/myndy-convai-widget.es.js" && domain?.slug === site.slug;
+  return <div className={`unique-home-v3 unique-home-b2b ${display.variable} ${body.variable}${myndyActive ? " has-myndy" : ""}`}>
     <a className="ub-skip" href="#main">Skip to content</a>
     <header className="ub-header"><a className="ub-brand" href={route('home')} aria-label={`${site.business.name} home`}><Image src={site.branding.logoPath} alt={site.business.name} width={286} height={68} priority /></a>{nav('Main navigation')}<div className="ub-header-end">{button('Start a conversation', route('contact'), true)}<details className="ub-menu"><summary>Menu <span aria-hidden="true">☰</span></summary>{nav('Mobile navigation')}</details></div></header>
     <main id="main">
@@ -68,5 +70,6 @@ export async function UniqueHomeB2B({ site, page }: { site: CustomerSite; page: 
        {page === 'thank-you' && <section className="ub-privacy ub-shell"><div><p className="ub-eyebrow">Inquiry received</p><h1>Thank you. Your inquiry has been <em>received.</em></h1><p>We&apos;ve received your message and the team can review your inquiry.</p><div className="ub-actions"><a className="ub-button ub-button-dark" href={route('home')}>Back to Home</a><a className="ub-text-link" href={route('contact')}>Contact</a></div></div></section>}
     </main>
     <footer className="ub-footer"><div className="ub-footer-main ub-shell"><div><Image src={`/customers/${site.slug}/logo-dark.svg`} alt={site.business.name} width={286} height={68} /><p>Marketing · Consulting · Advertising</p></div><div><p className="ub-eyebrow">A direct conversation</p><h2>What’s your next <em>move?</em></h2>{button('Get in touch', route('contact'))}</div></div><div className="ub-footer-bottom ub-shell"><span>© 2026 {site.business.name}</span><nav aria-label="Footer navigation">{[...pages, { key: 'privacy' as CustomerPage, label: 'Privacy' }].map(item => <a key={item.key} href={route(item.key)}>{item.label}</a>)}</nav><a href="https://www.theredspectrum.com/">Website designed by Red Spectrum</a></div></footer>
+    {myndyActive && <UniqueHomeMyndy agentId={site.myndy.embed.agentId} />}
    </div>;
 }

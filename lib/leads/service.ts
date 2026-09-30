@@ -6,6 +6,24 @@ import { createLeadStore } from "./store";
 import { getCustomerSite } from "@/lib/customers/registry";
 import { hashValue, leadDedupeKey, type WebsiteLeadInput } from "./validation";
 import type { CustomerSite } from "@/lib/customers/schema";
+import { myndyContactSyncConfigured, safeMyndyError, syncUniqueHomeContact } from "./myndy-contacts";
+import type { LeadStore, StoredLead } from "./store";
+
+async function syncContact(store: LeadStore, lead: StoredLead) {
+  if (lead.deliveryMode !== "live" || !myndyContactSyncConfigured(lead.customerSlug)) return;
+  try {
+    if (!await store.claimMyndy(lead.leadId)) return;
+    try {
+      await syncUniqueHomeContact(lead);
+      await store.finishMyndy(lead.leadId);
+    } catch (error) {
+      // Never automatically replay an ambiguous provider result and risk duplicate contacts.
+      await store.finishMyndy(lead.leadId, safeMyndyError(error));
+    }
+  } catch {
+    console.error("unique_home_myndy_status_unavailable");
+  }
+}
 
 const RATE_LIMIT_MAXIMUM = 8;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
@@ -35,6 +53,7 @@ export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInp
   try {
     const messageId = await sendSendGridNotification(config, { recipient: claimed.recipientEmail, subject: recipient.subject, lead: claimed });
     await store.markAccepted(claimed.leadId, messageId);
+    await syncContact(store, claimed);
     return { state: "accepted" as const, leadId: claimed.leadId };
   } catch (error) {
     await store.markFailed(claimed.leadId, claimed.attemptCount, errorCode(error));
@@ -63,6 +82,7 @@ export async function retryPendingLeadNotifications(limit = 10) {
     try {
       const messageId = await sendSendGridNotification(config, { recipient: lead.recipientEmail, subject: delivery.subject, lead });
       await store.markAccepted(lead.leadId, messageId); accepted++;
+      await syncContact(store, lead);
     } catch (error) {
       await store.markFailed(lead.leadId, lead.attemptCount, errorCode(error)); failed++;
     }

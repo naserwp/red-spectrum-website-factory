@@ -46,9 +46,12 @@ try{
   await admin.query('CREATE SCHEMA '+schema);created=true;
   await admin.query('CREATE TABLE '+schema+'.website_leads (LIKE public.website_leads INCLUDING ALL)');
   await admin.query('CREATE TABLE '+schema+'.website_lead_rate_limits (LIKE public.website_lead_rate_limits INCLUDING ALL)');
+  await pool.query(readFileSync('db/migrations/0010_lead_myndy_sync.sql','utf8'));
   class ScopedPool{query(...args){return pool.query(...args);}}
   const storeModule=load('lib/leads/store.ts',{pg:{Pool:ScopedPool}});
-  const service=load('lib/leads/service.ts',{'./config':config,'./email':email,'./store':storeModule,'./validation':validation,'@/lib/customers/registry':registry});
+  const myndy=load('lib/leads/myndy-contacts.ts');
+  process.env.MYNDY_API_KEY_UNIQUE_HOME='synthetic-test-key';
+  const service=load('lib/leads/service.ts',{'./myndy-contacts':myndy,'./config':config,'./email':email,'./store':storeModule,'./validation':validation,'@/lib/customers/registry':registry});
   const route=load('app/api/leads/[customerSlug]/route.ts',{'@/lib/customers/registry':registry,'@/lib/leads/service':service,'@/lib/leads/validation':validation,'@/lib/customers/domains':load('lib/customers/domains.ts')});
   const base={name:'Synthetic Unique Home QA',email:'synthetic@example.invalid',service:'Consulting',message:'Synthetic <script>safe</script> inquiry. Do not deliver.',consent:'on',botcheck:''};
   async function submit(extra={},slug='unique-home-enterprise',ip=randomUUID(),origin='https://uniquehomeenterprise.com'){
@@ -63,7 +66,17 @@ try{
   assert.equal((await submit({},'unique-home-enterprise',randomUUID(),'https://attacker.example')).status,403);
   process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED='true';
   let providerStatus=202;
+  let myndyStatus=200,myndyCount=0;
   globalThis.fetch=async(url,options)=>{
+    if(url==='https://hello.myndy.ai/api/webhooks/contacts'){
+      myndyCount++;
+      assert.equal(options.headers['X-API-Key'],'synthetic-test-key');
+      const payload=JSON.parse(options.body);
+      assert.deepEqual(payload.tags,['website','unique-home-enterprise']);
+      assert.equal(payload.email,base.email);
+      assert.equal(payload.agent_id,undefined);
+      return new Response(null,{status:myndyStatus});
+    }
     assert.equal(url,'https://api.sendgrid.com/v3/mail/send');
     lastPayload=JSON.parse(options.body);sendCount++;
     assert.equal(lastPayload.personalizations.length,1);
@@ -82,6 +95,20 @@ try{
   assert.equal(persisted.requested_service,'Consulting');
   assert.ok(lastPayload.content[1].value.includes('&lt;script&gt;'));
   assert.equal((await submit()).body.duplicate,true);assert.equal(sendCount,1);
+  assert.equal(myndyCount,1);assert.equal(persisted.myndy_sync_status,'accepted');
+  myndyStatus=500;
+  const syncFailure=await submit({message:'Synthetic Myndy failure preserves email and lead.'});
+  assert.equal(syncFailure.status,200);
+  const syncRow=(await pool.query('SELECT * FROM website_leads WHERE lead_id=$1',[syncFailure.body.leadId])).rows[0];
+  assert.equal(syncRow.notification_status,'accepted');assert.equal(syncRow.myndy_sync_status,'failed');
+  assert.equal(syncRow.myndy_last_error,'myndy_500');
+  const countBefore=myndyCount;
+  await submit({message:'Synthetic Myndy failure preserves email and lead.'});
+  assert.equal(myndyCount,countBefore);
+  delete process.env.MYNDY_API_KEY_UNIQUE_HOME;
+  assert.equal((await submit({message:'Synthetic missing key preserves email.'})).status,200);
+  assert.equal(myndyCount,countBefore);
+  process.env.MYNDY_API_KEY_UNIQUE_HOME='synthetic-test-key';myndyStatus=200;
   providerStatus=500;
   const failed=await submit({message:'Synthetic retry test, no email will be sent.'});
   assert.equal(failed.status,503);assert.equal(failed.body.ok,false);assert.equal(failed.body.saved,true);

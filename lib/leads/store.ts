@@ -109,6 +109,15 @@ export class LeadStore {
     return result.rows[0] ? toLead(result.rows[0]) : null;
   }
 
+  async claimMyndy(leadId: string) {
+    const result = await this.pool.query(`UPDATE website_leads SET myndy_sync_status = 'sending', myndy_sync_attempts = myndy_sync_attempts + 1 WHERE lead_id = $1 AND customer_slug = 'unique-home-enterprise' AND delivery_mode = 'live' AND notification_status = 'accepted' AND myndy_sync_status IS NULL RETURNING lead_id`, [leadId]);
+    return result.rows.length === 1;
+  }
+
+  async finishMyndy(leadId: string, error?: string) {
+    await this.pool.query(`UPDATE website_leads SET myndy_sync_status = $2, myndy_last_error = $3, myndy_synced_at = CASE WHEN $2 = 'accepted' THEN NOW() ELSE NULL END WHERE lead_id = $1 AND customer_slug = 'unique-home-enterprise'`, [leadId, error ? 'failed' : 'accepted', error ?? null]);
+  }
+
   async markFailed(leadId: string, attemptCount: number, errorCode: string) {
     const retryAt = attemptCount < maxAttempts ? new Date(Date.now() + Math.pow(2, attemptCount) * 60_000) : null;
     await this.pool.query(`UPDATE website_leads SET notification_status = 'failed', failed_at = NOW(), next_retry_at = $2, last_error_code = $3 WHERE lead_id = $1`, [leadId, retryAt, errorCode]);

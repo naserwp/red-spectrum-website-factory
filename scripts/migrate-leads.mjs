@@ -8,7 +8,7 @@ const client = new Client({ connectionString: databaseUrl, ssl: process.env.NODE
 try {
   await client.connect();
   await client.query("BEGIN");
-  for (const file of ["0001_website_leads.sql", "0007_lead_investment_details.sql"]) {
+  for (const file of ["0001_website_leads.sql", "0007_lead_investment_details.sql", "0010_lead_myndy_sync.sql"]) {
     await client.query(await readFile(new URL("../db/migrations/" + file, import.meta.url), "utf8"));
   }
   await client.query("COMMIT");

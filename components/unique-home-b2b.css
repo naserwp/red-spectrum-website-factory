@@ -1,4 +1,6 @@
 .unique-home-b2b{--ink:#252723;--paper:#f6f4ed;--stone:#e9e6dc;--brass:#a38a60;--dark:#202421;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--uh-body),Arial,sans-serif;overflow:clip}
+.unique-home-b2b.has-myndy{padding-bottom:112px}
+.ub-myndy{position:fixed;right:16px;bottom:16px;z-index:45;max-width:calc(100vw - 32px)}
 
 .unique-home-b2b *{box-sizing:border-box}
 .unique-home-b2b img{display:block;max-width:100%}
