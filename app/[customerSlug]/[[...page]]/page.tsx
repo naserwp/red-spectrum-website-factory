@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CustomerWebsite } from "@/components/customer-website";
+import { UniqueHomeB2B } from "@/components/unique-home-b2b";
 import { getCustomerSite, getCustomerSites } from "@/lib/customers/registry";
 import { customerPages, type CustomerPage } from "@/lib/customers/schema";
 import { getArticle } from "@/lib/customers/vitality-blog";
@@ -27,6 +28,7 @@ export function generateStaticParams() {
     { customerSlug: "360-vitality-fitness", page: ["21-day-fitness-challenge"] },
     { customerSlug: "360-vitality-fitness", page: ["terms-and-conditions"] },
     { customerSlug: "360-vitality-fitness", page: ["health-and-fitness-disclaimer"] },
+    { customerSlug: "unique-home-enterprise", page: ["thank-you"] },
   ]);
 }
 
@@ -34,6 +36,16 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   const { customerSlug, page: segments } = await params;
   const site = getCustomerSite(customerSlug);
   if (!site) return {};
+  if (customerSlug === "unique-home-enterprise" && segments?.length === 1 && segments[0] === "thank-you") {
+    const requestHeaders = await headers();
+    const domain = customerDomainForHost(requestHeaders.get("x-forwarded-host") ?? "") ?? customerDomainForHost(requestHeaders.get("host") ?? "");
+    const production = domain?.slug === site.slug;
+    return {
+      title: { absolute: `Thank you | ${site.business.name}` },
+      robots: { index: false, follow: false },
+      alternates: { canonical: production ? `https://${domain.canonicalHost}/thank-you` : `https://preview.redspectrum.ai/${site.slug}/thank-you` },
+    };
+  }
   const page = (segments?.[0] ?? "home") as CustomerPage;
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
   const requestHeaders = await headers();
@@ -57,6 +69,7 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   const { customerSlug, page: segments } = await params;
   const site = getCustomerSite(customerSlug);
   if (!site) notFound();
+  if (customerSlug === "unique-home-enterprise" && segments?.length === 1 && segments[0] === "thank-you") return <UniqueHomeB2B site={site} page="thank-you" />;
   const page = (segments?.[0] ?? "home") as CustomerPage;
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
   if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) notFound();

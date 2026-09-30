@@ -11,7 +11,7 @@ const areas = [
 ] as const;
 
 export function UniqueHomeInquiryForm({ active }: { active: boolean }) {
-  const [state, setState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [state, setState] = useState<"idle" | "sending" | "error">("idle");
   const [message, setMessage] = useState("");
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -28,9 +28,7 @@ export function UniqueHomeInquiryForm({ active }: { active: boolean }) {
         setMessage(typeof body.message === "string" && response.status !== 503 && response.status !== 500 ? body.message : "We couldn't submit your inquiry right now. Please try again or contact us directly.");
         return;
       }
-      form.reset();
-      setState("success");
-      setMessage("Thank you. Your inquiry has been received.");
+      window.location.assign("/thank-you");
     } catch {
       setState("error");
       setMessage("We couldn't submit your inquiry right now. Please try again or contact us directly.");
@@ -63,7 +61,6 @@ export function UniqueHomeInquiryForm({ active }: { active: boolean }) {
     <label>Message<textarea name="message" rows={4} required minLength={5} maxLength={3000} /></label>
     <label className="ub-consent"><input name="consent" type="checkbox" value="on" required /><span>I agree to be contacted regarding this inquiry.</span></label>
     <button type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : "Send inquiry"}</button>
-    {state === "success" && <p className="ub-form-status" role="status">{message}</p>}
     {state === "error" && <p className="ub-form-error" role="alert">{message}</p>}
   </form>;
 }

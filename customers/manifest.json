@@ -820,9 +820,9 @@
           "source": "Customer-provided; final confirmation pending"
         },
         "email": {
-          "value": "niha_aminul@hotmail.com",
-          "status": "draft",
-          "source": "Customer-provided; final confirmation pending"
+          "value": "contact@uniquehomeenterprise.com",
+          "status": "verified",
+          "source": "Customer/admin-confirmed business email"
         },
         "address": {
           "value": "20397 Rte 19\nSte 228\nCranberry Twp, PA 16066",
