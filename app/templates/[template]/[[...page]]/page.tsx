@@ -1,72 +1,33 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import { TemplateSite } from "@/components/template-site";
-import { templates, type TemplateId } from "@/lib/factory/templates";
+import { designCatalog } from "@/components/webfactory/v2/catalog";
+import { V2Template } from "@/components/webfactory/v2/previews/template";
+import type { TemplateId } from "@/lib/factory/templates";
 
-const pages = ["home", "services", "about", "contact", "privacy"] as const;
-type PageName = (typeof pages)[number];
+const sections = ["home", "services", "about", "work", "contact"] as const;
+type Section = (typeof sections)[number];
 
 export function generateStaticParams() {
-  return templates.flatMap((template) => [
-    { template: template.id, page: undefined },
-    ...pages.slice(1).map((page) => ({ template: template.id, page: [page] })),
+  return designCatalog.flatMap((design) => [
+    { template: design.template, page: undefined },
+    ...sections.slice(1).map((page) => ({ template: design.template, page: [page] })),
+    ...(["forge", "ledger", "stillwater"].includes(design.template) ? [{ template: design.template, page: ["privacy"] }] : []),
   ]);
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ template: string; page?: string[] }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ template: string; page?: string[] }> }): Promise<Metadata> {
   const { template, page } = await params;
-  const item = templates.find((entry) => entry.id === template);
-  if (!item) return {};
-  const label = page?.[0] ?? "home";
-  return {
-    title: `${item.name} — ${label[0].toUpperCase()}${label.slice(1)} template`,
-    description: item.summary,
-    icons: {
-      icon: `/brand/${item.id}/favicon.svg`,
-      shortcut: `/brand/${item.id}/favicon.svg`,
-    },
-    openGraph: {
-      title: `${item.name} website template`,
-      description: item.summary,
-      type: "website",
-    },
-    twitter: {
-      card: "summary",
-      title: `${item.name} website template`,
-      description: item.summary,
-    },
-  };
+  const design = designCatalog.find((item) => item.template === template);
+  return design ? { title: `${design.name} — ${page?.[0] ?? "home"} example`, description: `Sample ${design.sector.toLowerCase()} website direction. ${design.description}`, robots: { index: false, follow: false } } : {};
 }
 
-export default async function TemplatePage({
-  params,
-}: {
-  params: Promise<{ template: string; page?: string[] }>;
-}) {
-  const { template, page: segments } = await params;
-  if (!templates.some((item) => item.id === template)) notFound();
-  const page = (segments?.[0] ?? "home") as PageName;
-  if (!pages.includes(page) || (segments?.length ?? 0) > 1) notFound();
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Draft business name",
-    url: `https://preview.redspectrum.ai/templates/${template}`,
-    description:
-      "Illustrative template content. Replace with verified customer information.",
-  };
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
-      <TemplateSite template={template as TemplateId} page={page} />
-    </>
-  );
+export default async function TemplatePage({ params }: { params: Promise<{ template: string; page?: string[] }> }) {
+  const { template, page } = await params;
+  const design = designCatalog.find((item) => item.template === template);
+  if (!design || (page?.length ?? 0) > 1) notFound();
+  const section = page?.[0] ?? "home";
+  if (section === "privacy" && ["forge", "ledger", "stillwater"].includes(template)) return <TemplateSite template={template as TemplateId} page="privacy" />;
+  if (!sections.includes(section as Section)) notFound();
+  return <V2Template design={design} section={section as Section} />;
 }
