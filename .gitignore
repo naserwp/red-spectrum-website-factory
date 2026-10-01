@@ -45,8 +45,4 @@ next-env.d.ts
 /outputs/
 /work/
 
-# Visual reference only; port selected ideas/assets, never commit the prototype wholesale.
-/Red-Spectrum-WebFactory/
-/Red-Spectrum-WebFactory.zip
-
 .vercel

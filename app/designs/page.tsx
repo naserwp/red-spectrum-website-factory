@@ -23,7 +23,7 @@ export default async function DesignsPage() {
     { title: "Template designs", description: "Explore a starting direction. Your business gets its own content, branding and layout.", items: designs.slice(0, 3) },
   ];
   return <WebFactoryShell>
-    <div className="wf-wrap wf-intro wf-designs-intro"><p className="wf-eyebrow">RS WebFactory designs</p><h1>A distinct direction for every business.</h1><p className="wf-lead">Browse our real design starting points and customer previews. Find a direction you like, then tell us what makes your business different.</p><div className="wf-buttons"><Link className="wf-button" href="/request">Request your website ↗</Link></div></div>
+    <div className="wf-wrap wf-intro"><p className="wf-eyebrow">RS WebFactory designs</p><h1>A distinct direction for every business.</h1><p className="wf-lead">Browse our design starting points and customer previews. Find a direction you like, then tell us what makes your business different.</p><div className="wf-buttons"><Link className="wf-button" href="/request">Request your website ↗</Link></div></div>
     {groups.map(group => <section className="wf-wrap wf-section" key={group.title} style={{ paddingTop: 20 }}>
       <div className="wf-section-heading"><div><h2>{group.title}</h2><p className="wf-lead">{group.description}</p></div></div>
       <div className="wf-designs">{group.items.map(design => <article key={design.name} className="wf-design">
