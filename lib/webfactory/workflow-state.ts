@@ -21,9 +21,10 @@ export function isCustomerFacingPreview(slug: string, value: string) {
   }
 }
 
-export function workflowSummary(input: { stage: string; websiteVerified: boolean; qaPassed: boolean; slug?: string | null; productionPublished?: boolean; domainConnected?: boolean }) {
+export function workflowSummary(input: { stage: string; websiteVerified: boolean; qaPassed: boolean; slug?: string | null; hasBrief?: boolean; productionPublished?: boolean; domainConnected?: boolean }) {
   const previewReady = input.websiteVerified && ["preview_ready", "customer_approved"].includes(input.stage);
   const approved = input.websiteVerified && input.stage === "customer_approved";
+  const buildApproved = ["build_approved", "preview_ready", "customer_approved"].includes(input.stage);
   return {
     websiteBuilt: input.websiteVerified ? "Verified" : "Not verified",
     qa: input.qaPassed ? "Passed" : "Not recorded",
@@ -33,7 +34,7 @@ export function workflowSummary(input: { stage: string; websiteVerified: boolean
     customerApproved: approved ? "Complete" : previewReady ? "Not approved" : "Upcoming",
     production: input.productionPublished ? "Published" : "Not published",
     domain: input.domainConnected ? "Connected" : "Not connected",
-    next: approved ? "Complete" : previewReady ? "Customer Approved" : input.websiteVerified ? "Preview Ready" : "Website Built",
+    next: input.hasBrief === false ? "AI Brief Generated" : !input.slug ? "Slug Confirmed" : !buildApproved ? "Build Approved" : approved ? "Complete" : previewReady ? "Customer Approved" : input.websiteVerified ? "Preview Ready" : "Website Built",
   };
 }
 
