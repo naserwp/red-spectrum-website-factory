@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { isAdmin, listRequests, type ProjectRequest } from "@/lib/webfactory/server";
+import { isAdmin } from "@/lib/webfactory/server";
+import { getAdminProjects } from "@/lib/webfactory/project-data";
+import type { AdminProjectStatus } from "@/lib/webfactory/project-status";
 import { designCatalog } from "../catalog";
 import { AdminShell, V2Intro } from "../shell";
 
@@ -17,16 +19,16 @@ const content: Record<Section, { title: string; description: string }> = {
   integration: { title: "Integrations", description: "Connection states are described without exposing credentials or private configuration." },
 };
 
-function RequestList({ requests, mode }: { requests: ProjectRequest[]; mode: Section }) {
-  return requests.length ? <div className="v2-list">{requests.map((request) => <Link href={`/admin/requests/${request.id}`} key={request.id}><div><strong>{request.business}</strong><div><small>{request.industry} · Received {new Date(request.created_at).toLocaleDateString("en-US", { timeZone: "UTC" })}</small></div></div><span className="v2-badge">{request.status.replaceAll("_", " ")}</span><span aria-hidden>↗</span></Link>)}</div> : <div className="v2-empty">{mode === "delivery" ? "No delivery packages are available through the current backend." : "No customer requests have been received yet."}</div>;
+function RequestList({ requests, mode }: { requests: AdminProjectStatus[]; mode: Section }) {
+  return requests.length ? <div className="v2-list">{requests.map((request) => <Link href={`/admin/requests/${request.id}`} key={request.id}><div><strong>{request.title}</strong><div><small>{request.customerSlug || "Slug pending"} · Updated {new Date(request.updatedAt).toLocaleDateString("en-US", { timeZone: "UTC" })}</small></div></div><span className="v2-badge">{request.stageLabel}<br/><small>Build {request.buildStatus} · Approval {request.approval}</small></span><span aria-hidden>↗</span></Link>)}</div> : <div className="v2-empty">{mode === "delivery" ? "No delivery packages are available through the current backend." : "No customer requests have been received yet."}</div>;
 }
 
 export async function AdminSection({ section }: { section: Section }) {
   if (!await isAdmin()) redirect("/admin/login");
   const needsRequests = ["requests", "production", "activity"].includes(section);
-  let requests: ProjectRequest[] = [];
+  let requests: AdminProjectStatus[] = [];
   let available = true;
-  if (needsRequests) try { requests = await listRequests(); } catch { available = false; }
+  if (needsRequests) try { requests = await getAdminProjects(); } catch { available = false; }
   const copy = content[section];
   return <AdminShell><V2Intro eyebrow="Private admin workspace" title={copy.title} description={copy.description} /><section className="v2-container v2-section" style={{ paddingTop: 0 }}>
     {needsRequests && (available ? <RequestList requests={requests} mode={section} /> : <div className="v2-notice" role="status">Request storage is unavailable. No request data was loaded.</div>)}
@@ -34,6 +36,6 @@ export async function AdminSection({ section }: { section: Section }) {
     {section === "delivery" && <div className="v2-two"><div className="v2-card"><h2>Handoff is pending</h2><p className="v2-muted">A verified private delivery manifest is not available in this backend. No sample download is presented as a customer package.</p><Link className="v2-button v2-quiet" href="/admin/requests">Review requests ↗</Link></div><div className="v2-card"><h3>Release gates</h3><p className="v2-muted">Preview, QA, approval, package review and separate deployment authorization are required.</p></div></div>}
     {section === "settings" && <div className="v2-card"><h2>Server-controlled settings</h2><p className="v2-muted">This staging screen is read-only. Changing operational controls requires a reviewed server-side change.</p><ul><li>Payments and recovery execution are disabled.</li><li>Publishing requires separate authorization.</li><li>Secrets are never displayed in this interface.</li></ul></div>}
     {section === "users" && <div className="v2-card"><h2>Team management unavailable</h2><p className="v2-muted">The current backend provides an administrator session but no staff directory or role-management API. User invitations and role changes are disabled.</p></div>}
-    {section === "integration" && <div className="v2-card"><h2>Connected workflows</h2><ul><li>Request storage and admin authentication: existing WebFactory backend.</li><li>AI chat and build drafts: existing protected WebFactory endpoints.</li><li>Customer account and delivery storage: unavailable.</li><li>Payment, recovery and customer messaging: disabled.</li></ul><p className="v2-muted">Open the relevant protected workspace to confirm live availability. This screen does not reveal environment values.</p></div>}
+    {section === "integration" && <div className="v2-card"><h2>Connected workflows</h2><ul><li>Request storage and admin authentication: existing WebFactory backend.</li><li>AI chat and build drafts: existing protected WebFactory endpoints.</li><li>Browser-bound request access available; permanent customer accounts and delivery storage unavailable.</li><li>Payment, recovery and customer messaging: disabled. Customer Intelligence adapter remains inactive.</li></ul><p className="v2-muted">Open the relevant protected workspace to confirm live availability. This screen does not reveal environment values.</p></div>}
   </section></AdminShell>;
 }
