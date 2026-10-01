@@ -6,6 +6,7 @@ import { CustomerMyndy } from "@/components/customers/customer-myndy";
 import { VitalityWebsite } from "@/components/customers/vitality-website";
 import { Jm0616StudioWebsite } from "@/components/customers/jm0616studio-website";
 import { LcWebsite } from "@/components/customers/lc-website";
+import { RealSpielWebsite } from "@/components/customers/real-spiel-website";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ArrowRight, Mail, Menu, Phone } from "lucide-react";
@@ -77,6 +78,7 @@ function InnerPage({ site, page }: { site: CustomerSite; page: Exclude<CustomerP
 }
 
 export function CustomerWebsite({ site, page, route = [] }: { site: CustomerSite; page: CustomerPage; route?: string[] }) {
+  if (site.slug === "real-spiel-cleaning-company") return <RealSpielWebsite site={site} page={page} />;
   if(site.design?.version==='2.0'||site.design?.version==='3.0')return <GeneratedSite site={site} page={page}/>;
   if (site.slug === "lc-real-estate") return <LcWebsite site={site} page={page} />;
   if (site.slug === "jm0616studio") return <Jm0616StudioWebsite site={site} page={page} />;

@@ -989,9 +989,9 @@
         "avatarBrief": "A restrained abstract geometric UH framework mark, not a person.",
         "knowledgeContextPath": "customers/unique-home-enterprise/myndy/agent-context.md",
         "embed": {
-        "enabled": true,
-        "agentId": "agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw",
-        "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
+          "enabled": true,
+          "agentId": "agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw",
+          "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
         }
       }
     },
@@ -1313,6 +1313,137 @@
         "greeting": "Please contact the business directly.",
         "avatarBrief": "Existing brand identity only.",
         "knowledgeContextPath": "customers/unique-management-group/myndy/agent-context.md",
+        "embed": {
+          "enabled": false,
+          "agentId": "",
+          "scriptUrl": ""
+        }
+      }
+    },
+    {
+      "schemaVersion": "1.0",
+      "slug": "real-spiel-cleaning-company",
+      "status": "draft",
+      "templateId": "ledger",
+      "business": {
+        "name": "REAL SPIEL CLEANING COMPANY",
+        "industry": "Cleaning Services",
+        "tagline": "A clearer start to a cleaner space.",
+        "summary": "A draft website concept for a customer-submitted cleaning business. Cleaning, deep cleaning, and sanitation were named in the request; actual services and availability require customer confirmation."
+      },
+      "contact": {
+        "phone": {
+          "value": "",
+          "status": "missing"
+        },
+        "email": {
+          "value": "",
+          "status": "missing"
+        },
+        "address": {
+          "value": "",
+          "status": "missing"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Everyday cleaning",
+          "description": "Share the spaces, surfaces, and priorities you would like addressed. The available scope and schedule must be confirmed directly.",
+          "status": "draft",
+          "source": "Customer request: cleaning services; details pending confirmation"
+        },
+        {
+          "name": "Deep cleaning",
+          "description": "Describe the areas that need additional attention, along with access, timing, and any material considerations. Final inclusions are confirmed after review.",
+          "status": "draft",
+          "source": "Customer request: deep cleaning; details pending confirmation"
+        },
+        {
+          "name": "Sanitation questions",
+          "description": "Explain the sanitation outcome you are seeking so the business can clarify its methods, products, and suitability before any work is agreed.",
+          "status": "draft",
+          "source": "Customer request: sanitation services; methods and claims pending confirmation"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "CLEANING SERVICE WEBSITE CONCEPT",
+          "headline": "Make room for a fresher start.",
+          "intro": "Tell us what needs attention, what matters most, and when you would like to discuss it. A clear request is the first step toward a cleaning plan that fits the space.",
+          "ctaLabel": "Explore your next step"
+        },
+        "services": {
+          "headline": "Start with the space. Shape the scope together.",
+          "intro": "The request identifies cleaning, deep cleaning, and sanitation as areas of interest. The service descriptions below are preview directions pending customer confirmation."
+        },
+        "about": {
+          "headline": "A name for a new standard of clarity.",
+          "paragraphs": [
+            "REAL SPIEL CLEANING COMPANY submitted a request for a cleaning-service website. This preview presents a proposed direction for explaining the business and starting useful customer conversations.",
+            "The service list, methods, team, service area, scheduling, and business background must be reviewed by the customer before publication."
+          ]
+        },
+        "contact": {
+          "headline": "Tell us what your space needs.",
+          "intro": "The contact experience is prepared for the existing WebFactory lead service. Inquiry delivery is disabled in this staging preview until a recipient and safe test are approved."
+        },
+        "privacy": {
+          "headline": "Your information deserves a clear path.",
+          "body": [
+            "DRAFT NOTICE — business and legal review required before publication.",
+            "This staging preview does not accept or send inquiries. When a verified recipient and safe configuration are approved, the contact form will use the RS WebFactory lead endpoint for validation, rate limiting, duplicate handling, and storage.",
+            "No payment, customer lookup, automatic email, or AI assistant is enabled for this customer preview.",
+            "Hosting may process technical information required to serve and protect the website. The business must confirm its final data controller details, retention period, service providers, and privacy contact before launch."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#173D3B",
+        "secondary": "#122B2A",
+        "accent": "#D4AD72",
+        "surface": "#F6F3EC",
+        "logoPath": "/customers/real-spiel-cleaning-company/logo.svg",
+        "faviconPath": "/customers/real-spiel-cleaning-company/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/real-spiel-cleaning-company/images/living-room.webp",
+          "alt": "Illustrative generated photograph of a tidy contemporary living room; not a REAL SPIEL customer property or completed job.",
+          "width": 1672,
+          "height": 941
+        },
+        "gallery": [
+          {
+            "src": "/customers/real-spiel-cleaning-company/images/kitchen-detail.webp",
+            "alt": "Illustrative generated photograph of a clean kitchen counter with unbranded supplies; not a REAL SPIEL project.",
+            "width": 1400,
+            "height": 1050
+          }
+        ]
+      },
+      "seo": {
+        "title": "REAL SPIEL CLEANING COMPANY | Draft Preview",
+        "description": "Explore a draft cleaning-service website concept for REAL SPIEL CLEANING COMPANY. Services, contact options, and business details require approval."
+      },
+      "schema": {
+        "type": "Organization",
+        "description": "Draft cleaning-service website concept; business offerings require customer confirmation."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "disabled",
+        "recipientConfirmed": false,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "REAL SPIEL welcome guide concept",
+        "greeting": "Tell us what you would like to ask about cleaning services.",
+        "avatarBrief": "Original abstract sparkle and window-pane motif, not a person or existing trademark.",
+        "knowledgeContextPath": "customers/real-spiel-cleaning-company/myndy/agent-context.md",
         "embed": {
           "enabled": false,
           "agentId": "",

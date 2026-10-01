@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="REAL SPIEL preview mark">
+  <rect width="64" height="64" rx="15" fill="#173D3B"/>
+  <path d="M16 47V21h30M31 21v26M16 34h30" fill="none" stroke="#F6F3EC" stroke-width="3" stroke-linecap="round"/>
+  <path d="m48 9 2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#D4AD72"/>
+</svg>
