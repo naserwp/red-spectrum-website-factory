@@ -29,3 +29,20 @@
 .v2-public .wf-preview-filters button[aria-pressed=true]{background:var(--v2-red);border-color:var(--v2-red)}
 .v2-public .wf-preview-count{background:#f0ecff;color:#6652c5}
 .v2-preview-link{margin-top:24px}
+.v2-workbench header h2{margin:0;font-size:1rem;letter-spacing:normal}
+.v2-workbench header{gap:12px;flex-wrap:wrap}
+.v2-studio-workbench{margin:0;list-style:none;grid-template-columns:repeat(5,minmax(0,1fr))}
+.v2-studio-workbench li{min-width:0;background:#fff;border:1px solid var(--v2-line);border-radius:12px;padding:20px}
+.v2-studio-workbench h3{font-size:1.1rem;margin:16px 0 10px}
+.v2-studio-workbench p{font-size:.9rem;line-height:1.6;margin:0;color:var(--v2-muted)}
+.v2-studio-pipeline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px;padding:0;margin:32px 0 0;list-style:none}
+.v2-studio-pipeline li{position:relative;min-width:0}
+.v2-studio-pipeline li:not(:last-child)::after{content:"→";position:absolute;right:-21px;top:2px;color:var(--v2-red)}
+.v2-studio-pipeline b{color:var(--v2-red);font-size:1.5rem}
+.v2-studio-pipeline h3{font-size:1.1rem;margin:16px 0 10px}
+.v2-studio-pipeline p{color:var(--v2-muted);font-size:.95rem;line-height:1.6}
+.v2-studio-customers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;list-style:none;padding:0;margin:24px 0 0}
+.v2-studio-customers li{display:flex;flex-direction:column;gap:12px;padding:24px;min-width:0;border:1px solid var(--v2-line);border-radius:12px;background:#fff;overflow-wrap:anywhere}
+.v2-studio-customers span{color:var(--v2-muted);font-size:.9rem}
+@media(max-width:1050px){.v2-studio-workbench,.v2-studio-pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}.v2-studio-pipeline li:nth-child(3)::after{display:none}}
+@media(max-width:760px){.v2-studio-workbench,.v2-studio-pipeline,.v2-studio-customers{grid-template-columns:1fr}.v2-studio-pipeline{gap:40px}.v2-studio-pipeline li:not(:last-child)::after{content:"↓";display:block;right:50%;top:auto;bottom:-27px}.v2-hero>.v2-badge{max-width:100%;white-space:normal;line-height:1.6}}

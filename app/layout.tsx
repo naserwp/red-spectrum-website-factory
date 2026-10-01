@@ -3,22 +3,27 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://preview.redspectrum.ai"),
-  title: { default: "Red Spectrum WebFactory", template: "%s | Red Spectrum WebFactory" },
+  title: { default: "RS WebFactory Studio | Red Spectrum", template: "%s | Red Spectrum WebFactory" },
   description:
-    "Explore website designs, share your business brief, and review your custom website with Red Spectrum WebFactory.",
-  applicationName: "Red Spectrum WebFactory",
+    "Launch customer websites faster with RS WebFactory, an AI-assisted website studio with a clear request, preview, and approval workflow.",
+  applicationName: "RS WebFactory Studio",
   openGraph: {
     type: "website",
-    siteName: "Red Spectrum WebFactory",
-    title: "Red Spectrum WebFactory | Business Websites",
-    description: "Explore designs, share your business brief, and review a custom website preview.",
+    siteName: "RS WebFactory Studio",
+    title: "RS WebFactory Studio | Red Spectrum",
+    description: "Launch customer websites faster with a clear request, brief, preview, and approval workflow.",
     url: "https://preview.redspectrum.ai",
-    images: [{ url: "/v2/brand/red-spectrum-wordmark-v2.png", width: 2048, height: 682, alt: "Red Spectrum WebFactory" }],
+    images: [{ url: "/v2/brand/red-spectrum-wordmark-v2.png", width: 2048, height: 682, alt: "Red Spectrum WebFactory Studio" }],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "RS WebFactory Studio | Red Spectrum",
+    description: "Launch customer websites faster with a clear request, preview, and approval workflow.",
+    images: ["/v2/brand/red-spectrum-wordmark-v2.png"],
+  },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/brand/red-spectrum/favicon.png",
+    shortcut: "/brand/red-spectrum/favicon.png",
   },
   robots: { index: false, follow: false },
 };
