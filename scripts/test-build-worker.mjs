@@ -21,6 +21,10 @@ const worker=load('lib/webfactory/build-worker.ts',{'node:crypto':{randomBytes},
 const saved={secret:process.env.WEBFACTORY_BUILD_WORKER_SECRET,executor:process.env.WEBFACTORY_BUILD_EXECUTOR,token:process.env.VERCEL_TOKEN};const realFetch=globalThis.fetch;
 const req=randomUUID(),brief=randomUUID(),slug='synthetic-worker';
 async function queued(){const id=randomUUID();await wrapped.query("INSERT INTO webfactory.website_build_jobs(id,request_id,customer_slug,brief_id,approved_brief,instructions,submission_id,status,executor,created_by) VALUES($1,$2,$3,$4,'{}','Synthetic',$5,'queued','controlled-worker-v1','test')",[id,req,slug,brief,randomUUID()]);return id;}
+async function cloneReadyCandidate(templateId,{id=randomUUID(),requestId=req,customerSlug=slug,briefId:activeBrief=brief,changedFiles=['customers/manifest.json'],previewUrl,deploymentReference='dpl_synthetic',provider={name:'openai',model:'synthetic'},createdAt=new Date()}){
+ await wrapped.query("INSERT INTO webfactory.website_build_jobs(id,request_id,customer_slug,brief_id,approved_brief,instructions,instruction_version,submission_id,status,executor,created_by,changed_files,qa_result,preview_url,deployment_reference,baseline_sha,result_sha,build_branch,provider_metadata,created_at) SELECT $1,$2,$3,$4,approved_brief,instructions,instruction_version,$5,'ready_for_review',executor,created_by,$6::jsonb,qa_result,$7,$8,baseline_sha,result_sha,$9,$10::jsonb,$11 FROM webfactory.website_build_jobs WHERE id=$12",[id,requestId,customerSlug,activeBrief,randomUUID(),JSON.stringify(changedFiles),previewUrl,deploymentReference,`webfactory/build/${id}-${customerSlug}`,JSON.stringify(provider),createdAt,templateId]);
+ return id;
+}
 try{
  await db.query(`CREATE SCHEMA ${schema}`);
  for(const table of ['requests','ai_briefs','build_workflows','request_actions'])await db.query(`CREATE TABLE ${schema}.${table} (LIKE webfactory.${table} INCLUDING ALL)`);
@@ -46,11 +50,33 @@ try{
  globalThis.fetch=async url=>String(url).startsWith('https://api.vercel.com/')?Response.json({projectId:'prj_HV68RI67tT0LXTfEA1mguG6F3Ddo',target:null,readyState:'READY',url:'synthetic-preview.vercel.app',meta:{githubCommitSha:'b'.repeat(40)}}):new Response('<title>Synthetic</title><meta name="robots" content="noindex"><script type="application/ld+json">'+JSON.stringify({name:'Synthetic Worker',url:`https://preview.redspectrum.ai/${slug}`})+'</script>'+['','/services','/about','/contact','/privacy'].map(p=>`<a href="/${slug}${p}">Link</a>`).join(''));
  await assert.rejects(()=>worker.workerOperation({...complete,changedFiles:['.env.local']}));await assert.rejects(()=>worker.workerOperation({...complete,qa:{}}));
  const verifiedFetch=globalThis.fetch;globalThis.fetch=async()=>new Response('Wrong customer');await assert.rejects(()=>worker.workerOperation(complete));globalThis.fetch=verifiedFetch;
- assert.equal((await worker.workerOperation(complete)).status,'ready_for_review');
- assert.equal((await worker.getVerifiedWorkerBuild(req,slug,brief)).previewUrl,complete.previewUrl);
- assert.equal(await worker.getVerifiedWorkerBuild(req,'other',brief),null);
- assert.equal(await worker.getVerifiedWorkerBuild(req,slug,randomUUID()),null);
- assert.equal(await worker.getVerifiedWorkerPreview(req,slug,brief,'https://other.vercel.app/'+slug),null);
+  assert.equal((await worker.workerOperation(complete)).status,'ready_for_review');
+  assert.equal((await worker.getVerifiedWorkerBuild(req,slug,brief)).previewUrl,complete.previewUrl);
+  const context={requestId:req,slug,briefId:brief},baseJob=(await wrapped.query('SELECT * FROM webfactory.website_build_jobs WHERE id=$1',[s.jobId])).rows[0];
+  const newestValidId=randomUUID(),invalidFilesId=randomUUID(),invalidProviderId=randomUUID(),newestValidUrl=`https://synthetic-newest-valid.vercel.app/${slug}`;
+  await cloneReadyCandidate(s.jobId,{id:newestValidId,previewUrl:newestValidUrl,deploymentReference:'dpl_newestvalid',createdAt:new Date(Date.now()+1000)});
+  await cloneReadyCandidate(s.jobId,{id:invalidFilesId,previewUrl:`https://synthetic-invalid-files.vercel.app/${slug}`,deploymentReference:'dpl_invalidfiles',changedFiles:['.env.local'],createdAt:new Date(Date.now()+2000)});
+  await cloneReadyCandidate(s.jobId,{id:invalidProviderId,previewUrl:`https://synthetic-invalid-provider.vercel.app/${slug}`,deploymentReference:'dpl_invalidprovider',provider:{name:'untrusted-provider',model:'synthetic'},createdAt:new Date(Date.now()+3000)});
+  const newestValidJob=(await wrapped.query('SELECT * FROM webfactory.website_build_jobs WHERE id=$1',[newestValidId])).rows[0];
+  assert.ok(evidence.verifiedBuildEvidence(newestValidJob,context),'newer valid candidate fixture must satisfy verifiedBuildEvidence');
+  assert.equal((await wrapped.query("SELECT id FROM webfactory.website_build_jobs WHERE request_id=$1 AND customer_slug=$2 AND brief_id=$3 AND status='ready_for_review' ORDER BY created_at DESC LIMIT 1",[req,slug,brief])).rows[0].id,invalidProviderId,'newest candidate fixture must be invalid');
+  assert.equal(evidence.verifiedBuildEvidence({...baseJob,changed_files:['.env.local']},context),null,'invalid changed files must remain rejected');
+  assert.equal(evidence.verifiedBuildEvidence({...baseJob,provider_metadata:{name:'untrusted-provider',model:'synthetic'}},context),null,'invalid provider metadata must remain rejected');
+  assert.equal(evidence.verifiedBuildEvidence(baseJob,{...context,requestId:randomUUID()}),null,'cross-request evidence must be rejected');
+  assert.equal(evidence.verifiedBuildEvidence(baseJob,{...context,slug:'other-tenant'}),null,'cross-slug evidence must be rejected');
+  const selectedBuild=await worker.getVerifiedWorkerBuild(req,slug,brief);
+  assert.equal(selectedBuild?.jobId,newestValidId,`skip invalid newer evidence and select newest valid candidate (selected=${selectedBuild?.jobId}, invalidFiles=${invalidFilesId}, invalidProvider=${invalidProviderId}, expected=${newestValidId})`);
+  assert.equal(await worker.getVerifiedWorkerBuild(req,'other',brief),null);
+  assert.equal(await worker.getVerifiedWorkerBuild(randomUUID(),slug,brief),null);
+  assert.equal(await worker.getVerifiedWorkerBuild(req,slug,randomUUID()),null);
+  assert.equal(await worker.getVerifiedWorkerPreview(req,slug,brief,'https://other.vercel.app/'+slug),null);
+  const umgRequestId=randomUUID(),umgBriefId=randomUUID(),umgSlug='unique-management-group',umgJobId=randomUUID(),umgPreview=`https://synthetic-umg.vercel.app/${umgSlug}`;
+  await wrapped.query("INSERT INTO webfactory.requests(id,submission_id,access_hash,name,business,email,industry,details,customer_slug) VALUES($1,$2,'test','Synthetic UMG','Synthetic UMG','qa@example.invalid','Test','Test',$3)",[umgRequestId,randomUUID(),umgSlug]);
+  await wrapped.query("INSERT INTO webfactory.ai_briefs(id,request_id,status,model,brief) VALUES($1,$2,'generated','test','{}')",[umgBriefId,umgRequestId]);
+  await wrapped.query("INSERT INTO webfactory.build_workflows(request_id,active_brief_id,stage) VALUES($1,$2,'build_approved')",[umgRequestId,umgBriefId]);
+  await cloneReadyCandidate(s.jobId,{id:umgJobId,requestId:umgRequestId,customerSlug:umgSlug,briefId:umgBriefId,previewUrl:umgPreview,deploymentReference:'dpl_umgsynthetic'});
+  assert.equal((await worker.getVerifiedWorkerBuild(umgRequestId,umgSlug,umgBriefId)).previewUrl,umgPreview,'valid UMG evidence remains selectable');
+  assert.match(readFileSync('proxy.ts','utf8'),/pathname==='\/unique-management-group'/,'UMG branded route bypass remains unchanged');
  assert.equal((await wrapped.query('SELECT stage FROM webfactory.build_workflows WHERE request_id=$1',[req])).rows[0].stage,'build_approved');
  await queued();const diagnosticJob=await worker.workerOperation({action:'claim',workerId:'qa-test'}),q={jobId:diagnosticJob.job.id,lease:diagnosticJob.lease};
  for(const stage of ['planning','generating','applying_changes','validating','building'])await worker.workerOperation({action:'progress',...q,stage});
