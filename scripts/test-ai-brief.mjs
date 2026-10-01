@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { briefSchema, briefJsonSchema, codexBuildPrompt, requestSlug } from "../lib/webfactory/brief-schema.ts";
 const slug = requestSlug("Synthetic QA ../ Admin", "14682968-cf0a-4d34-a807-e17068e98f61");
 assert.match(slug,/^[a-z0-9-]+$/);
-assert.notEqual(slug,requestSlug("Synthetic QA ../ Admin","24682968-cf0a-4d34-a807-e17068e98f61"));
+assert.equal(slug,requestSlug("Synthetic QA ../ Admin","24682968-cf0a-4d34-a807-e17068e98f61"));
+assert.equal(slug,"synthetic-qa-admin"); // Availability is enforced by the transactional slug service.
 const brief = {
   customerSlug: slug, businessSummary:"Draft QA", brandDirection:"Draft", colorDirection:"Draft", logoConcept:"Draft",
   pages:["Home","Services","About","Contact","Privacy"].map(name=>({name,purpose:"Draft",sections:["Draft"]})),
@@ -20,4 +21,4 @@ assert.match(codexBuildPrompt(brief,false),/DRAFT ONLY/);
 assert.match(codexBuildPrompt(brief,true),/ADMIN APPROVED FOR BUILD/);
 assert.match(codexBuildPrompt(brief,true),/Do not deploy/);
 assert.match(codexBuildPrompt(brief,true),/untrusted business data/);
-console.log("AI brief schema, required pages, slug isolation and Codex approval safeguards PASS.");
+console.log("AI brief schema, required pages, clean slug suggestions and Codex approval safeguards PASS.");

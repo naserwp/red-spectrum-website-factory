@@ -1,0 +1,3937 @@
+{
+  "productionHead": "ca4dd4ba0dcec6ffc2235cf61d99f7ddd8b76b34",
+  "productionOriginMain": "427e2f259d56140c66c6e3880846017e4f925b27",
+  "stagingHead": "ad6053bfd03e515418d10fe9121ff206906ca251",
+  "files": [
+    {
+      "path": ".env.example",
+      "status": " M",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2044,
+      "sourceSha256": "73d7c9f5d07ea6e51af19ee7e0da77faa46c4555be5de8cdc9ac209a718cfbfa",
+      "stagingSha256": "e4b8ec83eb0d77c570105c76ae9fba50f94126f1b3188bd4a2f478f7242b311c",
+      "identicalInStaging": false
+    },
+    {
+      "path": ".gitignore",
+      "status": " M",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 756,
+      "sourceSha256": "639abf671b9153820204e5ca7d9cc79a8a8fc31e3dc48798cc85bc63cbfb2fff",
+      "stagingSha256": "bffb1f1a4c0bd02afb4e83a28e011d47e1052175fcad558f4c9960bbd3607871",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/admin/ai/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 5827,
+      "sourceSha256": "8604f6bf106768641b3a4e15700aca257799ee117538b45865a0e94d1daf9b78",
+      "stagingSha256": "61d4c2ca45b72c4aba9c063eef830642ff58522fab8c9190e03315e3b96dc44e",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/admin/login/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 1128,
+      "sourceSha256": "92801a1c86ae3a3e26711f112783fc9172438bfb5216305a0d125eacc46592f7",
+      "stagingSha256": "c455e6999b47d543d31a884cc511719a8e21010b0f13541a6b760f9c695cee1b",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/admin/requests/[id]/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 12847,
+      "sourceSha256": "5383fca4c7f93ff463f942dd6e069ce6dc8505d97fe616b5ce4b59f84c7037b7",
+      "stagingSha256": "762852f9b9cce69909ed5f4207f7c51c476dfb101325c5c23e7065fe71ddb0c4",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/api/admin/ai/chat/route.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1837,
+      "sourceSha256": "b1d84a8b19eeb9e77f699dae8fc6cdfdefc04ea1c5a4e32eea2ae0247a92c867",
+      "stagingSha256": "b1d84a8b19eeb9e77f699dae8fc6cdfdefc04ea1c5a4e32eea2ae0247a92c867",
+      "identicalInStaging": true
+    },
+    {
+      "path": "app/api/admin/requests/[id]/build/route.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2417,
+      "sourceSha256": "b8e93f335af4bdf9a93df743c24688773b870e39b533047a04d635ad6ede9646",
+      "stagingSha256": "b8e93f335af4bdf9a93df743c24688773b870e39b533047a04d635ad6ede9646",
+      "identicalInStaging": true
+    },
+    {
+      "path": "app/api/leads/[customerSlug]/route.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 3239,
+      "sourceSha256": "31fd285bf7e89ace05434819a4f41cfb8d6ca5281f73d2c8ad5fb93bb2f717a1",
+      "stagingSha256": "07c4eb2a3d8292f430355b64d23272c8e8e3aa65bfb0801072211cff8f37f85a",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/checkout/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 1090,
+      "sourceSha256": "b663e140902b4c239ea0e2882009d906ffbe60dd232deb858adc6209bcd2e3ee",
+      "stagingSha256": "9c405801553ecddda95fce02d4f375a666cf3997249ba47a2c0cbc346c59e8ae",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/designs/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2939,
+      "sourceSha256": "9bfb48d671427f4a441e0cd7ccad8992404219f9be11e082c2f1e29b8824da1e",
+      "stagingSha256": "75655bd8ef5971372277da309b4d721a4447c26348b666acd81f62092b76fa5f",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 5559,
+      "sourceSha256": "8ed122d873258ba31dbc4bf3319f97d4bc57f19ed44835bcaae7d445c819d9a7",
+      "stagingSha256": "682da78f5f284e827e65ddd78482aa53ed4a77998fe3803bb40b3a8be47874b1",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/privacy/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 1986,
+      "sourceSha256": "d8bf577ee874828530dfbfa43742746ec9ae86b1fd8dc48942f7f0ed1f215ee4",
+      "stagingSha256": "23793451562858622d8a181286b9d7923d4a468f7fc266f4c89adf80236b5417",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/processing/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 4272,
+      "sourceSha256": "8dce356498c488837ebb7932654e38a468702b558f6079fccfd568329bd8fdf4",
+      "stagingSha256": "d5a1e4a2e9a3d495ac05402720a002a61e28d4dd8af3926131ceea72b928bb60",
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/request/page.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 1264,
+      "sourceSha256": "b890d71660946d2f9ca755f87a411e3fa27f729a485f9dd6069b3a7db7d7742c",
+      "stagingSha256": "b7f7f224ad725c66c8920fcc672ec27fef770acc24022a23f18ec5ee25fdb372",
+      "identicalInStaging": false
+    },
+    {
+      "path": "components/customer-website.tsx",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 11815,
+      "sourceSha256": "0f79ea39fac7a0fcc09cce601ad7c26c65b103df15c9ed8321bd78ef0628dfda",
+      "stagingSha256": "12e7df9dc0388686e95ddfb1ee030bed33c1f58adc25aba05e271fa705c91c44",
+      "identicalInStaging": false
+    },
+    {
+      "path": "components/webfactory/ai-chat.tsx",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 6701,
+      "sourceSha256": "976c8f294f107a81e119e2e0c57a0ea7fbb5f2d46a6d15c4fe840903a7d7fb58",
+      "stagingSha256": "976c8f294f107a81e119e2e0c57a0ea7fbb5f2d46a6d15c4fe840903a7d7fb58",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/build-panel.tsx",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 8979,
+      "sourceSha256": "ad94870755baeeedfcc09edb4dae82d97d6a9b174ff83330d4246db9958d6b5e",
+      "stagingSha256": "1b14bef9cf18b6e06d923cb5d159b17580620b8e879b0ae6de80db9e32064b1d",
+      "identicalInStaging": false
+    },
+    {
+      "path": "components/webfactory/shell.tsx",
+      "status": " M",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "retained newer staging implementation",
+      "bytes": 3003,
+      "sourceSha256": "6ff3bd9ee6e2abac3c0d06757ac272503f9f31a9185394f04eb7d77ef897c154",
+      "stagingSha256": "f091ea5f24bee6238526fc3af33341a324651f0fd53c8d9d6a09280687b33708",
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/manifest.json",
+      "status": " M",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "retained newer staging implementation",
+      "bytes": 27547,
+      "sourceSha256": "dd08d8e93cb69d1484b88ba88e9f282c8c76040aa0c63b4d6667d53756672eb4",
+      "stagingSha256": "44a323c8c4aea592952934ba8bd7e999ac5a5861f77095eab38b7243a434e84b",
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/swenzy-logistics/delivery/swenzy-logistics-review-package.zip",
+      "status": " M",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 21495525,
+      "sourceSha256": "2acbce279f4e960be989ecddcb441a267e35bcc8222de68e97c6d5b6f73d4fe0",
+      "stagingSha256": "63a61db0f93adaa0fb0399518d2604d3576a922372a863f500e0e862f8aa9209",
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/swenzy-logistics/delivery/swenzy-logistics-source.zip",
+      "status": " M",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 992365,
+      "sourceSha256": "a9091c0ce8fc6bda9e8aca40cc9d1a4383aaae89b70b568da045b59a267ed1fd",
+      "stagingSha256": "af448803894e29b9f4132e4ce0572730790df92f8ba1de1c95b37c9ff6e8950d",
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/swenzy-logistics/qa/server-error.log",
+      "status": " M",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 113,
+      "sourceSha256": "1ff33c9fb90a276b0076909ed48630c2223d24b8c762df632415a89c7b4205be",
+      "stagingSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identicalInStaging": false
+    },
+    {
+      "path": "eslint.config.mjs",
+      "status": " M",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 879,
+      "sourceSha256": "2fceb1b2e1ea696122c1fdf2ec0545343ffbf6b0291f1c4646d78d5c6cb5c5d2",
+      "stagingSha256": "f22a254df7d934bbf9be499d3c969a13abb7f7f64c03f5967d0095cad81dfe06",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/leads/config.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 3063,
+      "sourceSha256": "2db4614d90176f84b5c919c468c6315c642408fa3a2729bda3fd3a395f297e6d",
+      "stagingSha256": "76ddeb73318458edf4995188a7dd22e7532499e980f62277542c6d30fdc9fd46",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/leads/email.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 3646,
+      "sourceSha256": "f8975447934480a3fedadfb9d7d1064ee6b3193928a3db0a15897120b18e1d05",
+      "stagingSha256": "191570f9f3a93ec04aa1428e00202102e54d145aed39dab746667a7aadc060c2",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/leads/service.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 4386,
+      "sourceSha256": "64f9c858628bfbb0120f147bb659feea5bc8a63a6d74765f445f3b6db08e8c36",
+      "stagingSha256": "bd855db9fb9d8ded8451b0ca23badccceb234a3855186d49951a4b907fdfbb5e",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/leads/store.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 6055,
+      "sourceSha256": "f0b6b930b9ca9ff6dff3f07588cc215aed3f422f651d676b59256214dc776c8c",
+      "stagingSha256": "a0a5df5347a5480b9bcf153defa389e22472876e440eb9691858ec6b77a1494d",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/leads/validation.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2112,
+      "sourceSha256": "b4f5484958cf1adc2d7be63d1cad2272c32a71526b28b860d7eb0c3f92bd81c6",
+      "stagingSha256": "994f97be3cd2d2bfd985bdc9c79295d00e84023b0b75a217c121b7213ec58b02",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/ai-provider.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2593,
+      "sourceSha256": "2aac8cd415909b68da6f73349608861c691054c316add60678e9576388f1ed59",
+      "stagingSha256": "2291f7a01b5f402208ad8f21ae896c1e00e84af7f1e34c0bf8824b791d601de9",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/ai-workflow.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 10755,
+      "sourceSha256": "ca834cebac103ad6664442aeadba7b70b5d81b837b31525f66f4badf3f247207",
+      "stagingSha256": "1e0bcfa9c80563ae84e8e7c6e9e5277ceb8f7d795454f6cbe32e88047c4cae29",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/brief-schema.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 5012,
+      "sourceSha256": "423bcc3dcf5ac01f6c4562bce71c572efaa3cb595b151644ddd153cc08f9b63e",
+      "stagingSha256": "423bcc3dcf5ac01f6c4562bce71c572efaa3cb595b151644ddd153cc08f9b63e",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/build-receipts.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 512,
+      "sourceSha256": "0badcda6539b23c1eeb0b78ce2a08bfc45c4cef4d8d62d718c06578c7601ec6c",
+      "stagingSha256": "0badcda6539b23c1eeb0b78ce2a08bfc45c4cef4d8d62d718c06578c7601ec6c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/chat-provider.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 4140,
+      "sourceSha256": "2c82e224203fd9fbf544b11b7f0ca96eab166d474333be83bcba0f76ea882686",
+      "stagingSha256": "860a18df1eec9d5e68e4bed9b070acd85d140265127558e77b1e2b5977e33888",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/chat-store.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 9776,
+      "sourceSha256": "93986c9660448ac30bd06c728ada1e79cf18f8d03e70b6ef27af7c2e892ef458",
+      "stagingSha256": "93986c9660448ac30bd06c728ada1e79cf18f8d03e70b6ef27af7c2e892ef458",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/preview-catalog.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 6191,
+      "sourceSha256": "178238606f2e26114130a176434c8b53e5c54873d3365e1484c33dc0a51f5c42",
+      "stagingSha256": "9e9cc68f151514d971c0370acb1dbba3db45ef0334646b380098a1507efbf8d4",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/server.ts",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 6250,
+      "sourceSha256": "6087282cc0c2126a54f02b07a88602f00a932b534485b7c29f7ef32e31c2f0fe",
+      "stagingSha256": "6087282cc0c2126a54f02b07a88602f00a932b534485b7c29f7ef32e31c2f0fe",
+      "identicalInStaging": true
+    },
+    {
+      "path": "package.json",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2526,
+      "sourceSha256": "951ca74056a182d75c74769cf2f1a9f82277ce0d6f8e95b51639ec475d5535dd",
+      "stagingSha256": "951ca74056a182d75c74769cf2f1a9f82277ce0d6f8e95b51639ec475d5535dd",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/migrate-leads.mjs",
+      "status": " M",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 985,
+      "sourceSha256": "f889d66cdfb6e7da9731cbf5fafbcdddfe29acc61d5594a77a0965c1fd6d6725",
+      "stagingSha256": "9cf1e27cd6869d281501f9af14155ddaa72bb1ead10a1ec275d7d4d33d39af2a",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/migrate-webfactory.mjs",
+      "status": " M",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 921,
+      "sourceSha256": "9f899c8e44a01be8469b38880bf46ddd92387e0573b3ca5bb856b8e308c9bc9f",
+      "stagingSha256": "7519f50455c4c441f7751abc6a53304abcdfafdebf63c3401828545685b4c935",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/package-swenzy.py",
+      "status": " M",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 2831,
+      "sourceSha256": "99878de75060c759badc99c371f989917e4b03e9b38ccaeb105e2e7acb5cdee6",
+      "stagingSha256": "9704318afb67bc7f2901a5825621515a25602f29bbe5f6b0ce89a9df680f0086",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-ai-brief.mjs",
+      "status": " M",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2070,
+      "sourceSha256": "80f181519653fe7d84b8faf425a0a6c01d4a0b70ba9a0999690ef32973830cab",
+      "stagingSha256": "1cab6cf0b0d47b22196a4517626499d8762d617f51d087dd2c74b562a7510089",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-designs-ui.mjs",
+      "status": " M",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 4970,
+      "sourceSha256": "f7b09cf0d80a8433ee7146bb7671c8bab0a59d0d73a9ea5b0237eb418d0e457b",
+      "stagingSha256": "482ac025b39640c47fcca5b756b560114fef1cf263d2da4eec33d757a789a303",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-preview-catalog.mjs",
+      "status": " M",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 3655,
+      "sourceSha256": "9f42176064f7724f8acee6f10de6912c1bf6933ea2795e9eaf65a2044a2dddb3",
+      "stagingSha256": "384973947b358bf84c89d1e02bb717740ea4b74ecabc5783e6196b84b768c92c",
+      "identicalInStaging": false
+    },
+    {
+      "path": "tsconfig.json",
+      "status": " M",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 858,
+      "sourceSha256": "c02c6ff9cea709e34e24e4706642dd44a9725bd80aa48e6870f0ed0b7ff4d85c",
+      "stagingSha256": "dedcc0c27a03a50cb0ad823113c690c4e07ca27619e6ca74b910280170b22dc1",
+      "identicalInStaging": false
+    },
+    {
+      "path": "({src",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 0,
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "app/api/admin/requests/[id]/build-jobs/route.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2516,
+      "sourceSha256": "5ea9735b72d48645dcc61923f429488c97db6807f6c12aa95ab45b55a45feed5",
+      "stagingSha256": "5ea9735b72d48645dcc61923f429488c97db6807f6c12aa95ab45b55a45feed5",
+      "identicalInStaging": true
+    },
+    {
+      "path": "app/api/admin/requests/[id]/slug/route.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1499,
+      "sourceSha256": "73a300e5b3c35c4f31daeddd1348ab0cc8ee33121a748f81291c88e1b7dfdec1",
+      "stagingSha256": "73a300e5b3c35c4f31daeddd1348ab0cc8ee33121a748f81291c88e1b7dfdec1",
+      "identicalInStaging": true
+    },
+    {
+      "path": "app/api/admin/reviews/route.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1192,
+      "sourceSha256": "97cb984152fb708170ad03d6fa10124f4ebfad11018a89dedfa02d7b3d50f2a5",
+      "stagingSha256": "97cb984152fb708170ad03d6fa10124f4ebfad11018a89dedfa02d7b3d50f2a5",
+      "identicalInStaging": true
+    },
+    {
+      "path": "app/api/internal/build-worker/route.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 878,
+      "sourceSha256": "b1141e2f626b0930cdf096a24251cb77f78f59032d1be44fd21eac8e11deea63",
+      "stagingSha256": "b1141e2f626b0930cdf096a24251cb77f78f59032d1be44fd21eac8e11deea63",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/customers/jm0616-studio-client.tsx",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 7013,
+      "sourceSha256": "c5060a770ee79d2709e81ab6d1c966c9e58c4228e6cf148d45ef4867fe58cf2c",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "components/customers/jm0616-studio-website.tsx",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 12332,
+      "sourceSha256": "60f9d7be4331c6f4c0cd6623bfcc3380a62204f1d79996e735ee946dabf87f3d",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "components/customers/jm0616-studio.css",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 16729,
+      "sourceSha256": "6a01179f53c01e7c24fafb296b078cd5e07194a181299e26a42519082123bdb6",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "components/customers/lc-inquiry-form.tsx",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 4110,
+      "sourceSha256": "98a4783e50828a10ecbf8a956e4e6d243dcf1c4bd7521f5da788224c3466439d",
+      "stagingSha256": "98a4783e50828a10ecbf8a956e4e6d243dcf1c4bd7521f5da788224c3466439d",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/customers/lc-website.tsx",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 12749,
+      "sourceSha256": "3e258d7ca62812a6074251cfa35657685dd8a16a0c81b28fd4512d820213489b",
+      "stagingSha256": "3e258d7ca62812a6074251cfa35657685dd8a16a0c81b28fd4512d820213489b",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/customers/lc.css",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 11061,
+      "sourceSha256": "1cdd1b120300a8709d64a793bec2b9862a60f027efc05ad18a94baaca9f56c3e",
+      "stagingSha256": "1cdd1b120300a8709d64a793bec2b9862a60f027efc05ad18a94baaca9f56c3e",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/build-console.tsx",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 7873,
+      "sourceSha256": "abd5aa189338473db0567c66729ccf2e5d6c9aa5fb9cf06600d2509638ff7a3c",
+      "stagingSha256": "abd5aa189338473db0567c66729ccf2e5d6c9aa5fb9cf06600d2509638ff7a3c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/prompt-tools.tsx",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2737,
+      "sourceSha256": "c1c56f4d5459013f99a8895ac8fb4070639d2187e32c7ce59bfd0dd71d78c323",
+      "stagingSha256": "c1c56f4d5459013f99a8895ac8fb4070639d2187e32c7ce59bfd0dd71d78c323",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/public-experience.css",
+      "status": "??",
+      "classification": "NEEDS ADAPTATION TO V2",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 12672,
+      "sourceSha256": "6dc12634dc52cead1f19920c878b36b3e4787e46d6876484b9aec3d47868e216",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "components/webfactory/review-panel.tsx",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 4818,
+      "sourceSha256": "b089972308eb819b3ace8644d83c922d15f51355f7ef52f58bbd89945cc0238d",
+      "stagingSha256": "b089972308eb819b3ace8644d83c922d15f51355f7ef52f58bbd89945cc0238d",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/reviews.css",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1233,
+      "sourceSha256": "bb3559cc587ef8f8f3296b344a041df8b6d18ea6d3f1478a78760b5a6dc07056",
+      "stagingSha256": "bb3559cc587ef8f8f3296b344a041df8b6d18ea6d3f1478a78760b5a6dc07056",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/slug-panel.tsx",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 4120,
+      "sourceSha256": "1edef10b7b9cf527bebd3b18ca83c46355955929f5e8cf119652e82f1e2c552c",
+      "stagingSha256": "1edef10b7b9cf527bebd3b18ca83c46355955929f5e8cf119652e82f1e2c552c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/slug-workflow.css",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1265,
+      "sourceSha256": "994167514da857c2962cd31a3a570608ea30f8d0e381211be8fe31606c10a9e5",
+      "stagingSha256": "994167514da857c2962cd31a3a570608ea30f8d0e381211be8fe31606c10a9e5",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/workflow-timeline.tsx",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1191,
+      "sourceSha256": "f44540487209a4fa56dc6e7cf2d4dacfa0185bc3625914123e4f8efb6d4caf3b",
+      "stagingSha256": "f44540487209a4fa56dc6e7cf2d4dacfa0185bc3625914123e4f8efb6d4caf3b",
+      "identicalInStaging": true
+    },
+    {
+      "path": "components/webfactory/workflow.css",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 5406,
+      "sourceSha256": "33204b935de6c07bea7b09617eda94c23d2c411f73c601ca6abd0217612bc9a4",
+      "stagingSha256": "33204b935de6c07bea7b09617eda94c23d2c411f73c601ca6abd0217612bc9a4",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm-trucking-home-ported.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1030632,
+      "sourceSha256": "4c1c08c97a108059893883ed80a5f4df3249c511a4b02f17550702f173df2fa2",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/README.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "ported with current staging status correction",
+      "bytes": 556,
+      "sourceSha256": "2d77534ec4f6a2b59f850d1667f34c3e102a3979914e9563fa3b75401ba25880",
+      "stagingSha256": "a751b43d60cbacc2dd6f04550921afa86ea17415c792b8b26f5d69cf636f6eba",
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/brand/README.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 194,
+      "sourceSha256": "1379b8584d0fa22c107fce101eb5fd46db401bfe379324ddda05a8b9f02e9ab5",
+      "stagingSha256": "1379b8584d0fa22c107fce101eb5fd46db401bfe379324ddda05a8b9f02e9ab5",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/brief/customer-brief.json",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 755,
+      "sourceSha256": "d5f64949c91b0ad86b0ac2bde50acecd76e38e3099bb01b048c8a39a19f0870c",
+      "stagingSha256": "d5f64949c91b0ad86b0ac2bde50acecd76e38e3099bb01b048c8a39a19f0870c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/delivery/README.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 4252,
+      "sourceSha256": "f47708b12e784a073ee8c0e8a4592e7741dca734a0f92856310bd3985e665799",
+      "stagingSha256": "f47708b12e784a073ee8c0e8a4592e7741dca734a0f92856310bd3985e665799",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/delivery/customer-message-drafts.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1203,
+      "sourceSha256": "32795582096e83008cdac7da97d4d42c8c9e2220df32981cddf215560b89ee5b",
+      "stagingSha256": "32795582096e83008cdac7da97d4d42c8c9e2220df32981cddf215560b89ee5b",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/delivery/image-prompts.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1091,
+      "sourceSha256": "63a1840bd8469a4e9c221ee92dc4e634228a44d3d56c94317fa33ae1c2471337",
+      "stagingSha256": "63a1840bd8469a4e9c221ee92dc4e634228a44d3d56c94317fa33ae1c2471337",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/delivery/jm0616studio-review-package.zip",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 4100541,
+      "sourceSha256": "51d4dfca7490b328e0c86da9ec8218a5db45e326cfb2a0bee16fc7e602ffec6e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/delivery/jm0616studio-source-overlay.zip",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 347775,
+      "sourceSha256": "cf6f874f6e3d0476cd2c531c9825b0fbb03cab7ca7a36b7da8fb468c90dc7894",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/delivery/jm0616studio-website-review.pdf",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 4637659,
+      "sourceSha256": "7d43af15b56fa662e25ff5663ac825dc89137a039412482f54fda7d6cbb87752",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/delivery/missing-information.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2130,
+      "sourceSha256": "c92c53e787a69e1b6fe43fee06faac163f4d80c4f1d5a1d3c4cf82df37b8d88b",
+      "stagingSha256": "c92c53e787a69e1b6fe43fee06faac163f4d80c4f1d5a1d3c4cf82df37b8d88b",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/delivery/myndy-context.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2397,
+      "sourceSha256": "bdd791bf08bba8bdfd89ac86d7b516dad65512107a75cf538afc916ce3b3fb7d",
+      "stagingSha256": "bdd791bf08bba8bdfd89ac86d7b516dad65512107a75cf538afc916ce3b3fb7d",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/myndy/agent-context.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 998,
+      "sourceSha256": "0fb3783163a4c1e4e7019486bcaa35a07367ab49a084424103ccb3d3315e4131",
+      "stagingSha256": "0fb3783163a4c1e4e7019486bcaa35a07367ab49a084424103ccb3d3315e4131",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/outreach/customer-email.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 473,
+      "sourceSha256": "90d0b611beec8abf1c61b021ad151ef8926a8bbb1e58db158a6bb856275b9616",
+      "stagingSha256": "90d0b611beec8abf1c61b021ad151ef8926a8bbb1e58db158a6bb856275b9616",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/outreach/customer-sms.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 295,
+      "sourceSha256": "6475c461cc72437929a95d924cd53119d7baa3d60fc8fb690bc998430bafeba4",
+      "stagingSha256": "6475c461cc72437929a95d924cd53119d7baa3d60fc8fb690bc998430bafeba4",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/qa/about-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 674184,
+      "sourceSha256": "c133c95beb87616c6a4e3d23dfc8836a8d99938496b626f8294cebb3106b74a0",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/about-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 166121,
+      "sourceSha256": "64cf46e3df50a9ee98dc7d19827108f8caa15e7b9cc27143b3d943dd6779c583",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/about-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 298643,
+      "sourceSha256": "013ba186706fffdaeb24444bcf775609c4fe6d62b9f0b8f828504c26b0241eda",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/about.pdf",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 752807,
+      "sourceSha256": "07849c259113079d43c9bf16873c2fa9a312acbd2337a081ce4470ad3656d504",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/approval-checklist.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 781,
+      "sourceSha256": "c0c3d8732011af3e3422edc3e4b6ff28478bbae5415e021630e1aa4fbdf28daf",
+      "stagingSha256": "c0c3d8732011af3e3422edc3e4b6ff28478bbae5415e021630e1aa4fbdf28daf",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/qa/checklist.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 847,
+      "sourceSha256": "f29ae7cd932b2d5c59ee03876bd3a27a408dcd3a902a9c1fbc572856e311704c",
+      "stagingSha256": "f29ae7cd932b2d5c59ee03876bd3a27a408dcd3a902a9c1fbc572856e311704c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/qa/contact-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 115263,
+      "sourceSha256": "df0639e22fed8d7e1453a94ae418aaac2ea2947835cd7099b3c7fbc60d14b24d",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/contact-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 78415,
+      "sourceSha256": "476f7a4a367b54f1eb4ddb8925368ae4ed8003a8896853e47eb7f0f9ffa3e32e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/contact-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 89167,
+      "sourceSha256": "e81c44c7e6dd62e8e618ba5f8eddd17c8c88f313716adc6916c7ec13926169ba",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/contact.pdf",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 108745,
+      "sourceSha256": "6b0eb87faa107a18a46e250971c736a9d1a039c3851033620485d9671d0a30d1",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/form-test-result.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 269,
+      "sourceSha256": "4b13fe5e54f6acab8aa0337dc1c6fd50b9ea28002f65768df04a44d665cfacdc",
+      "stagingSha256": "4b13fe5e54f6acab8aa0337dc1c6fd50b9ea28002f65768df04a44d665cfacdc",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/qa/home-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1472199,
+      "sourceSha256": "22ba9663e86a4dcf97848cd79e9352f83957e9584f6fa17dfdf1d56ee8dca7a9",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/home-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 335008,
+      "sourceSha256": "d6a253f4c1ad4a8fbbdceb55bbe18e1740f3f85d7c7a7450bb40491e279cb419",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/home-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 538911,
+      "sourceSha256": "0b729f49995a49fd0a7ce94ff67d015b379cf549a823102fd49d1dc370b11be8",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/home.pdf",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2475038,
+      "sourceSha256": "8db642fad680161aa54518b9e9a18e0e52807c95c199f2fcb5fc033171896107",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-final-01.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 279210,
+      "sourceSha256": "846b37951d9804d7d76c0d12e3107d52113c7cc6be71459fd494f3ad389a31b0",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-final-02.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 124566,
+      "sourceSha256": "c4dd0e4adfbdf59d9305d8d5ca41d49339b846fe954106de2a65f567df3e1fb4",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-final-03.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 144857,
+      "sourceSha256": "4bffc1e876c3a988c912c504c9d683af7878d9af044d71b086d66270fe8e38f9",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-final-04.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 50849,
+      "sourceSha256": "513896262cca2e69a3c5aeef77c61f37ba16036c439257a4f2695697f8d1990e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-final-05.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 48836,
+      "sourceSha256": "93a219a480a0194fac30edf9f7f65c11844fd143b7dbc7fb28890521c7464e89",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-01.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 97275,
+      "sourceSha256": "e16870b9b2db20d2ddcac2edd0dbfab612e2debe8b454bf18a90a33a6af061fc",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-02.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 18951,
+      "sourceSha256": "a5c2c922689d595f3eae0d86198f0fdc4aa024e169836bafce8278cb934c195e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-03.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 203610,
+      "sourceSha256": "81731eb6a8d58efd4364c8e8f686c4ec071de91ad8048b1880f6b0774f8ed234",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-04.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 40437,
+      "sourceSha256": "39bbb3e81d3e4f2b78a5f5f525cd7665cc88e01a79531cbb0dfbfb48d213309c",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-05.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 9532,
+      "sourceSha256": "2ab2987f0ed4b321065019fdfad825ba267ac14b22ff4eb8ce455cf90e9d6a2e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-06.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 22428,
+      "sourceSha256": "f7cfde9732f81421177d358368c234b50ac669f798eb8ceeb86e4371cbf9b953",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-07.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 181471,
+      "sourceSha256": "889d0361c8d4da358503e89c34b884ba295b56c13b235db97b13b299dbc52211",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-08.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 23631,
+      "sourceSha256": "0cad0a6ff95ff8918bf47f8db59a3145e72382b7ae02c54e3851dfc0163fd450",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-09.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 9532,
+      "sourceSha256": "2ab2987f0ed4b321065019fdfad825ba267ac14b22ff4eb8ce455cf90e9d6a2e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-10.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 36984,
+      "sourceSha256": "dd78d64a7a3377acc6a7ebd21c822af309d986718f432f032522550c5d65d4b7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-11.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 133535,
+      "sourceSha256": "3d13f15e2ab23eb711dc64bbb4760c14a2b9e57963d71300e6c1e3c067f08fac",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-12.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 9532,
+      "sourceSha256": "2ab2987f0ed4b321065019fdfad825ba267ac14b22ff4eb8ce455cf90e9d6a2e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-13.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 31581,
+      "sourceSha256": "980a25a3a816b45d013b10448b209fdfa288ed46017bd7ff5e59b5240dec6cb6",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-14.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 21667,
+      "sourceSha256": "e3d64ab39b735412578655b17283862c9f419abf3062ffc77e04ad1a1eac7e16",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-15.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 10695,
+      "sourceSha256": "14352005d82a9c988ee7775ebe2cddb1daa7c36e92fb5deefa6844f93d67145d",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-16.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 38945,
+      "sourceSha256": "174aa9ae6aa4b453b19a3bf9ab1112d51d32508ca67aeda474593e549aa1a65b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/pdf-review-17.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 16180,
+      "sourceSha256": "286b53a312515455ff68cfb3ed897ab8e91939e24a1bf3efc40677575db8b538",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/privacy-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 90597,
+      "sourceSha256": "4a4618e214fddfc1e3769ca1dfaf718c7c79ddd2a7d7c527a27aa0c47c12dfc8",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/privacy-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 67443,
+      "sourceSha256": "a1049af7ee4eff93f99fc60c8176a04924f8547c621a12ce0ffab1c4f97d8817",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/privacy-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 75483,
+      "sourceSha256": "474541546f10e58f423d8878517ca2b0934011750ef0bfd2ebac05f969b733bd",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/privacy.pdf",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 97330,
+      "sourceSha256": "c84ca5d74f5fcd6aeb7bae05a5766cd59432380b7b2cb65998fdd6c93fd006ee",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/services-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 601551,
+      "sourceSha256": "d44843f8de11018cdf0862babe1624b71665568f391140401068a16f04c981b2",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/services-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 188225,
+      "sourceSha256": "dedd2f5ee605ea573f2b531f5a9f740b3e2f5699bd908b683dd7c2c6287c15a8",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/services-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 258300,
+      "sourceSha256": "1400dae50501d1b1460a58afdd7a16afeaaf3dd4f080325bd814b595db4cc320",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/services.pdf",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1827220,
+      "sourceSha256": "2fa4e0b099db418ebe701419bd7359f924f0de0ecd8e016ae640663cdc9c665c",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/qa/unverified-information.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 376,
+      "sourceSha256": "809225abb7fb5905d14869af37640e946cffee5c90f741df43af8877012ff838",
+      "stagingSha256": "809225abb7fb5905d14869af37640e946cffee5c90f741df43af8877012ff838",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/qa/verification.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 6324,
+      "sourceSha256": "8a7e0cdc12812c74ee625ad71ea4744f6c0e57e0857fa967439dcdba0aaf198b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/jm0616studio/site/README.md",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 272,
+      "sourceSha256": "22e7281798e6ddc11ae93b9a8f2d131eae9fc668a86184c8920b0c01025365da",
+      "stagingSha256": "22e7281798e6ddc11ae93b9a8f2d131eae9fc668a86184c8920b0c01025365da",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/jm0616studio/site/customer.config.json",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 4602,
+      "sourceSha256": "7054d545117e5fedd4704f7e01c1b06d55dff3e31dedaba13f18d26d9502f21a",
+      "stagingSha256": "7054d545117e5fedd4704f7e01c1b06d55dff3e31dedaba13f18d26d9502f21a",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/lc-real-estate/delivery/README.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2796,
+      "sourceSha256": "f76df8cead8f1456c8173679b53484e0110756063b30a17b62fd15fc3b5b8b42",
+      "stagingSha256": "f76df8cead8f1456c8173679b53484e0110756063b30a17b62fd15fc3b5b8b42",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/lc-real-estate/delivery/image-prompts.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1955,
+      "sourceSha256": "269e8fd9aa1671ac9f1e4429aa25170fc85fcc4e5b5e5d06eb18d239e33fe633",
+      "stagingSha256": "269e8fd9aa1671ac9f1e4429aa25170fc85fcc4e5b5e5d06eb18d239e33fe633",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/lc-real-estate/delivery/myndy-context.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2350,
+      "sourceSha256": "beb4c07cab51215afbd3dd6ba9aefa3e44d2ba082756f4f340c418a9704ada47",
+      "stagingSha256": "beb4c07cab51215afbd3dd6ba9aefa3e44d2ba082756f4f340c418a9704ada47",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/lc-real-estate/delivery/qa-results.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1901,
+      "sourceSha256": "8226b1d92969e36bdb371328916087a8603956e31646df855712b6e328a88236",
+      "stagingSha256": "8226b1d92969e36bdb371328916087a8603956e31646df855712b6e328a88236",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/lc-real-estate/site/build-receipt.json",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 544,
+      "sourceSha256": "37b7b710029379658c54e85329285cfe5333c53b814c0eccb51cad2dc27d14fb",
+      "stagingSha256": "37b7b710029379658c54e85329285cfe5333c53b814c0eccb51cad2dc27d14fb",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/lc-real-estate/site/customer.config.json",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 6486,
+      "sourceSha256": "924032e5dd76f7ee63f9c52f621b46d3f87ed50e0857d063c684ad54cde467ec",
+      "stagingSha256": "924032e5dd76f7ee63f9c52f621b46d3f87ed50e0857d063c684ad54cde467ec",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/unique-management-group/README.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1448,
+      "sourceSha256": "518407c833143c09c03d7fef3d373dfa199912e8e973281dafcd645f28140277",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/brief/approved-brief.json",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 4281,
+      "sourceSha256": "febce28e2e22b69342b7cbd36da04106bee77d54b92f7880c665f73d5ac7a950",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/brief/build-job.json",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 163,
+      "sourceSha256": "6f9e489c0346381e630be08410f3dccf80238bc300e5d41f14cf17094c3460cc",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/brief/request.json",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 265,
+      "sourceSha256": "c5b729aac2ce4558e5528ceb8d5216c617da86ad327e14e191c949bf5e17db12",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/brief/slug-evidence.json",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 575,
+      "sourceSha256": "2febaa422146ebd135d539af243728a848f8f1590951fbcf5c0404323b61eb45",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/delivery/brand-notes.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 554,
+      "sourceSha256": "501b75d80f4be12e0d27d5f7b84185a1ff28e5f30ea01e2071ee3d9fc32cac3b",
+      "stagingSha256": "501b75d80f4be12e0d27d5f7b84185a1ff28e5f30ea01e2071ee3d9fc32cac3b",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/unique-management-group/delivery/image-inventory.json",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 6342,
+      "sourceSha256": "ec315932319a989644327c01ba80393eef5b1b4610938dce289236ea0cd24a52",
+      "stagingSha256": "65f6c4585c270def2bc73d6dccfb94e6bc614a15446a2e686937c581e907c567",
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/delivery/missing-information.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 278,
+      "sourceSha256": "59deaa589d65d385db8887d4c4465cf52471ee3ce5c887e7e81bd7aefa6082e6",
+      "stagingSha256": "59deaa589d65d385db8887d4c4465cf52471ee3ce5c887e7e81bd7aefa6082e6",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/unique-management-group/delivery/outreach.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 230,
+      "sourceSha256": "7d0adbc431bb2919f9344b3cd96f6a1c3dfcef966a2a890607a4eef40a61e332",
+      "stagingSha256": "7d0adbc431bb2919f9344b3cd96f6a1c3dfcef966a2a890607a4eef40a61e332",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/unique-management-group/delivery/research.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 6771,
+      "sourceSha256": "511bb82f366b9018fb72ecfcf14cf4abf175cc04e5281235681cbf3e89fc3c02",
+      "stagingSha256": "511bb82f366b9018fb72ecfcf14cf4abf175cc04e5281235681cbf3e89fc3c02",
+      "identicalInStaging": true
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-about-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1115988,
+      "sourceSha256": "d81c3f038fb903d96360e982aec2e15ba2f1b65801b36954e2ea7a5004e136e7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-about-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1494803,
+      "sourceSha256": "6bea74a2d3d37f61374fde60e1a3711b78636b9ee54bbec46b66974cf1630c12",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-about-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1616306,
+      "sourceSha256": "7031181bfbfd576faf0c24f0410dc739b42e02322c6d32aca0ebe418f00a18fe",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-about-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 448913,
+      "sourceSha256": "3fe72f67379fd0793917e6d0fe8fbb110a8be0091842dfba27923660f818db94",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-about-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 481534,
+      "sourceSha256": "346a0b14f6084bf9ff4fff5b2e9c56f7e68a84f6ce2611d951026361901a1ecc",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-about-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 946630,
+      "sourceSha256": "753d44326ff3860f10e1c482c2f9e639d5e9c94082e8eff6b02397187a89919e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-contact-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 272031,
+      "sourceSha256": "a20aa0c1cd429dfc87c4358b576a4a2ac625bea6f3a7bf7df8d6253bf55d30ba",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-contact-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355784,
+      "sourceSha256": "587d4a6e2691f919585bc804813cd188b388dcefada8a763c96ee147eb7c67ca",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-contact-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 399064,
+      "sourceSha256": "b01a962a1e5e2a53b4e01c71389fd8807f899e7057af3b2f4f0370ee2e75fa22",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-contact-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 193883,
+      "sourceSha256": "0269f01458f0207ba7abb6bd6ce0fb9f1c8d2d516b7bfb8d057b7ef210d468b1",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-contact-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 208044,
+      "sourceSha256": "21e069c7748d786b24d97623c7daa14ce88438de78dd7ec09fd9b6eaae09a34b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-contact-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 222767,
+      "sourceSha256": "41fa17bf7867f22207e38e618f328ac7da646a97060d6709334e52470eb8784c",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-home-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1348175,
+      "sourceSha256": "48fd649edbe5a38d179f9b19281541177a3dae9419e1cbc581527ec3a85b77e9",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-home-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2010023,
+      "sourceSha256": "1c1aee2a88d51b3bd7138100edb9491d01a0534cfe36e4981086e39ff842cbed",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-home-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2361473,
+      "sourceSha256": "2f2af5db0a80b2bd093de3c7d5f1af7f5bc5f5210d576dd1874cce87e7c98747",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-home-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 860824,
+      "sourceSha256": "8c86e2428ba8dbe610d6d3f3c4ba1e4245585a8824d42a582c3282b7e0d19e9b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-home-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1015275,
+      "sourceSha256": "f750a732cbc60c47bc94eb8e29aec93503fc9c3454215137720f79fd82be78cf",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-home-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1046825,
+      "sourceSha256": "eac4c29e62f43e56437e377ba9c92c7f7f5dbccc95291c510c46c0057fbe47e6",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-privacy-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 130148,
+      "sourceSha256": "a22247cf9e8132107b58f2d789a2114b42ddc66d4cf698a8e7ad84565bd10abb",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-privacy-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 147308,
+      "sourceSha256": "ef501ac1c1b317e375760a0f9a7b848bd2dfa93ad21ec411b7643dddec0d48c3",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-privacy-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 157639,
+      "sourceSha256": "63e18b4079426ef09dd8da6bb907dbfd391eab8aeee4e48abd79e235fccb5779",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-privacy-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 101972,
+      "sourceSha256": "9db5eed990f16b5510d1fcad9dfb45e2cf99c1a7242011be24c7306de08e7972",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-privacy-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 100904,
+      "sourceSha256": "7b73833ea5d78fc65cc73f67fe04f1f04464bc2c36fd4052bbe9f1321dafb453",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-privacy-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 120637,
+      "sourceSha256": "8840c232f3e082482658318dc64ee491615a388d46a3bafe95cd8806e5a2db82",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-progress.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 10859,
+      "sourceSha256": "7413d9f2364e31fe3035a7ab2c162e684199b068d5fc3786011ecd5c25f82597",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-services-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1737973,
+      "sourceSha256": "3ae3924c96cc7c815393b855fbe288a4cf8868063cbe5a56ee89d71a3a0cf3c8",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-services-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2524939,
+      "sourceSha256": "07dfc7d314a4064a52de65f138ba8380d4b0e109bbb8579af33f8ae2253809c3",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-services-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2784897,
+      "sourceSha256": "f6c4dd5b17bed8d8f9578cb0c5e57478bf864508932699c0886378cc0a4e6cef",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-services-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 972969,
+      "sourceSha256": "b5697420cde37d4825cf295ef9cede999fca2bb5327eceed8da53e15c26e7560",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-services-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1090376,
+      "sourceSha256": "12704a7ad7ec66752bb6cea292b024d14f1dc5a8826d04c387f815fa520cfa57",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/branded-services-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1397908,
+      "sourceSha256": "0d6c54380e20808677e9fd0620dbe976c1275074dfd001a73bef944c1bcf17e1",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1565,
+      "sourceSha256": "770cf2d9b2434ce2a3bede86e203b89aba396ff25b9c1c83a613c455e770b75f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1267069,
+      "sourceSha256": "0cf8f2d04acbc052668aa92b1d7689c960e9197301c893c5345da4d6f6cffff5",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1493,
+      "sourceSha256": "8d919281deef13a259ef675aa4c605563333c3f786ff536063aeb97a51a1c788",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1572973,
+      "sourceSha256": "7dd5cd266ca7b1c351b1b6a8f913ed4b65b4ad8c885629f8d4e4305a74e69408",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1492,
+      "sourceSha256": "fa5697fa0e86dc9121b9b56657d9da49a2bd9b7db55bf9a4643455ecf6d57be7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1704659,
+      "sourceSha256": "192ddc6933cff05433e87c8006cab9bc401e61485ce3890e44d06e4089c19f33",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1563,
+      "sourceSha256": "f43544db5e0fc0493b67c86c6725322e66bcf5fe96c4a039b2607af0592dbce8",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 504894,
+      "sourceSha256": "90e026d8ada8943d2e5d2813610363e1f3b4c1542325d8823bd6dfa8992e63be",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1563,
+      "sourceSha256": "44cdbd23730cc2b2fabb7ca842e04a993bc03245219e74c0df91db65d55230cc",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 548784,
+      "sourceSha256": "1e8290dc1e6f9c02aa39a3e6dd19c80c7eb771b2801763be6e82d696b10617f4",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1563,
+      "sourceSha256": "e017b432ea3dbafcec1c405fd6c0eaf9365645130df89584d9671e0d705bcb56",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/about-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1050351,
+      "sourceSha256": "b214aede6f49c84532095376761d1962f6c76f92e2bc1e40322d5a0a2a654da6",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-about-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-about-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-about-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-about-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 554,
+      "sourceSha256": "2621bc679cebd3f038fa22d2596648e1e1b7630a629fc141a2ddf8a0b16f0f4b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-about-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 554,
+      "sourceSha256": "2621bc679cebd3f038fa22d2596648e1e1b7630a629fc141a2ddf8a0b16f0f4b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-about-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-contact-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 528,
+      "sourceSha256": "3c4450381f72fffd08dd4a7d4a284dc7cf98dd7a9b2e5bd779202ff741102a76",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-contact-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 528,
+      "sourceSha256": "3c4450381f72fffd08dd4a7d4a284dc7cf98dd7a9b2e5bd779202ff741102a76",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-contact-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 528,
+      "sourceSha256": "3c4450381f72fffd08dd4a7d4a284dc7cf98dd7a9b2e5bd779202ff741102a76",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-contact-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 727,
+      "sourceSha256": "8824d2009d765875bdd441d4092f2d0921c9f50d7a655b20b39318235259e443",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-contact-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 727,
+      "sourceSha256": "8824d2009d765875bdd441d4092f2d0921c9f50d7a655b20b39318235259e443",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-contact-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 528,
+      "sourceSha256": "3c4450381f72fffd08dd4a7d4a284dc7cf98dd7a9b2e5bd779202ff741102a76",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-home-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 562,
+      "sourceSha256": "f5b5b83b2cd8ea15ac1e3b414a673c8091d0b8f4d4ec684deb109471f273f680",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-home-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 562,
+      "sourceSha256": "f5b5b83b2cd8ea15ac1e3b414a673c8091d0b8f4d4ec684deb109471f273f680",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-home-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 562,
+      "sourceSha256": "f5b5b83b2cd8ea15ac1e3b414a673c8091d0b8f4d4ec684deb109471f273f680",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-home-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 582,
+      "sourceSha256": "502f3df1fac322d9a694366fe7190f67768c45abcd201624776fab40b221d7c0",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-home-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 582,
+      "sourceSha256": "502f3df1fac322d9a694366fe7190f67768c45abcd201624776fab40b221d7c0",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-home-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 562,
+      "sourceSha256": "f5b5b83b2cd8ea15ac1e3b414a673c8091d0b8f4d4ec684deb109471f273f680",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-privacy-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-privacy-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-privacy-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-privacy-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 554,
+      "sourceSha256": "2621bc679cebd3f038fa22d2596648e1e1b7630a629fc141a2ddf8a0b16f0f4b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-privacy-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 554,
+      "sourceSha256": "2621bc679cebd3f038fa22d2596648e1e1b7630a629fc141a2ddf8a0b16f0f4b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-privacy-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 355,
+      "sourceSha256": "2fa6403a54f4a20c9973743436cdd60accf661d3cddfc0977879f1c5aa1d6a2f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-services-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 534,
+      "sourceSha256": "95b97f4728dda11801c96280a501bfbf02fad7fb8920362369cff8998fb50143",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-services-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 534,
+      "sourceSha256": "95b97f4728dda11801c96280a501bfbf02fad7fb8920362369cff8998fb50143",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-services-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 534,
+      "sourceSha256": "95b97f4728dda11801c96280a501bfbf02fad7fb8920362369cff8998fb50143",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-services-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 554,
+      "sourceSha256": "2621bc679cebd3f038fa22d2596648e1e1b7630a629fc141a2ddf8a0b16f0f4b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-services-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 554,
+      "sourceSha256": "2621bc679cebd3f038fa22d2596648e1e1b7630a629fc141a2ddf8a0b16f0f4b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-services-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 534,
+      "sourceSha256": "95b97f4728dda11801c96280a501bfbf02fad7fb8920362369cff8998fb50143",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/axe-version.txt",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 31,
+      "sourceSha256": "ddcda80100a7eda008c6c62b615e2b1d933653e6d11f0094da5357517098f4a7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1420,
+      "sourceSha256": "bd34c3b781d7d36c768a21cd20476f5dd4049b2c4e950a27ce3b9e638741a562",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 289908,
+      "sourceSha256": "3a08825aae2606463657e096ea35dd439a862f7f55b26d92200f6a02ccf28d29",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1421,
+      "sourceSha256": "6b79ac9d134057301961e97d2e0239ea06e2c55db14860bd30895b945dcad7f5",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 368324,
+      "sourceSha256": "37c9c5d8d49a8a80f5498196638d5ca70a5b59e837225823dced7c0e4e56783b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1420,
+      "sourceSha256": "118ca03a0f31b087e63cd5c72afa05ac15ebb23a44e52591328bde035ad00122",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 406249,
+      "sourceSha256": "9bc849b77e1fc2d843055e171e7c4ee4a68cddfcb6ab548e90c1ace2a0c11c40",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1418,
+      "sourceSha256": "4d8fdf9128c83c11f71c9901840213bf9ab3d02bfb21740a7decb2ca0dc525c8",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 213724,
+      "sourceSha256": "9c78ec64e248ee5ff850ff1f3aa9fd1b9aabb92ee182dfc1b06df865106a2e4e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1418,
+      "sourceSha256": "42f27c0833d93636e26a2453d78dc4611666cc4606824fb841c23f6126644f76",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 231770,
+      "sourceSha256": "0902a445c87a700890cd1f5d53c09c2171c9127a07134467608fa22be63a0083",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1418,
+      "sourceSha256": "62f279ae4b371444ba55869ae263a99b43bee0b1fb11609d150d1a33a9d8c15e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/contact-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 236623,
+      "sourceSha256": "bc88ec05e1822e0cd3a90c1f8036816db4953888d78198233170a265108fa22b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1780,
+      "sourceSha256": "55755101793d73cdc1ca7f99117c90c5687566322faac31f69ec98215129d5af",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1564183,
+      "sourceSha256": "0aac37fb9f023103b48652fb277ce22a1a3233410841c39683fbad7211af6fa0",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1780,
+      "sourceSha256": "d9d79c3e33000c8ec6ba744f45fdc9d78e94946948133037d94521ff7529671f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2414910,
+      "sourceSha256": "451f509e66d6ee9d2f0dd37624efc0d1542ea49a86b6846f75e908ff1514d3cd",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1780,
+      "sourceSha256": "f6b0a1954795e1daa7da839e90d48a08c44444cc63cdb911eae172f6644857cc",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2773457,
+      "sourceSha256": "4e74b569dc9dd49a7889891049020b8855c3af438c0bc3cd578fc14d557f6c42",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1817,
+      "sourceSha256": "a819e7eacb1cf09058021757c18605b4702a3dd4bca82e5a7954ce9d7c5af7d3",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 892909,
+      "sourceSha256": "76387bb98e6eec26c0ae4f36db07d60fa5715e8f6b99836848970cc91d0acfc7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1780,
+      "sourceSha256": "4e2d8a89754bc23dda9d037a6856f1ed07de034caa30d22501f50b42fc723048",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1043629,
+      "sourceSha256": "2625c2b3d46d6b1d3a6e86d0f0c447cfcbb28b4f7a54595795f28692386a5618",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1779,
+      "sourceSha256": "a83f31e75752b2b4b09418811eccb3c5feb131add1124e242a2cd110c43bf108",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/home-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1212173,
+      "sourceSha256": "0f0a7ab9b0fef1f370a55ca889b6178db129ae84f96310fc729413983c2df7f2",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1348,
+      "sourceSha256": "bc728308e1d517125ae1a00aeeb9b01f40590ff26a089988ecd30f3ee61d2645",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 130148,
+      "sourceSha256": "a22247cf9e8132107b58f2d789a2114b42ddc66d4cf698a8e7ad84565bd10abb",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1348,
+      "sourceSha256": "024bcfe8836da8e93cd91c8814354c74fe74b35591ec9e066f914bb4f2439d31",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 147308,
+      "sourceSha256": "ef501ac1c1b317e375760a0f9a7b848bd2dfa93ad21ec411b7643dddec0d48c3",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1348,
+      "sourceSha256": "78d2e2c71b23740bb58babae069dd7dc95146ad29434407c60c990e83419ae6f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 157639,
+      "sourceSha256": "63e18b4079426ef09dd8da6bb907dbfd391eab8aeee4e48abd79e235fccb5779",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1346,
+      "sourceSha256": "f0e4fdb0166d9b12cd39bf36ab21eabcb4d9150ab90a59c5a30cddc3a3151b2e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 101972,
+      "sourceSha256": "9db5eed990f16b5510d1fcad9dfb45e2cf99c1a7242011be24c7306de08e7972",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1346,
+      "sourceSha256": "54a9093af9342f7c938c09d698520e56d8ac81baeb78232223a51ddd2bea159e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 100904,
+      "sourceSha256": "7b73833ea5d78fc65cc73f67fe04f1f04464bc2c36fd4052bbe9f1321dafb453",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1346,
+      "sourceSha256": "d7187537394dca49c84852278c7adaad0362ec3e1e5b6d8de1c13ec1ea847529",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/privacy-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 120637,
+      "sourceSha256": "8840c232f3e082482658318dc64ee491615a388d46a3bafe95cd8806e5a2db82",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-1024.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1852,
+      "sourceSha256": "8bd837f8874e45ca4f54e36f45345f4ca2ce15307581bef22168377c8c0a7069",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-1024.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1805622,
+      "sourceSha256": "546ec59a5e9529f6e983634f0c83caca05f6c289a51ccf881406227f6c85b835",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-1440.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1853,
+      "sourceSha256": "b2c19ae476d558afb36caffa98aece8c1f53c991f27cbe73b86babf9772386c6",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-1440.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2459980,
+      "sourceSha256": "80b4993bd5f47b20832c4d440061164566f6ec17516c89b528343a4eb33be51a",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-1920.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1852,
+      "sourceSha256": "c7579f7ba59cb940ef5005ef120698ce3276de50715a752dccb06cc0fb164bf2",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-1920.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 2712326,
+      "sourceSha256": "ecea31132d2e84d655409601b67934d432a8ea522319d3e71bb27a9c81df1eb9",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-320.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1864,
+      "sourceSha256": "7427917e318c9573595a92a3e8d3bf4b9584430afb0ed9d19615cb665bfca20a",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-320.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1017396,
+      "sourceSha256": "93ffe4a7233585795e45ed3e5ddda3240bb58d34df2ce34326ea088973037a49",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-375.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1850,
+      "sourceSha256": "b7278d9642f57d302d3bafbbc0b948a7a0c48834c3d82f279ca193292786ae55",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-375.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1152096,
+      "sourceSha256": "9debf3b46f3833d8aa772b69c558afff78cca28a06d5177ea41bc1349b32e6f1",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-768.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1850,
+      "sourceSha256": "9937811d02cc71134b21c05b0f0a5b06ec9e2ec325fbc8bb2e3d7dd7331a89af",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/local/services-768.png",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 1433623,
+      "sourceSha256": "1953ee68c46e9ba454ea799872c28d8dad3a24196c23b985b51135fdedd16463",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/qa/verification.json",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 86189,
+      "sourceSha256": "a00ee4eb1e1f32bedca0ba4e143445b4eb680b81c836d199a0258ee94608a92f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/Unique-Management-Group-Logo.svg",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 17579,
+      "sourceSha256": "946bcdb8f1c4a2554a10091a224a2c182342e09692b1086fd81a0e927b7cf6f0",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/Unique-Management-Logo-Final-New.svg",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 12366,
+      "sourceSha256": "af1f76d1868bc468cff7b4b15be790adf332749b1a5316ca386bb9789be2f897",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/audit.json",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 33553,
+      "sourceSha256": "968102d4fe9727334e08d703c7bed9b55eef5ea2d1b3c33f4f2765fe2ab5610e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-0.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 137359,
+      "sourceSha256": "32cf3d6d84b9c5c7f9a103914303be54d87679467db6ef95ef21fc5eb727b7e5",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-1.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 122652,
+      "sourceSha256": "3cd81f44d2003b1f86e6a46fab136e9a5fb5a1130cf4a2b5848d2fabf7bffaec",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-2.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 116203,
+      "sourceSha256": "b7b43eb18fa49e42e1f55da7d73ad1a71ee2195ab72afab953b50ba1de6bd223",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-3.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 114526,
+      "sourceSha256": "608dd79e66271e351978d1d626bdd589c91afdcc022facdc513599b46fc3b35f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-4.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 114355,
+      "sourceSha256": "2fdd1f8eef4368336ae7183ee9a29f03bc47eaf1e0ac93012ae545120c02295c",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-5.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 67,
+      "sourceSha256": "9311bab30d8b5d05f5fa5563a251b8c96b8470873bb77c62d3d17c146d7acab7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-6.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 102571,
+      "sourceSha256": "d294e2a8c652d16ba4ea3dd0931b809ce8685276bb3eee5279dfeb4513d3559f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-7.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 8469,
+      "sourceSha256": "a9134f2da778819ea27dbd2fa18d5e3fa792d8d93065e4b44403d55c15611fc2",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/source-8.txt",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 102569,
+      "sourceSha256": "8acde93f25e2f4e89152e4220fd3043243b72a0d03c5fdec8c7ffb2e413bbef4",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "customers/unique-management-group/research/tenant-request-baseline.json",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1149,
+      "sourceSha256": "ed0e373df5ac820fa644fa2bc558149ba0a76b58d65c216f291517363570c3eb",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "db/migrations/0007_lead_investment_details.sql",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 298,
+      "sourceSha256": "8ee1749f4d9d7d3c1b1efbf14d4275f41b24d60e676119041f718f84c511ebc0",
+      "stagingSha256": "8ee1749f4d9d7d3c1b1efbf14d4275f41b24d60e676119041f718f84c511ebc0",
+      "identicalInStaging": true
+    },
+    {
+      "path": "db/migrations/0008_webfactory_build_jobs.sql",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2189,
+      "sourceSha256": "6abc5d5c6d1f685cf01ad329aba761e37cd1821f3d7659692fd757e3d86cbf59",
+      "stagingSha256": "6abc5d5c6d1f685cf01ad329aba761e37cd1821f3d7659692fd757e3d86cbf59",
+      "identicalInStaging": true
+    },
+    {
+      "path": "db/migrations/0009_webfactory_build_worker.sql",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1930,
+      "sourceSha256": "6270ebb7ad17a32c40b57355a7d21150608f12b41ec965db4d31f00916679c5f",
+      "stagingSha256": "6270ebb7ad17a32c40b57355a7d21150608f12b41ec965db4d31f00916679c5f",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/admin-preview-review.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3675,
+      "sourceSha256": "92241a3e415ab56a246dbc1f35726b4732dca060416e2d123266f0529dc86c86",
+      "stagingSha256": "92241a3e415ab56a246dbc1f35726b4732dca060416e2d123266f0529dc86c86",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/admin-slug-workflow.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 5639,
+      "sourceSha256": "b8f2e0ff8f86c85d0eba36dc17630b7601a4655577f10729fb75cfaa6c95ead0",
+      "stagingSha256": "b8f2e0ff8f86c85d0eba36dc17630b7601a4655577f10729fb75cfaa6c95ead0",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/build-control-preproduction.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 6582,
+      "sourceSha256": "fd67b72ede5a6e3936e62479454b18b0d720b957f4938d78643a325191bacd24",
+      "stagingSha256": "fd67b72ede5a6e3936e62479454b18b0d720b957f4938d78643a325191bacd24",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/build-engine.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 6087,
+      "sourceSha256": "3d8eefd1e88da2ef45ba0dbd7f6eb1b8cb0f51a30911e2b2fc953f254309c7c2",
+      "stagingSha256": "3d8eefd1e88da2ef45ba0dbd7f6eb1b8cb0f51a30911e2b2fc953f254309c7c2",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/build-qa-recovery.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 5508,
+      "sourceSha256": "aa2d865bcd3f607ad1225c1314d75fac342f0ab55fce700130ccd4bde8c60aeb",
+      "stagingSha256": "aa2d865bcd3f607ad1225c1314d75fac342f0ab55fce700130ccd4bde8c60aeb",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/build-readiness-verification.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3522,
+      "sourceSha256": "042061807dc424a80e0b77fc43f6e7025d8034d0a7da30a24268004a7d15d9c0",
+      "stagingSha256": "042061807dc424a80e0b77fc43f6e7025d8034d0a7da30a24268004a7d15d9c0",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/build-worker-configuration-readiness.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5747,
+      "sourceSha256": "d4a30f3d186de669c5ad27f9053503dbfd8bdfadea329dc6e8652fcdbc67659e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "docs/build-worker.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 9418,
+      "sourceSha256": "b18146a5c1725b787b1d2193017a21128be5b36498ec87bafaf0c7ee6216e414",
+      "stagingSha256": "b18146a5c1725b787b1d2193017a21128be5b36498ec87bafaf0c7ee6216e414",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/lc-delivery-verification.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3922,
+      "sourceSha256": "933619d9c77c4915f0f374b3a7c5382f9de2344483187cf0ef16d84ba9deaaae",
+      "stagingSha256": "933619d9c77c4915f0f374b3a7c5382f9de2344483187cf0ef16d84ba9deaaae",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/lc-lead-activation.md",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 5015,
+      "sourceSha256": "131c12327dc3b9c7a4ea15676542ffa7fbf2a5d7ca48336f2d4d760e2216b1e4",
+      "stagingSha256": "131c12327dc3b9c7a4ea15676542ffa7fbf2a5d7ca48336f2d4d760e2216b1e4",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/lc-production-release.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3960,
+      "sourceSha256": "503d248f59ab6abb7f24b67a02208fe6544cf703a0ca3587f857770cdf480582",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "docs/preview-approval-gate.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 1460,
+      "sourceSha256": "e667eb637d69b0073027ba8080cb066ce48893bd4931044c5eae3e0b75b11f56",
+      "stagingSha256": "e667eb637d69b0073027ba8080cb066ce48893bd4931044c5eae3e0b75b11f56",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/protected-preview-recovery.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2583,
+      "sourceSha256": "08400e1827d038f234f4d3908745264aac69a5fbcbe5cf62da428f30e92d1327",
+      "stagingSha256": "08400e1827d038f234f4d3908745264aac69a5fbcbe5cf62da428f30e92d1327",
+      "identicalInStaging": true
+    },
+    {
+      "path": "docs/unique-home-recovery.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 2473,
+      "sourceSha256": "f77e07c19b6f0eea4fba50aa96ef67181a0383f7d056ff3a6817160597b0d600",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "docs/unique-home-redesign-research.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3956,
+      "sourceSha256": "abe37b0e2ddfd12fd363fccb2cc28e829252bed65c28020fba0ebc3f384fffe9",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "docs/unique-home-v2-recovery.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5055,
+      "sourceSha256": "2b4673b7485023affb8388f2cbdf23834164fc80262c6de040ed295c45151b5e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "docs/unique-home-v2-retry.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 4441,
+      "sourceSha256": "4bd721ecfd2d2d7f76cc083c31f74076a837e8ed8297effc8aaf0fd76ac38877",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "docs/windows-build-worker.md",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 5292,
+      "sourceSha256": "e6bf2282605bc0c0d2c28e98d4b6b5d63bd1db225c6cbd4f39e8724fd6865530",
+      "stagingSha256": "e6bf2282605bc0c0d2c28e98d4b6b5d63bd1db225c6cbd4f39e8724fd6865530",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/build-evidence.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2357,
+      "sourceSha256": "9d368a6df8414cb8b01175d616c1daf4fa5fac6558893f50c57466791d395ff8",
+      "stagingSha256": "473dc290dded9057c56628c8a219d5b417f9ed2170c097629a7fe1186e5adbb3",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/build-executor.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2623,
+      "sourceSha256": "6cc8962e6fbfacbce66e3ceab12f4efd0daa23b67d72ae5eb1c53b3afaeb8127",
+      "stagingSha256": "6cc8962e6fbfacbce66e3ceab12f4efd0daa23b67d72ae5eb1c53b3afaeb8127",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/build-jobs.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 8571,
+      "sourceSha256": "9de4d5ab629c530a5d74bb3a1f59d109b2fc01aad003e8267485c71cd141f803",
+      "stagingSha256": "eece277ad09097e8f8c8ed7ee06c5acf469883081e017aed087205f61ffc6896",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/build-worker.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 11298,
+      "sourceSha256": "ed9500444ef1baffcc427dbba40730279f558e36956c0c235ef3513c9afc29d7",
+      "stagingSha256": "3552ddfb75c5305e97fb92cb7b22d97810d5f43bd998aa9bf23f795d3d19d927",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/preview-verification.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 4047,
+      "sourceSha256": "d32d7fd86e3aa6922521ab18abd97259d697ca10f350e6e1945a5f8499afd2d9",
+      "stagingSha256": "d32d7fd86e3aa6922521ab18abd97259d697ca10f350e6e1945a5f8499afd2d9",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/qa-diagnostics.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 1348,
+      "sourceSha256": "a1f04aaa032ec9f683f6119f89c628ca6cd129ae895d7bb1eef9def2d961b38a",
+      "stagingSha256": "be403419ce275e3335b057e0e64e93155208787a2facf0746692976746164952",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/review-actions.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2130,
+      "sourceSha256": "c9c441269bf8694b0996d7a6d83de3e893afbce74126c9edb35e621a567db1d4",
+      "stagingSha256": "c9c441269bf8694b0996d7a6d83de3e893afbce74126c9edb35e621a567db1d4",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/reviews.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 5335,
+      "sourceSha256": "8907405d6d94ebcad83b1b7d00a77ca59d683e416c4733e80f3d56890f721234",
+      "stagingSha256": "c6236b5ff325252311a6c95e411bf9f7ad75a40216d0f5c791f67e09ea45e82c",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/route-readiness.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 1327,
+      "sourceSha256": "b6fbdca6dca63214e59a80c6b9ee63d090400b4a9df231b4af86758c4470efb8",
+      "stagingSha256": "e8e09be15690af12a0aef788f01e69642fe809dd0eab996e5040bc18596d3484",
+      "identicalInStaging": false
+    },
+    {
+      "path": "lib/webfactory/slugs.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3610,
+      "sourceSha256": "efa9bde5aa2f4254bd505721d0145639ef001b5617b54e2d869f3be98f2fcf43",
+      "stagingSha256": "efa9bde5aa2f4254bd505721d0145639ef001b5617b54e2d869f3be98f2fcf43",
+      "identicalInStaging": true
+    },
+    {
+      "path": "lib/webfactory/worker-contract.ts",
+      "status": "??",
+      "classification": "REQUIRED BACKEND/WORKFLOW",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2875,
+      "sourceSha256": "e0403322744d190d56c5a40b3906bfbdef065c6efe2bbed2eb47de144308aeaa",
+      "stagingSha256": "cfdfc070d07d9402c722d400b7708b68b685a44f9082ca62270b7398536fe1f4",
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-01-aperture.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 81262,
+      "sourceSha256": "a7e482580ccae3be4ed19c164124147c7adc909c55b7f3d865d6adb1fe8d4692",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-02-horizon.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 133042,
+      "sourceSha256": "baec2a402a2c0f739a2ef4f69091c3c33db9784c9e0c74d3f00dc42bf72c0f32",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-03-figure.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 173038,
+      "sourceSha256": "4d9a387443deca95fe3a7f74a61cca4d981568e4b8dd69d1306597cb5df466e2",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-04-slats.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 194382,
+      "sourceSha256": "de6385c81c2d1c31737c036c06d6b913a26c949b7f8ace2028cbc292427dbf47",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-05-contact-sheet.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 217506,
+      "sourceSha256": "1372dbd40124364728529b450de24e05ddd8b1f331abcd442c31be9f00d8ba44",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-06-still.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 46014,
+      "sourceSha256": "fe0c08c072b57dcc1f1a11768d1994f67a049ecf54803798dcdf95d44209af3b",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-07-lines.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 299454,
+      "sourceSha256": "ab1df81f4f2864f34b9195349a81984abfedff54855a0de9de55f3d06ae5ebc6",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/frame-08-haze.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 107292,
+      "sourceSha256": "243c582c99da7055c781e81411e53db9a18a7edbde257157474a8bdbb0daf975",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/jm0616studio/images/hero.webp",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 454976,
+      "sourceSha256": "8122c8f45897e47995735aa76ed1d2252e876202a60541be8db8ff7ca99d1d16",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "public/customers/lc-real-estate/commercial.webp",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 315212,
+      "sourceSha256": "9b49cf25c1fee248be6ec31fccdc7520206e4efcdf7b29add1d52574aa61e13c",
+      "stagingSha256": "9b49cf25c1fee248be6ec31fccdc7520206e4efcdf7b29add1d52574aa61e13c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "public/customers/lc-real-estate/favicon.svg",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 310,
+      "sourceSha256": "c555f396220b546222c066921e1ac1278e4fe6d9837b0517b15a76fb26f8936a",
+      "stagingSha256": "c555f396220b546222c066921e1ac1278e4fe6d9837b0517b15a76fb26f8936a",
+      "identicalInStaging": true
+    },
+    {
+      "path": "public/customers/lc-real-estate/hero.webp",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 360792,
+      "sourceSha256": "b6966b455488057bdbf1cbfedfb96f60ebfc8dcb906419879853e9f35222243d",
+      "stagingSha256": "b6966b455488057bdbf1cbfedfb96f60ebfc8dcb906419879853e9f35222243d",
+      "identicalInStaging": true
+    },
+    {
+      "path": "public/customers/lc-real-estate/logo-light.svg",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 510,
+      "sourceSha256": "611372d0d6100555c43b553823e6961832ff2046c2ba08e0aced0cdae7eabd4c",
+      "stagingSha256": "611372d0d6100555c43b553823e6961832ff2046c2ba08e0aced0cdae7eabd4c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "public/customers/lc-real-estate/logo.svg",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 588,
+      "sourceSha256": "26bdce5ab016353f47c7c02852cef66ec03804dc74d9605ea1cc00791f5b9351",
+      "stagingSha256": "26bdce5ab016353f47c7c02852cef66ec03804dc74d9605ea1cc00791f5b9351",
+      "identicalInStaging": true
+    },
+    {
+      "path": "public/customers/lc-real-estate/meeting.webp",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 109692,
+      "sourceSha256": "e194fdb037be1599c5b6f1c0b54f871f267517863f414c919a4d7e3a58bb7552",
+      "stagingSha256": "e194fdb037be1599c5b6f1c0b54f871f267517863f414c919a4d7e3a58bb7552",
+      "identicalInStaging": true
+    },
+    {
+      "path": "public/customers/lc-real-estate/office.webp",
+      "status": "??",
+      "classification": "REQUIRED CUSTOMER SITE/ASSET",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 187512,
+      "sourceSha256": "dc33de4bace6430f3cf637b6f276709f18a8f652db9f630a6fa99413bb62924e",
+      "stagingSha256": "dc33de4bace6430f3cf637b6f276709f18a8f652db9f630a6fa99413bb62924e",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/audit-build-control.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3838,
+      "sourceSha256": "6217dd3945f39761bd02287bb19f5a7d2f1ed8c140bb5eebe539b3722acd3f87",
+      "stagingSha256": "6217dd3945f39761bd02287bb19f5a7d2f1ed8c140bb5eebe539b3722acd3f87",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/audit-unique-management.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1882,
+      "sourceSha256": "a9bf53367157eb1bba0b517a0071924ca6efa79e9d121f191047ce4b88c67d76",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/build-worker/checkpoint.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3542,
+      "sourceSha256": "ea9323a1e251f5033d5701483f244532b239dc1f6762048afb939dfe6e55c043",
+      "stagingSha256": "ea9323a1e251f5033d5701483f244532b239dc1f6762048afb939dfe6e55c043",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/build-worker/generator.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 7761,
+      "sourceSha256": "8032ed664cfb006c285848ef1cd5886132db8d119cf571d8a64bc62a1c50a470",
+      "stagingSha256": "b249a9df7869da3d7c61f8f43902feca78b4149438cf48515c3344bf4b19de55",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/build-worker/launcher.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 954,
+      "sourceSha256": "ba4d280e2208788dd5e946119e92feb11d4bf60ca10a0efcd0275e7af354d05c",
+      "stagingSha256": "ba4d280e2208788dd5e946119e92feb11d4bf60ca10a0efcd0275e7af354d05c",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/build-worker/pipeline.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1427,
+      "sourceSha256": "8b9c0373f470baa6591e84d2467ae064387fbc03db7c985e71620ca72a211f07",
+      "stagingSha256": "467945380a937aca5eb6974fac44a7eacfe6adf47802eb4bbf8bb987a60cd576",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/build-worker/qa.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5871,
+      "sourceSha256": "5590200a2904dcf290c16f04b898e1e72e313447c8c484d15c57563b364b279a",
+      "stagingSha256": "025abc2e697feace1a9c3e2490bac22ab145de7e786549e5dde3660d8b990b19",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/build-worker/run.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 11037,
+      "sourceSha256": "a71a85a76ad4520cc52af609946db10157ebd2ae936a6c1d301ed18f02990e1f",
+      "stagingSha256": "a18091f839acffc4eb4f0558ac9aaab8bc4b2e2bf0363494b048129a9a68d47a",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/build-worker/runtime.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3347,
+      "sourceSha256": "4efdfa0fd5aefd5fb9c6f89655df1fa36c5f9ec7cd2251f1fef20bf187ec2fb9",
+      "stagingSha256": "15f49fcfacabda0b618bfdac5f775afc014d113f2941329368eebea8880a50fe",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/build-worker/setup.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2690,
+      "sourceSha256": "b88f43297a3b0c9ab2f18f0568bea1056c19a1c4433cf20b1866e06a9dfcb652",
+      "stagingSha256": "b88f43297a3b0c9ab2f18f0568bea1056c19a1c4433cf20b1866e06a9dfcb652",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/complete-unique-management-recovery.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5495,
+      "sourceSha256": "f8b5dccacc6e8d5d1212f0c3c1f40bb5a79278cc03d3d8ecf9eab09ebeda0876",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/configure-build-production.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1883,
+      "sourceSha256": "bdfa9bf6041af2dd8a89613fb94d50a70b4ebe11182e78a4bed9726ad9cdcbb4",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/debug-umg-build.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1715,
+      "sourceSha256": "b982d8f58a75ca241142459faa729929cf45d791c43b38f774e7fe9f08158664",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/debug-umg-lint.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1696,
+      "sourceSha256": "7226257be114f60c76572237bee406a689444d9b478b89f91d874fd6db58d97e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/diagnose-preserved-qa.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3539,
+      "sourceSha256": "1bf025e04b7c392439e1eee3dc1e84b64222cd5c8181fb8ccb0730072a757ba8",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/generate-jm0616studio-assets.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 9736,
+      "sourceSha256": "1e88735294df91fd49f0677ae31f633f4a25bab78693e0a3aa69c4eb13571bf2",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/hold-unique-content-review.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1948,
+      "sourceSha256": "d1a014f902e002250a7d307ce4eb114d8312f3684e37f48390f569e858e0f772",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/inspect-unique-v2-local.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1886,
+      "sourceSha256": "8bbb9db524ce5c3eb9bbd76870e144f2ffa315ddca4dfa98a74377bd376061af",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/launch-approved-nasir-test.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 4113,
+      "sourceSha256": "739a7419949fa491b940c0845d2ce2e62a42e04e32f2b03ae8c921ad266b1037",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/launch-unique-management.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 4019,
+      "sourceSha256": "c8bc4a67fee8e80bce4fb82ae0139bead4b54053c68668ae8bedbcf4865e21fb",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/launch-unique-v2-approved.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5915,
+      "sourceSha256": "5d3efd7d996739e5b85f48f206af722e9f5b85b9b1aeb97932e6ee2c14b7cd00",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/measure-unique-preview.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3220,
+      "sourceSha256": "7c6b573dab8f681f84ed293123088fc9a156ce1ad8ec60ec49af6359d424cdcb",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/package-jm0616studio.py",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3450,
+      "sourceSha256": "285863776fcf61a258ab55d2b81680ad1c6f03634d4bd3bf6e3a912000b73ce1",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/prepare-unique-management.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 8730,
+      "sourceSha256": "c80961c267d2ba6e81e6f2ca95f60b14714af5c736b8d0f8e98fa3b2c3ec2717",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/prepare-unique-v2-recovery.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 6397,
+      "sourceSha256": "9580882c5bf9760d22ee4b93361011086677213903eef7983b232b91405ea935",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/recover-existing-preview.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 5149,
+      "sourceSha256": "869c20d08efa9263837a4a2c79ddd73b2c5622860425798de68d3dae07c1d452",
+      "stagingSha256": "869c20d08efa9263837a4a2c79ddd73b2c5622860425798de68d3dae07c1d452",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/recover-preserved-checkpoint.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 7308,
+      "sourceSha256": "59eddfc127a64aba0cc1b5bec97308a02a0cc8d126bcb4decb20cf90b4a4a6b1",
+      "stagingSha256": "59eddfc127a64aba0cc1b5bec97308a02a0cc8d126bcb4decb20cf90b4a4a6b1",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/recover-unique-home-preview.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5494,
+      "sourceSha256": "32df8e82ccd2b16e9dd8c6c55b290e904d4576e27955424eb5fa6859b8eb81f7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/recover-unique-management-preview.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5200,
+      "sourceSha256": "6ef45e1029eab567a612975705874bda053603df40dbd99452d2a1b44a7b12f5",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/retry-unique-management.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 2951,
+      "sourceSha256": "bf09e8e96b511669def838affbfd84ca6dbec7498e858ad4fe56ccf630e43a47",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/run-unique-management.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1971,
+      "sourceSha256": "4dba791abe828b6f015b1e2c1ae497e5638b0126e88be93b1e3c799dde8473a7",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/run-unique-v2-diagnostic.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 2417,
+      "sourceSha256": "5394e2c6ae13389e929740e28223ea79bf44d4b9458ad6f3d4964252bf2faa29",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/run-unique-v2-recovery.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 887,
+      "sourceSha256": "bbf2253d805596c0de396a9e08f07701b15e326ef7caec0fa7e09a0681c81bcc",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/status-unique-management.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 831,
+      "sourceSha256": "7b79acbbc2302ee3d1e9952de19a90e184e5fce866238c1fcff3c06f7ff390a9",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/status-unique-v2.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 860,
+      "sourceSha256": "5ab77f0767ed975c8dffd6834bcf0512013691875f32d033cab3243690865c15",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-admin-review-ui.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3554,
+      "sourceSha256": "a4eca301f0d76b79b0c284c0270205c38c46f0dc1290f4f4edbc65fb0ca5041f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-admin-reviews.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "adapted into current staging test",
+      "bytes": 5495,
+      "sourceSha256": "cbd0d7b1f61b3d3ca9f6acef43da44ce3a30dfa37dfdff25e4feabdf63120692",
+      "stagingSha256": "48613269e5e133dafc8d648540235781b7f1de3e23252e3d75d8f5a5f7f13829",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-admin-slug-ui.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 5526,
+      "sourceSha256": "6c017b9cd9e60279608749785fb2969ed28b6d4b6c8814d47f6a234ad58ba0ae",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-admin-slugs.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 9558,
+      "sourceSha256": "f93e5cf7c8a2834a4314b6673c4a8d1fb9bc7ef39ff179cfd8fe8a9aeb8945ed",
+      "stagingSha256": "6681fe07ecedd20b9ac13b515a593ebc4f2f3f2c0e6c8f8b41338f9acb5bff84",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-build-console.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 7768,
+      "sourceSha256": "6b81406acbd627bb70122fe61697c610d0f36dfecb1236fe9f6c08285b8dc081",
+      "stagingSha256": "6b81406acbd627bb70122fe61697c610d0f36dfecb1236fe9f6c08285b8dc081",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/test-build-generator.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2598,
+      "sourceSha256": "b8718bd00a24e22011a89878dead16731275389836143a68e6099d56f83344c3",
+      "stagingSha256": "b8718bd00a24e22011a89878dead16731275389836143a68e6099d56f83344c3",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/test-build-jobs.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 4971,
+      "sourceSha256": "472c4753ca3f4a4b0dbbfca9707968120424598a622a90a00d73ab6d9cd47e3e",
+      "stagingSha256": "472c4753ca3f4a4b0dbbfca9707968120424598a622a90a00d73ab6d9cd47e3e",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/test-build-worker.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 14227,
+      "sourceSha256": "b1fa7e67440af476d55f8aabaa9951232c31654f0bd172ad64393ba3b67011df",
+      "stagingSha256": "3cb19d75b30ffc1b8d07809c6c6eaeee28590c782e42e24f3849de7df764d65e",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-jm0616studio.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "adapted into current staging test",
+      "bytes": 4902,
+      "sourceSha256": "1635cdf85ceae7a970484316e0d7f21dfa1f445859afa450db5513e5498e112d",
+      "stagingSha256": "c4ec4772383dc135e5b01979136fa71213db0e96e838dfaecd12c27ffbaaebbf",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-lc-leads.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "adapted into current staging test",
+      "bytes": 10106,
+      "sourceSha256": "8d2e8c0ab13d855c843f678c3edfa3ea9aacdf40c67044829f80e1dea8950f52",
+      "stagingSha256": "25c808e87ad385ff61b042307bb0100740b00484a91e30d89de57b64a8191698",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-lc-preview.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 4352,
+      "sourceSha256": "1996972f6ad10bb363cf36fc6e219fe1caca00e166650a0c2b12ac6ebbfd4109",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-preview-approval.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2919,
+      "sourceSha256": "532b330ef71ba7981866c2eb38874865691ffac4ac69fc0f16cf5e0ca13b6d63",
+      "stagingSha256": "5ef6ab725e09b1178dd72c9b69b9ea51d6f6348dc2d3081e325230a8c0b8c36d",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-protected-preview.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3238,
+      "sourceSha256": "b7cf771d619ae1804fe21977bcc1c4fcf400ef06a8e3e4a94e2e65e7c12c5853",
+      "stagingSha256": "b7cf771d619ae1804fe21977bcc1c4fcf400ef06a8e3e4a94e2e65e7c12c5853",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/test-public-experience.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "safety assertions adapted into test-v2-routes.mjs",
+      "bytes": 5855,
+      "sourceSha256": "d4bc2ed1d8adab0ae5c331001d2abaed99e2cb3080e30b5a1adf679fca6f738f",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-qa-checkpoint.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3881,
+      "sourceSha256": "4fcb728bdff242620b28e728e86ed84f9f620aa334ff7bbd404b0f02093bbbd8",
+      "stagingSha256": "4fcb728bdff242620b28e728e86ed84f9f620aa334ff7bbd404b0f02093bbbd8",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/test-qa-diagnostics.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 1997,
+      "sourceSha256": "f8f28dd8aed0d1bda5bed008acad7916572df850676e52ebc797006d59a68703",
+      "stagingSha256": "c6e195e6e7d44b4b6823d8dfafcf3872d819dfcc9636256bea50e6dd09460f94",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-route-readiness.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "retained newer staging implementation",
+      "bytes": 2275,
+      "sourceSha256": "5a6a60b88fdc2eda71f78719b733eb13c3713a94d3ff8fdcbee4ba0c6450bb15",
+      "stagingSha256": "ccaf4d24a1d07154e6f4d0f2f0192cdaa4510350c683c5b43f54ff580ae137f4",
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/test-windows-worker.mjs",
+      "status": "??",
+      "classification": "REQUIRED MIGRATION/TEST/DOC",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 2479,
+      "sourceSha256": "19ff192174039bc4c88f736e6e56146c92bd7ab669afb16737b4b08459f86e01",
+      "stagingSha256": "19ff192174039bc4c88f736e6e56146c92bd7ab669afb16737b4b08459f86e01",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/umg-active-jobs.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 548,
+      "sourceSha256": "c60631168889ee1585b797dbeac9cdd207fc752dbc4cb1a40b0e7b2f2abe3a44",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/umg-qa-failures.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 1167,
+      "sourceSha256": "5e4538e71c2f20b0c4969c5d3a404a5151c0f6cce1c43d49766006ca0aba7db4",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/verify-build-production.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 4804,
+      "sourceSha256": "9c2e0e24fa320b839fcf367ecd0ef8aebd8ea2e6ef8eab65d7b6aeb9978c0960",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/verify-nasir-preview.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3234,
+      "sourceSha256": "0e493f8c4ca0a7d9ae048dc5b97f9c8e68c6edf56e7ece4d07fcdb49cfcaee7e",
+      "stagingSha256": "0e493f8c4ca0a7d9ae048dc5b97f9c8e68c6edf56e7ece4d07fcdb49cfcaee7e",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/verify-preserved-qa.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 2514,
+      "sourceSha256": "0be3c2e3b682fd95dbc361e09687a6d375cb088641291dd12582bc83589ae469",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/verify-preview-gate.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3501,
+      "sourceSha256": "5743a9ba553e5d34feb0d792ba231536af4e0b4f26fd4ac88430a58a0414bdc6",
+      "stagingSha256": "5743a9ba553e5d34feb0d792ba231536af4e0b4f26fd4ac88430a58a0414bdc6",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/verify-protected-console.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3892,
+      "sourceSha256": "64c397bb5b7e9305e120ee884504c0de9890b848c902552e4f86f35afddea41a",
+      "stagingSha256": "64c397bb5b7e9305e120ee884504c0de9890b848c902552e4f86f35afddea41a",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/verify-qa-console.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "already in staging or ported byte-for-byte",
+      "bytes": 3744,
+      "sourceSha256": "de7856142d4f744d5a1bde44561efd47c694c0f533ae347551ee38fd80dfa0bb",
+      "stagingSha256": "de7856142d4f744d5a1bde44561efd47c694c0f533ae347551ee38fd80dfa0bb",
+      "identicalInStaging": true
+    },
+    {
+      "path": "scripts/verify-unique-build-console.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3511,
+      "sourceSha256": "d7c374b16a32da5b8ffff373823dcb068473cb395aa2214fcaf85561598d880e",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/verify-unique-management.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 6466,
+      "sourceSha256": "050332032c5d719b5d6bc158961bcbcc2ae4e54f466f81f9f4d87d56c91d87fd",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "scripts/verify-unique-v2-branded.mjs",
+      "status": "??",
+      "classification": "OBSOLETE/CONFLICTING",
+      "disposition": "excluded obsolete or historical source",
+      "bytes": 3289,
+      "sourceSha256": "739318f7a72578cd390f887bc45c3bf6a410dabf6081ac84e54003ec714d7461",
+      "stagingSha256": null,
+      "identicalInStaging": false
+    },
+    {
+      "path": "tsconfig.tsbuildinfo",
+      "status": "??",
+      "classification": "GENERATED/BUILD ARTIFACT — DO NOT PORT",
+      "disposition": "excluded generated evidence",
+      "bytes": 420573,
+      "sourceSha256": "5373aaee0fb79f69b5cf24315a22deb061d06ec46a66423f470809a08993c0d4",
+      "stagingSha256": "a9f7e48df2f47b9f0164f034d54ae8f2fa941b27340df9e5cd66b05cdbad7ee9",
+      "identicalInStaging": false
+    }
+  ]
+}

@@ -30,4 +30,13 @@ const registeredPreview = await fetch(base + "/preview/swenzy-logistics", { redi
 assert.equal(registeredPreview.status, 307);
 assert.equal(registeredPreview.headers.get("location"), "/swenzy-logistics");
 
-console.log(`PASS: ${publicRoutes.length + designs.length + templates.length * sections.length} public/sample routes, 7 protected routes, 5 unavailable routes, registered preview alias, public HTML privacy markers.`);
+const requestHtml = await (await fetch(base + "/request")).text();
+for (const field of ['name="name"', 'name="business"', 'name="email"', 'name="details"', 'name="consent"', 'name="submissionId"']) {
+  assert.ok(requestHtml.includes(field), `real request form is missing ${field}`);
+}
+const loginHtml = await (await fetch(base + "/admin/login")).text();
+assert.ok(loginHtml.includes('name="username"') && loginHtml.includes('name="password"'), "real admin login fields must remain present");
+const checkoutHtml = await (await fetch(base + "/checkout")).text();
+assert.ok(checkoutHtml.includes("Checkout unavailable") && checkoutHtml.includes("No card details are collected"), "checkout must remain inactive");
+
+console.log(`PASS: ${publicRoutes.length + designs.length + templates.length * sections.length} public/sample routes, 7 protected routes, 5 unavailable routes, registered preview alias, real request and admin forms, inactive checkout, public HTML privacy markers.`);

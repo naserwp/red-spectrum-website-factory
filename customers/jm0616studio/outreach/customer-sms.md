@@ -1,0 +1,1 @@
+Draft: Hi [Customer name] — your private JM0616STUDIO LLC website preview is ready: https://preview.redspectrum.ai/jm0616studio. Please review the content and contact details. Reply with approval or requested changes. The form stays inactive until the recipient email is confirmed and tested.

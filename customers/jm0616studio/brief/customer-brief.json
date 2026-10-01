@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "project": { "businessName": "JM0616STUDIO LLC", "slug": "jm0616studio", "industry": "", "templateId": "" },
+  "contact": {
+    "phone": { "value": "", "status": "missing" },
+    "email": { "value": "", "status": "missing" },
+    "address": { "value": "", "status": "missing" }
+  },
+  "content": {
+    "primaryService": { "value": "", "status": "missing" },
+    "serviceAreas": { "value": "", "status": "missing" },
+    "differentiators": { "value": "", "status": "missing" }
+  },
+  "assets": { "logoSupplied": false, "sourceWebsite": "", "notes": "" },
+  "formDelivery": { "provider": "sendgrid", "mode": "disabled", "recipientConfirmed": false, "testPassed": false },
+  "approval": { "approvedBy": "", "approvedAt": "" }
+}

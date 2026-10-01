@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {request as httpRequest} from 'node:http';
 import {readFileSync} from 'node:fs';
 import ts from 'typescript';
 const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(name=>name==='server-only'?{}:deps[name],m,m.exports);return m.exports;};
@@ -7,6 +8,11 @@ const rules=load('lib/webfactory/slug-rules.ts',{});
 const domains=load('lib/customers/domains.ts',{});
 const readiness=load('lib/webfactory/route-readiness.ts',{'@/lib/customers/registry':{getCustomerSite:slug=>sites.find(s=>s.slug===slug)},'@/lib/customers/domains':domains,'./slug-rules':rules});
 const original=globalThis.fetch,site=sites[0],url=rules.previewUrls(site.slug).fallback;
+const brandedLocalHtml=()=>new Promise((resolve,reject)=>{
+  const request=httpRequest('http://127.0.0.1:3012/unique-management-group',{headers:{host:'preview.redspectrum.ai'}},response=>{
+    let html='';response.setEncoding('utf8');response.on('data',chunk=>html+=chunk);response.on('end',()=>response.statusCode===200?resolve(html):reject(Error(`Branded route: ${response.statusCode}`)));
+  });request.on('error',reject);request.end();
+});
 try{
   let called=false;
   globalThis.fetch=async()=>{called=true;return new Response('Not a customer',{status:200,headers:{'content-type':'text/html'}});};
@@ -28,6 +34,14 @@ try{
   globalThis.fetch=async()=>new Response('<link rel="canonical" href="https://preview.redspectrum.ai/other"><title>Unique Management Group LLC</title>',{headers:{'content-type':'text/html'}});
   assert.equal(await readiness.verifyCustomerRoute('unique-management-group',branded),false);
 }finally{globalThis.fetch=original;}
-for(const site of sites)assert.equal(await readiness.verifyCustomerRoute(site.slug,'http://localhost:3012/'+site.slug),true,site.slug);
+for(const site of sites){
+  // Production-mode UMG routing requires its approved preview host. Keep the real request local.
+  if(site.slug==='unique-management-group'){
+    const html=await brandedLocalHtml();
+    globalThis.fetch=async()=>new Response(html,{headers:{'content-type':'text/html'}});
+  }
+  try{assert.equal(await readiness.verifyCustomerRoute(site.slug,'http://localhost:3012/'+site.slug),true,site.slug);}
+  finally{globalThis.fetch=original;}
+}
 assert.equal((await fetch('http://localhost:3012/nasirtesting')).status,404);
 console.log('PASS: actual registered local routes; Nasir 404; wrong tenant, generic 200, unknown slug and unapproved host rejected.');

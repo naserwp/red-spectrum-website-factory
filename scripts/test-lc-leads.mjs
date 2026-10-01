@@ -50,8 +50,8 @@ try{
   await admin.query('CREATE TABLE '+schema+'.website_lead_rate_limits (LIKE public.website_lead_rate_limits INCLUDING ALL)');
   class ScopedPool{query(...args){return pool.query(...args);}}
   const storeModule=load('lib/leads/store.ts',{pg:{Pool:ScopedPool}});
-  const service=load('lib/leads/service.ts',{'./config':config,'./email':email,'./store':storeModule,'./validation':validation,'@/lib/customers/registry':registry});
-  const route=load('app/api/leads/[customerSlug]/route.ts',{'@/lib/customers/registry':registry,'@/lib/leads/service':service,'@/lib/leads/validation':validation});
+  const service=load('lib/leads/service.ts',{'./config':config,'./email':email,'./store':storeModule,'./validation':validation,'@/lib/customers/registry':registry,'./myndy-contacts':{myndyContactSyncConfigured:()=>false}});
+  const route=load('app/api/leads/[customerSlug]/route.ts',{'@/lib/customers/domains':{customerDomainForHost:()=>null},'@/lib/customers/registry':registry,'@/lib/leads/service':service,'@/lib/leads/validation':validation});
   const base={name:'Synthetic L&C QA',email:'synthetic@example.invalid',phone:'2025550100',service:'Property opportunities',investmentInterest:'Property opportunities',budgetRange:'Prefer to discuss',propertyType:'Residential',message:'Synthetic <script>safe</script> inquiry. Do not deliver.',consent:'on',botcheck:''};
   async function submit(extra={},slug='lc-real-estate',ip=randomUUID()){
     const data=new FormData();for(const [k,v] of Object.entries({...base,...extra}))if(v!==undefined)data.set(k,v);
