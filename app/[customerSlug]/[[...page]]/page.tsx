@@ -14,7 +14,7 @@ import { umgService, validUmgRoute } from '@/lib/customers/umg-services';
 async function umgPreviewAllowed() {
   const h = await headers();
   const host = (h.get('host') || '').split(':')[0];
-  return host === 'preview.redspectrum.ai' || customerDomainForHost(host)?.slug === 'unique-management-group' || (process.env.NODE_ENV !== 'production' && host === 'localhost');
+  return host === 'preview.redspectrum.ai' || host === 'red-spectrum-website-factory.vercel.app' || /^red-spectrum-website-factory-[a-z0-9-]+-naserwps-projects\.vercel\.app$/.test(host) || customerDomainForHost(host)?.slug === 'unique-management-group' || (process.env.NODE_ENV !== 'production' && host === 'localhost');
 }
 
 function validVitalityRoute(segments: string[] = []) {
