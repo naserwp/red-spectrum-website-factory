@@ -7,7 +7,7 @@ import { V2Intro, V2Shell } from "@/components/webfactory/v2/shell";
 import "@/components/webfactory/customer-previews.css";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Designs", description: "Red Spectrum website designs and public-safe customer preview examples." };
+export const metadata: Metadata = { title: "Designs", description: "Red Spectrum website designs and public-safe customer preview examples.", alternates: { canonical: "https://webfactory.redspectrum.ai/designs" } };
 
 export default async function DesignsPage() {
   const catalog = await customerPreviewCatalog();

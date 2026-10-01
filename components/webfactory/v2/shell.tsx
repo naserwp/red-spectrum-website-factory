@@ -14,7 +14,7 @@ export function V2Shell({ children, area = "public" }: { children: ReactNode; ar
     <a className="wf-skip" href="#content">Skip to content</a>
     <header className="v2-header">
       <div className="v2-header-inner">
-        <Link className="v2-brand" href="/" aria-label="RS WebFactory home"><Image src="/v2/brand/red-spectrum-wordmark-v2.png" width={236} height={58} alt="Red Spectrum" priority /></Link>
+        <Link className="v2-brand" href="/" aria-label="Red Spectrum WebFactory home"><Image src="/v2/brand/red-spectrum-wordmark-v2.png" width={236} height={58} alt="Red Spectrum WebFactory" priority /></Link>
         <details className="v2-mobile-nav"><summary>Menu</summary><nav aria-label="Mobile navigation">{navigation.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav></details>
         <nav className="v2-top-nav" aria-label={`${area} navigation`}>{navigation.slice(0, area === "public" ? 5 : 4).map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>
         {area === "public" && <Link className="v2-button v2-red v2-header-cta" href="/request">Start website request ↗</Link>}

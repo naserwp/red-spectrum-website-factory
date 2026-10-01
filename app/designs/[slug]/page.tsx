@@ -9,7 +9,7 @@ export function generateStaticParams() { return designCatalog.map(({ slug }) => 
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const design = getDesign((await params).slug);
-  return design ? { title: design.name, description: design.description } : {};
+  return design ? { title: design.name, description: design.description, alternates: { canonical: `https://webfactory.redspectrum.ai/designs/${design.slug}` } } : {};
 }
 
 export default async function DesignPage({ params }: { params: Promise<{ slug: string }> }) {
