@@ -3,11 +3,15 @@ import type { CustomerSite } from '@/lib/customers/schema';
 import { umgGroups, umgService, umgServices } from '@/lib/customers/umg-services';
 import { UmgInquiryForm } from './umg-inquiry-form';
 import extraImages from '@/customers/unique-management-group/site/additional-images.json';
+import { headers } from 'next/headers';
+import { customerDomainForHost } from '@/lib/customers/domains';
 import './unique-management.css';
 
 const pages = { home: 'Home', services: 'Services', about: 'About', contact: 'Contact', privacy: 'Privacy' };
-export function UniqueManagementWebsite({ site, route = [] }: { site: CustomerSite; route?: string[] }) {
-  const root = '/unique-management-group', page = route[0] || 'home', service = route[1] ? umgService(route[1]) : undefined;
+export async function UniqueManagementWebsite({ site, route = [] }: { site: CustomerSite; route?: string[] }) {
+  const requestHeaders = await headers();
+  const domain = customerDomainForHost(requestHeaders.get('x-forwarded-host') ?? '') ?? customerDomainForHost(requestHeaders.get('host') ?? '');
+  const root = domain?.slug === site.slug ? '' : '/unique-management-group', page = route[0] || 'home', service = route[1] ? umgService(route[1]) : undefined;
   const images = [site.images.hero, ...site.images.gallery, ...extraImages];
   const url = (p: string) => root + (p === 'home' ? '' : '/' + p);
   const photo = (index: number, priority = false) => { const p = images[index]; return <Image src={p.src} alt={p.alt} width={p.width} height={p.height} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 60vw, 850px" priority={priority}/>; };

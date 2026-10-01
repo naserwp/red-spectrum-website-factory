@@ -14,7 +14,7 @@ import { umgService, validUmgRoute } from '@/lib/customers/umg-services';
 async function umgPreviewAllowed() {
   const h = await headers();
   const host = (h.get('host') || '').split(':')[0];
-  return host === 'preview.redspectrum.ai' || (process.env.NODE_ENV !== 'production' && host === 'localhost');
+  return host === 'preview.redspectrum.ai' || customerDomainForHost(host)?.slug === 'unique-management-group' || (process.env.NODE_ENV !== 'production' && host === 'localhost');
 }
 
 function validVitalityRoute(segments: string[] = []) {
@@ -46,11 +46,14 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   if (!site) return {};
   if (customerSlug === 'unique-management-group') {
     if (!await umgPreviewAllowed() || !validUmgRoute(segments)) return {};
+    const requestHeaders = await headers();
+    const domain = customerDomainForHost(requestHeaders.get("x-forwarded-host") ?? "") ?? customerDomainForHost(requestHeaders.get("host") ?? "");
+    const production = domain?.slug === site.slug;
     const service = segments?.[1] ? umgService(segments[1]) : undefined;
     const title = service ? `${service.name} | ${site.business.name}` : segments?.[0] === 'thank-you' ? `Thank you | ${site.business.name}` : segments?.[0] ? `${segments[0][0].toUpperCase() + segments[0].slice(1)} | ${site.business.name}` : site.seo.title;
     const description = service?.overview || site.seo.description;
-    const canonical = `https://preview.redspectrum.ai/${site.slug}${segments?.length ? '/' + segments.join('/') : ''}`;
-    return { title: { absolute: title }, description, robots: { index: false, follow: false }, alternates: { canonical }, icons: { icon: site.branding.faviconPath }, openGraph: { title, description, url: canonical, type: 'website', images: [{ url: `https://preview.redspectrum.ai${site.images.hero.src}`, alt: site.images.hero.alt }] } };
+    const canonical = production ? `https://${domain.canonicalHost}${segments?.length ? '/' + segments.join('/') : ''}` : `https://preview.redspectrum.ai/${site.slug}${segments?.length ? '/' + segments.join('/') : ''}`;
+    return { title: { absolute: title }, description, robots: production ? { index: true, follow: true } : { index: false, follow: false }, alternates: { canonical }, icons: { icon: site.branding.faviconPath }, openGraph: { title, description, url: canonical, type: 'website', images: [{ url: `https://${production ? domain.canonicalHost : 'preview.redspectrum.ai'}${site.images.hero.src}`, alt: site.images.hero.alt }] } };
   }
   if (customerSlug === "unique-home-enterprise" && segments?.length === 1 && segments[0] === "thank-you") {
     const requestHeaders = await headers();

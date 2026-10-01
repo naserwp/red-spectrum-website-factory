@@ -9,6 +9,8 @@ export type CustomerDomainRecord = {
 export const customerDomains: Record<string, CustomerDomainRecord> = {
   "uniquehomeenterprise.com": { slug: "unique-home-enterprise", canonicalHost: "uniquehomeenterprise.com", status: "attached" },
   "www.uniquehomeenterprise.com": { slug: "unique-home-enterprise", canonicalHost: "uniquehomeenterprise.com", status: "attached" },
+  "uniquemanagementgroup.com": { slug: "unique-management-group", canonicalHost: "uniquemanagementgroup.com", status: "attached" },
+  "www.uniquemanagementgroup.com": { slug: "unique-management-group", canonicalHost: "uniquemanagementgroup.com", status: "attached" },
 };
 
 export function customerDomainForHost(host: string) {
