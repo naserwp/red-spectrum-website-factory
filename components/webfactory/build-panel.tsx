@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { BuildConsole } from "./build-console";
 
-export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory, customerSlug, recordedPreview, liveReviewUrl, filesBuilt = false, slugConfirmed = false, workerProtection, workerConfigured = false }: {
-  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean; customerSlug?: string; recordedPreview?: string | null; liveReviewUrl?: string | null; filesBuilt?: boolean; slugConfirmed?: boolean; workerProtection?: 'protected'|'public'; workerConfigured?: boolean;
+export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHistory, customerSlug, recordedPreview, liveReviewUrl, stagingPreviewPath, filesBuilt = false, slugConfirmed = false, workerProtection, workerConfigured = false }: {
+  requestId: string; briefId: string | null; stage: string; prompt: string; available: boolean; hasHistory: boolean; customerSlug?: string; recordedPreview?: string | null; liveReviewUrl?: string | null; stagingPreviewPath?: string | null; filesBuilt?: boolean; slugConfirmed?: boolean; workerProtection?: 'protected'|'public'; workerConfigured?: boolean;
 }) {
   const router = useRouter();
   const [pending,setPending] = useState(false);
   const [message,setMessage] = useState("");
   const [confirmed,setConfirmed] = useState(false);
+  const [promptVisible,setPromptVisible] = useState(false);
   const [previewUrl] = useState(liveReviewUrl || (recordedPreview?.startsWith("https://")?recordedPreview:null) || (slugConfirmed && customerSlug ? `https://preview.redspectrum.ai/${customerSlug}` : ""));
   async function run(action: string) {
     if (pending || !confirmed) return;
@@ -28,7 +29,13 @@ export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHi
   }
   async function copy() {
     try { await navigator.clipboard.writeText(prompt); setMessage("Codex Build Prompt copied."); }
-    catch { setMessage("Clipboard unavailable. Select and copy the prompt from the field below."); }
+    catch { setPromptVisible(true); setMessage("Clipboard unavailable. Select and copy the displayed prompt."); }
+  }
+  function download() {
+    const url=URL.createObjectURL(new Blob([prompt],{type:"text/plain;charset=utf-8"}));
+    const link=document.createElement("a");link.href=url;link.download=`${customerSlug || "customer"}-build-prompt.txt`;link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    setMessage("Build prompt downloaded. No build or approval was recorded.");
   }
   const approved = ["build_approved", "preview_ready", "customer_approved"].includes(stage);
   const previewReady = filesBuilt && ["preview_ready", "customer_approved"].includes(stage);
@@ -48,7 +55,8 @@ export function BuildPanel({ requestId, briefId, stage, prompt, available, hasHi
     <label className="wf-check"><input type="checkbox" checked={confirmed} onChange={e=>setConfirmed(e.target.checked)}/><span>I reviewed and authorize the selected action. Generation shares business details with OpenAI. Preview readiness requires completed files and QA; customer approval requires actual customer authorization.</span></label>
     <BuildConsole requestId={requestId} enabled={Boolean(briefId && slugConfirmed && ["build_approved","preview_ready"].includes(stage))}/>
     {!workerConfigured && <p className="wf-status" role="status">Controlled Build Engine is not configured for this environment. After slug confirmation and brief approval, use the manual Codex build handoff below. It creates no job, preview, or approval by itself.</p>}
-    {prompt && <details open={!workerConfigured && approved}><summary>Manual Codex / OpenCode build handoff</summary><div className="wf-buttons"><button type="button" className="wf-button secondary" disabled={!slugConfirmed || !approved} onClick={copy}>Copy Codex Build Prompt</button><Link className="wf-button secondary" href={`/admin/ai?requestId=${requestId}&improve=1`}>Generate rebuild prompt / QA checklist</Link></div><p>{approved ? "Copy the approved handoff into an authorized local coding session. A human still reviews QA and preview evidence; copying does not mark the site built." : "Draft for review only. Confirm the slug and approve the AI brief before using this prompt to build."}</p><label className="wf-field">Build handoff<textarea readOnly value={prompt} rows={14}/></label></details>}
+    {prompt && <details open={!workerConfigured && approved}><summary>Manual Codex / OpenCode build handoff</summary><div className="wf-buttons"><button type="button" className="wf-button secondary" disabled={!slugConfirmed || !approved} onClick={()=>setPromptVisible(true)}>Generate Build Prompt</button><button type="button" className="wf-button secondary" disabled={!slugConfirmed || !approved} onClick={copy}>Copy Prompt</button><button type="button" className="wf-button secondary" disabled={!slugConfirmed || !approved} onClick={download}>Download Prompt</button><Link className="wf-button secondary" href={`/admin/ai?requestId=${requestId}&improve=1`}>Generate rebuild prompt / QA checklist</Link></div><p>{approved ? "The handoff is assembled from the saved, approved brief and confirmed slug. Use it in an authorized local coding session; no job, preview or approval is recorded by these buttons." : "Draft for review only. Confirm the slug and approve the brief before using this prompt to build."}</p><details><summary>View required files</summary><ul><li>Customer manifest entry and isolated customer content</li><li>Customer route component and styles</li><li>Logo, favicon, approved images and private delivery records</li><li>Contact form using the existing lead endpoint only after safe activation</li></ul></details><details><summary>View approved brief</summary><p>The complete saved brief is included as JSON at the end of the build prompt.</p><a href="#brief">Review brief and source history ↓</a></details><details><summary>View build requirements</summary><p>Use the confirmed slug, preserve tenant isolation and existing backend controls, and mark unverified claims as draft. Do not deploy, send messages or enable payments.</p></details><details><summary>View QA checklist</summary><ol><li>Check all required pages, navigation, content, branding, images and metadata.</li><li>Test mobile, tablet and desktop layouts, keyboard access and long text.</li><li>Verify lead form inactive or test-only state, rate limiting and tenant isolation.</li><li>Run customer validation, lint, build, and route/preview tests.</li></ol></details>{promptVisible && <label className="wf-field">Build handoff<textarea readOnly value={prompt} rows={14}/></label>}</details>}
+    {stagingPreviewPath && <p className="wf-status">Draft files are registered in this deployment. <Link href={stagingPreviewPath} target="_blank">Open staging route ↗</Link> This is not branded preview verification or customer approval.</p>}
     <div id="preview"><p className="wf-section-label">04 / Preview & QA</p><h3>After the website is built</h3></div>
     <ol className="wf-checklist"><li>Create isolated customer files and register the agreed slug.</li><li>Verify every page, facts, links, images, metadata and tenant isolation.</li><li>Check layouts at 320, 768 and 1440 pixels. Run lint and production build.</li><li>Obtain separate deployment approval. After files are created and verified, paste the approved preview URL and mark Preview Ready.</li></ol>
     {workerProtection ? <div className="wf-status" role="status"><strong>Website Built: Verified ✓</strong><p>QA: Passed · Preview: Verified ({workerProtection === 'protected' ? 'Protected' : 'Public'})</p><p>Ready for admin review. The Build Engine already verified the build; no second manual build verification is required. Review the preview, then confirm authorization to enable Mark Preview Ready.</p></div> : <p className="wf-checklist-note">QA checklist: manual review required; no automated pass is claimed here. Customer emails, payments, lookup and automatic deployment remain inactive.</p>}

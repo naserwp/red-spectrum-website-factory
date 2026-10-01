@@ -37,7 +37,7 @@ const customerDelivery = {
 export type LeadDeliveryMode = "test" | "live";
 
 export function leadEmailEnabled(mode: LeadDeliveryMode) {
-  return (mode === "test" ? process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED : process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED) === "true";
+  return process.env.VERCEL_ENV !== "preview" && (mode === "test" ? process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED : process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED) === "true";
 }
 
 /**
@@ -63,6 +63,8 @@ export function getCustomerDelivery(site: CustomerSite, mode: LeadDeliveryMode) 
 }
 
 export function getSendGridConfig() {
+  // A branch preview must never inherit a live customer lead store or mail transport.
+  if (process.env.VERCEL_ENV === "preview") return null;
   const apiKey = process.env.SENDGRID_API_KEY?.trim();
   const fromEmail = process.env.LEADS_FROM_EMAIL?.trim();
   const fromName = process.env.LEADS_FROM_NAME?.trim();

@@ -14,6 +14,8 @@ assert(accepts('_next/static/chunks/0pqt~8bl3ukh4.js'));
 assert(accepts('_next/static/chunks/0zaia6i55l01..js'));
 assert(!accepts('customers/other/logo.svg'));
 assert(!accepts('_next/static/secrets.json'));
+assert(source.includes('registeredAssets.includes(requested)'));
+assert(source.includes('value.startsWith(`/customers/${slug}/`)'));
 const guard=source.match(/path\.some\((.*?)\)\)return/)[1];
 for(const path of [['..'],['.'],['a/b'],['a\\b'],['%2e%2e']])assert(vm.runInNewContext(`path.some(${guard})`,{path}));
 assert(!vm.runInNewContext(`path.some(${guard})`,{path:['_next','static','chunks','0zaia6i55l01..js']}));

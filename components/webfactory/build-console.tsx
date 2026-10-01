@@ -33,7 +33,7 @@ export function BuildConsole({requestId,enabled}:{requestId:string;enabled:boole
     <label className="wf-field">Requested changes / approved rebuild scope<textarea value={changes} maxLength={6000} rows={3} onChange={e=>{setChanges(e.target.value);submission.current=null;}}/></label>
     <a href={`/admin/ai?requestId=${requestId}`}>Ask AI for a draft change plan</a>
     <label className="wf-check"><input type="checkbox" checked={confirmed} onChange={e=>setConfirmed(e.target.checked)}/><span>I approve this build and the change scope above using the saved request. No production merge or integration activation is authorized.</span></label>
-    <div className="wf-buttons"><button className="wf-button" disabled={!enabled || !confirmed || pending || active} onClick={()=>void run()}>{pending?"Recording job…":changes.trim()?"REBUILD WEBSITE":"BUILD CUSTOMER WEBSITE"}</button><button className="wf-button secondary" onClick={()=>void refresh()}>Refresh Status</button></div>
+    <div className="wf-buttons"><button className="wf-button" disabled={!configured || !enabled || !confirmed || pending || active} onClick={()=>void run()}>{pending?"Recording job…":changes.trim()?"REBUILD WEBSITE":"BUILD CUSTOMER WEBSITE"}</button><button className="wf-button secondary" onClick={()=>void refresh()}>Refresh Status</button></div>
     {!enabled && <p>Confirm a saved slug and approve the current brief first.</p>}
     {error && <p role="alert">{error}</p>}
     <div aria-live="polite">{jobs.length===0?<p>No build jobs recorded. Website generation has not started.</p>:jobs.map(job=><article className="wf-panel" key={job.id} style={{overflowWrap:"anywhere",minWidth:0}}>

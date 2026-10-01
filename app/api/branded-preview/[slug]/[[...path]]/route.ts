@@ -1,6 +1,7 @@
 import {database} from '@/lib/webfactory/server';
 import {getVerifiedWorkerBuild} from '@/lib/webfactory/build-worker';
 import {previewProject,previewTeam} from '@/lib/webfactory/preview-verification';
+import {getCustomerSite} from '@/lib/customers/registry';
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
 let protectionCache:{key:string;expires:number}|null=null;
@@ -18,7 +19,9 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string;
   if(url.hostname!=='preview.redspectrum.ai'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||path.some(p=>p==='..'||p==='.'||/[\\%/]/.test(p)))return new Response('Not found',{status:404});
   const requested=path.join('/');const page=['','services','about','contact','privacy','thank-you'].includes(requested);
   const asset=/^_next\/static\/[a-zA-Z0-9_./~-]+\.(?:js|css|woff2?)$/.test(requested)||new RegExp(`^customers/${slug}/(?:images/image-(?:[0-9]|1[01])\\.webp|(?:logo|logo-dark|mark|favicon|hero)\\.svg)$`).test(requested);
-  if(!page&&!asset&&requested!=='_next/image')return new Response('Not found',{status:404});
+  const site=getCustomerSite(slug);
+  const registeredAssets=site?[site.branding.logoPath,site.branding.faviconPath,site.images.hero.src,...site.images.gallery.map(image=>image.src)].filter(value=>value.startsWith(`/customers/${slug}/`)).map(value=>value.slice(1)):[];
+  if(!page&&!asset&&!registeredAssets.includes(requested)&&requested!=='_next/image')return new Response('Not found',{status:404});
   if(requested==='_next/image'){
    const source=url.searchParams.get('url')||'';
    if(!source.startsWith(`/customers/${slug}/`)||source.includes('..')||/[\\%?#]/.test(source)||!['w','q','url'].every(k=>url.searchParams.has(k))||[...url.searchParams.keys()].some(k=>!['w','q','url'].includes(k)))return new Response('Not found',{status:404});

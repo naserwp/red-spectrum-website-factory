@@ -7,6 +7,7 @@ const sites=JSON.parse(readFileSync('customers/manifest.json','utf8')).customers
 const catalog=load('lib/webfactory/preview-catalog.ts',{'next/headers':{},'@/lib/customers/registry':{getCustomerSites:()=>sites},'@/lib/customers/domains':{canonicalCustomerUrl:()=>null},'./build-receipts':{getLocalBuildReceipt:()=>null},'./server':{},'./slug-rules':rules,'./route-readiness':{verifyCustomerRoute:async()=>false,localCustomerUrl:(slug,host)=>host.startsWith('localhost:')?'http://'+host+'/'+slug:null}});
 const row={id:'private-request-id',business:'Synthetic Studio',industry:'Design',status:'reviewing',customer_slug:'synthetic-studio',stage:'build_approved',preview_url:'https://preview.redspectrum.ai/synthetic-studio',review_status:null,review_url:null,updated_at:new Date(),action_count:'3',email:'private@example.invalid',phone:'5551234567',notes:'PRIVATE_CANARY',brief:{secret:'PRIVATE_CANARY'}};
 const publicCards=catalog.assemblePreviewCards([row],false),pending=publicCards.find(c=>c.slug===row.customer_slug);
+assert.equal(publicCards.find(c=>c.slug==='real-spiel-cleaning-company').status,'building');
 assert.equal(pending.href,null);assert.equal(pending.status,'build approved');
 for(const secret of ['private-request-id','private@example.invalid','5551234567','PRIVATE_CANARY','requestHref','actionCount'])assert.ok(!JSON.stringify(publicCards).includes(secret));
 assert.equal(catalog.assemblePreviewCards([row],true).find(c=>c.slug===row.customer_slug).admin.actionCount,3);

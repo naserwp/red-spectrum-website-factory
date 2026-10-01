@@ -20,7 +20,7 @@ export function publicRequestStatus(row:Pick<RequestRow,'stage'|'status'|'review
 // Do not spread database records into client props. Only this allowlisted DTO crosses the boundary.
 export function assemblePreviewCards(rows:RequestRow[],admin:boolean):PreviewCard[]{
   const sites=getCustomerSites();
-  const cards=new Map<string,PreviewCard>(sites.map(site=>[site.slug,{key:site.slug,name:safeLabel(site.business.name,140),industry:safeLabel(site.business.industry,100),description:'An independent customer website preview. Content and integrations remain subject to review.',slug:site.slug,image:site.images.hero.src.startsWith(`/customers/${site.slug}/`)?site.images.hero.src:null,status:site.status==='approved'?'approved':'preview ready',href:`/${site.slug}`} ]));
+  const cards=new Map<string,PreviewCard>(sites.map(site=>[site.slug,{key:site.slug,name:safeLabel(site.business.name,140),industry:safeLabel(site.business.industry,100),description:'An independent customer website preview. Content and integrations remain subject to review.',slug:site.slug,image:site.images.hero.src.startsWith(`/customers/${site.slug}/`)?site.images.hero.src:null,status:site.status==='approved'?'approved':site.status==='draft'?'building':'preview ready',href:`/${site.slug}`} ]));
   for(const row of rows){
     const receipt=getLocalBuildReceipt(row.id);
     const slug=row.customer_slug && !slugError(row.customer_slug)?row.customer_slug:receipt?.customerSlug || null;
@@ -60,11 +60,13 @@ export async function customerPreviewCatalog(){
   // Include known exact request-to-build receipts even before its saved slug is confirmed.
   // Registry sites already appear without a database association; never match by business name.
   const cards=assemblePreviewCards(rows,admin);
+  const registeredSlugs=new Set(getCustomerSites().map(site=>site.slug));
   await Promise.all(cards.filter(card=>card.href && card.slug).map(async card=>{
     const row=rows.find(row=>row.customer_slug===card.slug || getLocalBuildReceipt(row.id)?.customerSlug===card.slug);
     const saved=row?.preview_url || row?.review_url;
     card.href=await resolvePreviewLink(card.slug!,saved,host,url=>verifyCustomerRoute(card.slug!,url));
-    if(card.href && !['approved','changes requested'].includes(card.status))card.status='preview ready';
+    if(!card.href && process.env.VERCEL_ENV==='preview' && registeredSlugs.has(card.slug!))card.href=`/${card.slug}`;
+    if(card.href && card.status==='building' && row?.stage==='preview_ready')card.status='preview ready';
   }));
   for(const card of cards)if(!card.href)card.status='building';
   return {cards,admin,unavailable};

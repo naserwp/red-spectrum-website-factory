@@ -5,13 +5,16 @@ import { Pool } from "pg";
 
 let pool: Pool | undefined;
 export function database() {
-  const connectionString = process.env.LEADS_DATABASE_URL;
+  // Branch previews must opt into a separate database; never inherit the production URL.
+  const stagingPreview = process.env.VERCEL_ENV === "preview";
+  const connectionString = stagingPreview ? process.env.WEBFACTORY_STAGING_DATABASE_URL : process.env.LEADS_DATABASE_URL;
+  if (stagingPreview && connectionString && connectionString === process.env.LEADS_DATABASE_URL) throw new Error("Staging storage isolation required");
   if (!connectionString) throw new Error("Storage unavailable");
   return pool ??= new Pool({ connectionString, max: 3, connectionTimeoutMillis: 4000, query_timeout: 5000 });
 }
 export function digest(value: string) { return createHash("sha256").update(value).digest("hex"); }
 export function secureEqual(a: string, b: string) { return timingSafeEqual(Buffer.from(digest(a)), Buffer.from(digest(b))); }
-export function adminConfigured() { return Boolean(process.env.WEBFACTORY_ADMIN_USER && process.env.WEBFACTORY_ADMIN_PASSWORD && (process.env.WEBFACTORY_SESSION_SECRET?.length ?? 0) >= 32 && (process.env.NODE_ENV !== "production" || process.env.WEBFACTORY_ADMIN_PASSWORD !== "change-this-before-live")); }
+export function adminConfigured() { return Boolean((process.env.VERCEL_ENV !== "preview" || (process.env.WEBFACTORY_STAGING_DATABASE_URL && process.env.WEBFACTORY_STAGING_DATABASE_URL !== process.env.LEADS_DATABASE_URL)) && process.env.WEBFACTORY_ADMIN_USER && process.env.WEBFACTORY_ADMIN_PASSWORD && (process.env.WEBFACTORY_SESSION_SECRET?.length ?? 0) >= 32 && (process.env.NODE_ENV !== "production" || process.env.WEBFACTORY_ADMIN_PASSWORD !== "change-this-before-live")); }
 function signature(payload: string) { return createHmac("sha256", process.env.WEBFACTORY_SESSION_SECRET!).update(payload).digest("hex"); }
 export async function isAdmin() {
   if (!adminConfigured()) return false;
@@ -34,7 +37,7 @@ export async function rateLimit(kind: "login" | "request" | "ai" | "ai_chat", id
 }
 export type ProjectRequest = { id: string; name: string; business: string; email: string; phone: string; industry: string; website: string; details: string; customer_slug?: string | null; slug_confirmed_at?: Date | null; status: string; notification_status: string; created_at: Date };
 export async function listRequests(): Promise<ProjectRequest[]> { if (!await isAdmin()) throw new Error("Unauthorized"); return (await database().query<ProjectRequest>("SELECT id,name,business,email,phone,industry,website,details,status,notification_status,created_at FROM webfactory.requests ORDER BY created_at DESC LIMIT 100")).rows; }
-export function notificationReady() { return process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED === "true" && Boolean(process.env.SENDGRID_API_KEY && process.env.LEADS_FROM_EMAIL && process.env.WEBFACTORY_REQUEST_NOTIFY_EMAIL); }
+export function notificationReady() { return process.env.VERCEL_ENV !== "preview" && process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED === "true" && Boolean(process.env.SENDGRID_API_KEY && process.env.LEADS_FROM_EMAIL && process.env.WEBFACTORY_REQUEST_NOTIFY_EMAIL); }
 function escape(value: string) { return value.replace(/[&<>"']/g, x => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[x]!)); }
 export async function notifyRequest(id: string) {
   if (!notificationReady()) return "disabled";
