@@ -13,7 +13,7 @@ import { PromptTools } from "@/components/webfactory/prompt-tools";
 import { getRequestActions } from "@/lib/webfactory/slugs";
 import "@/components/webfactory/slug-workflow.css";
 import { BuildPanel } from "@/components/webfactory/build-panel";
-import { WebFactoryShell, PageIntro } from "@/components/webfactory/shell";
+import { AdminShell as WebFactoryShell, V2Intro as PageIntro } from "@/components/webfactory/v2/shell";
 import { WorkflowTimeline } from "@/components/webfactory/workflow-timeline";
 import { getLocalBuildReceipt } from "@/lib/webfactory/build-receipts";
 import { getReviewHistory } from "@/lib/webfactory/reviews";

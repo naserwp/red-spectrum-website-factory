@@ -6,7 +6,7 @@ import { chatSession,workspaceData,resolveChatContext } from "@/lib/webfactory/c
 import { listRequests } from "@/lib/webfactory/server";
 import { getCustomerSites } from "@/lib/customers/registry";
 import { AIChat } from "@/components/webfactory/ai-chat";
-import { WebFactoryShell,PageIntro } from "@/components/webfactory/shell";
+import { AdminShell as WebFactoryShell, V2Intro as PageIntro } from "@/components/webfactory/v2/shell";
 import "@/components/webfactory/ai-chat.css";
 import "@/components/webfactory/reviews.css";
 export const dynamic="force-dynamic";

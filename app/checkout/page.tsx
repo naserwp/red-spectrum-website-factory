@@ -1,4 +1,4 @@
-import { WebFactoryShell, PageIntro } from "@/components/webfactory/shell";
+import { V2Shell as WebFactoryShell, V2Intro as PageIntro } from "@/components/webfactory/v2/shell";
 import { CheckoutForm } from "@/components/webfactory/forms";
 export const metadata = { title: "Customer Payment & Review", robots: { index: false, follow: false } };
 export default function Page() { return <WebFactoryShell><PageIntro eyebrow="Customer payment & review" title="A clear next step for your project." description="Review requirements before payment. Account verification and checkout will be available when the connected services are ready."/><div className="wf-wrap wf-workspace"><section className="wf-panel"><CheckoutForm/></section><aside className="wf-panel"><h2>Before checkout</h2><ol><li>Verify your email address or phone.</li><li>Review the approved project scope.</li><li>Confirm available payment options.</li></ol><p>Manual Review Required</p><p>Our team must confirm your account, eligibility and amount due before checkout can proceed.</p></aside></div></WebFactoryShell>; }

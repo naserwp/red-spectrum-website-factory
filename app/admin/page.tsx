@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAdmin, listRequests, notificationReady, type ProjectRequest } from "@/lib/webfactory/server";
 import { logout } from "@/app/webfactory-actions";
-import { WebFactoryShell, PageIntro } from "@/components/webfactory/shell";
+import { AdminShell as WebFactoryShell, V2Intro as PageIntro } from "@/components/webfactory/v2/shell";
 import { NotificationForm } from "@/components/webfactory/forms";
 export const metadata = { title: "Admin Dashboard", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
