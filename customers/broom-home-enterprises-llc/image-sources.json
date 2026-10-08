@@ -1,0 +1,47 @@
+{
+  "license": "https://www.pexels.com/license/",
+  "source": "Images linked by https://www.broomhome.biz/, checked 2026-10-08",
+  "usage": "Illustrative stock photography. No Broom listings, ownership or endorsement implied.",
+  "photos": [
+    {
+      "file": "hero.webp",
+      "photoId": 1637080,
+      "url": "https://www.pexels.com/photo/1637080/"
+    },
+    {
+      "file": "interior.webp",
+      "photoId": 3935333,
+      "url": "https://www.pexels.com/photo/3935333/"
+    },
+    {
+      "file": "home.webp",
+      "photoId": 36362,
+      "url": "https://www.pexels.com/photo/36362/"
+    },
+    {
+      "file": "rental.webp",
+      "photoId": 4506270,
+      "url": "https://www.pexels.com/photo/4506270/"
+    },
+    {
+      "file": "city.webp",
+      "photoId": 1587947,
+      "url": "https://www.pexels.com/photo/1587947/"
+    },
+    {
+      "file": "building.webp",
+      "photoId": 2343465,
+      "url": "https://www.pexels.com/photo/2343465/"
+    },
+    {
+      "file": "architecture.webp",
+      "photoId": 1212053,
+      "url": "https://www.pexels.com/photo/1212053/"
+    },
+    {
+      "file": "development.webp",
+      "photoId": 209315,
+      "url": "https://www.pexels.com/photo/209315/"
+    }
+  ]
+}

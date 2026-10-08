@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-08T19:31:04.216Z",
+  "result": {
+    "id": "d6bb03d0-e8a3-4e5e-89d1-67bb176b5367",
+    "request_id": "6417efec-04c9-497c-a735-229d51219944",
+    "customer_slug": "broom-home-enterprises-llc",
+    "kind": "qa_checklist",
+    "review_status": "draft",
+    "preview_url": "",
+    "notes": "Recovery implementation evidence; draft only, no stage approvals. Request 6417efec-04c9-497c-a735-229d51219944 remains received/draft, confirmed canonical broom-home-enterprises-llc, active generated brief 3c5b09be-2a62-4c74-978b-7a21499e3905. No worker jobs exist; manual GitHub/Vercel completion is not a trusted job receipt. Commit 0ed7ea19443859434123a4b585be744ecebba8a5, PR https://github.com/naserwp/red-spectrum-website-factory/pull/1, deployment dpl_DFFGhZZdxU7LVxKeuCR2esmYV4aL READY. Protected review: https://red-spectrum-website-factory-krhmz10jz-naserwps-projects.vercel.app/broom-home-enterprises-llc. Short slug now 308 redirects to long slug, preserving all eleven page paths. Dashboard fixes: earlier prerequisite precedence, build evidence separate from branded reachability, saved QA notes shown, gallery reachability cannot grant or erase approval. Local lint, build, standalone TypeScript, routes, redirects, inactive form, seven existing tenants, 33 responsive/accessibility cases and navigation pass. Deployed authenticated dashboard login, exact identity, seven stage indicators, disabled approval buttons, saved notes and reload persistence pass. All eleven deployed canonical/structured identity checks pass. Public branded hostname: all 22 slug/page requests returned 404, still points to production dpl_Eov43iz23A6Ujy9Qe8LN1hZ9vuKy at main287f9b1. Separate production merge/release authorization and approved tracked build evidence are required. Myndy remains disabled: no Broom-specific agent ID/provisioning tool. Form delivery disabled; no DNS/mail/payment/production changes. See committed delivery report and QA evidence for complete results."
+  },
+  "state": {
+    "status": "received",
+    "customer_slug": "broom-home-enterprises-llc",
+    "stage": "draft",
+    "preview_url": null
+  }
+}

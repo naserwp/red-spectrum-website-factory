@@ -64,8 +64,7 @@ export async function customerPreviewCatalog(){
     const row=rows.find(row=>row.customer_slug===card.slug || getLocalBuildReceipt(row.id)?.customerSlug===card.slug);
     const saved=row?.preview_url || row?.review_url;
     card.href=await resolvePreviewLink(card.slug!,saved,host,url=>verifyCustomerRoute(card.slug!,url));
-    if(card.href && !['approved','changes requested'].includes(card.status))card.status='preview ready';
   }));
-  for(const card of cards)if(!card.href)card.status='building';
+  // Reachability controls the link, never the persisted approval status.
   return {cards,admin,unavailable};
 }

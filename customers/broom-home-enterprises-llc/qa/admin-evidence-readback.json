@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-08T17:51:36.580Z",
+  "result": {
+    "id": "205c3f44-ba2f-49ed-be4b-e125c424514c",
+    "request_id": "6417efec-04c9-497c-a735-229d51219944",
+    "customer_slug": "broom-home-enterprises-llc",
+    "kind": "qa_checklist",
+    "review_status": "draft",
+    "preview_url": "",
+    "notes": "Implementation and isolated preview evidence only; no stage approvals. Commit e4e79b3d79e1efa69b8c59b3ffef7bd272d63e3f, branch codex/broom-home-completion, draft PR https://github.com/naserwp/red-spectrum-website-factory/pull/1. Vercel deployment dpl_76aP2x4kzpAQFD1PoMdYCExPMUP9 READY in existing project. Protected review URL: https://red-spectrum-website-factory-qj0fbjj24-naserwps-projects.vercel.app/broom-home-enterprises-llc. Local lint/build/TypeScript pass; eleven routes, 33 responsive/axe checks, links, inactive form, tenant isolation and public gallery privacy pass. Authenticated deployed route/identity checks and existing customer regressions pass. Two inherited database/provider lead scripts incomplete without isolated credentials. Myndy disabled: dedicated Broom agent missing. Form email disabled. DNS/mail unchanged. Build Approved is still required before supported Website Built recording; Preview Ready and Customer Approved not granted."
+  },
+  "state": {
+    "status": "received",
+    "customer_slug": "broom-home-enterprises-llc",
+    "stage": "draft",
+    "preview_url": null
+  }
+}

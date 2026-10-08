@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-08T19:26:36.180Z",
+  "origin": "https://red-spectrum-website-factory-krhmz10jz-naserwps-projects.vercel.app",
+  "authenticationRequired": true,
+  "publicGalleryPrivateFieldsAbsent": true,
+  "loginPassed": true,
+  "dashboard": {
+    "banner": "Build Approved: next explicit admin step.",
+    "customerButton": true,
+    "hasDraftEvidence": true,
+    "hasRecordedPreview": false,
+    "previewButton": true,
+    "slug": true,
+    "steps": [
+      {
+        "current": false,
+        "done": true,
+        "label": "Request Received"
+      },
+      {
+        "current": false,
+        "done": true,
+        "label": "AI Brief Generated"
+      },
+      {
+        "current": false,
+        "done": true,
+        "label": "Slug Confirmed"
+      },
+      {
+        "current": true,
+        "done": false,
+        "label": "Build Approved"
+      },
+      {
+        "current": false,
+        "done": false,
+        "label": "Website Built"
+      },
+      {
+        "current": false,
+        "done": false,
+        "label": "Preview Ready"
+      },
+      {
+        "current": false,
+        "done": false,
+        "label": "Customer Approved"
+      }
+    ],
+    "title": "Broom Home Enterprises LLC"
+  },
+  "reloadPersistence": true
+}

@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-08T17:37:26.449Z",
+  "check": {
+    "status": "already_reserved"
+  },
+  "brief": {
+    "body": {
+      "success": true
+    },
+    "status": 200
+  },
+  "approvalsGranted": false
+}

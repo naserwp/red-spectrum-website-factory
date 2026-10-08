@@ -1,0 +1,268 @@
+{
+  "checkedAt": "2026-10-08T19:19:59.407Z",
+  "records": [
+    {
+      "name": "broomhome.biz",
+      "type": "NS",
+      "status": 0,
+      "answer": [
+        {
+          "name": "broomhome.biz.",
+          "type": 2,
+          "TTL": 300,
+          "data": "ns2.systemdns.com."
+        },
+        {
+          "name": "broomhome.biz.",
+          "type": 2,
+          "TTL": 300,
+          "data": "ns1.systemdns.com."
+        },
+        {
+          "name": "broomhome.biz.",
+          "type": 2,
+          "TTL": 300,
+          "data": "ns3.systemdns.com."
+        }
+      ]
+    },
+    {
+      "name": "broomhome.biz",
+      "type": "A",
+      "status": 0,
+      "answer": [
+        {
+          "name": "broomhome.biz.",
+          "type": 1,
+          "TTL": 300,
+          "data": "35.172.94.1"
+        }
+      ]
+    },
+    {
+      "name": "broomhome.biz",
+      "type": "AAAA",
+      "status": 0,
+      "answer": []
+    },
+    {
+      "name": "broomhome.biz",
+      "type": "CNAME",
+      "status": 0,
+      "answer": []
+    },
+    {
+      "name": "broomhome.biz",
+      "type": "MX",
+      "status": 0,
+      "answer": [
+        {
+          "name": "broomhome.biz.",
+          "type": 15,
+          "TTL": 300,
+          "data": "10 mx.broomhome.biz.cust.b.hostedemail.com."
+        }
+      ]
+    },
+    {
+      "name": "broomhome.biz",
+      "type": "TXT",
+      "status": 0,
+      "answer": [
+        {
+          "name": "broomhome.biz.",
+          "type": 16,
+          "TTL": 300,
+          "data": "v=spf1 include:_spf.hostedemail.com ~all"
+        }
+      ]
+    },
+    {
+      "name": "broomhome.biz",
+      "type": "CAA",
+      "status": 0,
+      "answer": []
+    },
+    {
+      "name": "www.broomhome.biz",
+      "type": "NS",
+      "status": 0,
+      "answer": [
+        {
+          "name": "www.broomhome.biz.",
+          "type": 5,
+          "TTL": 300,
+          "data": "s.multiscreensite.com."
+        },
+        {
+          "name": "s.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "global.multiscreensite.com."
+        },
+        {
+          "name": "global.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "a4883ea39ca559091.awsglobalaccelerator.com."
+        }
+      ]
+    },
+    {
+      "name": "www.broomhome.biz",
+      "type": "A",
+      "status": 0,
+      "answer": [
+        {
+          "name": "www.broomhome.biz.",
+          "type": 5,
+          "TTL": 300,
+          "data": "s.multiscreensite.com."
+        },
+        {
+          "name": "s.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "global.multiscreensite.com."
+        },
+        {
+          "name": "global.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "a4883ea39ca559091.awsglobalaccelerator.com."
+        },
+        {
+          "name": "a4883ea39ca559091.awsglobalaccelerator.com.",
+          "type": 1,
+          "TTL": 148,
+          "data": "13.248.175.166"
+        },
+        {
+          "name": "a4883ea39ca559091.awsglobalaccelerator.com.",
+          "type": 1,
+          "TTL": 148,
+          "data": "76.223.58.8"
+        }
+      ]
+    },
+    {
+      "name": "www.broomhome.biz",
+      "type": "AAAA",
+      "status": 0,
+      "answer": [
+        {
+          "name": "www.broomhome.biz.",
+          "type": 5,
+          "TTL": 300,
+          "data": "s.multiscreensite.com."
+        },
+        {
+          "name": "s.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "global.multiscreensite.com."
+        },
+        {
+          "name": "global.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "a4883ea39ca559091.awsglobalaccelerator.com."
+        }
+      ]
+    },
+    {
+      "name": "www.broomhome.biz",
+      "type": "CNAME",
+      "status": 0,
+      "answer": [
+        {
+          "name": "www.broomhome.biz.",
+          "type": 5,
+          "TTL": 299,
+          "data": "s.multiscreensite.com."
+        }
+      ]
+    },
+    {
+      "name": "www.broomhome.biz",
+      "type": "MX",
+      "status": 0,
+      "answer": [
+        {
+          "name": "www.broomhome.biz.",
+          "type": 5,
+          "TTL": 299,
+          "data": "s.multiscreensite.com."
+        },
+        {
+          "name": "s.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "global.multiscreensite.com."
+        },
+        {
+          "name": "global.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "a4883ea39ca559091.awsglobalaccelerator.com."
+        }
+      ]
+    },
+    {
+      "name": "www.broomhome.biz",
+      "type": "TXT",
+      "status": 0,
+      "answer": [
+        {
+          "name": "www.broomhome.biz.",
+          "type": 5,
+          "TTL": 299,
+          "data": "s.multiscreensite.com."
+        },
+        {
+          "name": "s.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "global.multiscreensite.com."
+        },
+        {
+          "name": "global.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "a4883ea39ca559091.awsglobalaccelerator.com."
+        }
+      ]
+    },
+    {
+      "name": "www.broomhome.biz",
+      "type": "CAA",
+      "status": 0,
+      "answer": [
+        {
+          "name": "www.broomhome.biz.",
+          "type": 5,
+          "TTL": 299,
+          "data": "s.multiscreensite.com."
+        },
+        {
+          "name": "s.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "global.multiscreensite.com."
+        },
+        {
+          "name": "global.multiscreensite.com.",
+          "type": 5,
+          "TTL": 300,
+          "data": "a4883ea39ca559091.awsglobalaccelerator.com."
+        }
+      ]
+    },
+    {
+      "name": "_dmarc.broomhome.biz",
+      "type": "TXT",
+      "status": 3,
+      "answer": []
+    }
+  ]
+}

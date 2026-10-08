@@ -27,3 +27,12 @@ const checked=[];
 await catalog.resolvePreviewLink(slug,'https://evil.invalid/private','webfactory.redspectrum.ai',async url=>{checked.push(url);return false;});
 assert.deepEqual(checked,[urls.primary,urls.fallback]);
 console.log('PASS: exact URLs, DNS/route failure fallback, verified saved URL precedence, unavailable previews disabled, local-only preview fallback and URL allowlist.');
+
+for (const reachable of [true,false]) {
+ const deps={'next/headers':{headers:async()=>new Headers({host:'webfactory.redspectrum.ai'})},'@/lib/customers/registry':{getCustomerSites:()=>sites},'@/lib/customers/domains':{canonicalCustomerUrl:()=>null},'./build-receipts':{getLocalBuildReceipt:()=>null},'./server':{isAdmin:async()=>false,database:()=>({query:async()=>({rows:[{...row,customer_slug:sites[0].slug,stage:'draft',review_status:null},{...row,id:'second',customer_slug:sites[1].slug,stage:'customer_approved'}]})})},'./slug-rules':rules,'./route-readiness':{verifyCustomerRoute:async()=>reachable,localCustomerUrl:()=>null}};
+ const result=await load('lib/webfactory/preview-catalog.ts',deps).customerPreviewCatalog();
+ assert.equal(result.cards.find(c=>c.slug===sites[0].slug).status,'building');
+ assert.equal(result.cards.find(c=>c.slug===sites[1].slug).status,'approved');
+ assert.equal(Boolean(result.cards.find(c=>c.slug===sites[0].slug).href),reachable);
+}
+console.log('PASS: reachable draft cannot imply approval; unavailable link cannot erase recorded approval.');
