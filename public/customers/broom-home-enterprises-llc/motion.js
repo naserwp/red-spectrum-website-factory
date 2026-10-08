@@ -19,7 +19,9 @@
     site.addEventListener('focusin', event => {
       if (!menu?.contains(event.target)) close();
     });
-    window.addEventListener('pageshow', () => close());
+    // Only reset restored history entries. A late initial image load must not
+    // close a menu that a visitor has already opened.
+    window.addEventListener('pageshow', event => { if (event.persisted) close(); });
 
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (preference.matches || !('IntersectionObserver' in window) || !Element.prototype.animate) return;
