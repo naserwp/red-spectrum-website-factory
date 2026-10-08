@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   const { customerSlug, page: segments } = await params;
   const site = getCustomerSite(customerSlug);
   if (!site) return {};
-  if (customerSlug === broomSlug) {
+  if ((customerSlug === broomSlug || customerSlug === 'broom-home-enterprises')) {
     if (!validBroomRoute(segments)) return {};
     const service = broomService(segments?.[1]);
     const title = service ? service.name + ' | ' + site.business.name : segments?.[0] ? segments[0][0].toUpperCase() + segments[0].slice(1) + ' | ' + site.business.name : site.seo.title;
@@ -98,7 +98,7 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   const { customerSlug, page: segments } = await params;
   const site = getCustomerSite(customerSlug);
   if (!site) notFound();
-  if (customerSlug === broomSlug) {
+  if ((customerSlug === broomSlug || customerSlug === 'broom-home-enterprises')) {
     if (!validBroomRoute(segments)) notFound();
     return <BroomWebsite site={site} route={segments} />;
   }
