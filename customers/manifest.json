@@ -1319,6 +1319,305 @@
           "scriptUrl": ""
         }
       }
+    },
+    {
+      "schemaVersion": "1.0",
+      "design": {
+        "version": "3.0",
+        "hero": "editorial",
+        "navigation": "balanced",
+        "typography": "editorial",
+        "spacing": "generous",
+        "palette": "ink",
+        "logo": "interlock",
+        "pages": {
+          "home": [
+            {
+              "kind": "split",
+              "eyebrow": "Real estate, handled with perspective",
+              "heading": "Move with confidence.",
+              "body": "Rental properties, buying, selling, building and long-term holding—supported by a team focused on clear guidance and dependable service.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "columns",
+              "eyebrow": "Full-spectrum real estate",
+              "heading": "One relationship. Multiple real estate needs.",
+              "body": "From finding the right rental to evaluating a purchase, preparing a sale, planning a build or holding property for the long term, Broom Home Enterprise helps clients understand the next step.",
+              "image": 1,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Our approach",
+              "heading": "Clear guidance before big decisions.",
+              "body": "We combine responsive communication, practical market perspective and a client-first process designed to make real estate decisions easier to navigate.",
+              "image": 2,
+              "reverse": false
+            },
+            {
+              "kind": "steps",
+              "eyebrow": "How we work",
+              "heading": "Understand. Plan. Move forward.",
+              "body": "Start with your goals, define the right path and stay informed as the process moves ahead.",
+              "image": 3,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Your next chapter",
+              "heading": "Let’s make room for what’s next.",
+              "body": "Call or email Broom Home to discuss your priorities.",
+              "image": 0,
+              "reverse": false
+            }
+          ],
+          "services": [
+            {
+              "kind": "columns",
+              "eyebrow": "Services",
+              "heading": "Real estate support across the lifecycle.",
+              "body": "Rental properties, buying, selling, building and holding are the core service areas identified by the business.",
+              "image": 1,
+              "reverse": false
+            },
+            {
+              "kind": "split",
+              "eyebrow": "Long-term perspective",
+              "heading": "Beyond a single transaction.",
+              "body": "Whether the objective is a home, an investment property, a build or a long-term hold, the process starts by understanding the outcome you want.",
+              "image": 4,
+              "reverse": true
+            }
+          ],
+          "about": [
+            {
+              "kind": "statement",
+              "eyebrow": "About Broom Home Enterprise",
+              "heading": "Professional guidance. Lasting relationships.",
+              "body": "Broom Home Enterprise is dedicated to exceptional real estate service tailored to the diverse needs of clients, with an emphasis on integrity, professionalism and a seamless experience.",
+              "image": 2,
+              "reverse": false
+            },
+            {
+              "kind": "image",
+              "eyebrow": "Built around trust",
+              "heading": "A steady partner in an evolving market.",
+              "body": "Our goal is to help clients navigate real estate with confidence—from the first conversation through the next milestone.",
+              "image": 5,
+              "reverse": false
+            }
+          ],
+          "contact": [
+            {
+              "kind": "contact",
+              "eyebrow": "Contact",
+              "heading": "Tell us what you are planning.",
+              "body": "Reach Broom Home Enterprise directly by phone or email. Website email delivery remains disabled until the hosting transfer and recipient mapping are verified.",
+              "image": 3,
+              "reverse": false
+            }
+          ],
+          "privacy": [
+            {
+              "kind": "statement",
+              "eyebrow": "Privacy",
+              "heading": "Simple, careful communication.",
+              "body": "Direct phone and email links use the visitor's own applications. Website form delivery remains disabled until it is separately tested and approved.",
+              "image": 5,
+              "reverse": false
+            }
+          ]
+        },
+        "imageDirection": "Custom vector editorial illustrations using premium residential architecture, city property, planning and investment motifs. Illustrative only; no customer-owned properties are claimed.",
+        "brandNotes": "A refined BH monogram paired with deep navy, warm ivory and architectural gold. The identity should feel established, calm and investment-minded rather than flashy."
+      },
+      "slug": "broom-home-enterprises-llc",
+      "status": "review",
+      "templateId": "ledger",
+      "business": {
+        "name": "Broom Home Enterprises LLC",
+        "industry": "Real estate services",
+        "tagline": "Real estate, handled with perspective.",
+        "summary": "Broom Home Enterprises LLC supports clients across rental properties, buying, selling, building and long-term property holding with professional guidance and service."
+      },
+      "contact": {
+        "person": {
+          "value": "Aminul Haque",
+          "status": "verified",
+          "source": "Customer request"
+        },
+        "phone": {
+          "value": "(347) 666-3929",
+          "status": "verified",
+          "source": "Customer request and existing website"
+        },
+        "email": {
+          "value": "info@broomhome.biz",
+          "status": "verified",
+          "source": "Customer request and existing website"
+        },
+        "address": {
+          "value": "",
+          "status": "missing"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Rental Properties",
+          "description": "Guidance for clients exploring rental property opportunities and next steps.",
+          "status": "verified",
+          "source": "Customer request and existing website"
+        },
+        {
+          "name": "Buying",
+          "description": "Support for clients preparing to purchase residential or investment real estate.",
+          "status": "verified",
+          "source": "Customer request and existing website"
+        },
+        {
+          "name": "Selling",
+          "description": "Professional guidance for owners preparing to position and sell property.",
+          "status": "verified",
+          "source": "Customer request and existing website"
+        },
+        {
+          "name": "Building",
+          "description": "Real-estate-oriented guidance for clients considering a property build or development path.",
+          "status": "verified",
+          "source": "Customer request and existing website"
+        },
+        {
+          "name": "Holding",
+          "description": "A long-term ownership perspective for clients considering property as part of a broader real estate strategy.",
+          "status": "verified",
+          "source": "Customer request and existing website"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "BROOM HOME ENTERPRISES LLC",
+          "headline": "Move With Confidence.",
+          "intro": "Real estate guidance for every move—from renting and buying to selling, building and holding.",
+          "ctaLabel": "Explore Our Services"
+        },
+        "services": {
+          "headline": "Real estate support across the lifecycle.",
+          "intro": "Explore the core areas Broom Home Enterprise supports, then connect directly to discuss your specific goals."
+        },
+        "about": {
+          "headline": "Professional guidance. Lasting relationships.",
+          "paragraphs": [
+            "At Broom Home Enterprise, we are dedicated to providing exceptional real estate services tailored to meet the diverse needs of our clients.",
+            "Whether you are looking to buy, sell, rent or build, our team is here to guide you through each step with integrity, professionalism and clear communication."
+          ]
+        },
+        "contact": {
+          "headline": "Tell us what you are planning.",
+          "intro": "Call or email Broom Home Enterprise to discuss your next real estate move."
+        },
+        "privacy": {
+          "headline": "Privacy, in clear terms.",
+          "body": [
+            "This notice describes the Broom Home Enterprises LLC review website. Contact info@broomhome.biz with questions about your information. Final retention periods and applicable privacy rights require business confirmation before public launch.",
+            "The inquiry form is disabled. It does not submit or store the information you type. No inquiry email is sent by this preview. Please contact the business directly by phone or email.",
+            "Phone and email links open your own applications. Information you choose to share is handled by your communications provider and the business to respond to your inquiry. Do not send account numbers, payment credentials, identification documents or sensitive financial information.",
+            "Myndy live chat is not active. No Myndy script is loaded and no conversation is sent to Myndy from this preview. A revised notice and separate approval are required before activation.",
+            "The website host may process IP addresses, request information and technical logs to deliver and protect the website. No separate marketing analytics, advertising tags or payment processing have been added to this customer experience.",
+            "Photographs are licensed illustrative stock images. They do not identify Broom Home properties, available listings, customers or team members."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#132238",
+        "secondary": "#24364B",
+        "accent": "#B9965A",
+        "surface": "#F6F2E9",
+        "logoPath": "/customers/broom-home-enterprises-llc/logo.svg",
+        "faviconPath": "/customers/broom-home-enterprises-llc/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/broom-home-enterprises-llc/images/interior.webp",
+          "alt": "A two-story family home with a landscaped front garden; illustrative stock photograph, not a Broom Home listing.",
+          "width": 1200,
+          "height": 800
+        },
+        "gallery": [
+          {
+            "src": "/customers/broom-home-enterprises-llc/images/building.webp",
+            "alt": "A light-filled residential bedroom and sitting area; illustrative stock photograph, not a Broom Home listing.",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "src": "/customers/broom-home-enterprises-llc/images/rental.webp",
+            "alt": "Two people carrying moving boxes into a home; illustrative stock photograph, not a Broom Home listing.",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "src": "/customers/broom-home-enterprises-llc/images/home.webp",
+            "alt": "An urban rooftop terrace and surrounding buildings; illustrative stock photograph, not a Broom Home listing.",
+            "width": 1200,
+            "height": 800
+          },
+          {
+            "src": "/customers/broom-home-enterprises-llc/images/hero.webp",
+            "alt": "An aerial view of a residential neighborhood; illustrative stock photograph, not a Broom Home listing.",
+            "width": 1800,
+            "height": 1440
+          },
+          {
+            "src": "/customers/broom-home-enterprises-llc/images/development.webp",
+            "alt": "Architectural building exterior; illustrative stock photograph, not a Broom Home listing.",
+            "width": 1800,
+            "height": 1125
+          },
+          {
+            "src": "/customers/broom-home-enterprises-llc/images/architecture.webp",
+            "alt": "A timber-clad home beside trees; illustrative stock photograph, not a Broom Home listing.",
+            "width": 1800,
+            "height": 2700
+          },
+          {
+            "src": "/customers/broom-home-enterprises-llc/images/city.webp",
+            "alt": "An aerial view of a residential complex; illustrative stock photograph, not a Broom Home listing.",
+            "width": 1200,
+            "height": 900
+          }
+        ]
+      },
+      "seo": {
+        "title": "Broom Home Enterprises LLC | Real Estate Services",
+        "description": "Broom Home Enterprises LLC provides professional guidance for rentals, buying, selling, building and long-term property holding."
+      },
+      "schema": {
+        "type": "Organization",
+        "description": "Real estate services spanning rentals, buying, selling, building and property holding."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "disabled",
+        "recipientConfirmed": false,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "Broom Home Guide",
+        "greeting": "Welcome to Broom Home Enterprises! Are you looking to rent, buy, sell, build, or discuss a property investment?",
+        "avatarBrief": "Refined BH monogram in deep navy and architectural gold.",
+        "knowledgeContextPath": "customers/broom-home-enterprises-llc/myndy/agent-context.md",
+        "embed": {
+          "enabled": false,
+          "agentId": "",
+          "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
+        }
+      }
     }
   ]
 }

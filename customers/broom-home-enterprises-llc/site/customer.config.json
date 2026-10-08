@@ -41,6 +41,14 @@
           "body": "Start with your goals, define the right path and stay informed as the process moves ahead.",
           "image": 3,
           "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "Your next chapter",
+          "heading": "Let’s make room for what’s next.",
+          "body": "Call or email Broom Home to discuss your priorities.",
+          "image": 0,
+          "reverse": false
         }
       ],
       "services": [
@@ -104,7 +112,7 @@
     "brandNotes": "A refined BH monogram paired with deep navy, warm ivory and architectural gold. The identity should feel established, calm and investment-minded rather than flashy."
   },
   "slug": "broom-home-enterprises-llc",
-  "status": "draft",
+  "status": "review",
   "templateId": "ledger",
   "business": {
     "name": "Broom Home Enterprises LLC",
@@ -172,9 +180,9 @@
   "pages": {
     "home": {
       "eyebrow": "BROOM HOME ENTERPRISES LLC",
-      "headline": "Move with confidence.",
-      "intro": "Rental properties, buying, selling, building and holding—with professional guidance for every stage of the journey.",
-      "ctaLabel": "Start a conversation"
+      "headline": "Move With Confidence.",
+      "intro": "Real estate guidance for every move—from renting and buying to selling, building and holding.",
+      "ctaLabel": "Explore Our Services"
     },
     "services": {
       "headline": "Real estate support across the lifecycle.",
@@ -194,9 +202,12 @@
     "privacy": {
       "headline": "Privacy, in clear terms.",
       "body": [
-        "Phone and email links open the visitor's own applications. Do not send payment credentials or sensitive personal information.",
-        "Website form delivery is intentionally disabled until recipient mapping, hosting transfer and end-to-end email testing are separately verified and approved.",
-        "A Myndy chat integration can be enabled after a Broom-specific agent ID and knowledge context are confirmed."
+        "This notice describes the Broom Home Enterprises LLC review website. Contact info@broomhome.biz with questions about your information. Final retention periods and applicable privacy rights require business confirmation before public launch.",
+        "The inquiry form is disabled. It does not submit or store the information you type. No inquiry email is sent by this preview. Please contact the business directly by phone or email.",
+        "Phone and email links open your own applications. Information you choose to share is handled by your communications provider and the business to respond to your inquiry. Do not send account numbers, payment credentials, identification documents or sensitive financial information.",
+        "Myndy live chat is not active. No Myndy script is loaded and no conversation is sent to Myndy from this preview. A revised notice and separate approval are required before activation.",
+        "The website host may process IP addresses, request information and technical logs to deliver and protect the website. No separate marketing analytics, advertising tags or payment processing have been added to this customer experience.",
+        "Photographs are licensed illustrative stock images. They do not identify Broom Home properties, available listings, customers or team members."
       ]
     }
   },
@@ -210,46 +221,52 @@
   },
   "images": {
     "hero": {
-      "src": "/customers/broom-home-enterprises-llc/images/hero.svg",
-      "alt": "Illustrative premium residential architecture with city skyline",
-      "width": 1600,
-      "height": 900
+      "src": "/customers/broom-home-enterprises-llc/images/interior.webp",
+      "alt": "A two-story family home with a landscaped front garden; illustrative stock photograph, not a Broom Home listing.",
+      "width": 1200,
+      "height": 800
     },
     "gallery": [
       {
-        "src": "/customers/broom-home-enterprises-llc/images/services.svg",
-        "alt": "Illustrative property portfolio and key",
-        "width": 1400,
-        "height": 900
+        "src": "/customers/broom-home-enterprises-llc/images/building.webp",
+        "alt": "A light-filled residential bedroom and sitting area; illustrative stock photograph, not a Broom Home listing.",
+        "width": 1200,
+        "height": 800
       },
       {
-        "src": "/customers/broom-home-enterprises-llc/images/planning.svg",
-        "alt": "Illustrative real estate planning desk",
-        "width": 1400,
-        "height": 900
+        "src": "/customers/broom-home-enterprises-llc/images/rental.webp",
+        "alt": "Two people carrying moving boxes into a home; illustrative stock photograph, not a Broom Home listing.",
+        "width": 1200,
+        "height": 800
       },
       {
-        "src": "/customers/broom-home-enterprises-llc/images/contact.svg",
-        "alt": "Illustrative consultation setting",
-        "width": 1400,
-        "height": 900
+        "src": "/customers/broom-home-enterprises-llc/images/home.webp",
+        "alt": "An urban rooftop terrace and surrounding buildings; illustrative stock photograph, not a Broom Home listing.",
+        "width": 1200,
+        "height": 800
       },
       {
-        "src": "/customers/broom-home-enterprises-llc/images/build.svg",
-        "alt": "Illustrative modern building under development",
-        "width": 1400,
-        "height": 900
+        "src": "/customers/broom-home-enterprises-llc/images/hero.webp",
+        "alt": "An aerial view of a residential neighborhood; illustrative stock photograph, not a Broom Home listing.",
+        "width": 1800,
+        "height": 1440
       },
       {
-        "src": "/customers/broom-home-enterprises-llc/images/city.svg",
-        "alt": "Illustrative city property skyline",
-        "width": 1400,
-        "height": 900
+        "src": "/customers/broom-home-enterprises-llc/images/development.webp",
+        "alt": "Architectural building exterior; illustrative stock photograph, not a Broom Home listing.",
+        "width": 1800,
+        "height": 1125
       },
       {
-        "src": "/customers/broom-home-enterprises-llc/images/interior.svg",
-        "alt": "Illustrative refined residential interior",
-        "width": 1400,
+        "src": "/customers/broom-home-enterprises-llc/images/architecture.webp",
+        "alt": "A timber-clad home beside trees; illustrative stock photograph, not a Broom Home listing.",
+        "width": 1800,
+        "height": 2700
+      },
+      {
+        "src": "/customers/broom-home-enterprises-llc/images/city.webp",
+        "alt": "An aerial view of a residential complex; illustrative stock photograph, not a Broom Home listing.",
+        "width": 1200,
         "height": 900
       }
     ]
@@ -259,7 +276,7 @@
     "description": "Broom Home Enterprises LLC provides professional guidance for rentals, buying, selling, building and long-term property holding."
   },
   "schema": {
-    "type": "RealEstateAgent",
+    "type": "Organization",
     "description": "Real estate services spanning rentals, buying, selling, building and property holding."
   },
   "form": {
@@ -270,7 +287,7 @@
   },
   "myndy": {
     "agentName": "Broom Home Guide",
-    "greeting": "How can I help you prepare for your next real estate conversation?",
+    "greeting": "Welcome to Broom Home Enterprises! Are you looking to rent, buy, sell, build, or discuss a property investment?",
     "avatarBrief": "Refined BH monogram in deep navy and architectural gold.",
     "knowledgeContextPath": "customers/broom-home-enterprises-llc/myndy/agent-context.md",
     "embed": {

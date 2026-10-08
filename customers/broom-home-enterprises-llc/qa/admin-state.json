@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-08T17:40:14.591Z",
+  "request": {
+    "id": "6417efec-04c9-497c-a735-229d51219944",
+    "business": "Broom Home Enterprises LLC",
+    "customer_slug": "broom-home-enterprises-llc",
+    "status": "received"
+  },
+  "workflow": {
+    "stage": "draft",
+    "active_brief_id": "3c5b09be-2a62-4c74-978b-7a21499e3905",
+    "preview_url": null
+  },
+  "actions": [
+    {
+      "action": "ai_brief_regenerated",
+      "customer_slug": "broom-home-enterprises-llc",
+      "status_before": "generating",
+      "status_after": "generated",
+      "created_at": "2026-10-08T17:37:44.018Z"
+    },
+    {
+      "action": "slug_suggested",
+      "customer_slug": "broom-home-enterprises-llc",
+      "status_before": null,
+      "status_after": null,
+      "created_at": "2026-10-08T17:37:44.018Z"
+    },
+    {
+      "action": "slug_updated",
+      "customer_slug": "broom-home-enterprises-llc",
+      "status_before": "received",
+      "status_after": "received",
+      "created_at": "2026-10-08T17:34:53.879Z"
+    },
+    {
+      "action": "slug_availability_checked",
+      "customer_slug": "broom-home-enterprises-llc",
+      "status_before": "draft",
+      "status_after": "draft",
+      "created_at": "2026-10-08T17:34:53.255Z"
+    },
+    {
+      "action": "slug_suggested",
+      "customer_slug": "broom-home-enterprises",
+      "status_before": null,
+      "status_after": null,
+      "created_at": "2026-10-08T17:33:45.653Z"
+    },
+    {
+      "action": "ai_brief_generated",
+      "customer_slug": "broom-home-enterprises",
+      "status_before": "generating",
+      "status_after": "generated",
+      "created_at": "2026-10-08T17:33:45.653Z"
+    },
+    {
+      "action": "slug_availability_checked",
+      "customer_slug": "broom-home-enterprises-llc",
+      "status_before": "draft",
+      "status_after": "draft",
+      "created_at": "2026-10-08T17:33:32.760Z"
+    },
+    {
+      "action": "slug_updated",
+      "customer_slug": "broom-home-enterprises",
+      "status_before": "received",
+      "status_after": "received",
+      "created_at": "2026-10-08T17:26:37.721Z"
+    }
+  ],
+  "approvalsGranted": false
+}

@@ -1,0 +1,120 @@
+{
+  "id": "3c5b09be-2a62-4c74-978b-7a21499e3905",
+  "status": "generated",
+  "brief": {
+    "seo": {
+      "title": "Broom Home Enterprises LLC | Expert Real Estate Services",
+      "metaDescription": "Broom Home Enterprises LLC offers expert real estate services covering rentals, buying, selling, building, and holding. Trust our professional team to guide you with confidence."
+    },
+    "hero": {
+      "body": "Navigating rental properties, buying, selling, and building with confidence and expert guidance.",
+      "heading": "Your Trusted Partner in Real Estate"
+    },
+    "myndy": {
+      "faqs": [
+        "What types of properties do you handle?",
+        "How do I start buying or selling a property?",
+        "Do you offer property management services?"
+      ],
+      "context": "Assist users with common real estate inquiries and qualify leads before connecting them to the sales team.",
+      "greeting": "Hi! I'm BroomBot, here to help you with your real estate questions and guide you through our services.",
+      "agentName": "BroomBot",
+      "avatarBrief": "Friendly professional avatar suited for real estate consulting and lead qualification.",
+      "escalationRules": [
+        "Escalate to human agent if user asks complex questions beyond qualification scope.",
+        "Escalate if user requests detailed pricing or legal advice."
+      ],
+      "qualificationFlow": [
+        "Identify user's interest area (buying, selling, renting, building, holding).",
+        "Assess user's timeline and readiness.",
+        "Gather contact information for follow-up."
+      ]
+    },
+    "pages": [
+      {
+        "name": "Home",
+        "purpose": "Introduce Broom Home Enterprises LLC and their comprehensive real estate services, establishing trust and expertise.",
+        "sections": [
+          "Hero with headline and value proposition",
+          "Overview of services",
+          "Client benefits",
+          "Call to Action"
+        ]
+      },
+      {
+        "name": "Services",
+        "purpose": "Detail the range of real estate services offered including rentals, buying, selling, building, and holding properties.",
+        "sections": [
+          "Service descriptions by category",
+          "Benefits of each service",
+          "How to get started CTA"
+        ]
+      },
+      {
+        "name": "About",
+        "purpose": "Tell the story of Broom Home Enterprises LLC, professional team introduction, mission, and values.",
+        "sections": [
+          "Company background",
+          "Team bios",
+          "Mission and vision"
+        ]
+      },
+      {
+        "name": "Contact",
+        "purpose": "Provide contact methods and a contact form to initiate communication for inquiries or service requests.",
+        "sections": [
+          "Contact details placeholder",
+          "Contact form placeholder",
+          "Map placeholder (if applicable)"
+        ]
+      },
+      {
+        "name": "Privacy",
+        "purpose": "Disclose website privacy policies consistent with legal requirements.",
+        "sections": [
+          "Privacy policy statement"
+        ]
+      }
+    ],
+    "ctaCopy": [
+      "Contact us today for personalized real estate solutions.",
+      "Discover how we can help you achieve your property goals.",
+      "Schedule a consultation with our expert team."
+    ],
+    "services": [
+      "Rental property management",
+      "Real estate buying assistance",
+      "Property selling services",
+      "Property building and development consulting",
+      "Real estate holding and investment guidance"
+    ],
+    "smsDraft": "Hello from Broom Home Enterprises LLC! We're updating our website soon to serve you better. Your email and domain will stay the same. Stay tuned for updates!",
+    "logoConcept": "A modern, sleek logo combining imagery of a house silhouette with strong, clean typography to reflect expertise and reliability in real estate.",
+    "customerSlug": "broom-home-enterprises-llc",
+    "imagePrompts": [
+      "Modern residential and commercial real estate properties under professional management",
+      "Confident real estate agent consulting with clients",
+      "Architectural blueprints and construction imagery",
+      "Happy clients shaking hands after property transactions"
+    ],
+    "brandDirection": "Professional and trustworthy real estate services brand with a focus on expertise and confidence for clients in buying, selling, and managing properties.",
+    "colorDirection": "A sophisticated palette featuring deep blues and neutral grays to evoke trust, stability, and professionalism, with vibrant accent colors to highlight calls to action.",
+    "businessSummary": "Broom Home Enterprises LLC operates in the real estate industry, specializing in rental properties, buying, selling, building, and holding real estate assets. The business focuses on delivering expert guidance and exceptional service to clients navigating the real estate market.",
+    "verificationNotes": [
+      "Customer email and domain to remain fully functional during website update; confirm no disruptions",
+      "Customer provided unverified data about business offerings and website",
+      "Website content and hosting transfer specifics require further confirmation",
+      "No current access to existing website content beyond public URL"
+    ],
+    "customerEmailDraft": "Subject: Upcoming Website Update for Broom Home Enterprises LLC\n\nDear Team,\n\nWe are preparing to update your website to enhance its design and functionality. Please note that during this process, your existing email addresses and domain (e.g., info@broomhome.biz) will remain unchanged and fully operational. Our work will focus solely on website content updates and hosting transfer.\n\nWe will keep you informed as progress is made.\n\nBest regards,\n\n[Your Company Name]",
+    "missingInformation": [
+      "Specific brand color preferences or existing brand guidelines",
+      "Logo files or design preferences if applicable",
+      "Details and bios for the About page team section",
+      "Any existing privacy policy text or special privacy requirements",
+      "Content specifics for each services category",
+      "Preferred contact details to display on the Contact page",
+      "Hosting platform details and credentials for transfer"
+    ]
+  }
+}
