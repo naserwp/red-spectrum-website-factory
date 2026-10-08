@@ -42,3 +42,14 @@ const note = readFileSync("customers/unique-management-group/delivery/domain-cut
 for (const fact of ["66.113.136.229", "mx.siteprotect.com", "ns1.incauthorityweb.com", "ns2.incauthorityweb.com", "not recorded", "No credentials"]) assert.match(note, new RegExp(fact.replaceAll(".", "\\.")));
 assert.doesNotMatch(note, /API key|password|BEGIN PRIVATE/i);
 console.log("PASS: canonical preview separation, approval gating, reconciled state, and private DNS snapshot.");
+
+const draft = { stage: 'draft', websiteVerified: false, qaPassed: false, hasBrief: true, slugConfirmed: true, previewVerified: false };
+assert.equal(state.workflowSummary(draft).next, 'Build Approved');
+assert.equal(state.workflowSummary({...draft, hasBrief:false}).next, 'AI Brief Generated');
+assert.equal(state.workflowSummary({...draft, slugConfirmed:false}).next, 'Slug Confirmed');
+const offline = state.workflowSummary({...draft,stage:'build_approved',websiteVerified:true,qaPassed:true});
+assert.equal(offline.websiteBuilt,'Verified');
+assert.equal(offline.identity,'Pending');
+assert.equal(offline.next,'Preview Verification');
+assert.equal(state.workflowSummary({...draft,stage:'customer_approved',websiteVerified:true}).customerApproved,'Complete');
+console.log('PASS: earlier prerequisite precedence, build evidence independent of branded reachability, persisted approval preserved.');

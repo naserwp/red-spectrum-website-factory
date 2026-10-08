@@ -21,19 +21,22 @@ export function isCustomerFacingPreview(slug: string, value: string) {
   }
 }
 
-export function workflowSummary(input: { stage: string; websiteVerified: boolean; qaPassed: boolean; slug?: string | null; productionPublished?: boolean; domainConnected?: boolean }) {
-  const previewReady = input.websiteVerified && ["preview_ready", "customer_approved"].includes(input.stage);
-  const approved = input.websiteVerified && input.stage === "customer_approved";
+export function workflowSummary(input: { stage: string; websiteVerified: boolean; qaPassed: boolean; slug?: string | null; hasBrief?: boolean; slugConfirmed?: boolean; previewVerified?: boolean; productionPublished?: boolean; domainConnected?: boolean }) {
+  const previewVerified = input.previewVerified ?? input.websiteVerified;
+  const buildApproved = ["build_approved", "preview_ready", "customer_approved"].includes(input.stage);
+  // Recorded approvals survive temporary preview outages; reachability is separate.
+  const previewReady = ["preview_ready", "customer_approved"].includes(input.stage);
+  const approved = input.stage === "customer_approved";
   return {
     websiteBuilt: input.websiteVerified ? "Verified" : "Not verified",
     qa: input.qaPassed ? "Passed" : "Not recorded",
     preview: input.slug ? canonicalBrandedPreview(input.slug) : "Not assigned",
-    identity: input.websiteVerified ? "Verified" : "Pending",
+    identity: previewVerified ? "Verified" : "Pending",
     previewReady: previewReady ? "Complete" : input.websiteVerified ? "Not approved" : "Upcoming",
     customerApproved: approved ? "Complete" : previewReady ? "Not approved" : "Upcoming",
     production: input.productionPublished ? "Published" : "Not published",
     domain: input.domainConnected ? "Connected" : "Not connected",
-    next: approved ? "Complete" : previewReady ? "Customer Approved" : input.websiteVerified ? "Preview Ready" : "Website Built",
+    next: input.hasBrief === false ? "AI Brief Generated" : input.slugConfirmed === false ? "Slug Confirmed" : !buildApproved ? "Build Approved" : !input.websiteVerified ? "Website Built" : !previewVerified ? "Preview Verification" : approved ? "Complete" : previewReady ? "Customer Approved" : "Preview Ready",
   };
 }
 

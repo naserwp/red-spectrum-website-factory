@@ -35,8 +35,12 @@ if (process.env.BROOM_QA_ORIGIN) {
   for (const route of ['', '/services', '/about', '/contact', '/faq', '/privacy', ...broomServices.map(s => '/services/' + s.slug)]) {
     const r = await fetch(base + '/' + slug + route);
     assert.equal(r.status, 200, route);
+    const alias=await fetch(base+'/broom-home-enterprises'+route,{redirect:'manual'});
+    assert.equal(alias.status,308,route+' alias');
+    assert.equal(new URL(alias.headers.get('location'),base).pathname,'/'+slug+route);
     const html = await r.text();
     assert(html.includes(`data-customer-slug="${slug}"`));
+    assert(html.includes(`rel="canonical" href="https://preview.redspectrum.ai/${slug}${route}"`));
     assert.match(html, /name="robots" content="noindex, nofollow"/);
     assert(!html.includes('<myndy-convai'));
     assert(!html.includes('<script src="https://widget.myndy.ai'));
