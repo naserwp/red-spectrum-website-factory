@@ -1,0 +1,60 @@
+{
+  "request": [
+    {
+      "id": "2819bf01-793b-4df0-9409-8d53c8df71ee",
+      "customer_slug": "multi-trans-global-logistics",
+      "status": "received",
+      "stage": null
+    }
+  ],
+  "rows": [
+    {
+      "lead_id": "17566af6-c523-4f94-bc85-319287197151",
+      "kind": "myndy_contact",
+      "state": "not_requested",
+      "attempt_count": 0,
+      "provider_receipt": null,
+      "readback_verified_at": null
+    },
+    {
+      "lead_id": "17566af6-c523-4f94-bc85-319287197151",
+      "kind": "test_email",
+      "state": "accepted",
+      "attempt_count": 1,
+      "provider_receipt": "EowQWvyaQ7ijrzhVSmWY3Q",
+      "readback_verified_at": null
+    },
+    {
+      "lead_id": "09ff1810-50b8-4afe-953a-047f46bf685a",
+      "kind": "myndy_contact",
+      "state": "not_requested",
+      "attempt_count": 0,
+      "provider_receipt": null,
+      "readback_verified_at": null
+    },
+    {
+      "lead_id": "09ff1810-50b8-4afe-953a-047f46bf685a",
+      "kind": "test_email",
+      "state": "accepted",
+      "attempt_count": 1,
+      "provider_receipt": "QX0i-19MTWOU99Y2fuOrPQ",
+      "readback_verified_at": null
+    },
+    {
+      "lead_id": "1745a273-b87e-4a06-b643-f0cf1257564f",
+      "kind": "myndy_contact",
+      "state": "accepted",
+      "attempt_count": 1,
+      "provider_receipt": "ct_3c57922782dc0767",
+      "readback_verified_at": "2026-10-08T23:25:55.920Z"
+    },
+    {
+      "lead_id": "1745a273-b87e-4a06-b643-f0cf1257564f",
+      "kind": "test_email",
+      "state": "accepted",
+      "attempt_count": 1,
+      "provider_receipt": "mUdZESTzRc26Xwhie1dNOg",
+      "readback_verified_at": null
+    }
+  ]
+}
