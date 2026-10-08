@@ -10,8 +10,9 @@ import { headers } from "next/headers";
 import { customerDomainForHost } from "@/lib/customers/domains";
 import { UniqueManagementWebsite } from '@/components/customers/unique-management-website';
 import { umgService, validUmgRoute } from '@/lib/customers/umg-services';
+import { broomLocation, broomSeo } from '@/lib/customers/broom-seo';
 import { BroomWebsite } from '@/components/customers/broom-website';
-import { broomSlug, broomService, validBroomRoute } from '@/lib/customers/broom-content';
+import { broomSlug, validBroomRoute } from '@/lib/customers/broom-content';
 
 async function umgPreviewAllowed() {
   const h = await headers();
@@ -48,11 +49,11 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
   if (!site) return {};
   if (site.slug === broomSlug) {
     if (!validBroomRoute(segments)) return {};
-    const service = broomService(segments?.[1]);
-    const title = service ? service.name + ' | ' + site.business.name : segments?.[0] ? segments[0][0].toUpperCase() + segments[0].slice(1) + ' | ' + site.business.name : site.seo.title;
-    const description = service?.intro || site.seo.description;
-    const canonical = 'https://preview.redspectrum.ai/' + site.slug + (segments?.length ? '/' + segments.join('/') : '');
-    return { metadataBase: new URL('https://preview.redspectrum.ai'), title: { absolute: title }, description, robots: { index: false, follow: false }, alternates: { canonical }, icons: { icon: site.branding.faviconPath }, openGraph: { title, description, url: canonical, type: 'website', siteName: site.business.name, images: [{ url: site.images.hero.src, alt: site.images.hero.alt }] }, twitter: { card: 'summary_large_image', title, description, images: [site.images.hero.src] } };
+    const { title, description } = broomSeo(segments);
+    const requestHeaders = await headers();
+    const location = broomLocation(requestHeaders.get('host') || '');
+    const canonical = location.origin + location.root + (segments?.length ? '/' + segments.join('/') : location.root ? '' : '/');
+    return { metadataBase: new URL(location.origin), title: { absolute: title }, description, robots: { index: location.production, follow: location.production }, alternates: { canonical }, icons: { icon: site.branding.faviconPath }, openGraph: { title, description, url: canonical, type: 'website', siteName: site.business.name, images: [{ url: site.images.hero.src, alt: site.images.hero.alt }] }, twitter: { card: 'summary_large_image', title, description, images: [site.images.hero.src] } };
   }
   if (customerSlug === 'unique-management-group') {
     if (!await umgPreviewAllowed() || !validUmgRoute(segments)) return {};
@@ -101,7 +102,8 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   if (site.slug === broomSlug) {
     if (!validBroomRoute(segments)) notFound();
     if (customerSlug !== site.slug) permanentRedirect(`/${site.slug}${segments?.length ? '/' + segments.join('/') : ''}`);
-    return <BroomWebsite site={site} route={segments} />;
+    const location = broomLocation((await headers()).get('host') || '');
+    return <BroomWebsite site={site} route={segments} root={location.root} origin={location.origin} />;
   }
   if (customerSlug === 'unique-management-group') {
     if (!await umgPreviewAllowed() || !validUmgRoute(segments)) notFound();
