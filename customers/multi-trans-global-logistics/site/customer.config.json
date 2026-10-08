@@ -132,14 +132,14 @@
     "testPassed": false
   },
   "myndy": {
-    "agentName": "Multi Trans assistant",
-    "greeting": "Tell us about your shipment.",
-    "avatarBrief": "Geometric MTG identity.",
-    "knowledgeContextPath": "customers/multi-trans-global-logistics/README.md",
+    "agentName": "Multi Trans Freight Assistant",
+    "greeting": "Welcome to Multi Trans Global Logistics! What are you shipping, and where does it need to go?",
+    "avatarBrief": "Fictional approachable professional freight assistant avatar, midnight navy background and safety-orange accent, clean icon-friendly portrait.",
+    "knowledgeContextPath": "customers/multi-trans-global-logistics/myndy/agent-context.md",
     "embed": {
       "enabled": false,
       "agentId": "",
-      "scriptUrl": ""
+      "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
     }
   }
 }
