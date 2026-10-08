@@ -29,14 +29,14 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
  const db=database();
  if(input.action==="claim"){
   // Expired workers are fenced, not silently requeued: external side effects may already exist.
-  await db.query("WITH expired AS (UPDATE webfactory.website_build_jobs SET status='failed',error_category='WORKER_LEASE_EXPIRED',finished_at=now() WHERE lease_expires_at<now() AND status IN ('claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying') RETURNING id) INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) SELECT id,'failed','WORKER_LEASE_EXPIRED','worker-recovery' FROM expired");
+  await db.query("WITH expired AS (UPDATE webfactory.website_build_jobs SET status='failed',error_category='WORKER_LEASE_EXPIRED',finished_at=now() WHERE ($1::uuid IS NULL OR id=$1) AND lease_expires_at<now() AND status IN ('claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying') RETURNING id) INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) SELECT id,'failed','WORKER_LEASE_EXPIRED','worker-recovery' FROM expired",[input.jobId ?? null]);
  }
  const c=await db.connect();
  try{
   await c.query("BEGIN");
   if(input.action==="claim"){
    if(process.env.WEBFACTORY_BUILD_EXECUTOR!=="controlled-worker-v1")throw Error("Disabled");
-   const job=(await c.query("SELECT * FROM webfactory.website_build_jobs WHERE status='queued' AND executor='controlled-worker-v1' AND cancel_requested=false ORDER BY created_at FOR UPDATE SKIP LOCKED LIMIT 1")).rows[0];
+   const job=(await c.query("SELECT * FROM webfactory.website_build_jobs WHERE ($1::uuid IS NULL OR id=$1) AND status='queued' AND executor='controlled-worker-v1' AND cancel_requested=false ORDER BY created_at FOR UPDATE SKIP LOCKED LIMIT 1",[input.jobId ?? null])).rows[0];
    if(!job){await c.query("COMMIT");return {job:null};}
    const current=(await c.query("SELECT r.customer_slug,r.business,r.industry,r.email,r.phone,w.active_brief_id,w.stage FROM webfactory.requests r JOIN webfactory.build_workflows w ON w.request_id=r.id WHERE r.id=$1",[job.request_id])).rows[0];
    if(!current || current.customer_slug!==job.customer_slug || current.active_brief_id!==job.brief_id || !["build_approved","preview_ready"].includes(current.stage)){
