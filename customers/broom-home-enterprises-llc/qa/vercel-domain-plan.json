@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-08T19:27:22.220Z",
+  "alias": {
+    "status": 200,
+    "alias": "preview.redspectrum.ai",
+    "deploymentId": "dpl_Eov43iz23A6Ujy9Qe8LN1hZ9vuKy",
+    "deployment": {
+      "id": "dpl_Eov43iz23A6Ujy9Qe8LN1hZ9vuKy",
+      "url": "red-spectrum-website-factory-x7i2qh05c-naserwps-projects.vercel.app"
+    },
+    "projectId": "prj_HV68RI67tT0LXTfEA1mguG6F3Ddo"
+  },
+  "domains": [
+    {
+      "name": "broomhome.biz",
+      "status": 200,
+      "recommendedIPv4": [
+        {
+          "rank": 1,
+          "value": [
+            "76.76.21.21"
+          ]
+        }
+      ],
+      "recommendedCNAME": [
+        {
+          "rank": 1,
+          "value": "cname.vercel-dns.com."
+        }
+      ],
+      "misconfigured": true,
+      "nameservers": [
+        "ns3.systemdns.com",
+        "ns2.systemdns.com",
+        "ns1.systemdns.com"
+      ]
+    },
+    {
+      "name": "www.broomhome.biz",
+      "status": 200,
+      "recommendedIPv4": [
+        {
+          "rank": 1,
+          "value": [
+            "76.76.21.21"
+          ]
+        }
+      ],
+      "recommendedCNAME": [
+        {
+          "rank": 1,
+          "value": "cname.vercel-dns.com."
+        }
+      ],
+      "misconfigured": true,
+      "nameservers": [
+        "ns1.systemdns.com",
+        "ns3.systemdns.com",
+        "ns2.systemdns.com"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-08T17:32:29.908Z",
+  "checkedAt": "2026-10-08T19:19:59.407Z",
   "records": [
     {
       "name": "broomhome.biz",
@@ -10,13 +10,13 @@
           "name": "broomhome.biz.",
           "type": 2,
           "TTL": 300,
-          "data": "ns1.systemdns.com."
+          "data": "ns2.systemdns.com."
         },
         {
           "name": "broomhome.biz.",
           "type": 2,
           "TTL": 300,
-          "data": "ns2.systemdns.com."
+          "data": "ns1.systemdns.com."
         },
         {
           "name": "broomhome.biz.",
@@ -134,13 +134,13 @@
         {
           "name": "a4883ea39ca559091.awsglobalaccelerator.com.",
           "type": 1,
-          "TTL": 107,
+          "TTL": 148,
           "data": "13.248.175.166"
         },
         {
           "name": "a4883ea39ca559091.awsglobalaccelerator.com.",
           "type": 1,
-          "TTL": 107,
+          "TTL": 148,
           "data": "76.223.58.8"
         }
       ]
@@ -153,7 +153,7 @@
         {
           "name": "www.broomhome.biz.",
           "type": 5,
-          "TTL": 299,
+          "TTL": 300,
           "data": "s.multiscreensite.com."
         },
         {

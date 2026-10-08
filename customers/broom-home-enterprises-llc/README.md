@@ -3,6 +3,8 @@
 Customer request: `6417efec-04c9-497c-a735-229d51219944`  
 Exact tenant: `broom-home-enterprises-llc`
 
+Recovery verified on October 9, 2026. The short slug `broom-home-enterprises` is a 308 alias to the saved long slug. See [delivery-report.md](delivery-report.md) for the latest deployment, dashboard corrections, executed tests and explicit release blockers.
+
 ## Website
 
 Eleven routes: Home, Services, About, Contact, FAQ, Privacy, and service details for Rentals, Buying, Selling, Building and Holding. Uses the existing factory manifest and catch-all router. Broom-specific server-rendered components and scoped CSS keep other customer implementations intact. Unknown service routes return 404. No new packages or environment variables.

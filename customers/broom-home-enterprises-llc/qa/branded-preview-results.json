@@ -1,0 +1,160 @@
+{
+  "checkedAt": "2026-10-08T19:23:05.630Z",
+  "results": [
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/services",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/services/rentals",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/services/buying",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/services/selling",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/services/building",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/services/holding",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/about",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/contact",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/faq",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Not found"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises/privacy",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/services",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/services/rentals",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/services/buying",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/services/selling",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/services/building",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/services/holding",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": null
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/about",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/contact",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/faq",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Not found"
+    },
+    {
+      "url": "https://preview.redspectrum.ai/broom-home-enterprises-llc/privacy",
+      "status": 404,
+      "location": null,
+      "broomIdentity": false,
+      "message": "Preview not available"
+    }
+  ],
+  "productionChanged": false
+}

@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-08T19:29:55.107Z",
+  "deployment": "dpl_DFFGhZZdxU7LVxKeuCR2esmYV4aL",
+  "results": [
+    {
+      "path": "",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/services",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/services/rentals",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/services/buying",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/services/selling",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/services/building",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/services/holding",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/faq",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "exactStructuredIdentity": true,
+      "canonical": true,
+      "contactLinks": true
+    }
+  ]
+}

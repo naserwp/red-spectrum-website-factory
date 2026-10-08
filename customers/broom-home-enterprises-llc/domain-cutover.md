@@ -1,6 +1,6 @@
 # Domain cutover preparation — not authorized, not performed
 
-Snapshot captured October 8, 2026; refresh immediately before any approved change. Raw public answers and timestamps are in qa/dns-before.json. DNS lookups cannot enumerate a complete zone: obtain a provider zone export, especially DKIM selectors and mail-related aliases, before any cutover.
+Snapshot refreshed October 8, 2026 UTC (October 9 in Asia/Almaty); refresh immediately before any approved change. Raw public answers and timestamps are in qa/dns-before.json. DNS lookups cannot enumerate a complete zone: obtain a provider zone export, especially DKIM selectors and mail-related aliases, before any cutover.
 
 ## Verified public configuration
 
@@ -21,7 +21,7 @@ MX/SPF identify Hosted Email infrastructure. The exact reseller/account ownershi
 
 Confirmed existing project `red-spectrum-website-factory`, project ID `prj_HV68RI67tT0LXTfEA1mguG6F3Ddo`, existing team `team_jaE4H8Ibm6itfUNg5ZrhI7Bi`, GitHub repository `naserwp/red-spectrum-website-factory`, production branch `main`.
 
-Neither broomhome.biz nor www.broomhome.biz was attached to this project. A project-scoped domain configuration read returned candidate apex IPv4 `76.76.21.21` and CNAME `cname.vercel-dns.com.`. These are recorded observations, NOT final cutover instructions: after separately authorized domain attachment, obtain the exact targets shown by this existing project and recheck whether they have changed. Do not assume an apex CNAME is permitted.
+Neither broomhome.biz nor www.broomhome.biz was attached to this project. The refreshed exact API recommendations are retained in qa/vercel-domain-plan.json. A project-scoped domain configuration read returned candidate apex IPv4 `76.76.21.21` and CNAME `cname.vercel-dns.com.`. These are recorded observations, NOT final cutover instructions: after separately authorized domain attachment, obtain the exact targets shown by this existing project and recheck whether they have changed. Do not assume an apex CNAME is permitted.
 
 ## Prerequisites and proposed scope for later approval
 
