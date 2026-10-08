@@ -36,7 +36,7 @@ Files in `public/customers/multi-trans-global-logistics/`: horizontal/light/dark
 
 27 pages: home, About, service index, 16 service guides, Industries, Service Areas, FAQ, quote planner, Contact, Privacy, Terms and Cookies. Dedicated route under the exact customer slug; invalid routes return 404. Existing customer routes are preserved.
 
-The quote planner validates required input, prepares a reviewable summary locally, supports copying, and offers an explicitly user-initiated email-app link. It does not submit to an API, persist data, send email, reserve equipment or report false success. The manifest retains `form.mode=disabled`; no Myndy, payment or live tracking system is enabled.
+The quote planner validates required input, prepares a reviewable summary locally, supports copying, and offers an explicitly user-initiated email-app link. It does not submit to an API, persist data, send email, reserve equipment or report false success. The optional planner remains local. Dedicated contact/quote submissions now use a separate, gated PostgreSQL/SendGrid handler in internal test mode; the generic manifest form stays disabled. The dedicated Myndy widget is rendered directly on all customer pages. See INTEGRATION-VERIFICATION.md for current delivery, provider tests and activation gates. Payment and live tracking are not enabled.
 
 All pages are noindex/nofollow. Titles, descriptions, Open Graph, Twitter images, favicon, breadcrumbs and Organization/Service structured data are tenant-specific. Canonicals use the intended preview path. Production domain registration and indexable SEO activation remain release tasks requiring approval. No shared sitemap or robots configuration is changed.
 
@@ -46,7 +46,7 @@ Business review: proposed identity, customer contact details, current services/e
 
 ## Changed files
 
-- `app/multi-trans-global-logistics/[[...page]]/page.tsx`: dedicated route, route validation, static pages and metadata.
+- `app/multi-trans-global-logistics/[[...page]]/page.tsx`: dedicated route, route validation, dynamic customer pages and metadata.
 - `components/customers/mtg-website.tsx`: server-rendered website sections, pages, navigation shell and structured data.
 - `components/customers/mtg-interactive.tsx`: mobile navigation and local inquiry planner.
 - `components/customers/mtg.css`: customer-scoped responsive styles.

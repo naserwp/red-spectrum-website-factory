@@ -43,7 +43,7 @@ export function MtgLeadForm({ source, mode, services }: { source: 'quote' | 'con
         <label className="mtg-span">Special instructions / message *<textarea name="details" minLength={5} maxLength={2000} rows={5} required /></label>
       </div><div className="mtg-honeypot" aria-hidden="true"><label>Leave empty<input name="botcheck" tabIndex={-1} autoComplete="off" /></label></div>
       <label className="mtg-consent"><input type="checkbox" name="consent" required /> <span>I agree that my contact and shipment details may be stored and used to respond to this inquiry, as described in the <a href={`${mtgBase}/privacy`}>privacy notice</a>. *</span></label>
-      <label className="mtg-consent"><input type="checkbox" name="syncConsent" /> <span>Optional: I also consent to a Myndy contact record for this inquiry, if the dedicated connection is activated. Synchronization is currently awaiting verification.</span></label>
+      <label className="mtg-consent"><input type="checkbox" name="syncConsent" /> <span>Optional: I also consent to a Myndy contact record for this inquiry, if the dedicated connection is activated. Contact synchronization is not activated for public submissions.</span></label>
       <p className="mtg-fine">Do not include payment details or sensitive personal information. This is an inquiry, not a reservation.</p>
       <button className="mtg-button" type="submit" disabled={mode === 'disabled' || busy || result?.saved}>{busy ? 'Saving inquiry…' : result?.saved ? 'Inquiry saved' : mode === 'test' ? 'Send internal test inquiry' : 'Send inquiry'} <span aria-hidden="true">↗</span></button>
       </fieldset>

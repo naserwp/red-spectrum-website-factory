@@ -23,7 +23,7 @@ export function MtgQuotePlanner() {
   const [copyError, setCopyError] = useState(false);
   const result = useRef<HTMLDivElement>(null);
   return <div className="mtg-planner">
-    <div className="mtg-notice"><strong>Prepare your freight inquiry.</strong> This preview does not submit requests. Create a summary below, then copy it or choose to open your email app.</div>
+    <div className="mtg-notice"><strong>Prepare your freight inquiry.</strong> This summary planner does not submit requests. Create a summary below, then copy it or choose to open your email app.</div>
     <form onChange={() => { setSummary(''); setCopied(false); setCopyError(false); }} onSubmit={event => {
       event.preventDefault();
       const form = new FormData(event.currentTarget);
@@ -54,7 +54,7 @@ export function MtgQuotePlanner() {
       <h2>Your inquiry is ready to review.</h2><p>Nothing has been sent. Copy this summary or open your email app and send it when you are ready.</p>
       <textarea aria-label="Freight inquiry summary" readOnly value={summary} rows={14} />
       <div className="mtg-actions"><button className="mtg-button" type="button" onClick={async () => { try { await navigator.clipboard.writeText(summary); setCopied(true); setCopyError(false); } catch { setCopyError(true); } }}>Copy summary</button><a className="mtg-button mtg-button-outline" href={`mailto:mtglobal39@gmail.com?subject=${encodeURIComponent('Freight quote inquiry')}&body=${encodeURIComponent(summary)}`}>Open email app ↗</a></div>
-      <p role="status">{copied ? 'Summary copied. Nothing has been sent.' : copyError ? 'Copy is unavailable. Select the summary above and copy it manually.' : 'Your email app controls sending. This website does not send email.'}</p>
+      <p role="status">{copied ? 'Summary copied. Nothing has been sent.' : copyError ? 'Copy is unavailable. Select the summary above and copy it manually.' : 'Your email app controls sending. This summary planner does not send email.'}</p>
     </div>}
   </div>;
 }

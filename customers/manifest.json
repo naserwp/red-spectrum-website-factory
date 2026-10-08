@@ -1717,7 +1717,7 @@
         "privacy": {
           "headline": "Privacy notice",
           "body": [
-            "Inquiry forms use PostgreSQL and SendGrid when enabled. Myndy loads only after visitor choice. Live customer delivery and contact sync require separate approval."
+            "Inquiry forms use PostgreSQL and SendGrid when enabled. The dedicated Myndy assistant loads on customer pages. Live customer delivery and contact sync require separate approval."
           ]
         }
       },
