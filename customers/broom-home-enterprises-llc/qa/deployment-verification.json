@@ -1,0 +1,156 @@
+{
+  "checkedAt": "2026-10-08T17:49:57.588Z",
+  "deployment": {
+    "id": "dpl_76aP2x4kzpAQFD1PoMdYCExPMUP9",
+    "url": "red-spectrum-website-factory-qj0fbjj24-naserwps-projects.vercel.app",
+    "state": "READY",
+    "target": null,
+    "projectId": "prj_HV68RI67tT0LXTfEA1mguG6F3Ddo",
+    "sha": "e4e79b3d79e1efa69b8c59b3ffef7bd272d63e3f"
+  },
+  "origin": "https://red-spectrum-website-factory-qj0fbjj24-naserwps-projects.vercel.app",
+  "access": "Existing authenticated Vercel curl; public requests redirect to deployment protection",
+  "results": [
+    {
+      "path": "/broom-home-enterprises-llc",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/services",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/services/rentals",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/services/selling",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/services/building",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/services/buying",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/services/holding",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/contact",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/about",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/faq",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/lc-real-estate",
+      "type": "existing",
+      "name": "L&C Real Estate Investment Group",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/privacy",
+      "type": "broom",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/jm0616studio",
+      "type": "existing",
+      "name": "JM0616STUDIO LLC",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/swenzy-logistics",
+      "type": "existing",
+      "name": "Swenzy Logistics LLC",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/jm-trucking",
+      "type": "existing",
+      "name": "J&M Trucking Logistics LLC",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/unique-home-enterprise",
+      "type": "existing",
+      "name": "UNIQUE HOME ENTERPRISE LLC",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/unique-management-group",
+      "type": "existing",
+      "name": "Unique Management Group LLC",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/360-vitality-fitness",
+      "type": "existing",
+      "name": "360 Vitality Fitness LLC",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/broom-home-enterprises-llc/services/not-a-service",
+      "type": "404",
+      "status": 404,
+      "passed": true
+    },
+    {
+      "path": "/customers/broom-home-enterprises-llc/favicon.svg",
+      "type": "asset",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/customers/broom-home-enterprises-llc/logo.svg",
+      "type": "asset",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/customers/broom-home-enterprises-llc/qa/admin-state.json",
+      "type": "private",
+      "status": 404,
+      "passed": true
+    }
+  ],
+  "productionChanged": false,
+  "dnsChanged": false
+}
