@@ -1,0 +1,438 @@
+{
+  "date": "2026-10-09",
+  "sources": [
+    {
+      "path": "/faq/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Frequently Asked Trucking Questions",
+        "What can be shipped with freight shipping?",
+        "Can I expedite my shipment?",
+        "How are shipping rates determined?",
+        "How should I package my items?",
+        "What is the difference between truckload and less-than-truckload?",
+        "What shipping option should I use?",
+        "Are your shipments temperature-controlled?",
+        "Are shipments tracked?",
+        "How long does it take to ship freight?",
+        "Do you offer interstate shipping?",
+        "Do you offer door-to-door shipping?",
+        "Contact Us Today",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Multi Trans Global Logistics Inc. Trucking Services",
+        "Trucking Services",
+        "Bulk Liquid Transport",
+        "Dry Van Trucking",
+        "Expedited Trucking",
+        "Trucking Company",
+        "Refrigerated Trucking",
+        "Freight Forwarder",
+        "Freight Shipping",
+        "Freight Transportation",
+        "Hauling Services",
+        "LTL Trucking",
+        "Intermodal Trucking",
+        "Local Trucking Company",
+        "Logistics Services",
+        "Long Haul Trucking",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/about-us/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Trucking Company",
+        "Reach the Area’s Best Trucking Company",
+        "A Local Trucking Company that Delivers Your Goods on Time",
+        "Careful Trucking Services for Problem-Free Delivery",
+        "Great Rates from a Top Trucking Company",
+        "Reach Multi Trans Global Logistics Inc. for Superior Trucking",
+        "Call (312) 667-3901 Today",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Trucking Services",
+        "Trucking Services to Meet Your Needs",
+        "Trucking Services with Expedited Shipping",
+        "Fully Equipped Trucking Services",
+        "Trucking Company for Who Always Delivers On-Time",
+        "A Full Fleet of Trucking Vehicles at Your Service",
+        "A Local Trucking Company You Can Count On",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/policy/privacy-policy/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/contact-us/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Contact Multi Trans Global Logistics Inc.",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/policy/cookie-policy/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/request-a-quote/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Request a Quote",
+        "Pickup Location",
+        "Delivery Location",
+        "Special Notes",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/dry-van-trucking/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Dry Van Trucking",
+        "All Types of Dry Loads",
+        "Reliable Dry Van Company",
+        "Affordable Dry Van Company",
+        "Book A Dry Van Now",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/policy/terms-of-service/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/bulk-liquid-transport/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Bulk Liquid Transport",
+        "Liquid Trucking for a Range of Unique Products",
+        "Punctual Liquid Hauling Services",
+        "A Liquid Tanker Trucking Company with the Equipment for the Job",
+        "Great Rates on Bulk Liquid Transport",
+        "Contact Our Liquid Bulk Transportation Company to Request Your Service",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/expedited-trucking/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Expedited Trucking",
+        "The Best Trucks",
+        "Professional Expedited Drivers",
+        "Affordable Expedited Trucking Service",
+        "Book An Expedited Truck",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/freight-transportation/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Freight Transportation",
+        "Fully Equipped Freight Transportation",
+        "Freight Transportation To Match Your Needs",
+        "Road Transportation",
+        "Rail Shipping",
+        "Freight Transportation That’s Always On Time",
+        "Multi Trans Global Logistics Inc.: Dependable and Fast Freight Shipping",
+        "Call (312) 667-3901 Today",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/hauling-services/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Hauling Services",
+        "Less Risk with Professional Hauling",
+        "Save Your Time and Energy with a Hauling Service",
+        "Cost-Effective Hauling",
+        "Hauling Services for Any Cargo",
+        "Professional Trucking Done Right",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/freight-forwarder/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Freight Forwarder",
+        "Simplify and Save Big with Freight Forwarding",
+        "Simplifying the Shipping Process",
+        "Always Available for You",
+        "Managing Shipments with Care",
+        "Tap Into Our Shipping Services Today",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/freight-shipping/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Freight Shipping",
+        "Rail Shipping",
+        "Road Shipping",
+        "Air Freight Shipping",
+        "Small Freight Shipping",
+        "Professional, On-Time Freight Shipping",
+        "Contact Multi Trans Global Logistics Inc. for Reliable Freight Shipping",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/logistics-services/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Logistics Services",
+        "Optimize the Delivery of Your Goods",
+        "Experienced Trucking Logistics Professionals",
+        "Minimize Your Shipping Costs with Our Great Rates",
+        "Get in Touch with Multi Trans Global Logistics Inc. Today for Logistics Excellence",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/intermodal-trucking/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Intermodal Trucking",
+        "Making Intermodal Shipping Easy",
+        "On-Time Pickup and Delivery",
+        "Handling Shipments with Care",
+        "Book Our Trucking Services Now",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/local-trucking-company/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Local Trucking Company",
+        "Your Best Choice for Local Trucking",
+        "Trucking Services Delivered On Time",
+        "Your Goods Delivered Safely",
+        "Great Rates on Local Trucking",
+        "Call Multi Trans Global Logistics Inc. Today for a Trucking Service Quote",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/long-haul-trucking/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Long Haul Trucking",
+        "Speak with Our Long-Distance Trucking Company Today",
+        "Trusted Long Haul Carriers",
+        "Keep Track of Your Long-Distance Parcel",
+        "Plan Your Long-Distance Trucking Voyage Today",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/trucking-company/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Trucking Company",
+        "Certified Trucking Services",
+        "What Makes Us the Best Trucking Company for You?",
+        "Timely Deliveries",
+        "Industry-Leading Safety Precautions",
+        "Honest and Affordable Prices",
+        "Known Throughout the Area",
+        "A Wide Range of Trucking Services",
+        "Schedule Our Trucking Services Today",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/trucking-services/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Trucking Services",
+        "The Best Trucking Company for All of Your Deliveries",
+        "Always on Time",
+        "Your Shipments Are Safe with Us",
+        "Fair and Honest Prices",
+        "A Wide Range of Specialized Trucking Services",
+        "A Trucking Company with a History of Excellence",
+        "An Impressive Fleet of Trucks",
+        "We Go Where You Need Us To",
+        "Logistics-Backed Trucking Services",
+        "Your Source for Expedited Trucking Services",
+        "Customer Service Matters in the Trucking Business",
+        "Work with a Certified Trucking Company",
+        "Discuss Your Trucking Services Today",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/refrigerated-trucking/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "Refrigerated Trucking",
+        "Your #1-Rated Refrigerated Trucking Company",
+        "We’re Experts at Shipping Refrigerated Freight",
+        "Benefits of Temperature Controlled Trucking",
+        "Hire A Top Refrigerated-Trucking Company",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    },
+    {
+      "path": "/trucking-services/ltl-trucking/",
+      "status": 200,
+      "blocked": false,
+      "headings": [
+        "Multi Trans Global Logistics Inc.",
+        "LTL Trucking",
+        "What Makes Us the Best LTL Carrier?",
+        "An LTL Trucking Company Offering a Full Suite of Affordable Services",
+        "Why it Makes Sense to Rely on a Local LTL Carrier",
+        "Call a Leading LTL Freight Company",
+        "Contact Info",
+        "Hours of Operation",
+        "Social",
+        "Payment Methods"
+      ]
+    }
+  ]
+}

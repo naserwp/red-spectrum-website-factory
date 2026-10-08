@@ -1,0 +1,62 @@
+[
+  {
+    "route": "",
+    "width": 375,
+    "violations": []
+  },
+  {
+    "route": "/services",
+    "width": 375,
+    "violations": []
+  },
+  {
+    "route": "/services/dry-van-trucking",
+    "width": 375,
+    "violations": []
+  },
+  {
+    "route": "/request-a-quote",
+    "width": 375,
+    "violations": []
+  },
+  {
+    "route": "/faq",
+    "width": 375,
+    "violations": []
+  },
+  {
+    "route": "/contact",
+    "width": 375,
+    "violations": []
+  },
+  {
+    "route": "",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/services",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/services/dry-van-trucking",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/request-a-quote",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/faq",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/contact",
+    "width": 1440,
+    "violations": []
+  }
+]
