@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { MtgWebsite } from '@/components/customers/mtg-website';
 import { mtgBase, mtgName, mtgPages, mtgService, mtgServices, validMtgRoute } from '@/lib/customers/mtg-content';
 
+export const dynamic = 'force-dynamic';
+
 type Params = { page?: string[] };
 const descriptions: Record<string, [string, string]> = {
   '': ['Trucking & Freight', 'Explore dry van trucking, freight forwarding and logistics with Multi Trans Global Logistics. Discuss your route, cargo and timing.'],

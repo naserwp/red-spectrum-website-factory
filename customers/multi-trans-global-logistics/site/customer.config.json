@@ -96,7 +96,7 @@
     "privacy": {
       "headline": "Privacy notice",
       "body": [
-        "Preview notice pending business approval. The quote planner does not send or store inquiries on a server."
+        "Inquiry forms use PostgreSQL and SendGrid when enabled. Myndy loads only after visitor choice. Live customer delivery and contact sync require separate approval."
       ]
     }
   },
@@ -137,8 +137,8 @@
     "avatarBrief": "Fictional approachable professional freight assistant avatar, midnight navy background and safety-orange accent, clean icon-friendly portrait.",
     "knowledgeContextPath": "customers/multi-trans-global-logistics/myndy/agent-context.md",
     "embed": {
-      "enabled": false,
-      "agentId": "",
+      "enabled": true,
+      "agentId": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
       "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
     }
   }

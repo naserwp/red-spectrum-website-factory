@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {randomUUID} from 'node:crypto';
+import {createRequire} from 'node:module';
+import ts from 'typescript';
+import pg from 'pg';
+const require=createRequire(import.meta.url);
+export function load(file,deps={}){const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(n=>n==='server-only'?{}:n in deps?deps[n]:require(n),m,m.exports);return m.exports;}
+const config=load('lib/leads/mtg-config.ts'), validation=load('lib/leads/mtg-validation.ts');
+const schema='mtg_qa_'+randomUUID().replaceAll('-','');
+const admin=new pg.Pool({connectionString:process.env.LEADS_DATABASE_URL});
+const scope=sql=>sql.replace(/\b(website_leads|website_lead_rate_limits|website_lead_mtg_details|website_lead_mtg_deliveries)\b/g,schema+'.$1');
+const db={query:(sql,args)=>admin.query(scope(sql),args),connect:async()=>{const c=await admin.connect();return {query:(sql,args)=>c.query(scope(sql),args),release:()=>c.release()};}};
+let sends=[],provider=202;
+globalThis.fetch=async(url,options)=>{assert.equal(url,'https://api.sendgrid.com/v3/mail/send');sends.push(JSON.parse(options.body));if(provider==='timeout')throw Error('timeout');return new Response(null,{status:provider,headers:{'x-message-id':'isolated-test-no-delivery'}});};
+const cfg={...config.mtgCommunicationConfig(),mode:'test',databaseUrl:'test',salt:'test',apiKey:'fake',fromEmail:'test@example.invalid',testRecipient:'controlled@example.invalid',myndyKey:'',myndyApproved:false};
+const {MtgLeadService}=load('lib/leads/mtg-service.ts',{'./mtg-config':config,'./mtg-validation':validation,'./mtg-myndy':{createMtgMyndyContact:async()=>{throw Error('Unexpected sync without authorization');}}});
+const service=new MtgLeadService(db,cfg);
+const input=()=>validation.mtgLeadSchema.parse({idempotencyKey:randomUUID(),source:'quote',name:'Synthetic QA',email:'synthetic@example.invalid',origin:'Chicago',destination:'Test destination',service:'Dry van',details:'Synthetic <script> escaped inquiry '+randomUUID(),consent:true,syncConsent:true});
+const checks=[];
+try{
+ await admin.query('CREATE SCHEMA '+schema);
+ await admin.query('CREATE TABLE '+schema+'.website_leads (LIKE public.website_leads INCLUDING ALL)');
+ await admin.query('CREATE TABLE '+schema+'.website_lead_rate_limits (LIKE public.website_lead_rate_limits INCLUDING ALL)');
+ await admin.query(scope(readFileSync('db/migrations/0012_multi_trans_communications.sql','utf8')));
+ const first=input();const results=await Promise.all([service.accept(first,'a'),service.accept(first,'b')]);assert.equal(results[0].leadId,results[1].leadId);assert.equal(sends.length,1);assert.equal(results[0].state,'saved');
+ assert.equal((await service.accept({...first,details:'Changed payload'},'c')).state,'conflict');assert.equal(sends.length,1);
+ assert.ok(sends[0].content[1].value.includes('&lt;script&gt;'));assert.equal(sends[0].personalizations[0].to[0].email,cfg.testRecipient);
+ const row=(await db.query('SELECT * FROM website_lead_mtg_details WHERE lead_id=$1',[results[0].leadId])).rows[0];assert.ok(row.consent_at);assert.equal(row.consent_version,validation.mtgConsentVersion);assert.equal(results[0].myndy,'not_configured');checks.push('Concurrent duplicate, payload conflict, persistence, consent, escaped email and tenant recipient');
+ provider=429;const retry=await service.accept(input(),'d');assert.equal(retry.notification,'pending_review');const before=sends.length;await service.deliver(retry.leadId);assert.equal(sends.length,before);await db.query("UPDATE website_lead_mtg_deliveries SET next_retry_at=now()-interval '1 second' WHERE lead_id=$1",[retry.leadId]);provider=202;await Promise.all([service.deliver(retry.leadId),service.deliver(retry.leadId)]);assert.equal(sends.length,before+1);assert.equal((await service.status(retry.leadId)).notification,'provider_accepted');checks.push('429 delay and concurrent safe retry');
+ for(const status of [500,'timeout']){provider=status;const r=await service.accept(input(),randomUUID());const count=sends.length;await service.deliver(r.leadId);assert.equal(sends.length,count);assert.equal((await db.query("SELECT state FROM website_lead_mtg_deliveries WHERE lead_id=$1 AND kind='test_email'",[r.leadId])).rows[0].state,'uncertain');}checks.push('5xx and timeout held for reconciliation without duplicate send');
+ provider=202;const live=new MtgLeadService(db,{...cfg,mode:'live',internalRecipient:'admin@example.invalid',customerRecipient:'customer@example.invalid'});const liveResult=await live.accept(input(),'live');assert.equal(liveResult.notification,'provider_accepted');assert.deepEqual(sends.slice(-2).map(p=>p.personalizations[0].to[0].email).sort(),['admin@example.invalid','customer@example.invalid']);const count=sends.length;await service.deliver(liveResult.leadId);await service.deliver(randomUUID());assert.equal(sends.length,count);checks.push('Independent customer/admin receipts and cross-mode isolation');
+ for(let i=0;i<8;i++)assert.equal((await service.accept(input(),'rate')).state,'saved');assert.equal((await service.accept(input(),'rate')).state,'rate_limited');
+ for(const extra of [{consent:false},{email:'bad'},{origin:''},{recipient:'injected@example.invalid'},{botcheck:'spam'},{date:'2026-99-99'}])assert.equal(validation.mtgLeadSchema.safeParse({...input(),...extra}).success,false);checks.push('Rate limit, honeypot, invalid input, consent and recipient injection rejection');
+ const route=load('app/api/leads/multi-trans-global-logistics/route.ts',{'@/lib/leads/mtg-validation':validation,'@/lib/leads/mtg-config':{...config,mtgCommunicationConfig:()=>cfg},'@/lib/leads/mtg-service':{MtgLeadService,mtgPool:()=>db}});
+ const req=(body,origin='http://localhost:3048',type='application/json')=>new Request('http://localhost:3048/api/leads/multi-trans-global-logistics',{method:'POST',headers:{origin,'content-type':type,'x-forwarded-for':randomUUID()},body:JSON.stringify(body)});
+ assert.equal((await route.POST(req(input(),'https://untrusted.invalid'))).status,403);assert.equal((await route.POST(req(input(),'http://localhost:3048','text/plain'))).status,415);assert.equal((await route.POST(req({data:'x'.repeat(17000)}))).status,413);assert.equal((await route.POST(req({...input(),consent:false}))).status,400);assert.equal((await route.POST(req(input()))).status,200);
+ const retryRoute=load('app/api/admin/multi-trans/leads/retry/route.ts',{'@/lib/webfactory/server':{isAdmin:async()=>false},'@/lib/leads/mtg-config':config,'@/lib/leads/mtg-service':{MtgLeadService,mtgPool:()=>db}});assert.equal((await retryRoute.POST(req({leadId:randomUUID()}))).status,401);checks.push('HTTP origin, content type, size, validation, success and unauthenticated retry rejection');
+ const disabled=new MtgLeadService(db,{...cfg,mode:'disabled'});assert.equal((await disabled.accept(input(),'off')).state,'inactive');
+ writeFileSync('outputs/mtg-integration-tests.json',JSON.stringify({passed:true,checks,realPostgres:true,provider:'mocked; zero external sends',at:new Date().toISOString()},null,2));console.log(JSON.stringify({passed:true,checks}));
+}finally{await admin.query('DROP SCHEMA '+schema+' CASCADE');await admin.end();}

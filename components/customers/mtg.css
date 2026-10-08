@@ -9,3 +9,7 @@
 
 /* Footer labels stay compact at every breakpoint. */
 .mtg-site .mtg-footer-grid h2{font-size:11px;letter-spacing:.07em;line-height:1.5;text-transform:uppercase}
+
+.mtg-consent{display:flex;align-items:flex-start;gap:12px;font-size:13px;margin-top:22px}.mtg-consent input{margin-top:6px;min-width:18px;height:18px}.mtg-consent a{text-decoration:underline}.mtg-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}.mtg-planner fieldset{margin-top:25px}.mtg-button:disabled{opacity:.55;cursor:not-allowed}.mtg-summary-option{margin-top:35px;border-top:1px solid #ccd4dd;padding-top:25px}.mtg-summary-option summary{cursor:pointer;font-weight:700}.mtg-assistant-launch{position:fixed;bottom:16px;right:16px;z-index:44;max-width:calc(100vw - 32px)}.mtg-assistant-launch>.mtg-button{box-shadow:0 4px 20px #101b2b33}.mtg-assistant-consent{background:white;border:1px solid #cbd3dd;box-shadow:0 8px 25px #101b2b25;padding:22px;width:340px;max-width:calc(100vw - 32px);margin-bottom:12px;font-size:13px}.mtg-assistant-consent p{margin-block:15px}.mtg-assistant-consent button{margin-top:15px;margin-right:12px;min-height:44px}.mtg-assistant-consent a{text-decoration:underline}.mtg-notice code{overflow-wrap:anywhere}
+
+.mtg-site:has(#mtg-navigation.is-open) .mtg-widget-shell,.mtg-site:has(#mtg-navigation.is-open) .mtg-assistant-launch{visibility:hidden!important}

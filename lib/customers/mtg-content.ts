@@ -273,7 +273,7 @@ export const mtgFaqs = [
   ],
   [
     "Does this preview send my quote request?",
-    "No. The quote planner prepares a summary in your browser. You can copy it and choose to email it yourself, or call the business. Nothing is submitted automatically."
+    "The submission form displays whether sending is inactive, in internal test mode, or live. Test inquiries go only to the controlled test inbox. The separate summary planner stays in your browser until you choose to email it yourself. Saving an inquiry does not confirm a booking or inbox delivery."
   ],
   [
     "How can I contact the business?",
