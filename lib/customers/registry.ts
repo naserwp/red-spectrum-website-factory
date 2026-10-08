@@ -5,7 +5,7 @@ const manifest = customerManifestSchema.parse(manifestJson);
 const customerMap = new Map(manifest.customers.map((customer) => [customer.slug, customer]));
 
 export function getCustomerSite(slug: string): CustomerSite | undefined {
-  return customerMap.get(slug);
+  return customerMap.get(slug === 'broom-home-enterprises' ? 'broom-home-enterprises-llc' : slug);
 }
 
 export function getCustomerSites(): readonly CustomerSite[] {
