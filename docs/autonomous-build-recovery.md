@@ -1,5 +1,65 @@
 # Autonomous worker recovery
 
+## Current outcome — preserved-artifact recovery, 2026-10-10
+
+**RUS is now ready for internal review.** This section supersedes the earlier blocked status below; historical failures remain recorded.
+
+- Original job: `f0565b20-d1de-47f0-b673-cd1b1bf006dd`; original approved brief and `rus-transportation` slug unchanged. The stored approved snapshot was compared with the saved brief again.
+- Reused attempt 2 exactly, with no AI credential in the worker and no generation calls. Full-generation restart count remains **3**. Source/compiled artifact checksum: `5f64d068f152dc93caa489ff54faa6e5ce0bf8559a9e07d489e74ba8c5755ac7`.
+- Result: `02f1f961d47a38f8f27e5bf7d7b8084b2551240a`; deployment `dpl_4jayZVNLPCU6Dw5bqxrEFjmkGN9z`, independently verified READY/non-production.
+- [Recovered six-page RUS preview](https://red-spectrum-website-factory-94aab32tk-naserwps-projects.vercel.app/rus-transportation). Protected access is intentional. Browser sign-in, FAQ keyboard expansion and footer-logo return to Home were verified on this deployment.
+- **248 persisted passing checks**, six pages (Home, Services, About, Contact, Privacy, FAQ), seven widths (320, 375, 430, 768, 1024, 1440, 1920), 42 screenshots. Checks cover both linked logos, images, overflow, route identity, tenant links, metadata and privacy. [Recorded evidence](qa/rus-artifact-recovery.json).
+- The live admin console shows the original job **ready for review**, its QA results and protected preview. Workflow stays **build_approved**: Preview Ready and Customer Approved were not marked.
+- An already-existing, never-started replacement job `7f057f98-6c08-47da-9b62-431c58928300` was discovered queued and blocking recovery. It was cancelled through the authenticated admin action, never deleted or dispatched. This continuation created no customer job. Its audit record remains.
+
+### Auditable recovery procedure
+
+1. Verify original request/slug/approved brief and exact preserved directory, source scope, unchanged prior manifest entries, production build and local QA; save a v2 immutable checkpoint without changing customer files.
+2. Invoke authenticated, same-origin `recover_artifact` with explicit confirmation, original job ID, artifact attempt and checkpoint. A database transaction locks the request/workflow/job, rejects active competitors, changed approval/slug/brief, customer-approved stages and invalid source attempts. Full-generation counters are untouched. Separate recovery count is capped at three, and failure snapshots plus actor events are retained.
+3. Run `run.mjs --once --job-id <original ID>` **without OPENAI_API_KEY**. Worker rechecks the artifact fingerprint and branch/baseline, skips generation and rebuilding, and runs fresh QA. Only then does it commit/push the isolated customer branch, retain earlier branch ancestry without force-push, verify the real preview and call normal completion.
+4. A first recovery exposed an old 24 KB HTTP request limit: all 42 browser captures completed, but the full six-page report was rejected. The job correctly failed, without success being fabricated. The limit is now bounded at 128 KB, with real-handler tests for a 248-check report, authorization, invalid diagnostics and oversized bodies. A second audited recovery passed. Both recovery events and the transport failure remain in history; no counter was reset manually.
+
+### Supervisor and crash behavior
+
+`scripts/build-worker/supervisor.mjs` supervises the polling process with bounded backoff and a maximum of three restarts in ten minutes. Tests launch real child processes against a local no-job control plane and verify authenticated startup pulses, polling, forced-crash restart, restart-storm termination and shutdown. Isolated-database tests verify heartbeat, expired-lease fencing and rejection of stale workers. Crashed in-flight jobs are fenced for explicit artifact/deployment recovery; the supervisor never blindly replays generation or external effects.
+
+The Windows installer now launches this supervisor. **No scheduled task or persistent service was installed or started.** Its sign-in/awake-PC limitation remains; this is not a claim of unattended 24/7 hosting.
+
+### Second customer, registration and regressions
+
+- Existing second-customer job `deffe69a-623e-4c16-8242-51d7534999f6` and artifacts were preserved. Its earlier result `f618803df7ae650c375e36d98cfa75a1cafa09c8` was freshly checked against the exact protected Vercel deployment, identity and all five routes. Git artifact is clean. The later refinement remains **queued**, not falsely completed, and was not dispatched.
+- [Existing synthetic preview](https://red-spectrum-website-factory-akypfr23a-naserwps-projects.vercel.app/webfactory-automation-qa-20261010). The original browser-to-brief-to-build proof is documented in the earlier report. Automatic manifest addition and unchanged existing entries were checked again, with slug collision/idempotency/approval tests passing. No paid repeat was needed to verify the existing result.
+- Unrelated UMG job `73a55454-5a6f-462e-b932-454dfe45f1a8` remains queued and untouched.
+- Lint, TypeScript, production build, controlled-worker database tests, generator/design/schema tests, HTTP QA report, immutable checkpoint mutation/symlink tests, targeted claims, supervisor, bounded compilation retry, nested npm, preview approval/catalog, slug reservations, duplicate-job guards, Broom routes and asset isolation passed.
+- A legacy Swenzy test expected disabled/unconfirmed settings despite the existing customer already being in confirmed-recipient test mode. Only the test was corrected; schema safety gates and actual integration configuration were preserved. No message was sent.
+- During this work, main independently advanced to `8e8ce176b31a1b572b1f46ee03bbb3b6dd87e76c` with Multi Trans (PR 4). Current main was merged **into this isolated PR branch**, not vice versa. All nine tenants are retained; 45 baseline customer pages return 200 with metadata. UMG's existing numeric-host 404 restriction was verified separately from its allowed localhost routes. New Multi Trans adapter tests used mocked transports only. These checks are not a complete accessibility or visual certification of every existing tenant.
+- Worker-health migration was renamed from the formerly proposed 0012 to **0013_webfactory_worker_health.sql**, avoiding main's new Multi Trans 0012 migration number. Its DDL is unchanged and remains unapplied to production.
+
+### Exact remaining release tasks
+
+1. Obtain explicit release authorization for PR 7 and the additive worker-health migration **0013**. Keep the PR unmerged until then. Recheck current main and preview status immediately before that authorized release.
+2. Select and authorize the worker host/service identity and persistent installation. Configure Node 24, private worker/database/Vercel/Git/browser credentials, dedicated storage, and the exact reviewed post-release baseline SHA. For 24/7 operation, use an approved always-on host; an interactive Windows task requires sign-in and an awake machine.
+3. Deploy the approved control plane and apply only the approved additive health migration; enable authenticated health reporting. Verify a pulse within 90 seconds, duplicate-start protection, clean shutdown and restart on that actual host. These production operations remain unexecuted.
+4. Review queue scope before general FIFO activation. Do not accidentally execute the unrelated UMG job or a cancelled replacement. The current synthetic refinement is the existing candidate for a targeted final generation acceptance run if that refinement is still desired.
+5. Restore API credits separately before **new generation**. No quota probe, billing change or generation was performed in this continuation. Once funded, run only the existing authorized job/stages that need fresh content, then recheck complete current-version generation → QA → protected preview → dashboard behavior. RUS recovery is complete and needs no additional generation. Preserve existing checkpoints/previews when generation is unnecessary.
+6. Obtain business-content/contact verification, Preview Ready review and customer approval separately before any customer release. Production promotion, DNS, email/payment activation and Myndy activation remain separate explicit decisions. Do not infer approval from passing QA.
+
+Release rollback: stop the approved supervisor to stop new claims, retain fenced jobs/checkpoints/audit rows, and roll back only the control-plane deployment under authorized release procedures. Do not delete job history or restart generation to repair transport/deployment failures.
+
+### Files changed in this continuation
+
+Recovery/API: `lib/webfactory/build-jobs.ts`, `lib/webfactory/build-worker.ts`, `app/api/admin/requests/[id]/build-jobs/route.ts`, `app/api/internal/build-worker/route.ts`, `scripts/build-worker/run.mjs`.
+Supervisor: `scripts/build-worker/supervisor.mjs`, `scripts/build-worker/install-supervisor.ps1`.
+Tests: `scripts/test-build-worker.mjs`, `scripts/test-worker-supervisor.mjs`, `scripts/test-worker-http.mjs`, `scripts/test-swenzy.mjs`.
+Migration: renamed `db/migrations/0012_webfactory_worker_health.sql` to `db/migrations/0013_webfactory_worker_health.sql`; updated `scripts/migrate-webfactory.mjs` and its test reference.
+Evidence/report: `docs/qa/rus-artifact-recovery.json`, `docs/autonomous-build-recovery.md`.
+Main's existing Multi Trans files were retained via merge without hand-editing. The original dirty checkout was not modified. RUS customer files were reused byte-for-byte and committed only on the original isolated customer branch.
+
+---
+
+## Historical execution record
+
+
 ## Verified diagnosis — 2026-10-10
 
 RUS job `f0565b20-d1de-47f0-b673-cd1b1bf006dd` belongs to request `3b60307c-133a-401d-93b6-116017264ea8`, slug `rus-transportation`, approved brief `f964ff5a-5fbe-49ef-9390-4b8f6c8e4b8a`. It was created at `2026-10-08T22:20:37.153Z`. The immutable snapshot equals the saved brief, completed at `2026-10-08T22:20:14.977Z`. There is no separate numeric revision column; the brief UUID identifies the revision.
@@ -116,7 +176,7 @@ All paths are relative to the isolated worktree `C:/Users/USER/.codex/worktrees/
 
 | Purpose | Files |
 | --- | --- |
-| Worker configuration/health | `.env.example`; `db/migrations/0012_webfactory_worker_health.sql`; `scripts/migrate-webfactory.mjs`; `scripts/build-worker/install-supervisor.ps1` |
+| Worker configuration/health | `.env.example`; `db/migrations/0013_webfactory_worker_health.sql`; `scripts/migrate-webfactory.mjs`; `scripts/build-worker/install-supervisor.ps1` |
 | Queue, API, evidence and dashboard | `app/api/admin/requests/[id]/build-jobs/route.ts`; `components/webfactory/build-console.tsx`; `lib/webfactory/build-jobs.ts`; `lib/webfactory/build-worker.ts`; `lib/webfactory/worker-contract.ts`; `lib/webfactory/preview-verification.ts`; `lib/webfactory/qa-diagnostics.ts` |
 | Generation and execution | `scripts/build-worker/run.mjs`; `scripts/build-worker/runtime.mjs`; `scripts/build-worker/options.mjs`; `scripts/build-worker/model.mjs`; `scripts/build-worker/build-retry.mjs`; `scripts/build-worker/provider-error.mjs`; `scripts/build-worker/generator.mjs`; `scripts/build-worker/generator-v2.mjs`; `scripts/build-worker/qa.mjs` |
 | Opt-in FAQ and shared generated-site fixes | `app/[customerSlug]/[[...page]]/page.tsx`; `lib/customers/design-contract.ts`; `components/generated-site.tsx`; `components/generated-site.css` |

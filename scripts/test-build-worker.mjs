@@ -27,7 +27,7 @@ async function cloneReadyCandidate(templateId,{id=randomUUID(),requestId=req,cus
 }
 try{
  await db.query(`CREATE SCHEMA ${schema}`);
- await db.query(rewrite(readFileSync('db/migrations/0012_webfactory_worker_health.sql','utf8')));
+ await db.query(rewrite(readFileSync('db/migrations/0013_webfactory_worker_health.sql','utf8')));
  await worker.workerOperation({action:'pulse',workerId:'health-test'});
  await worker.workerOperation({action:'pulse',workerId:'health-test'});
  assert.equal(Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.build_workers')).rows[0].count),1);

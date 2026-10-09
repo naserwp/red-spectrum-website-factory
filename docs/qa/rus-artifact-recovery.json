@@ -1,0 +1,2311 @@
+{
+  "verifiedAt": "2026-10-09T19:59:33.684Z",
+  "jobId": "f0565b20-d1de-47f0-b673-cd1b1bf006dd",
+  "briefId": "f964ff5a-5fbe-49ef-9390-4b8f6c8e4b8a",
+  "slug": "rus-transportation",
+  "status": "ready_for_review",
+  "workflowStage": "build_approved",
+  "generationPerformed": false,
+  "generationRestartCount": 3,
+  "recoveredArtifactAttempt": 2,
+  "checkpoint": {
+    "provider": {
+      "name": "openai",
+      "model": "gpt-6-astra"
+    },
+    "artifactSha": "5f64d068f152dc93caa489ff54faa6e5ce0bf8559a9e07d489e74ba8c5755ac7",
+    "baselineSha": "b9728f37251d8a0ef2775cdf49884d09c1ff19bd"
+  },
+  "baselineSha": "b9728f37251d8a0ef2775cdf49884d09c1ff19bd",
+  "resultSha": "02f1f961d47a38f8f27e5bf7d7b8084b2551240a",
+  "deploymentReference": "dpl_4jayZVNLPCU6Dw5bqxrEFjmkGN9z",
+  "previewUrl": "https://red-spectrum-website-factory-94aab32tk-naserwps-projects.vercel.app/rus-transportation",
+  "changedFiles": [
+    "customers/manifest.json",
+    "customers/rus-transportation/delivery/brand-notes.md",
+    "customers/rus-transportation/delivery/image-inventory.json",
+    "customers/rus-transportation/delivery/missing-information.md",
+    "customers/rus-transportation/delivery/outreach.md",
+    "customers/rus-transportation/delivery/research.md",
+    "customers/rus-transportation/myndy/agent-context.md",
+    "customers/rus-transportation/site/customer.config.json",
+    "public/customers/rus-transportation/favicon.svg",
+    "public/customers/rus-transportation/images/image-0.webp",
+    "public/customers/rus-transportation/images/image-1.webp",
+    "public/customers/rus-transportation/images/image-2.webp",
+    "public/customers/rus-transportation/logo-dark.svg",
+    "public/customers/rus-transportation/logo.svg",
+    "public/customers/rus-transportation/mark.svg"
+  ],
+  "qa": [
+    {
+      "results": [
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:00.726Z",
+          "check_name": "privacy",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 1687,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:02.414Z",
+          "check_name": "server-start",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:04.110Z",
+          "check_name": "customer-route",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:04.110Z",
+          "check_name": "customer-identity",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:04.110Z",
+          "check_name": "metadata",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:04.110Z",
+          "check_name": "privacy",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:04.110Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:06.904Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:06.904Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:06.904Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:06.904Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:06.904Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:07.764Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:09.159Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:09.159Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:09.159Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:09.159Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:09.159Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:10.771Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:10.771Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:10.771Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:10.771Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:10.771Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:12.406Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:12.406Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:12.406Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:12.406Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:12.406Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:14.019Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:14.019Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:14.019Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:14.019Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:14.019Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:15.734Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:15.734Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:15.734Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:15.734Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:15.734Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:17.832Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:17.832Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:17.832Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:17.832Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:17.832Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:20.956Z",
+          "check_name": "customer-route",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:20.956Z",
+          "check_name": "customer-identity",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:20.956Z",
+          "check_name": "metadata",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:20.956Z",
+          "check_name": "privacy",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:20.956Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:22.535Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:22.535Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:22.535Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:22.535Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:22.535Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:23.317Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:24.609Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:24.609Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:24.609Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:24.609Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:24.609Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:26.067Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:26.067Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:26.067Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:26.067Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:26.067Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:27.509Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:27.509Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:27.509Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:27.509Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:27.509Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:28.910Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:28.910Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:28.910Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:28.910Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:28.910Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:30.458Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:30.458Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:30.458Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:30.458Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:30.458Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:32.164Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:32.164Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:32.164Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:32.164Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/services",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:32.164Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:37.344Z",
+          "check_name": "customer-route",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:37.344Z",
+          "check_name": "customer-identity",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:37.344Z",
+          "check_name": "metadata",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:37.344Z",
+          "check_name": "privacy",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:37.344Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:38.867Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:38.867Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:38.867Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:38.867Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:38.867Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:39.630Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:40.893Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:40.893Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:40.893Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:40.893Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:40.893Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:42.419Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:42.419Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:42.419Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:42.419Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:42.419Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:44.245Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:44.245Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:44.245Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:44.245Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:55:44.245Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:45.708Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:45.708Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:45.708Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:45.708Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:55:45.708Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:47.227Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:47.227Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:47.227Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:47.227Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:55:47.227Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:49.142Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:49.142Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:49.142Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:49.142Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/about",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:55:49.142Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:54.737Z",
+          "check_name": "customer-route",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:54.737Z",
+          "check_name": "customer-identity",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:54.737Z",
+          "check_name": "metadata",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:54.737Z",
+          "check_name": "privacy",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:55:54.737Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:56.258Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:56.258Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:56.258Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:56.258Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:56.258Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:55:56.980Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:58.248Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:58.248Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:58.248Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:58.248Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:55:58.248Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:59.645Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:59.645Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:59.645Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:59.645Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:55:59.645Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:01.060Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:01.060Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:01.060Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:01.060Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:01.060Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:02.367Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:02.367Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:02.367Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:02.367Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:02.367Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:03.688Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:03.688Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:03.688Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:03.688Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:03.688Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:05.212Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:05.212Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:05.212Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:05.212Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/contact",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:05.212Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:08.077Z",
+          "check_name": "customer-route",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:08.077Z",
+          "check_name": "customer-identity",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:08.077Z",
+          "check_name": "metadata",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:08.077Z",
+          "check_name": "privacy",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:08.077Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:09.833Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:09.833Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:09.833Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:09.833Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:09.833Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:10.599Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:11.948Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:11.948Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:11.948Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:11.948Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:11.948Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:13.523Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:13.523Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:13.523Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:13.523Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:13.523Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:14.980Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:14.980Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:14.980Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:14.980Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:14.980Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:16.355Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:16.355Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:16.355Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:16.355Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:16.355Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:18.118Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:18.118Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:18.118Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:18.118Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:18.118Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:19.564Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:19.564Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:19.564Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:19.564Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/privacy",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:19.564Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:22.323Z",
+          "check_name": "customer-route",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:22.323Z",
+          "check_name": "customer-identity",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:22.323Z",
+          "check_name": "metadata",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:22.323Z",
+          "check_name": "privacy",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 0,
+          "timestamp": "2026-10-09T19:56:22.323Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:23.723Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:23.723Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:23.723Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:23.723Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:23.723Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 320,
+          "timestamp": "2026-10-09T19:56:24.388Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:25.557Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:25.557Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:25.557Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:25.557Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 375,
+          "timestamp": "2026-10-09T19:56:25.557Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:26.811Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:26.811Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:26.811Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:26.811Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 430,
+          "timestamp": "2026-10-09T19:56:26.811Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:28.106Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:28.106Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:28.106Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:28.106Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 768,
+          "timestamp": "2026-10-09T19:56:28.106Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:29.376Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:29.376Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:29.376Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:29.376Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1024,
+          "timestamp": "2026-10-09T19:56:29.376Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 1,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:30.678Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:30.678Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:30.678Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:30.678Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1440,
+          "timestamp": "2026-10-09T19:56:30.678Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:31.962Z",
+          "check_name": "mobile-overflow",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:31.962Z",
+          "check_name": "images",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:31.962Z",
+          "check_name": "logo-home-link",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:31.962Z",
+          "check_name": "tenant-isolation",
+          "safe_message": "Check passed."
+        },
+        {
+          "page": "/faq",
+          "status": "passed",
+          "duration": 0,
+          "viewport": 1920,
+          "timestamp": "2026-10-09T19:56:31.962Z",
+          "check_name": "page-error",
+          "safe_message": "Check passed."
+        }
+      ],
+      "recorded_at": "2026-10-09T19:56:36.661Z"
+    }
+  ],
+  "previewAccess": {
+    "pages": [
+      "/",
+      "/services",
+      "/about",
+      "/contact",
+      "/privacy",
+      "/faq"
+    ],
+    "verified_at": "2026-10-09T19:57:57.080Z",
+    "preview_public_access": "protected",
+    "preview_deployment_exists": true,
+    "preview_customer_identity_verified": true,
+    "preview_authenticated_access_verified": true
+  },
+  "historyPreserved": {
+    "previousRunCount": 3,
+    "recoveryHistory": [
+      {
+        "status": "failed",
+        "error": "PROVIDER_FAILED",
+        "finishedAt": "2026-10-09T19:27:35.370Z"
+      },
+      {
+        "status": "failed",
+        "error": "WORKER_INTERRUPTED",
+        "finishedAt": "2026-10-09T19:52:13.463Z"
+      }
+    ]
+  },
+  "productionRelease": "pending",
+  "customerApproval": "pending"
+}
