@@ -1,7 +1,8 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {qaMessages,type QaDiagnostic} from "@/lib/webfactory/qa-diagnostics";
-type Job={id:string;customer_slug:string;status:string;error_category:string|null;created_at:string;started_at?:string|null;finished_at?:string|null;lease_expires_at?:string|null;result_sha?:string|null;deployment_reference?:string|null;progress_code:string;preview_url:string|null;qaRetryAvailable?:boolean;qa_result?:{preview_access?:{preview_public_access:'protected'|'public'};attempts?:{results:QaDiagnostic[];recorded_at:string}[]}};
+type PreviousRun={status:string;previewUrl?:string|null;resultSha?:string|null;deploymentReference?:string|null};
+type Job={id:string;customer_slug:string;status:string;error_category:string|null;created_at:string;started_at?:string|null;finished_at?:string|null;lease_expires_at?:string|null;result_sha?:string|null;deployment_reference?:string|null;progress_code:string;preview_url:string|null;qaRetryAvailable?:boolean;qa_result?:{previousRuns?:PreviousRun[];preview_access?:{preview_public_access:'protected'|'public'};attempts?:{results:QaDiagnostic[];recorded_at:string}[]}};
 type Event={job_id:string;created_at:string;status:string;code:string};
 type Health={state:'online'|'offline'|'unknown';lastSeenAt:string|null};
 type Result={jobs?:Job[];events?:Event[];error?:string;executorConfigured?:boolean;workerHealth?:Health};
@@ -53,6 +54,7 @@ export function BuildConsole({requestId,enabled}:{requestId:string;enabled:boole
       {job.status==="ready_for_review" && <p>Ready for admin review. <a href={`/admin/requests/${requestId}#preview`}>Review / Mark Preview Ready</a>, or enter requested changes above. Customer approval is not automatic.</p>}
       {!["failed","cancelled","ready_for_review","changes_requested"].includes(job.status)&&<button className="wf-button secondary" disabled={!confirmed || pending} onClick={()=>void run(job.id)}>Cancel Build</button>}
       {['failed','cancelled','ready_for_review'].includes(job.status)&&<><p>Rebuild keeps this job ID and its original approved scope, preserves prior evidence, and requires fresh QA and preview verification. Clear the change-scope field to use it.</p><button className="wf-button secondary" disabled={!enabled||!confirmed||pending||active||Boolean(changes.trim())} onClick={()=>void run(job.id,false,true)}>Rebuild same job</button></>}
+      {!!job.qa_result?.previousRuns?.length&&<details><summary>Earlier build evidence</summary><p>These earlier runs do not change the current build status.</p>{job.qa_result.previousRuns.map((previous,i)=><div key={i}><p>Run {i+1}: {previous.status.replaceAll("_"," ")}</p>{previous.status==="ready_for_review"&&previous.previewUrl&&/^https:\/\/[a-z0-9-]+\.vercel\.app\/[a-z0-9-]+$/.test(previous.previewUrl)&&<><a href={previous.previewUrl} target="_blank" rel="noreferrer">Earlier verified preview</a><p>Commit: <code>{previous.resultSha}</code><br/>Deployment: <code>{previous.deploymentReference}</code></p></>}</div>)}</details>}
       <details><summary>View safe logs</summary><ul>{events.filter(e=>e.job_id===job.id).map((e,i)=><li key={i}>{new Date(e.created_at).toLocaleString()} · {e.code.replaceAll("_"," ")}</li>)}</ul></details>
     </article>)}</div>
     <p>Generation → isolated changes → lint/build → tenant & mobile QA → isolated preview → identity verification → ready for admin review. Only recorded results count as completed. Preview Ready and Customer Approved remain separate admin decisions.</p>

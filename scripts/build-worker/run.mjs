@@ -126,7 +126,7 @@ async function execute(job,lease){
   },
   verify:(deployment,_job,site)=>pages(deployment,job,site),
   async complete({repo,files,qa,deployment,provider}){await api({action:'complete',jobId:job.id,lease,baselineSha:repo.baseline,resultSha:deployment.sha,branch,changedFiles:files,qa,previewUrl:deployment.url+'/'+job.customerSlug,deploymentReference:deployment.reference,provider});},
-  async fail(code,diagnostics,commandFailure){if(lost)return;try{await api(cancelled?{action:'cancel_ack',jobId:job.id,lease}:{action:'fail',jobId:job.id,lease,...(diagnostics?{diagnostics}:{}),...(commandFailure?{commandFailure}:{}),code:['PROVIDER_UNAVAILABLE','PROVIDER_FAILED','INVALID_OUTPUT','SCOPE_REJECTED','LINT_FAILED','BUILD_FAILED','QA_FAILED','DEPLOYMENT_FAILED','PREVIEW_VERIFICATION_FAILED','CONFIGURATION_MISSING'].includes(code)?code:'WORKER_INTERRUPTED'});}catch{}},
+  async fail(code,diagnostics,commandFailure){if(lost)return;try{await api(cancelled?{action:'cancel_ack',jobId:job.id,lease}:{action:'fail',jobId:job.id,lease,...(diagnostics?{diagnostics}:{}),...(commandFailure?{commandFailure}:{}),code:['PROVIDER_UNAVAILABLE','PROVIDER_QUOTA_EXHAUSTED','PROVIDER_FAILED','INVALID_OUTPUT','SCOPE_REJECTED','LINT_FAILED','BUILD_FAILED','QA_FAILED','DEPLOYMENT_FAILED','PREVIEW_VERIFICATION_FAILED','CONFIGURATION_MISSING'].includes(code)?code:'WORKER_INTERRUPTED'});}catch{}},
  });}finally{clearInterval(timer);}
 }
 // One job at a time; process supervisor restarts the poller. Never recover by force-pushing.
