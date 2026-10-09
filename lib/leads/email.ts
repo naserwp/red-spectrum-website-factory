@@ -27,7 +27,7 @@ export function notificationHtml(lead: StoredLead) {
 }
 
 export async function sendSendGridNotification(config: { apiKey: string; fromEmail: string; fromName: string }, input: { recipient: string; subject: string; lead: StoredLead }) {
-  const enabled = input.lead.deliveryMode === "test" ? process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED : process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED;
+  const enabled = input.lead.deliveryMode === "test" ? process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED : input.lead.customerSlug === "broom-home-enterprises-llc" ? process.env.WEBFACTORY_BROOM_CONTACT_ENABLED : process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED;
   if (enabled !== "true") throw new Error("email_disabled");
   const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
     method: "POST",
