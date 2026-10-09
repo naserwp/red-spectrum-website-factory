@@ -1,0 +1,118 @@
+{
+  "agent": {
+    "status": 200,
+    "data": {
+      "id": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "name": "Multi Trans Freight Assistant",
+      "knowledge_base_ids": [
+        "7ba39147-1d5e-4d33-b82b-1981d48aee3b"
+      ],
+      "rag": {
+        "enabled": false,
+        "embedding_model": "e5_mistral_7b_instruct",
+        "max_vector_distance": 0.6,
+        "max_documents_length": 50000,
+        "max_retrieved_rag_chunks_count": 20
+      },
+      "knowledge_base": []
+    }
+  },
+  "widget": {
+    "status": 200,
+    "data": {
+      "agent_id": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "avatar": "https://storage.googleapis.com/myndy_user_avatars/avatars/myndy-agent.png",
+      "styles": {
+        "position": "bottom",
+        "zIndex": "9999",
+        "primaryColor": "#101204"
+      },
+      "lead_collection_form": true,
+      "route_widget_messages_to_communications": true,
+      "consent_checkbox_enabled": false,
+      "consent_copy": null,
+      "id": "widget_1791499173_-IcahCwzSANjBRygPhuCYQ",
+      "created_at": "2026-10-08T22:39:33.269000",
+      "updated_at": "2026-10-08T22:52:07.377000"
+    }
+  },
+  "thread": {
+    "status": 200,
+    "data": {
+      "success": true,
+      "messages": [
+        {
+          "id": "WMa095f26e37af42058a87d37809d69e",
+          "message_sid": "WMa095f26e37af42058a87d37809d69e",
+          "direction": "inbound",
+          "content": "Website QA: What is the company name, phone number and email for Multi Trans? What details are needed for a freight quote? Do not create contacts or send notifications.",
+          "timestamp": "2026-10-08T19:11:59.552624-04:00",
+          "metadata": {
+            "source": "widget",
+            "agent_id": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+            "session_id": null
+          },
+          "twilio_number": "+18166773677"
+        },
+        {
+          "id": "WMa5cac4dbdba6481499297011ad3b13",
+          "message_sid": "WMa5cac4dbdba6481499297011ad3b13",
+          "direction": "inbound",
+          "content": "Website QA: What is the company name, phone number and email for Multi Trans? What details are needed for a freight quote? Do not create contacts or send notifications.",
+          "timestamp": "2026-10-08T19:14:44.026616-04:00",
+          "metadata": {
+            "source": "widget",
+            "agent_id": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+            "session_id": null
+          },
+          "twilio_number": "+18166773677"
+        },
+        {
+          "id": "WMcdcf8c86a3144a6a9c5e6518db1956",
+          "message_sid": "WMcdcf8c86a3144a6a9c5e6518db1956",
+          "direction": "outbound",
+          "content": "**Company:** Multi Trans Global Logistics INC **Phone:** (773) 592-9382 **Email:** mtglobal39@gmail.com For a freight quote, please have ready: **pickup and delivery locations, cargo description, approximate weight and dimensions, desired pickup/delivery timing, and any special requirements** such as dry van, LTL/FTL, expedited, temperature control, or handling needs.",
+          "timestamp": "2026-10-08T19:14:58.707931-04:00",
+          "metadata": {
+            "handled_by": "ai_agent",
+            "source": "widget",
+            "autopilot": true,
+            "agent_id": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+            "in_reply_to": "widget:69fe0055f0de00208466235b:69fe0055f0de00208466235b:user-1791501264426"
+          },
+          "twilio_number": "+18166773677"
+        },
+        {
+          "id": "WM07636510261c4416b8ec34f796afc3",
+          "message_sid": "WM07636510261c4416b8ec34f796afc3",
+          "direction": "inbound",
+          "content": "Website QA only: Can Multi Trans guarantee a pickup tomorrow or quote an exact price now? What services can I ask about? Do not book, create contacts, or send notifications.",
+          "timestamp": "2026-10-08T19:20:44.492617-04:00",
+          "metadata": {
+            "source": "widget",
+            "agent_id": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+            "session_id": null
+          },
+          "twilio_number": "+18166773677"
+        },
+        {
+          "id": "WM4574529968034ee6acf135de9779f5",
+          "message_sid": "WM4574529968034ee6acf135de9779f5",
+          "direction": "outbound",
+          "content": "No—Multi Trans cannot guarantee a pickup tomorrow or quote an exact price instantly through the website assistant. Pricing, availability, pickup dates, and terms must be confirmed by the team. You can ask about **Dry Van Trucking**, **Freight Forwarding**, **LTL**, **FTL**, **expedited**, **intermodal**, **long-haul/local**, **refrigerated**, **bulk liquid**, **hot-shot**, hauling, and general freight transportation; specialized equipment and lane coverage require confirmation.",
+          "timestamp": "2026-10-08T19:20:57.166252-04:00",
+          "metadata": {
+            "handled_by": "ai_agent",
+            "source": "widget",
+            "autopilot": true,
+            "agent_id": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+            "in_reply_to": "widget:69fe0055f0de00208466235b:69fe0055f0de00208466235b:user-1791501624773"
+          },
+          "twilio_number": "+18166773677"
+        }
+      ],
+      "contact_number": "+12025550147",
+      "twilio_number": "+18166773677"
+    }
+  }
+}

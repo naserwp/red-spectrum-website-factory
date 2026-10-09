@@ -1,0 +1,233 @@
+{
+  "deployment": {
+    "id": "dpl_DZGonupHxvifevzghemSps6g1PGm",
+    "url": "https://red-spectrum-website-factory-l1btw8yeq-naserwps-projects.vercel.app",
+    "state": "READY",
+    "sha": "ff65b4b4a7f25744cc789beb023fe9ed4b91bfc4",
+    "target": null
+  },
+  "layouts": [
+    {
+      "width": 1440,
+      "launch": {
+        "x": 1354,
+        "y": 856,
+        "width": 70,
+        "height": 70
+      },
+      "openedBox": {
+        "x": 1078,
+        "y": 436.28125,
+        "width": 346,
+        "height": 386.390625
+      },
+      "formProtected": true,
+      "privacyProtected": true,
+      "menuProtected": false
+    },
+    {
+      "width": 375,
+      "launch": {
+        "x": 289,
+        "y": 856,
+        "width": 70,
+        "height": 70
+      },
+      "openedBox": {
+        "x": 84,
+        "y": 793.84375,
+        "width": 259,
+        "height": 62
+      },
+      "formProtected": true,
+      "privacyProtected": true,
+      "menuProtected": true
+    },
+    {
+      "width": 320,
+      "launch": {
+        "x": 234,
+        "y": 856,
+        "width": 70,
+        "height": 70
+      },
+      "openedBox": {
+        "x": 29,
+        "y": 793.84375,
+        "width": 259,
+        "height": 62
+      },
+      "formProtected": true,
+      "privacyProtected": true,
+      "menuProtected": true
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agent-widgets/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA/ownership",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/msg-send-widget.wav",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/msg-received-widget.wav",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA/ownership",
+      "status": 200
+    },
+    {
+      "url": "https://hello.myndy.ai/api/external-widget-messages/thread?user_id=69fe0055f0de00208466235b&workspace_id=69fe0055f0de00208466235b&contact_number=%2B12025550147",
+      "status": 200
+    },
+    {
+      "url": "https://hello.myndy.ai/api/external-lead-capture?user_id=69fe0055f0de00208466235b&workspace_jd=69fe0055f0de00208466235b",
+      "status": 401
+    },
+    {
+      "url": "https://hello.myndy.ai/api/external-widget-messages?user_id=69fe0055f0de00208466235b&workspace_id=69fe0055f0de00208466235b",
+      "status": 201
+    },
+    {
+      "url": "https://hello.myndy.ai/api/external-widget-messages/thread?user_id=69fe0055f0de00208466235b&workspace_id=69fe0055f0de00208466235b&contact_number=%2B12025550147",
+      "status": 200
+    },
+    {
+      "url": "https://hello.myndy.ai/api/external-widget-messages/thread?user_id=69fe0055f0de00208466235b&workspace_id=69fe0055f0de00208466235b&contact_number=%2B12025550147",
+      "status": 200
+    },
+    {
+      "url": "https://hello.myndy.ai/api/external-widget-messages/thread?user_id=69fe0055f0de00208466235b&workspace_id=69fe0055f0de00208466235b&contact_number=%2B12025550147",
+      "status": 200
+    },
+    {
+      "url": "https://hello.myndy.ai/api/external-widget-messages/thread?user_id=69fe0055f0de00208466235b&workspace_id=69fe0055f0de00208466235b&contact_number=%2B12025550147",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agent-widgets/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA/ownership",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agent-widgets/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA/ownership",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/msg-received-widget.wav",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/msg-send-widget.wav",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agent-widgets/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA/ownership",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agent-widgets/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA/ownership",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/msg-received-widget.wav",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/msg-send-widget.wav",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://widget.myndy.ai/myndy-convai-widget.es.js",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agent-widgets/agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+      "status": 200
+    },
+    {
+      "url": "https://aibuilder.myndy.ai/v1/aibuilder/agents/agent_1791499171_dFkdItb29IQasjpC9SdkgA/ownership",
+      "status": 200
+    }
+  ],
+  "chat": {
+    "id": "WMe7b5e09d356b4db6874acb5836f020",
+    "content": "**Company:** Multi Trans Global Logistics INC **Email:** mtglobal39@gmail.com **Phone:** (773) 592-9382 No—this chat cannot guarantee a pickup or provide a fixed price. Pricing, availability, and terms must be confirmed by the Multi Trans team.",
+    "agent": "agent_1791499171_dFkdItb29IQasjpC9SdkgA"
+  },
+  "passed": true
+}

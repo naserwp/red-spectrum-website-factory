@@ -1618,6 +1618,151 @@
           "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
         }
       }
+    },
+    {
+      "schemaVersion": "1.0",
+      "slug": "multi-trans-global-logistics",
+      "status": "review",
+      "templateId": "forge",
+      "business": {
+        "name": "Multi Trans Global Logistics INC",
+        "industry": "Trucking & freight logistics",
+        "tagline": "Freight in Motion. Business Moving Forward.",
+        "summary": "Trucking, dry van transportation and freight logistics inquiries."
+      },
+      "contact": {
+        "person": {
+          "value": "Timothy Blakley",
+          "status": "verified",
+          "source": "Customer request 2819bf01-793b-4df0-9409-8d53c8df71ee, verified read-only 2026-10-09"
+        },
+        "phone": {
+          "value": "(773) 592-9382",
+          "status": "verified",
+          "source": "Customer request 2819bf01-793b-4df0-9409-8d53c8df71ee, verified read-only 2026-10-09"
+        },
+        "email": {
+          "value": "mtglobal39@gmail.com",
+          "status": "verified",
+          "source": "Customer request 2819bf01-793b-4df0-9409-8d53c8df71ee, verified read-only 2026-10-09"
+        },
+        "address": {
+          "value": "",
+          "status": "missing"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Dry Van Trucking",
+          "description": "Enclosed trailer transportation for palletized, boxed and packaged freight that does not require temperature control.",
+          "status": "draft",
+          "source": "Existing website catalog; current availability requires business confirmation"
+        },
+        {
+          "name": "Freight Forwarding",
+          "description": "Shipment planning that connects your freight requirements, route and handoff details.",
+          "status": "draft",
+          "source": "Existing website catalog; current availability requires business confirmation"
+        },
+        {
+          "name": "Trucking Services",
+          "description": "A practical starting point for discussing equipment, route and delivery requirements.",
+          "status": "draft",
+          "source": "Existing website catalog; current availability requires business confirmation"
+        },
+        {
+          "name": "Logistics Services",
+          "description": "Shipment coordination inquiries that connect timing, people and practical requirements.",
+          "status": "draft",
+          "source": "Existing website catalog; current availability requires business confirmation"
+        },
+        {
+          "name": "Refrigerated Trucking",
+          "description": "Inquiries for freight requiring a defined temperature-controlled transport plan.",
+          "status": "draft",
+          "source": "Existing website catalog; current availability requires business confirmation"
+        },
+        {
+          "name": "Bulk Liquid Transport",
+          "description": "Bulk liquid transportation inquiries requiring equipment and product compatibility review.",
+          "status": "draft",
+          "source": "Existing website catalog; current availability requires business confirmation"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "Trucking & freight logistics",
+          "headline": "Freight in Motion. Business Moving Forward.",
+          "intro": "Professional trucking, dry van transportation and freight logistics solutions designed to keep your supply chain moving.",
+          "ctaLabel": "Request a Freight Quote"
+        },
+        "services": {
+          "headline": "The right conversation for every kind of freight.",
+          "intro": "Explore transportation and shipment coordination options."
+        },
+        "about": {
+          "headline": "Moving freight starts with understanding your business.",
+          "paragraphs": [
+            "Multi Trans Global Logistics INC presents trucking, dry van and freight forwarding services."
+          ]
+        },
+        "contact": {
+          "headline": "Let’s talk freight.",
+          "intro": "Discuss your shipment with Multi Trans."
+        },
+        "privacy": {
+          "headline": "Privacy notice",
+          "body": [
+            "Inquiry forms use PostgreSQL and SendGrid when enabled. The dedicated Myndy assistant loads on customer pages. Live customer delivery and contact sync require separate approval."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#101B2B",
+        "secondary": "#53677C",
+        "accent": "#F47B20",
+        "surface": "#F3F5F7",
+        "logoPath": "/customers/multi-trans-global-logistics/logo-light.svg",
+        "faviconPath": "/customers/multi-trans-global-logistics/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/multi-trans-global-logistics/highway.webp",
+          "alt": "Illustrative unbranded semi truck on a highway at sunrise; not the Multi Trans fleet.",
+          "width": 1536,
+          "height": 1024
+        },
+        "gallery": []
+      },
+      "seo": {
+        "title": "Multi Trans Global Logistics | Trucking & Freight",
+        "description": "Explore dry van trucking, freight forwarding and logistics with Multi Trans Global Logistics. Discuss your route, cargo and timing."
+      },
+      "schema": {
+        "type": "Organization",
+        "description": "Trucking and freight logistics business."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "disabled",
+        "recipientConfirmed": false,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "Multi Trans Freight Assistant",
+        "greeting": "Welcome to Multi Trans Global Logistics! What are you shipping, and where does it need to go?",
+        "avatarBrief": "Fictional approachable professional freight assistant avatar, midnight navy background and safety-orange accent, clean icon-friendly portrait.",
+        "knowledgeContextPath": "customers/multi-trans-global-logistics/myndy/agent-context.md",
+        "embed": {
+          "enabled": true,
+          "agentId": "agent_1791499171_dFkdItb29IQasjpC9SdkgA",
+          "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
+        }
+      }
     }
   ]
 }

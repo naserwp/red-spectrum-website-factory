@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-08T22:55:20.195Z",
+  "recipient": "accountexec@theredspectrum.com",
+  "receipts": [
+    {
+      "source": "quote",
+      "result": {
+        "state": "saved",
+        "leadId": "ae046e33-d547-4a4d-b7ee-e41f0c504fb0",
+        "duplicate": false,
+        "notification": "provider_accepted",
+        "myndy": "not_requested"
+      },
+      "duplicate": {
+        "state": "saved",
+        "leadId": "ae046e33-d547-4a4d-b7ee-e41f0c504fb0",
+        "duplicate": true,
+        "notification": "provider_accepted",
+        "myndy": "not_requested"
+      },
+      "rows": [
+        {
+          "kind": "myndy_contact",
+          "state": "not_requested",
+          "attempt_count": 0,
+          "provider_receipt": null
+        },
+        {
+          "kind": "test_email",
+          "state": "accepted",
+          "attempt_count": 1,
+          "provider_receipt": "w2auGgd8Tpq0xkb3tObmaA"
+        }
+      ]
+    },
+    {
+      "source": "contact",
+      "result": {
+        "state": "saved",
+        "leadId": "15f6ab9d-2f93-432f-8896-985cd11b85c1",
+        "duplicate": false,
+        "notification": "provider_accepted",
+        "myndy": "not_requested"
+      },
+      "duplicate": {
+        "state": "saved",
+        "leadId": "15f6ab9d-2f93-432f-8896-985cd11b85c1",
+        "duplicate": true,
+        "notification": "provider_accepted",
+        "myndy": "not_requested"
+      },
+      "rows": [
+        {
+          "kind": "myndy_contact",
+          "state": "not_requested",
+          "attempt_count": 0,
+          "provider_receipt": null
+        },
+        {
+          "kind": "test_email",
+          "state": "accepted",
+          "attempt_count": 1,
+          "provider_receipt": "nZ-wPyF7QZmSDxDSDffIhQ"
+        }
+      ]
+    }
+  ]
+}

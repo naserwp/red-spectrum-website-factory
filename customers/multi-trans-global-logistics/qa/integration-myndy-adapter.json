@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "transport": "mocked; no contacts created",
+  "checks": [
+    "Ownership, scopes, contact creation and exact read-back",
+    "Wrong workspace blocked before visitor data",
+    "Retry-After honored; failed or mismatched read-back never claims verified"
+  ]
+}

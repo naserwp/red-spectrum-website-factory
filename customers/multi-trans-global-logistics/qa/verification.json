@@ -1,0 +1,1293 @@
+{
+  "base": "http://localhost:3047",
+  "date": "2026-10-08T22:19:27.897Z",
+  "layouts": [
+    {
+      "route": "",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "about",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "about",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "about",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "industries",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "industries",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "industries",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "industries",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "industries",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "service-areas",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "service-areas",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "service-areas",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "service-areas",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "service-areas",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "faq",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "faq",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "faq",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "faq",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "faq",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "request-a-quote",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "request-a-quote",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "request-a-quote",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "request-a-quote",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "request-a-quote",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "contact",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "contact",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "contact",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "contact",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "contact",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "privacy",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "privacy",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "privacy",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "privacy",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "privacy",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "terms",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "terms",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "terms",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "terms",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "terms",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "cookies",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "cookies",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "cookies",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "cookies",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "cookies",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/dry-van-trucking",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/dry-van-trucking",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/dry-van-trucking",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/dry-van-trucking",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/dry-van-trucking",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-forwarding",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-forwarding",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-forwarding",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-forwarding",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-forwarding",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/trucking-services",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/trucking-services",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/trucking-services",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/trucking-services",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/trucking-services",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-shipping",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-shipping",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-shipping",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-shipping",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-shipping",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-transportation",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-transportation",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-transportation",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-transportation",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/freight-transportation",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/expedited-trucking",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/expedited-trucking",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/expedited-trucking",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/expedited-trucking",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/expedited-trucking",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/ltl-trucking",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/ltl-trucking",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/ltl-trucking",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/ltl-trucking",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/ltl-trucking",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/full-truckload",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/full-truckload",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/full-truckload",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/full-truckload",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/full-truckload",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/long-haul-trucking",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/long-haul-trucking",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/long-haul-trucking",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/long-haul-trucking",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/long-haul-trucking",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/local-trucking",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/local-trucking",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/local-trucking",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/local-trucking",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/local-trucking",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/intermodal-trucking",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/intermodal-trucking",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/intermodal-trucking",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/intermodal-trucking",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/intermodal-trucking",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/logistics-services",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/logistics-services",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/logistics-services",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/logistics-services",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/logistics-services",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hauling-services",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hauling-services",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hauling-services",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hauling-services",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hauling-services",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/refrigerated-trucking",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/refrigerated-trucking",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/refrigerated-trucking",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/refrigerated-trucking",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/refrigerated-trucking",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/bulk-liquid-transport",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/bulk-liquid-transport",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/bulk-liquid-transport",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/bulk-liquid-transport",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/bulk-liquid-transport",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hot-shot-freight",
+      "width": 320,
+      "documentWidth": 320,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hot-shot-freight",
+      "width": 375,
+      "documentWidth": 375,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hot-shot-freight",
+      "width": 768,
+      "documentWidth": 768,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hot-shot-freight",
+      "width": 1024,
+      "documentWidth": 1024,
+      "clippedHeadings": [],
+      "brokenImages": []
+    },
+    {
+      "route": "services/hot-shot-freight",
+      "width": 1440,
+      "documentWidth": 1440,
+      "clippedHeadings": [],
+      "brokenImages": []
+    }
+  ],
+  "metadata": [
+    {
+      "route": "",
+      "title": "Trucking & Freight | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics"
+    },
+    {
+      "route": "about",
+      "title": "About Multi Trans | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/about"
+    },
+    {
+      "route": "services",
+      "title": "Freight Services | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services"
+    },
+    {
+      "route": "industries",
+      "title": "Industries & Freight | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/industries"
+    },
+    {
+      "route": "service-areas",
+      "title": "Service Areas | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/service-areas"
+    },
+    {
+      "route": "faq",
+      "title": "Freight Questions | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/faq"
+    },
+    {
+      "route": "request-a-quote",
+      "title": "Request a Freight Quote | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/request-a-quote"
+    },
+    {
+      "route": "contact",
+      "title": "Contact Multi Trans | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/contact"
+    },
+    {
+      "route": "privacy",
+      "title": "Privacy Notice | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/privacy"
+    },
+    {
+      "route": "terms",
+      "title": "Website Terms | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/terms"
+    },
+    {
+      "route": "cookies",
+      "title": "Cookies & Storage | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/cookies"
+    },
+    {
+      "route": "services/dry-van-trucking",
+      "title": "Dry Van Trucking | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/dry-van-trucking"
+    },
+    {
+      "route": "services/freight-forwarding",
+      "title": "Freight Forwarding | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/freight-forwarding"
+    },
+    {
+      "route": "services/trucking-services",
+      "title": "Trucking Services | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/trucking-services"
+    },
+    {
+      "route": "services/freight-shipping",
+      "title": "Freight Shipping | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/freight-shipping"
+    },
+    {
+      "route": "services/freight-transportation",
+      "title": "Freight Transportation | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/freight-transportation"
+    },
+    {
+      "route": "services/expedited-trucking",
+      "title": "Expedited Trucking | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/expedited-trucking"
+    },
+    {
+      "route": "services/ltl-trucking",
+      "title": "Less-than-Truckload (LTL) | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/ltl-trucking"
+    },
+    {
+      "route": "services/full-truckload",
+      "title": "Full Truckload (FTL) | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/full-truckload"
+    },
+    {
+      "route": "services/long-haul-trucking",
+      "title": "Long-Haul Trucking | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/long-haul-trucking"
+    },
+    {
+      "route": "services/local-trucking",
+      "title": "Local Trucking | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/local-trucking"
+    },
+    {
+      "route": "services/intermodal-trucking",
+      "title": "Intermodal Trucking | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/intermodal-trucking"
+    },
+    {
+      "route": "services/logistics-services",
+      "title": "Logistics Services | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/logistics-services"
+    },
+    {
+      "route": "services/hauling-services",
+      "title": "Hauling Services | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/hauling-services"
+    },
+    {
+      "route": "services/refrigerated-trucking",
+      "title": "Refrigerated Trucking | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/refrigerated-trucking"
+    },
+    {
+      "route": "services/bulk-liquid-transport",
+      "title": "Bulk Liquid Transport | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/bulk-liquid-transport"
+    },
+    {
+      "route": "services/hot-shot-freight",
+      "title": "Hot-Shot Freight | Multi Trans Global Logistics",
+      "h1": 1,
+      "robots": "noindex, nofollow",
+      "canonical": "https://preview.redspectrum.ai/multi-trans-global-logistics/services/hot-shot-freight"
+    }
+  ],
+  "links": [
+    {
+      "href": "/multi-trans-global-logistics",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/about",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/industries",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/faq",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/contact",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/request-a-quote",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/dry-van-trucking",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/freight-forwarding",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/ltl-trucking",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/service-areas",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/full-truckload",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/privacy",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/terms",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/cookies",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/trucking-services",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/freight-shipping",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/freight-transportation",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/intermodal-trucking",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/logistics-services",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/expedited-trucking",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/long-haul-trucking",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/local-trucking",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/hot-shot-freight",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/hauling-services",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/refrigerated-trucking",
+      "status": 200
+    },
+    {
+      "href": "/multi-trans-global-logistics/services/bulk-liquid-transport",
+      "status": 200
+    },
+    {
+      "href": "/broom-home-enterprises-llc",
+      "status": 200
+    },
+    {
+      "href": "/swenzy-logistics",
+      "status": 200
+    },
+    {
+      "href": "/jm-trucking",
+      "status": 200
+    },
+    {
+      "href": "/360-vitality-fitness",
+      "status": 200
+    },
+    {
+      "href": "/unique-management-group",
+      "status": 200
+    }
+  ],
+  "interactions": [
+    "All internal tenant links return 200; invalid routes return 404.",
+    "Mobile menu open, Escape, focus return, navigation close and footer home link pass.",
+    "Native FAQ expands and collapses.",
+    "Required-field validation, summary, correct mailto recipient, invalidation after edits and zero POST/storage pass; no email sent.",
+    "Homepage 720px reflow has no horizontal overflow; native browser zoom not measured.",
+    "Desktop content and native service navigation work without JavaScript."
+  ],
+  "failures": [],
+  "consoleErrors": [],
+  "screenshots": [
+    "home-375.png",
+    "home-1440.png",
+    "services-375.png",
+    "services-1440.png",
+    "request-a-quote-375.png",
+    "request-a-quote-1440.png",
+    "services-dry-van-trucking-375.png",
+    "services-dry-van-trucking-1440.png"
+  ],
+  "passed": true
+}

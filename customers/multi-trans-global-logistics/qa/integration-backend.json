@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "Concurrent duplicate, payload conflict, persistence, consent, escaped email and tenant recipient",
+    "429 delay and concurrent safe retry",
+    "5xx and timeout held for reconciliation without duplicate send",
+    "Independent customer/admin receipts and cross-mode isolation",
+    "Rate limit, honeypot, invalid input, consent and recipient injection rejection",
+    "HTTP origin, content type, size, validation, success and unauthenticated retry rejection"
+  ],
+  "realPostgres": true,
+  "provider": "mocked; zero external sends",
+  "at": "2026-10-08T23:06:44.208Z"
+}
