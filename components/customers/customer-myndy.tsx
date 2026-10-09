@@ -1,10 +1,27 @@
 "use client";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
-export function CustomerMyndy({ agentId, accent, label }: { agentId: string; accent: string; label: string }) {
+export function CustomerMyndy({ agentId, accent, label, fallbackSrc }: { agentId: string; accent: string; label: string; fallbackSrc?: string }) {
   const mount = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    if (!fallbackSrc || ready) return;
+    let fallback: HTMLScriptElement | undefined;
+    const timer = window.setTimeout(() => {
+      if (customElements.get("myndy-convai")) { setReady(true); setFailed(false); return; }
+      fallback = document.createElement("script");
+      fallback.type = "module";
+      fallback.src = fallbackSrc;
+      fallback.onload = () => { setReady(true); setFailed(false); };
+      fallback.onerror = () => setFailed(true);
+      document.body.appendChild(fallback);
+    }, 5000);
+    return () => {
+      window.clearTimeout(timer);
+      if (fallback) { fallback.onload = null; fallback.onerror = null; fallback.remove(); }
+    };
+  }, [fallbackSrc, ready]);
   useEffect(() => {
     if (!ready) return;
     let disposed = false;
