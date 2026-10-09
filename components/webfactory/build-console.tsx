@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {qaMessages,type QaDiagnostic} from "@/lib/webfactory/qa-diagnostics";
-type Job={id:string;customer_slug:string;status:string;error_category:string|null;created_at:string;progress_code:string;preview_url:string|null;qaRetryAvailable?:boolean;qa_result?:{preview_access?:{preview_public_access:'protected'|'public'};attempts?:{results:QaDiagnostic[];recorded_at:string}[]}};
+type Job={id:string;customer_slug:string;status:string;error_category:string|null;created_at:string;started_at?:string|null;finished_at?:string|null;lease_expires_at?:string|null;result_sha?:string|null;deployment_reference?:string|null;progress_code:string;preview_url:string|null;qaRetryAvailable?:boolean;qa_result?:{preview_access?:{preview_public_access:'protected'|'public'};attempts?:{results:QaDiagnostic[];recorded_at:string}[]}};
 type Event={job_id:string;created_at:string;status:string;code:string};
 type Health={state:'online'|'offline'|'unknown';lastSeenAt:string|null};
 type Result={jobs?:Job[];events?:Event[];error?:string;executorConfigured?:boolean;workerHealth?:Health};
@@ -42,6 +42,9 @@ export function BuildConsole({requestId,enabled}:{requestId:string;enabled:boole
     <div aria-live="polite">{jobs.length===0?<p>No build jobs recorded. Website generation has not started.</p>:jobs.map(job=><article className="wf-panel" key={job.id} style={{overflowWrap:"anywhere",minWidth:0}}>
       <h4>Build {job.id.slice(0,8)} · {job.customer_slug}</h4><p><strong>{job.error_category==="BUILD_EXECUTOR_NOT_CONFIGURED"?"BUILD EXECUTOR NOT CONFIGURED":job.status.replaceAll("_"," ")}</strong></p>
       <p>{new Date(job.created_at).toLocaleString()}</p>
+      <p>Current stage: {job.progress_code.replaceAll('_',' ')}{job.started_at&&<> · Started: <time>{new Date(job.started_at).toLocaleString()}</time></>}{job.finished_at&&<> · Finished: <time>{new Date(job.finished_at).toLocaleString()}</time></>}</p>
+      {job.error_category&&<p role="alert">Failure: {job.error_category.replaceAll('_',' ')}</p>}
+      {job.status==='ready_for_review'&&<p>Verified commit: <code>{job.result_sha||'Unavailable'}</code><br/>Deployment: <code>{job.deployment_reference||'Unavailable'}</code></p>}
       {job.error_category==='QA_FAILED' && <div role="status"><strong>Failed stage: QA</strong>{job.qa_result?.attempts?.at(-1)?.results.filter(r=>r.status==='failed').map((r,i)=><p key={i}>Failed check: {r.check_name} · {r.page||'/'}{r.viewport?` · ${r.viewport}px`:''}<br/>{qaMessages[r.check_name]}<br/><time>{new Date(r.timestamp).toLocaleString()}</time></p>)}{!job.qa_result?.attempts?.length&&<p>This older job did not retain assertion details. Diagnose the preserved artifact before retrying.</p>}</div>}
       {!!job.qa_result?.attempts?.length && <details><summary>View QA Results</summary>{job.qa_result.attempts.map((attempt,i)=><div key={i}><h5>Attempt {i+1}</h5><ul>{attempt.results.map((r,k)=><li key={k}>{r.status} · {r.check_name} · {r.page||'/'} · {r.viewport||'HTTP'} · {r.duration}ms — {r.status==='failed'?qaMessages[r.check_name]:'Check passed.'}</li>)}</ul></div>)}</details>}
       {job.error_category==='QA_FAILED' && (job.qaRetryAvailable?<><p>Retry verifies the same fingerprinted artifact. It does not regenerate files. If QA passes, the same job continues to isolated preview deployment.</p><button className="wf-button secondary" disabled={!confirmed||pending||active} onClick={()=>void run(job.id,true)}>Retry QA</button></>:<p>QA retry unavailable: this job has no eligible immutable checkpoint, or its retry limit was reached. A site defect requires a corrected build revision, not a bypass.</p>)}

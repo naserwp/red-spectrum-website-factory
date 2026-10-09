@@ -48,7 +48,7 @@ export async function runQa(repo,job,site,env,check=async()=>{}){
    record.assert('tenant-isolation',!otherNames.some(name=>html.includes(name)),page);
    await browserStep(record,()=>browser('open',base+'/'+job.customerSlug+page),page,0,'browser-launch');
    await browserStep(record,()=>browser('snapshot','-i'),page,0,'browser-check');
-   for(const width of ([320,375,768,1024,1440,1920])){
+   for(const width of ([320,375,430,768,1024,1440,1920])){
     await browserStep(record,()=>browser('set','viewport',String(width),'1000'),page,width,'browser-check');
     await browserStep(record,()=>browser('open',base+'/'+job.customerSlug+page),page,width,'browser-launch');
     const settled=await browserStep(record,async()=>JSON.parse(await browser('eval',`(${settleImages.toString()})()`)),page,width,'browser-check');

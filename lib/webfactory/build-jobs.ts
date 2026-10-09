@@ -11,7 +11,7 @@ import { configuredBuildExecutor } from "./build-executor";
 export class BuildJobError extends Error {}
 export async function listBuildJobs(requestId: string) {
   // Explicit projection: private brief/instructions never included in polling responses.
-  const jobs = (await database().query("SELECT id,customer_slug,status,executor,created_at,finished_at,error_category,progress_code,changed_files,qa_result,preview_url FROM webfactory.website_build_jobs WHERE request_id=$1 ORDER BY created_at DESC LIMIT 20",[requestId])).rows;
+  const jobs = (await database().query("SELECT id,customer_slug,status,executor,created_at,started_at,finished_at,lease_expires_at,result_sha,deployment_reference,error_category,progress_code,changed_files,qa_result,preview_url FROM webfactory.website_build_jobs WHERE request_id=$1 ORDER BY created_at DESC LIMIT 20",[requestId])).rows;
   const events = (await database().query("SELECT e.job_id,e.created_at,e.status,e.code FROM webfactory.website_build_job_events e WHERE e.job_id=ANY($1::uuid[]) ORDER BY e.id DESC LIMIT 100",[jobs.map(j=>j.id)])).rows;
   let workerHealth:{state:'online'|'offline'|'unknown';lastSeenAt:string|null}={state:'unknown',lastSeenAt:null};
   try{

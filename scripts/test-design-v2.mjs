@@ -19,7 +19,7 @@ const output=await generateV2({business:'Synthetic',industry:'Design',brief:{bra
 assert.throws(()=>parseGeneratedDesign({output:[]}),e=>e.validationCodes[0]==='invalid_json');
 assert.throws(()=>parseGeneratedDesign({output:[{content:[{type:'output_text',text:JSON.stringify({...d,brandNotes:''})}]}]}),e=>e.validationCodes.includes('too_small')&&!JSON.stringify(e).includes('brandNotes'));
 await generateV2({business:'Synthetic',industry:'Design',brief:{},requestedChanges:''},{OPENAI_API_KEY:'test'},async(_url,init)=>{const schema=JSON.parse(init.body).text.format.schema;assert.equal(schema.properties.brandNotes.minLength,1);assert.equal(schema.properties.pages.properties.home.minItems,5);assert.equal(schema.properties.pages.properties.home.items.properties.image.maximum,11);return Response.json({status:'completed',output:[{content:[{type:'output_text',text:JSON.stringify(d)}]}]});});
-const qa=await readFile('scripts/build-worker/qa.mjs','utf8');assert(qa.includes('320,375,768,1024,1440,1920'));
+const qa=await readFile('scripts/build-worker/qa.mjs','utf8');assert(qa.includes('320,375,430,768,1024,1440,1920'));
 const tmp=await mkdtemp(path.join(os.tmpdir(),'wf-assets-'));
 try{
  const dir=path.join(tmp,'demo');await mkdir(dir);await writeFile(path.join(dir,'image-0.webp'),'synthetic');
@@ -31,4 +31,4 @@ try{
  manifest.images[0].file='https://tracker.example/a';await save();await assert.rejects(()=>approvedLocalImages('demo',tmp));
  await symlink(dir,path.join(tmp,'linked'),process.platform==='win32'?'junction':'dir');await assert.rejects(()=>approvedLocalImages('linked',tmp));
 }finally{await rm(tmp,{recursive:true,force:true});}
-console.log('PASS: v2 data contract, original logo escaping, provider parsing, cross-tenant/root/secret/traversal/executable paths, unsafe content, external assets, legacy manifests and six-width configuration. No external calls.');
+console.log('PASS: v2 data contract, original logo escaping, provider parsing, cross-tenant/root/secret/traversal/executable paths, unsafe content, external assets, legacy manifests and seven-width configuration. No external calls.');
