@@ -35,6 +35,10 @@ The Windows installer now launches this supervisor. **No scheduled task or persi
 - During this work, main independently advanced to `8e8ce176b31a1b572b1f46ee03bbb3b6dd87e76c` with Multi Trans (PR 4). Current main was merged **into this isolated PR branch**, not vice versa. All nine tenants are retained; 45 baseline customer pages return 200 with metadata. UMG's existing numeric-host 404 restriction was verified separately from its allowed localhost routes. New Multi Trans adapter tests used mocked transports only. These checks are not a complete accessibility or visual certification of every existing tenant.
 - Worker-health migration was renamed from the formerly proposed 0012 to **0013_webfactory_worker_health.sql**, avoiding main's new Multi Trans 0012 migration number. Its DDL is unchanged and remains unapplied to production.
 
+### Deployment readiness
+
+Integrated PR code/evidence revision `03d8a52e14ac1f507fb96210c5578d1626df822b` reached READY on isolated deployment `dpl_FvLc48ej2RpJq4TXXee6E12mYHfw`: https://red-spectrum-website-factory-3b5jukk0v-naserwps-projects.vercel.app. GitHub reports PR 7 mergeable, draft and unmerged. The shared production alias was independently read back as READY at `8e8ce176b31a1b572b1f46ee03bbb3b6dd87e76c`; no PR 7 promotion occurred. Later documentation/configuration-comment-only commits do not change the tested runtime.
+
 ### Exact remaining release tasks
 
 1. Obtain explicit release authorization for PR 7 and the additive worker-health migration **0013**. Keep the PR unmerged until then. Recheck current main and preview status immediately before that authorized release.
@@ -49,6 +53,7 @@ Release rollback: stop the approved supervisor to stop new claims, retain fenced
 ### Files changed in this continuation
 
 Recovery/API: `lib/webfactory/build-jobs.ts`, `lib/webfactory/build-worker.ts`, `app/api/admin/requests/[id]/build-jobs/route.ts`, `app/api/internal/build-worker/route.ts`, `scripts/build-worker/run.mjs`.
+Configuration comment: `.env.example` now names health migration 0013.
 Supervisor: `scripts/build-worker/supervisor.mjs`, `scripts/build-worker/install-supervisor.ps1`.
 Tests: `scripts/test-build-worker.mjs`, `scripts/test-worker-supervisor.mjs`, `scripts/test-worker-http.mjs`, `scripts/test-swenzy.mjs`.
 Migration: renamed `db/migrations/0012_webfactory_worker_health.sql` to `db/migrations/0013_webfactory_worker_health.sql`; updated `scripts/migrate-webfactory.mjs` and its test reference.
