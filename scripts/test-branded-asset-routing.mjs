@@ -23,6 +23,9 @@ const html='<div class="unique-home-v3"></div><script src="/bundle.js"></script>
 const stripped={html,broom:false,broomSlug:'broom-home-enterprises-llc'};vm.runInNewContext(strip,stripped);
 assert(!stripped.html.includes('bundle.js')&&!stripped.html.includes('hydrate()'));
 assert(stripped.html.includes('application/ld+json'));
+const generated={html:html.replace('unique-home-v3','generated-site'),broom:false,broomSlug:'broom-home-enterprises-llc'};vm.runInNewContext(strip,generated);
+assert(!generated.html.includes('hydrate()')&&!generated.html.includes('bundle.js'));
+assert(generated.html.includes('application/ld+json'));
 const unchanged={html:html.replace('unique-home-v3','other-site'),broom:false};vm.runInNewContext(strip,unchanged);
 assert(unchanged.html.includes('bundle.js'));
 console.log('PASS: deployment hints stripped, real Turbopack filenames allowed, traversal and unsafe asset guards preserved.');
