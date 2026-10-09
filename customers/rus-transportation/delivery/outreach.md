@@ -1,0 +1,2 @@
+UNSENT DRAFT — Review the website preview for RUS Transportation LLC. Contact forms, Myndy and payments remain inactive. Please confirm services and business details before launch.
+SMS DRAFT — Your website preview is ready for review when QA completes. Please review details; nothing is published or activated.
