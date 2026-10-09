@@ -120,6 +120,21 @@ try{
  await assert.rejects(()=>worker.workerOperation({...recoveryComplete,resultSha:'e'.repeat(40)}));
  await assert.rejects(()=>worker.workerOperation({...recoveryComplete,deploymentReference:'dpl_other'}));
  assert.equal((await worker.workerOperation(recoveryComplete)).status,'ready_for_review');
+ const beforeRestart=Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.website_build_jobs')).rows[0].count);
+ const restarts=await Promise.allSettled([jobs.restartBuildJob(req,recoveryId,'test'),jobs.restartBuildJob(req,recoveryId,'test')]);
+ assert.equal(restarts.filter(r=>r.status==='fulfilled').length,1);
+ const restarted=(await wrapped.query('SELECT * FROM webfactory.website_build_jobs WHERE id=$1',[recoveryId])).rows[0];
+ assert.equal(restarted.status,'queued');assert.equal(restarted.preview_url,null);assert.equal(restarted.result_sha,null);
+ assert.equal(restarted.qa_result.runAttempt,1);assert.equal(restarted.qa_result.previousResultSha,'b'.repeat(40));assert.equal(restarted.qa_result.previousRuns.length,1);
+ assert.equal(Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.website_build_jobs')).rows[0].count),beforeRestart);
+ const restartClaim=await worker.workerOperation({action:'claim',workerId:'restart-test',jobId:recoveryId});
+ assert.equal(restartClaim.job.runAttempt,1);assert.equal(restartClaim.job.previousResultSha,'b'.repeat(40));
+ await worker.workerOperation({action:'fail',jobId:recoveryId,lease:restartClaim.lease,code:'PROVIDER_FAILED'});
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='customer_approved' WHERE request_id=$1",[req]);
+ await assert.rejects(()=>jobs.restartBuildJob(req,recoveryId,'test'));
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='build_approved' WHERE request_id=$1",[req]);
+ await wrapped.query("UPDATE webfactory.website_build_jobs SET qa_result=qa_result||'{\"runAttempt\":3}'::jsonb WHERE id=$1",[recoveryId]);
+ await assert.rejects(()=>jobs.restartBuildJob(req,recoveryId,'test'),/limit/);
  for(const path of ['.env','app/page.tsx',`public/customers/other/hero.svg`,`customers/${slug}/../other/config.json`])assert.equal(contract.allowedBuildPath(slug,path),false);
  for(const boundary of ['checkout','generate','apply','validate','build','qa','deploy','verify','complete']){
   let failed=false,finished=false;const operations={check:async()=>{},progress:async()=>{},checkout:async()=>({}),generate:async()=>({provider:{}}),apply:async()=>({}),validate:async()=>[],build:async()=>{},qa:async()=>({}),deploy:async()=>({}),verify:async()=>{},complete:async()=>{finished=true;},fail:async()=>{failed=true;}};

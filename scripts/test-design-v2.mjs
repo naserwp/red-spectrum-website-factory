@@ -9,6 +9,9 @@ import {generateV2,logoSvg,approvedLocalImages,parseGeneratedDesign} from './bui
 const s={kind:'split',eyebrow:'Introduction',heading:'A considered beginning',body:'Contact the company to discuss your needs.',image:0,reverse:false};
 const d={version:'2.0',hero:'editorial',navigation:'balanced',typography:'editorial',spacing:'generous',palette:'forest',logo:'open-frame',pages:{home:Array(6).fill(s),services:[s,s],about:[s,s],contact:[s],privacy:[s]},imageDirection:'Illustrative spaces',brandNotes:'Three geometric concepts reviewed.'};
 assert(designSchema.safeParse(d).success);
+d.faq=Array.from({length:3},(_,i)=>({question:`Question ${i+1}?`,answer:'Contact the company to confirm current details.'}));
+assert(designSchema.safeParse(d).success);
+assert(!designSchema.safeParse({...d,faq:[{question:'Question?',answer:'<script>'}]}).success);
 for(const value of ['<script>alert(1)</script>','https://tracker.example/a','javascript:alert(1)','OPENAI_API_KEY'])assert(!designSchema.safeParse({...d,brandNotes:value}).success);
 for(const file of ['../x','app/page.tsx','.env','lib/a.ts','customers/other/site/customer.config.json','public/customers/demo/images/../../secret','public/customers/demo/secrets.json','public/customers/demo/a.js','public/customers/demo/images/tracker.svg'])assert(!customerBuildPath('demo',file),file);
 for(const file of ['customers/demo/site/customer.config.json','customers/demo/delivery/image-inventory.json','public/customers/demo/images/image-7.webp','public/customers/demo/logo-dark.svg'])assert(customerBuildPath('demo',file),file);

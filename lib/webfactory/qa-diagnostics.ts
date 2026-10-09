@@ -9,6 +9,7 @@ export const qaMessages = {
   'browser-timeout': 'The browser command exceeded its verification deadline.',
   'browser-check': 'The browser could not complete the verification command.',
   'mobile-overflow': 'Horizontal overflow detected at the recorded viewport width.',
+  'logo-home-link': 'A header or footer logo does not link to this customer homepage.',
   'images': 'One or more page images did not finish loading successfully.',
   'tenant-isolation': 'A navigation link points outside the selected customer route.',
   'page-error': 'The page displayed a runtime error.',

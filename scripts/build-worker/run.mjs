@@ -38,6 +38,8 @@ async function pages(base,job,site){
  return verifyProtectedPreview({previewUrl:base.url+'/'+job.customerSlug,deploymentReference:base.reference,resultSha:base.sha,slug:job.customerSlug,business:site.business.name},{apiGet:vercelGet,privateValues:[job.id,job.requestId,job.briefId]});
 }
 async function execute(job,lease){
+ if(!Number.isSafeInteger(job.runAttempt??0)||(job.runAttempt??0)<0||(job.runAttempt??0)>3)throw Error('SCOPE_REJECTED');
+ const jobDirectory=path.join(root,job.id+(job.runAttempt?'-attempt-'+job.runAttempt:''));
  let cancelled=false,lost=false;const heartbeat=async()=>{try{cancelled=(await api({action:'heartbeat',jobId:job.id,lease})).cancelRequested;}catch{lost=true;}};
  const timer=setInterval(()=>void heartbeat(),20000);
  const check=async()=>{await heartbeat();if(cancelled || lost)throw Error('WORKER_INTERRUPTED');};
@@ -47,9 +49,11 @@ async function execute(job,lease){
  try{return await runPipeline(job,{
   check,progress,
   async resumePreview(){
-   const dir=path.join(root,job.id),c=await loadCheckpoint(dir,job),saved=job.previewRecovery;
+   const dir=jobDirectory,c=await loadCheckpoint(dir,job),saved=job.previewRecovery;
    if(!saved||saved.artifactSha!==c.artifactSha||!saved.qa||Object.values(saved.qa).some(v=>v!==true)||await command('git',['branch','--show-current'],dir)!==branch||await command('git',['rev-parse','HEAD'],dir)!==saved.deployment.sha||await command('git',['status','--porcelain'],dir))throw Error('SCOPE_REJECTED');
-   if(await command('git',['rev-parse','HEAD^'],dir)!==c.baseline)throw Error('SCOPE_REJECTED');
+   const parent=job.previousResultSha?'HEAD^1^':'HEAD^';
+   if(await command('git',['rev-parse',parent],dir)!==c.baseline)throw Error('SCOPE_REJECTED');
+   if(job.previousResultSha&&await command('git',['rev-parse','HEAD^2'],dir)!==job.previousResultSha)throw Error('SCOPE_REJECTED');
    const changed=(await command('git',['diff','--name-only',c.baseline,'HEAD'],dir)).split('\n').filter(Boolean).sort();
    validateScope(job.customerSlug,changed);if(JSON.stringify(changed)!==JSON.stringify([...c.files].sort()))throw Error('SCOPE_REJECTED');
    const site=JSON.parse(await readFile(path.join(dir,`customers/${job.customerSlug}/site/customer.config.json`),'utf8'));
@@ -61,7 +65,7 @@ async function execute(job,lease){
    await api({action:'qa_checkpoint',jobId:job.id,lease,artifactSha:c.artifactSha,baselineSha:repo.baseline,provider});
   },
   async resume(){
-   const dir=path.join(root,job.id),c=await loadCheckpoint(dir,job);
+   const dir=jobDirectory,c=await loadCheckpoint(dir,job);
    checkpointMetadata=job.checkpoint;
    if(await command('git',['branch','--show-current'],dir)!==branch||await command('git',['rev-parse','HEAD'],dir)!==c.baseline)throw Error('SCOPE_REJECTED');
    validateScope(job.customerSlug,c.files);
@@ -70,7 +74,7 @@ async function execute(job,lease){
   },
   async checkout(){
    if(!/^[a-f0-9-]{36}$/.test(job.id) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(job.customerSlug))throw Error('SCOPE_REJECTED');
-   const dir=path.join(root,job.id);if(path.dirname(dir)!==root)throw Error('SCOPE_REJECTED');
+   const dir=jobDirectory;if(path.dirname(dir)!==root)throw Error('SCOPE_REJECTED');
    await command('git',['clone','--no-checkout','https://github.com/naserwp/red-spectrum-website-factory.git',dir],root,gitEnv);
    await command('git',['checkout','-b',branch,env.WEBFACTORY_BUILD_BASE_SHA],dir);
    const baseline=(await command('git',['rev-parse','HEAD'],dir)).trim();if(baseline!==env.WEBFACTORY_BUILD_BASE_SHA)throw Error('SCOPE_REJECTED');
@@ -101,6 +105,13 @@ async function execute(job,lease){
    await loadCheckpoint(repo.dir,{...job,checkpoint:checkpointMetadata});
    await command('git',['add','--',...files],repo.dir);
    await command('git',['-c','user.name=RS WebFactory Build Worker','-c','user.email=build-worker@users.noreply.github.com','commit','-m',`Build preview for ${job.customerSlug}`],repo.dir);
+   if(job.previousResultSha){
+    if(!/^[a-f0-9]{40}$/.test(job.previousResultSha))throw Error('SCOPE_REJECTED');
+    await command('git',['fetch','origin','refs/heads/'+branch],repo.dir,gitEnv);
+    if(await command('git',['rev-parse','FETCH_HEAD'],repo.dir)!==job.previousResultSha)throw Error('SCOPE_REJECTED');
+    // Retain the prior deployment in ancestry without accepting its old tree.
+    await command('git',['-c','user.name=RS WebFactory Build Worker','-c','user.email=build-worker@users.noreply.github.com','merge','-s','ours','--no-ff','--no-edit',job.previousResultSha],repo.dir);
+   }
    const sha=await command('git',['rev-parse','HEAD'],repo.dir);await check();
    await command('git',['push','origin',`HEAD:refs/heads/${branch}`],repo.dir,gitEnv);
    // Reuse existing Git integration; never issue a second deployment or promote.

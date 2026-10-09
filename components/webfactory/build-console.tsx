@@ -17,12 +17,12 @@ export function BuildConsole({requestId,enabled}:{requestId:string;enabled:boole
   },[endpoint]);
   useEffect(()=>{const initial=setTimeout(()=>void refresh(),0);const timer=setInterval(()=>void refresh(),10000);return()=>{clearTimeout(initial);clearInterval(timer);};},[refresh]);
   const active=jobs.some(job=>!["failed","cancelled","ready_for_review","changes_requested"].includes(job.status));
-  async function run(jobId?:string,retryQa=false){
+  async function run(jobId?:string,retryQa=false,restart=false){
     if(pending || !confirmed)return;
     setPending(true);setError("");
     submission.current??=crypto.randomUUID();
     try{
-      const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(jobId?{action:retryQa?"retry_qa":"cancel",jobId,confirmed:true}:{action:"create",submissionId:submission.current,confirmed:true,requestedChanges:changes})});
+      const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(jobId?{action:restart?"restart":retryQa?"retry_qa":"cancel",jobId,confirmed:true}:{action:"create",submissionId:submission.current,confirmed:true,requestedChanges:changes})});
       const data=await response.json() as Result;
       if(!response.ok){setError(data.error || "Build request failed.");return;}
       setJobs(data.jobs || []);setEvents(data.events || []);submission.current=null;setConfirmed(false);
@@ -52,6 +52,7 @@ export function BuildConsole({requestId,enabled}:{requestId:string;enabled:boole
       {job.status==="ready_for_review" && job.preview_url && <><a className="wf-button" href={job.preview_url} target="_blank" rel="noreferrer">Open Preview</a><p>Preview protection: <strong>{job.qa_result?.preview_access?.preview_public_access==='protected'?'Protected':'Public'}</strong></p>{job.qa_result?.preview_access?.preview_public_access==='protected'&&<p>Verified for internal review. Sign in with your authorized Vercel account to open this preview. This does not make the website publicly available.</p>}</>}
       {job.status==="ready_for_review" && <p>Ready for admin review. <a href={`/admin/requests/${requestId}#preview`}>Review / Mark Preview Ready</a>, or enter requested changes above. Customer approval is not automatic.</p>}
       {!["failed","cancelled","ready_for_review","changes_requested"].includes(job.status)&&<button className="wf-button secondary" disabled={!confirmed || pending} onClick={()=>void run(job.id)}>Cancel Build</button>}
+      {['failed','cancelled','ready_for_review'].includes(job.status)&&<><p>Rebuild keeps this job ID and its original approved scope, preserves prior evidence, and requires fresh QA and preview verification. Clear the change-scope field to use it.</p><button className="wf-button secondary" disabled={!enabled||!confirmed||pending||active||Boolean(changes.trim())} onClick={()=>void run(job.id,false,true)}>Rebuild same job</button></>}
       <details><summary>View safe logs</summary><ul>{events.filter(e=>e.job_id===job.id).map((e,i)=><li key={i}>{new Date(e.created_at).toLocaleString()} · {e.code.replaceAll("_"," ")}</li>)}</ul></details>
     </article>)}</div>
     <p>Generation → isolated changes → lint/build → tenant & mobile QA → isolated preview → identity verification → ready for admin review. Only recorded results count as completed. Preview Ready and Customer Approved remain separate admin decisions.</p>

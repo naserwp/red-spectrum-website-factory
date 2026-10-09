@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { isAdmin, sameOrigin, rateLimit } from "@/lib/webfactory/server";
 import { chatSession } from "@/lib/webfactory/chat-store";
-import { BuildJobError, createBuildJob, listBuildJobs, cancelBuildJob, retryBuildQa } from "@/lib/webfactory/build-jobs";
+import { BuildJobError, createBuildJob, listBuildJobs, cancelBuildJob, retryBuildQa, restartBuildJob } from "@/lib/webfactory/build-jobs";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 const input=z.discriminatedUnion("action",[
+  z.object({action:z.literal("restart"),confirmed:z.literal(true),jobId:z.string().uuid()}).strict(),
   z.object({action:z.literal("create"),confirmed:z.literal(true),submissionId:z.string().uuid(),requestedChanges:z.string().max(6000).default("")}).strict(),
   z.object({action:z.literal("cancel"),confirmed:z.literal(true),jobId:z.string().uuid()}).strict(),
   z.object({action:z.literal("retry_qa"),confirmed:z.literal(true),jobId:z.string().uuid()}).strict(),
@@ -31,6 +32,7 @@ export async function POST(request:Request,{params}:{params:Promise<{id:string}>
       if(!await rateLimit("ai","build-job:"+id,12))return json({error:"Build request limit reached. Retry later."},429);
       await createBuildJob(id,data.submissionId,actor,data.requestedChanges);
     }
+    else if(data.action==='restart')await restartBuildJob(id,data.jobId,actor);
     else if(data.action==='retry_qa')await retryBuildQa(id,data.jobId,actor);
     else await cancelBuildJob(id,data.jobId,actor);
     return json(await listBuildJobs(id));

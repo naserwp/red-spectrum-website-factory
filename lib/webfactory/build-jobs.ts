@@ -9,6 +9,27 @@ import { verifiedBuildEvidence } from "./build-evidence";
 import { configuredBuildExecutor } from "./build-executor";
 
 export class BuildJobError extends Error {}
+export async function restartBuildJob(requestId:string,jobId:string,actor:string){
+ if(!configuredBuildExecutor())throw new BuildJobError('Controlled worker is not configured.');
+ const c=await database().connect();
+ try{
+  await c.query('BEGIN');
+  const r=(await c.query('SELECT customer_slug FROM webfactory.requests WHERE id=$1 FOR UPDATE',[requestId])).rows[0];
+  const w=(await c.query('SELECT stage,active_brief_id FROM webfactory.build_workflows WHERE request_id=$1 FOR UPDATE',[requestId])).rows[0];
+  const j=(await c.query('SELECT * FROM webfactory.website_build_jobs WHERE id=$1 AND request_id=$2 FOR UPDATE',[jobId,requestId])).rows[0];
+  if(!j||j.executor!=='controlled-worker-v1'||!['failed','cancelled','ready_for_review'].includes(j.status))throw new BuildJobError('Only a finished controlled build can be restarted.');
+  if(r?.customer_slug!==j.customer_slug||w?.active_brief_id!==j.brief_id||!['build_approved','preview_ready'].includes(w?.stage))throw new BuildJobError('Saved slug or approval changed. Restart refused.');
+  const attempt=Number(j.qa_result?.runAttempt||0)+1;
+  if(!Number.isSafeInteger(attempt)||attempt>3)throw new BuildJobError('Restart limit reached.');
+  if((await c.query("SELECT id FROM webfactory.website_build_jobs WHERE request_id=$1 AND status NOT IN ('failed','cancelled','ready_for_review','changes_requested')",[requestId])).rowCount)throw new BuildJobError('Another build is active.');
+  const previousRuns=[...(j.qa_result?.previousRuns||[]),{status:j.status,error:j.error_category,qa:j.qa_result?.attempts||[],resultSha:j.result_sha,baselineSha:j.baseline_sha,previewUrl:j.preview_url,deploymentReference:j.deployment_reference,finishedAt:j.finished_at}];
+  const previousResultSha=j.result_sha||j.qa_result?.previousResultSha||null;
+  await c.query("UPDATE webfactory.website_build_jobs SET status='queued',progress_code='restart_approved',error_category=NULL,started_at=NULL,finished_at=NULL,worker_id=NULL,lease_hash=NULL,lease_expires_at=NULL,cancel_requested=false,baseline_sha=NULL,result_sha=NULL,build_branch=NULL,preview_url=NULL,deployment_reference=NULL,changed_files='[]',provider_metadata='{}',qa_result=$2::jsonb WHERE id=$1",[jobId,JSON.stringify({runAttempt:attempt,previousRuns,previousResultSha})]);
+  await c.query("UPDATE webfactory.build_workflows SET stage='build_approved',preview_url=NULL,updated_at=now() WHERE request_id=$1",[requestId]);
+  await c.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'queued','same_job_restart_approved',$2)",[jobId,actor]);
+  await c.query('COMMIT');
+ }catch(e){await c.query('ROLLBACK');throw e;}finally{c.release();}
+}
 export async function listBuildJobs(requestId: string) {
   // Explicit projection: private brief/instructions never included in polling responses.
   const jobs = (await database().query("SELECT id,customer_slug,status,executor,created_at,started_at,finished_at,lease_expires_at,result_sha,deployment_reference,error_category,progress_code,changed_files,qa_result,preview_url FROM webfactory.website_build_jobs WHERE request_id=$1 ORDER BY created_at DESC LIMIT 20",[requestId])).rows;
