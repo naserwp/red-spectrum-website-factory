@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {workerOptions,pollDelay} from './build-worker/options.mjs';
+import {generationModel} from './build-worker/model.mjs';
+import {providerError} from './build-worker/provider-error.mjs';
+assert.equal((await providerError(Response.json({error:{code:'credit_balance_exhausted',message:'private response'}}))).message,'PROVIDER_QUOTA_EXHAUSTED');
+assert.equal((await providerError(Response.json({error:{code:'rate_limit_exceeded'}}))).message,'PROVIDER_FAILED');
+assert.equal((await providerError(new Response('private invalid response'))).message,'PROVIDER_FAILED');
+assert.deepEqual(generationModel({WEBFACTORY_AI_MODEL:'gpt-6-astra'},'gpt-4.1'),{model:'gpt-6-astra',reasoning:{effort:'high'}});
+assert.deepEqual(generationModel({},'gpt-4.1'),{model:'gpt-4.1'});
+assert.throws(()=>generationModel({WEBFACTORY_AI_REASONING_EFFORT:'invalid'},'gpt-6-astra'));
+const id='f0565b20-d1de-47f0-b673-cd1b1bf006dd';
+assert.equal(workerOptions(['--once','--job-id',id]).jobId,id);
+for(const args of [['--job-id'],['--job-id',id],['--once','--job-id','invalid'],['--once','--job-id',id,'--job-id',id],['--jobid',id]])assert.throws(()=>workerOptions(args));
+assert.equal(workerOptions([]).jobId,undefined);
+assert.equal(pollDelay(1,()=>1),2000);
+assert.equal(pollDelay(99,()=>1),60000);
+assert(pollDelay(3,()=>0)<pollDelay(3,()=>1));
+console.log('PASS: exact job targeting, fail-closed options, bounded exponential polling backoff.');

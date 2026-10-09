@@ -27,6 +27,13 @@ async function cloneReadyCandidate(templateId,{id=randomUUID(),requestId=req,cus
 }
 try{
  await db.query(`CREATE SCHEMA ${schema}`);
+ await db.query(rewrite(readFileSync('db/migrations/0013_webfactory_worker_health.sql','utf8')));
+ await worker.workerOperation({action:'pulse',workerId:'health-test'});
+ await worker.workerOperation({action:'pulse',workerId:'health-test'});
+ assert.equal(Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.build_workers')).rows[0].count),1);
+ assert.equal((await wrapped.query("SELECT last_seen_at>now()-interval '90 seconds' AS online FROM webfactory.build_workers")).rows[0].online,true);
+ await wrapped.query("UPDATE webfactory.build_workers SET last_seen_at=now()-interval '91 seconds'");
+ assert.equal((await wrapped.query("SELECT last_seen_at>now()-interval '90 seconds' AS online FROM webfactory.build_workers")).rows[0].online,false);
  for(const table of ['requests','ai_briefs','build_workflows','request_actions'])await db.query(`CREATE TABLE ${schema}.${table} (LIKE webfactory.${table} INCLUDING ALL)`);
  await db.query(rewrite(readFileSync('db/migrations/0008_webfactory_build_jobs.sql','utf8')));await db.query(rewrite(readFileSync('db/migrations/0009_webfactory_build_worker.sql','utf8')));
  await wrapped.query("INSERT INTO webfactory.requests(id,submission_id,access_hash,name,business,email,industry,details,customer_slug) VALUES($1,$2,'test','Synthetic','Synthetic Worker','qa@example.invalid','Test','Test',$3)",[req,randomUUID(),slug]);
@@ -87,7 +94,7 @@ try{
  await worker.workerOperation({action:'fail',...q,code:'QA_FAILED',diagnostics:[result]});
  const recorded=(await wrapped.query('SELECT qa_result FROM webfactory.website_build_jobs WHERE id=$1',[q.jobId])).rows[0].qa_result;
  assert.equal(recorded.attempts[0].results[0].check_name,'mobile-overflow');assert.equal(recorded.checkpoint.artifactSha,'c'.repeat(64));
- const jobs=load('lib/webfactory/build-jobs.ts',{'node:crypto':{randomUUID},'./server':{database:()=>wrapped},'./brief-schema':{},'./slug-rules':{},'@/lib/customers/registry':{},'./build-receipts':{},'./build-executor':executor});
+ const jobs=load('lib/webfactory/build-jobs.ts',{'node:crypto':{randomUUID},'./server':{database:()=>wrapped},'./brief-schema':{},'./slug-rules':{},'@/lib/customers/registry':{},'./build-receipts':{},'./build-evidence':evidence,'./build-executor':executor});
  await assert.rejects(()=>jobs.retryBuildQa(randomUUID(),q.jobId,'test'));
  const retries=await Promise.allSettled([jobs.retryBuildQa(req,q.jobId,'test'),jobs.retryBuildQa(req,q.jobId,'test')]);
  assert.equal(retries.filter(r=>r.status==='fulfilled').length,1);
@@ -113,6 +120,40 @@ try{
  await assert.rejects(()=>worker.workerOperation({...recoveryComplete,resultSha:'e'.repeat(40)}));
  await assert.rejects(()=>worker.workerOperation({...recoveryComplete,deploymentReference:'dpl_other'}));
  assert.equal((await worker.workerOperation(recoveryComplete)).status,'ready_for_review');
+ const beforeRestart=Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.website_build_jobs')).rows[0].count);
+ const restarts=await Promise.allSettled([jobs.restartBuildJob(req,recoveryId,'test'),jobs.restartBuildJob(req,recoveryId,'test')]);
+ assert.equal(restarts.filter(r=>r.status==='fulfilled').length,1);
+ const restarted=(await wrapped.query('SELECT * FROM webfactory.website_build_jobs WHERE id=$1',[recoveryId])).rows[0];
+ assert.equal(restarted.status,'queued');assert.equal(restarted.preview_url,null);assert.equal(restarted.result_sha,null);
+ assert.equal(restarted.qa_result.runAttempt,1);assert.equal(restarted.qa_result.previousResultSha,'b'.repeat(40));assert.equal(restarted.qa_result.previousRuns.length,1);
+ assert.equal(Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.website_build_jobs')).rows[0].count),beforeRestart);
+ const restartClaim=await worker.workerOperation({action:'claim',workerId:'restart-test',jobId:recoveryId});
+ assert.equal(restartClaim.job.runAttempt,1);assert.equal(restartClaim.job.previousResultSha,'b'.repeat(40));
+ await worker.workerOperation({action:'fail',jobId:recoveryId,lease:restartClaim.lease,code:'PROVIDER_FAILED'});
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='customer_approved' WHERE request_id=$1",[req]);
+ await assert.rejects(()=>jobs.restartBuildJob(req,recoveryId,'test'));
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='build_approved' WHERE request_id=$1",[req]);
+ await wrapped.query("UPDATE webfactory.website_build_jobs SET qa_result=qa_result||'{\"runAttempt\":3}'::jsonb WHERE id=$1",[recoveryId]);
+ await assert.rejects(()=>jobs.restartBuildJob(req,recoveryId,'test'),/limit/);
+ const artifactInput={artifactAttempt:2,checkpoint:{artifactSha:'f'.repeat(64),baselineSha:'a'.repeat(40),provider:{name:'openai',model:'synthetic'}}};
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),/matching/);
+ await wrapped.query('UPDATE webfactory.website_build_jobs SET qa_result=qa_result||$2::jsonb WHERE id=$1',[recoveryId,JSON.stringify({previousRuns:[{status:'ready_for_review'},{status:'failed',error:'BUILD_FAILED'},{status:'failed',error:'BUILD_FAILED'}]})]);
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',{...artifactInput,artifactAttempt:3}),/matching/);
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='customer_approved' WHERE request_id=$1",[req]);
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),/approval/);
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='build_approved' WHERE request_id=$1",[req]);
+ const recoveries=await Promise.allSettled([jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput)]);
+ assert.equal(recoveries.filter(r=>r.status==='fulfilled').length,1);
+ const artifactClaim=await worker.workerOperation({action:'claim',workerId:'artifact-recovery',jobId:recoveryId});
+ assert.equal(artifactClaim.job.runAttempt,3);assert.equal(artifactClaim.job.artifactAttempt,2);assert.equal(artifactClaim.job.resumeQa,true);
+ assert.deepEqual(artifactClaim.job.checkpoint,artifactInput.checkpoint);
+ assert.equal(Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.website_build_jobs')).rows[0].count),beforeRestart);
+ await worker.workerOperation({action:'progress',jobId:recoveryId,lease:artifactClaim.lease,stage:'qa_running'});
+ await worker.workerOperation({action:'fail',jobId:recoveryId,lease:artifactClaim.lease,code:'QA_FAILED',diagnostics:[result]});
+ const recoveredQa=(await wrapped.query('SELECT qa_result FROM webfactory.website_build_jobs WHERE id=$1',[recoveryId])).rows[0].qa_result;
+ assert.equal(recoveredQa.previousRuns.length,3);assert.equal(recoveredQa.artifactRecoveryHistory[0].error,'PROVIDER_FAILED');
+ await wrapped.query('UPDATE webfactory.website_build_jobs SET qa_result=qa_result||$2::jsonb WHERE id=$1',[recoveryId,JSON.stringify({artifactRecoveryCount:3})]);
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),/limit/);
  for(const path of ['.env','app/page.tsx',`public/customers/other/hero.svg`,`customers/${slug}/../other/config.json`])assert.equal(contract.allowedBuildPath(slug,path),false);
  for(const boundary of ['checkout','generate','apply','validate','build','qa','deploy','verify','complete']){
   let failed=false,finished=false;const operations={check:async()=>{},progress:async()=>{},checkout:async()=>({}),generate:async()=>({provider:{}}),apply:async()=>({}),validate:async()=>[],build:async()=>{},qa:async()=>({}),deploy:async()=>({}),verify:async()=>{},complete:async()=>{finished=true;},fail:async()=>{failed=true;}};

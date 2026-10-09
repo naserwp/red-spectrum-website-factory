@@ -10,6 +10,9 @@ const {verifiedBuildEvidence}=load('lib/webfactory/build-evidence.ts',{'./worker
 const context={requestId:randomUUID(),briefId:randomUUID(),slug:'synthetic'},id=randomUUID();
 const job={id,request_id:context.requestId,customer_slug:context.slug,brief_id:context.briefId,status:'ready_for_review',baseline_sha:'a'.repeat(40),result_sha:'b'.repeat(40),build_branch:`webfactory/build/${id}-synthetic`,changed_files:['customers/manifest.json'],preview_url:'https://synthetic-preview.vercel.app/synthetic',deployment_reference:'dpl_synthetic',provider_metadata:{name:'openai',model:'synthetic'},qa_result:{...Object.fromEntries(executor.requiredBuildChecks.map(k=>[k,true])),preview_access:{preview_deployment_exists:true,preview_authenticated_access_verified:true,preview_customer_identity_verified:true,preview_public_access:'protected',pages:['/','/services','/about','/contact','/privacy']}}};
 assert.equal(verifiedBuildEvidence(job,context).protection,'protected');
+const withPages=pages=>({...job,qa_result:{...job.qa_result,preview_access:{...job.qa_result.preview_access,pages}}});
+assert(verifiedBuildEvidence(withPages([...job.qa_result.preview_access.pages,'/faq']),context));
+for(const pages of [['/','/faq'],[...job.qa_result.preview_access.pages,'/other'],[...job.qa_result.preview_access.pages,'/faq','/faq']])assert.equal(verifiedBuildEvidence(withPages(pages),context),null);
 for(const status of ['failed','qa_running','preview_verifying','queued'])assert.equal(verifiedBuildEvidence({...job,status},context),null);
 for(const flag of executor.requiredBuildChecks)assert.equal(verifiedBuildEvidence({...job,qa_result:{...job.qa_result,[flag]:false}},context),null);
 for(const flag of ['preview_deployment_exists','preview_authenticated_access_verified','preview_customer_identity_verified'])assert.equal(verifiedBuildEvidence({...job,qa_result:{...job.qa_result,preview_access:{...job.qa_result.preview_access,[flag]:false}}},context),null);

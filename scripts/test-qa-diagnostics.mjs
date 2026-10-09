@@ -9,7 +9,8 @@ fails('customer-route',()=>checkHtml(recorder(),html,404,job,site,''));
 fails('customer-identity',()=>checkHtml(recorder(),html.replace('Synthetic','Other'),200,job,site,''));
 fails('privacy',()=>checkHtml(recorder(),html+'private-request',200,job,site,''));
 fails('metadata',()=>checkHtml(recorder(),html.replace('noindex','index'),200,job,site,''));
-const good={overflow:false,images:true,leak:false,error:false};
+const good={logos:true,overflow:false,images:true,leak:false,error:false};
+fails('logo-home-link',()=>checkBrowser(recorder(),{...good,logos:false},'',430));
 fails('tenant-isolation',()=>checkBrowser(recorder(),{...good,leak:true},'',320));
 fails('mobile-overflow',()=>checkBrowser(recorder(),{...good,overflow:true},'/contact',320));
 for(const [code,name] of [[undefined,'browser-launch'],['COMMAND_TIMEOUT','browser-timeout']]){

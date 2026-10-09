@@ -8,7 +8,8 @@ export function verifiedBuildEvidence(job:Record<string,unknown>,context:{reques
   if(job.status!=='ready_for_review'||job.request_id!==context.requestId||job.customer_slug!==context.slug||job.brief_id!==context.briefId) return null;
   const qa=job.qa_result as Record<string,unknown>,access=qa?.preview_access as Record<string,unknown>;
   if(!requiredBuildChecks.every(k=>qa?.[k]===true)||access?.preview_deployment_exists!==true||access.preview_authenticated_access_verified!==true||access.preview_customer_identity_verified!==true||!['protected','public'].includes(String(access.preview_public_access)))return null;
-  if(JSON.stringify(access.pages)!==JSON.stringify(['/','/services','/about','/contact','/privacy']))return null;
+  const pages=access.pages;
+  if(!Array.isArray(pages)||!['/','/services','/about','/contact','/privacy'].every(page=>pages.includes(page))||pages.some(page=>!['/','/services','/about','/contact','/privacy','/faq'].includes(page))||new Set(pages).size!==pages.length)return null;
   const attempts=qa.attempts as {results:{status:string}[]}[]|undefined;
   if(attempts?.length&&(!attempts.at(-1)?.results.length||attempts.at(-1)?.results.some(r=>r.status!=='passed')))return null;
   const parsed=workerInput.safeParse({action:'complete',jobId:job.id,lease:'0'.repeat(64),baselineSha:job.baseline_sha,resultSha:job.result_sha,branch:job.build_branch,changedFiles:job.changed_files,previewUrl:job.preview_url,deploymentReference:job.deployment_reference,qa:Object.fromEntries(requiredBuildChecks.map(k=>[k,qa[k]])),provider:job.provider_metadata});

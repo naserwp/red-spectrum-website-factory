@@ -1,6 +1,7 @@
 import {NextRequest,NextResponse} from 'next/server';
 import {customerDomainForHost} from '@/lib/customers/domains';
 import {validUmgRoute} from '@/lib/customers/umg-services';
+import customerManifest from '@/customers/manifest.json';
 // Routing only. Authentication stays in route handlers.
 export function proxy(request:NextRequest){
   const hosts=[request.headers.get('x-forwarded-host'),request.headers.get('host'),request.nextUrl.hostname]
@@ -37,6 +38,9 @@ export function proxy(request:NextRequest){
  const parts=request.nextUrl.pathname.split('/').filter(Boolean);
  if(!parts.length||['api','admin','_next','customers','designs','request','processing','privacy','templates','brief','standards','checkout'].includes(parts[0]))return NextResponse.next();
  const broom=['broom-home-enterprises','broom-home-enterprises-llc'].includes(parts[0]);
+ // Registered tenant routes already belong to this deployment. Broom retains
+ // its reviewed worker-preview override; new worker tenants use the proxy.
+ if(!broom&&customerManifest.customers.some(customer=>customer.slug===parts[0]))return NextResponse.next();
  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(parts[0])||(!broom&&parts.length>2))return NextResponse.next();
  const url=request.nextUrl.clone();url.pathname='/api/branded-preview/'+parts.join('/');return NextResponse.rewrite(url);
 }

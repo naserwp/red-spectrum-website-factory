@@ -18,7 +18,7 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string;
   const {slug,path=[]}=await params;const url=new URL(request.url);
   if(url.hostname!=='preview.redspectrum.ai'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||path.some(p=>p==='..'||p==='.'||/[\\%/]/.test(p)))return new Response('Not found',{status:404});
   const broom=slug===broomSlug||slug==='broom-home-enterprises';
-  const requested=path.join('/');const page=broom?validBroomRoute(path):['','services','about','contact','privacy','thank-you'].includes(requested);
+  const requested=path.join('/');const page=broom?validBroomRoute(path):['','services','about','contact','privacy','faq','thank-you'].includes(requested);
   if(broom&&slug!==broomSlug){
    if(!page)return new Response('Not found',{status:404});
    return new Response(null,{status:308,headers:{Location:`/${broomSlug}${requested?'/'+requested:''}`,'Cache-Control':'no-store'}});
@@ -48,7 +48,7 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string;
   html=html.replace(/(?:\?|&amp;|&|\\u0026)dpl=dpl_[a-zA-Z0-9]+/g,'');
   // The V3 site is server-rendered: native links and <details> need no client
   // runtime. Preserve structured-data scripts while omitting hydration bundles.
-  if(html.includes('unique-home-v3')||broom)html=html.replace(/<script\b(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/g,script=>{
+  if(html.includes('unique-home-v3')||html.includes('generated-site')||broom)html=html.replace(/<script\b(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/g,script=>{
    // Only the fixed, tenant-owned progressive enhancement file may execute.
    // Do not preserve arbitrary script attributes, inline bodies or other URLs.
    const source=script.match(/\bsrc="([^"]+)"/)?.[1];

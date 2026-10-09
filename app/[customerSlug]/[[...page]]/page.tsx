@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 
 import { CustomerWebsite } from "@/components/customer-website";
+import { GeneratedSite } from "@/components/generated-site";
 import { UniqueHomeB2B } from "@/components/unique-home-b2b";
 import { getCustomerSite, getCustomerSites } from "@/lib/customers/registry";
 import { customerPages, type CustomerPage } from "@/lib/customers/schema";
@@ -30,7 +31,7 @@ type RouteParams = { customerSlug: string; page?: string[] };
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getCustomerSites().flatMap((customer) => customerPages.map((page): RouteParams => ({ customerSlug: customer.slug, page: page === "home" ? undefined : [page] }))).concat([
+  return getCustomerSites().flatMap((customer) => [...customerPages, ...(customer.design?.version === '2.0' && customer.design.faq ? ['faq'] : [])].map((page): RouteParams => ({ customerSlug: customer.slug, page: page === "home" ? undefined : [page] }))).concat([
     { customerSlug: "360-vitality-fitness", page: ["blog"] },
     { customerSlug: "360-vitality-fitness", page: ["online-fitness-coaching"] },
     { customerSlug: "360-vitality-fitness", page: ["personal-training"] },
@@ -77,15 +78,16 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
     };
   }
   const page = (segments?.[0] ?? "home") as CustomerPage;
+  const faq = site.design?.version === '2.0' && Boolean(site.design.faq) && segments?.length === 1 && segments[0] === 'faq';
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
   const requestHeaders = await headers();
   const domain = customerDomainForHost(requestHeaders.get("x-forwarded-host") ?? "") ?? customerDomainForHost(requestHeaders.get("host") ?? "");
   const production = domain?.slug === site.slug;
   const canonical = production ? `https://${domain.canonicalHost}${segments?.length ? `/${segments.join("/")}` : ""}` : `https://preview.redspectrum.ai/${site.slug}${segments?.length ? `/${segments.join("/")}` : ""}`;
-  if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) return {};
+  if ((!customerPages.includes(page) && !vitalityRoute && !faq) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) return {};
   return {
     metadataBase: new URL(production ? `https://${domain.canonicalHost}` : "https://preview.redspectrum.ai"),
-    title: { absolute: page === "home" ? site.seo.title : `${site.pages[page]?.headline ?? (segments?.[0] === "blog" && segments[1] ? getArticle(segments[1])?.title : page.replaceAll("-", " "))} | ${site.business.name}` },
+    title: { absolute: page === "home" ? site.seo.title : `${faq ? 'Frequently asked questions' : site.pages[page]?.headline ?? (segments?.[0] === "blog" && segments[1] ? getArticle(segments[1])?.title : page.replaceAll("-", " "))} | ${site.business.name}` },
     description: site.seo.description,
     alternates: { canonical },
     icons: site.branding.faviconPath ? { icon: site.branding.faviconPath, shortcut: site.branding.faviconPath } : undefined,
@@ -111,8 +113,9 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
   }
   if (customerSlug === "unique-home-enterprise" && segments?.length === 1 && segments[0] === "thank-you") return <UniqueHomeB2B site={site} page="thank-you" />;
   const page = (segments?.[0] ?? "home") as CustomerPage;
+  const faq = site.design?.version === '2.0' && Boolean(site.design.faq) && segments?.length === 1 && segments[0] === 'faq';
   const vitalityRoute = site.slug === "360-vitality-fitness" && validVitalityRoute(segments);
-  if ((!customerPages.includes(page) && !vitalityRoute) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) notFound();
+  if ((!customerPages.includes(page) && !vitalityRoute && !faq) || ((segments?.length ?? 0) > 1 && !vitalityRoute)) notFound();
 
   const requestHeaders = await headers();
   const domain = customerDomainForHost(requestHeaders.get("x-forwarded-host") ?? "") ?? customerDomainForHost(requestHeaders.get("host") ?? "");
@@ -129,5 +132,5 @@ export default async function CustomerPageRoute({ params }: { params: Promise<Ro
     ...(site.contact.serviceAreas.status === "verified" ? { areaServed: site.contact.serviceAreas.value } : {}),
   };
 
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replaceAll("<", "\\u003c") }} /><CustomerWebsite site={site} page={page} route={segments ?? []} /></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replaceAll("<", "\\u003c") }} />{faq ? <GeneratedSite site={site} page="services" faq /> : <CustomerWebsite site={site} page={page} route={segments ?? []} />}</>;
 }
