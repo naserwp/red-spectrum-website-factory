@@ -20,6 +20,6 @@ export const broomFaqs = [
   ["Can I discuss buying and selling together?", "Yes. Explain both sides of your planned move so the team can understand your priorities. Representation, scope and timing are confirmed directly."],
   ["Can I bring an early-stage building idea?", "Yes. A general description of the intended space and use is a useful starting point. Feasibility, permits, design and construction arrangements require separate review by the appropriate professionals."],
   ["What does holding mean?", "Holding means retaining property over time rather than planning an immediate sale. A conversation can help clarify ownership goals and practical questions. Property values and returns are not guaranteed."],
-  ["Can I book an appointment or use live chat here?", "Please call or email to arrange a conversation. This preview has no active appointment booking or live chat. A website visit does not reserve a time."],
+  ["Can I book an appointment or use live chat here?", "Please call or email to arrange a conversation. You can use Broom Home Guide for general questions, but it cannot book or confirm appointments. A website visit does not reserve a time."],
   ["What information should I avoid sending?", "Keep the first inquiry general. Do not send bank details, payment information, government identifiers or confidential financial documents. Ask the team about an appropriate process if more information is needed."],
 ] as const;

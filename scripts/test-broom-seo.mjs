@@ -19,10 +19,12 @@ const metadata = routes.map(broomSeo);
 assert.equal(new Set(metadata.map(page => page.title)).size, 11);
 assert.equal(new Set(metadata.map(page => page.description)).size, 11);
 for (const page of metadata) assert(page.title && page.description.length > 60);
-for (const host of ['preview.redspectrum.ai', 'localhost:3232', 'www.broomhome.biz', 'evil.invalid', 'uniquehomeenterprise.com']) {
+for (const host of ['preview.redspectrum.ai', 'localhost:3232', 'evil.invalid', 'uniquehomeenterprise.com']) {
   assert.deepEqual(broomLocation(host), { root: '/' + content.broomSlug, origin: 'https://preview.redspectrum.ai', production: false });
 }
-// Test future behavior in memory only: no production registration is added.
+// Prepared hosts do not change admin launch state.
+assert.equal(domains.canonicalCustomerUrl(content.broomSlug), null);
+assert.deepEqual(broomLocation('broomhome.biz'), { root: '', origin: 'https://www.broomhome.biz', production: true });
 domains.customerDomains['www.broomhome.biz'] = { slug: content.broomSlug, canonicalHost: 'www.broomhome.biz', status: 'attached' };
 assert.equal(broomLocation('www.broomhome.biz').production, false);
 domains.customerDomains['www.broomhome.biz'].status = 'verified';
