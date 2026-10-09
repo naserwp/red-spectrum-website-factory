@@ -5,6 +5,7 @@ import { briefSchema, codexBuildPrompt } from "./brief-schema";
 import { slugError } from "./slug-rules";
 import { getCustomerSite } from "@/lib/customers/registry";
 import { getLocalBuildReceipt } from "./build-receipts";
+import { verifiedBuildEvidence } from "./build-evidence";
 import { configuredBuildExecutor } from "./build-executor";
 
 export class BuildJobError extends Error {}
@@ -41,7 +42,11 @@ export async function createBuildJob(requestId:string, submissionId:string, acto
     if(!workflow || !["build_approved","preview_ready"].includes(workflow.stage))throw new BuildJobError("Build approval is required.");
     if(workflow.stage==="preview_ready" && !changes.trim())throw new BuildJobError("Approve a requested change scope before rebuilding.");
     const receipt=getLocalBuildReceipt(requestId);
-    if(getCustomerSite(request.customer_slug) && receipt?.customerSlug!==request.customer_slug)throw new BuildJobError("Slug belongs to an existing customer site. Resolve ownership before building.");
+    if(getCustomerSite(request.customer_slug) && receipt?.customerSlug!==request.customer_slug){
+      const context={requestId,slug:request.customer_slug,briefId:workflow.active_brief_id};
+      const completed=await client.query("SELECT * FROM webfactory.website_build_jobs WHERE request_id=$1 AND customer_slug=$2 AND brief_id=$3 AND status='ready_for_review' ORDER BY created_at DESC",[requestId,context.slug,context.briefId]);
+      if(!completed.rows.some(job=>verifiedBuildEvidence(job,context)))throw new BuildJobError("Slug belongs to an existing customer site. Resolve ownership before building.");
+    }
     const active=await client.query("SELECT id FROM webfactory.website_build_jobs WHERE request_id=$1 AND status NOT IN ('failed','cancelled','ready_for_review','changes_requested')",[requestId]);
     if(active.rowCount)throw new BuildJobError("A build is already active. Refresh its status.");
     const brief=(await client.query("SELECT brief FROM webfactory.ai_briefs WHERE id=$1 AND request_id=$2 AND status='generated'",[workflow.active_brief_id,requestId])).rows[0];
