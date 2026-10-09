@@ -18,3 +18,21 @@ assert.equal(verifiedBuildEvidence({...job,preview_url:'https://attacker.example
 assert.equal(verifiedBuildEvidence({...job,changed_files:['customers/other/site/customer.config.json']},context),null);
 assert.equal(verifiedBuildEvidence({...job,qa_result:{...job.qa_result,attempts:[{results:[{status:'failed'}]}]}},context),null);
 console.log('PASS: ready_for_review + protected authenticated evidence accepted; failed/QA-failed/unverified/wrong identity/request/brief/slug/URL/scope rejected. No network or DB writes.');
+
+// Exercise the real rebuild gate with isolated database responses, never live writes.
+let candidates=[],receipt=null,inserted=false;
+const client={release(){},async query(sql,params){
+ if(sql.startsWith('SELECT customer_slug'))return {rows:[{customer_slug:context.slug}]};
+ if(sql.startsWith('SELECT stage'))return {rows:[{stage:'build_approved',active_brief_id:context.briefId}]};
+ if(sql.startsWith('SELECT * FROM webfactory.website_build_jobs')){assert.deepEqual(params,[context.requestId,context.slug,context.briefId]);return {rows:candidates};}
+ if(sql.startsWith('SELECT brief'))return {rows:[{brief:{}}]};
+ if(sql.startsWith('INSERT INTO webfactory.website_build_jobs'))inserted=true;
+ return {rows:[],rowCount:0};
+}};
+const rebuild=load('lib/webfactory/build-jobs.ts',{'server-only':{},'node:crypto':{randomUUID},'./server':{database:()=>({connect:async()=>client})},'./brief-schema':{briefSchema:{safeParse:()=>({success:true,data:{}})},codexBuildPrompt:()=>''},'./slug-rules':{slugError:()=>null},'@/lib/customers/registry':{getCustomerSite:()=>({})},'./build-receipts':{getLocalBuildReceipt:()=>receipt},'./build-executor':{configuredBuildExecutor:()=>null},'./build-evidence':{verifiedBuildEvidence}});
+for(const invalid of [[],[{...job,request_id:randomUUID()}],[{...job,brief_id:randomUUID()}],[{...job,customer_slug:'another'}],[{...job,status:'failed'}],[{...job,qa_result:{}}]]){
+ candidates=invalid;inserted=false;await assert.rejects(()=>rebuild.createBuildJob(context.requestId,randomUUID(),'test','approved revision'),/Resolve ownership/);assert.equal(inserted,false);
+}
+candidates=[job];await rebuild.createBuildJob(context.requestId,randomUUID(),'test','approved revision');assert(inserted);
+candidates=[];receipt={customerSlug:context.slug};inserted=false;await rebuild.createBuildJob(context.requestId,randomUUID(),'test','approved revision');assert(inserted);
+console.log('PASS: existing verified tenant can rebuild; wrong request/brief/slug, unfinished or unverified ownership cannot; legacy receipt remains supported.');

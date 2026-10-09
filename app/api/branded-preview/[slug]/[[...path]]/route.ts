@@ -23,7 +23,7 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string;
    if(!page)return new Response('Not found',{status:404});
    return new Response(null,{status:308,headers:{Location:`/${broomSlug}${requested?'/'+requested:''}`,'Cache-Control':'no-store'}});
   }
-  const customerAsset=broom?new RegExp(`^customers/${broomSlug}/(?:images/(?:architecture|building|city|development|hero|home|interior|rental)\\.webp|(?:logo|logo-dark|logo-stacked|mark|favicon)\\.svg)$`):new RegExp(`^customers/${slug}/(?:images/image-(?:[0-9]|1[01])\\.webp|(?:logo|logo-dark|mark|favicon|hero)\\.svg)$`);
+  const customerAsset=broom?new RegExp(`^customers/${broomSlug}/(?:motion\\.js|images/(?:architecture|building|city|development|hero|home|interior|rental)\\.webp|(?:logo|logo-dark|logo-stacked|mark|favicon)\\.svg)$`):new RegExp(`^customers/${slug}/(?:images/image-(?:[0-9]|1[01])\\.webp|(?:logo|logo-dark|mark|favicon|hero)\\.svg)$`);
   const asset=/^_next\/static\/[a-zA-Z0-9_./~-]+\.(?:js|css|woff2?)$/.test(requested)||customerAsset.test(requested);
   if(!page&&!asset&&requested!=='_next/image')return new Response('Not found',{status:404});
   if(requested==='_next/image'){
@@ -48,7 +48,13 @@ export async function GET(request:Request,{params}:{params:Promise<{slug:string;
   html=html.replace(/(?:\?|&amp;|&|\\u0026)dpl=dpl_[a-zA-Z0-9]+/g,'');
   // The V3 site is server-rendered: native links and <details> need no client
   // runtime. Preserve structured-data scripts while omitting hydration bundles.
-  if(html.includes('unique-home-v3')||broom)html=html.replace(/<script\b(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/g,'');
+  if(html.includes('unique-home-v3')||broom)html=html.replace(/<script\b(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/g,script=>{
+   // Only the fixed, tenant-owned progressive enhancement file may execute.
+   // Do not preserve arbitrary script attributes, inline bodies or other URLs.
+   const source=script.match(/\bsrc="([^"]+)"/)?.[1];
+   const allowed=`/api/branded-preview/${broomSlug}/customers/${broomSlug}/motion.js`;
+   return broom&&source===allowed?`<script src="${allowed}" defer></script>`:'';
+  });
   // Encoded Next image input must remain the deployment-local source, not the proxy path.
   return new Response(html,{headers});
  }catch{return new Response('Preview temporarily unavailable',{status:503,headers:{'Cache-Control':'no-store'}});}

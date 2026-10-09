@@ -12,7 +12,10 @@ assert.equal(manifest.customers.filter(site => site.slug === slug).length, 1);
 assert.deepEqual(site, JSON.parse(readFileSync(`customers/${slug}/site/customer.config.json`, 'utf8')));
 const baseline = JSON.parse(execFileSync('git', ['show', '287f9b1:customers/manifest.json'], { encoding: 'utf8' }));
 assert.deepEqual(manifest.customers.filter(site => site.slug !== slug), baseline.customers, 'Existing customers must be unchanged');
-assert.deepEqual(site.form, { provider: 'sendgrid', mode: 'disabled', recipientConfirmed: false, testPassed: false });
+assert.equal(site.form.provider, 'sendgrid');
+assert(['test', 'live'].includes(site.form.mode));
+assert.equal(site.form.recipientConfirmed, true);
+if (site.form.mode === 'live') assert.equal(site.form.testPassed, true);
 assert.equal(site.myndy.embed.enabled, false);
 assert.equal(site.myndy.embed.agentId, '');
 assert(existsSync(site.myndy.knowledgeContextPath));
@@ -28,7 +31,7 @@ new Function('exports', code)(testModule.exports);
 const { validBroomRoute, broomServices } = testModule.exports;
 for (const route of [[], ['services'], ['about'], ['contact'], ['faq'], ['privacy'], ...broomServices.map(s => ['services', s.slug])]) assert(validBroomRoute(route));
 for (const route of [['home'], ['services', 'fake-listing'], ['contact', 'extra'], ['faq', 'extra'], ['services', 'buying', 'extra'], ['thank-you']]) assert(!validBroomRoute(route));
-console.log('PASS: exact tenant registration, existing tenant preservation, all 11 routes, invalid route rejection, asset ownership, inactive email/chat, no fictitious structured-data address.');
+console.log('PASS: exact tenant registration, existing tenant preservation, all 11 routes, invalid route rejection, asset ownership, confirmed email configuration, inactive chat, no fictitious structured-data address.');
 
 if (process.env.BROOM_QA_ORIGIN) {
   const base = process.env.BROOM_QA_ORIGIN;
@@ -41,6 +44,8 @@ if (process.env.BROOM_QA_ORIGIN) {
     const html = await r.text();
     assert(html.includes(`data-customer-slug="${slug}"`));
     assert(html.includes(`rel="canonical" href="https://preview.redspectrum.ai/${slug}${route}"`));
+    const schema=[...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match=>JSON.parse(match[1]));
+    assert.equal(schema.find(item=>item['@type']==='Organization')?.url,`https://preview.redspectrum.ai/${slug}`,'Business identity must match the release verifier exactly');
     assert.match(html, /name="robots" content="noindex, nofollow"/);
     assert(!html.includes('<myndy-convai'));
     assert(!html.includes('<script src="https://widget.myndy.ai'));
@@ -49,10 +54,11 @@ if (process.env.BROOM_QA_ORIGIN) {
   const invalid = await fetch(base + '/' + slug + '/services/not-a-service');
   assert.equal(invalid.status, 404);
   const form = new FormData();
-  for (const [key, value] of Object.entries({ name: 'Synthetic QA', email: 'qa@example.invalid', phone: '5555550100', service: 'Buying', message: 'Synthetic inactive delivery check.', consent: 'on' })) form.set(key, value);
+  // Invalid input verifies the endpoint without sending another real email.
+  for (const [key, value] of Object.entries({ name: '', email: 'invalid', phone: '', service: 'Buying', message: 'Synthetic validation-only check.', consent: 'on' })) form.set(key, value);
   const r = await fetch(base + '/api/leads/' + slug, { method: 'POST', body: form, headers: { origin: base } });
-  assert.equal(r.status, 503);
-  assert.equal((await r.json()).message, 'Form delivery is not active.');
+  assert.equal(r.status, 400);
+  assert.equal((await r.json()).message, 'Please check the required fields.');
   for (const customer of baseline.customers) {
     const result = base.startsWith('http://localhost:')
       ? await new Promise((resolve, reject) => http.get(base + '/' + customer.slug, { headers: { host: 'red-spectrum-website-factory.vercel.app' } }, response => {
@@ -63,5 +69,5 @@ if (process.env.BROOM_QA_ORIGIN) {
     assert.equal(result.status, 200, customer.slug);
     assert(!result.html.includes(`data-customer-slug="${slug}"`), customer.slug);
   }
-  console.log('PASS: live routes, noindex, public request privacy, 404, inactive API response and all seven existing customer homepages. No delivery/storage occurs for a disabled tenant.');
+  console.log('PASS: live routes, noindex, public request privacy, 404, invalid form rejection and all seven existing customer homepages. No email sent by this audit.');
 }

@@ -7,6 +7,11 @@ import type { CustomerSite } from "@/lib/customers/schema";
 const emailSchema = z.string().trim().email().max(200);
 
 const customerDelivery = {
+  "broom-home-enterprises-llc": {
+    liveRecipient: "info@broomhome.biz",
+    testRecipient: "info@broomhome.biz",
+    subject: "New website inquiry — Broom Home Enterprises LLC",
+  },
   "unique-management-group": {
     liveRecipient: "info@uniquemanagementgroup.com",
     subject: "New website inquiry — Unique Management Group LLC",
@@ -36,7 +41,8 @@ const customerDelivery = {
 
 export type LeadDeliveryMode = "test" | "live";
 
-export function leadEmailEnabled(mode: LeadDeliveryMode) {
+export function leadEmailEnabled(mode: LeadDeliveryMode, slug?: string) {
+  if (slug === 'broom-home-enterprises-llc' && mode === 'live') return process.env.WEBFACTORY_BROOM_CONTACT_ENABLED === 'true';
   return (mode === "test" ? process.env.WEBFACTORY_INTERNAL_NOTIFICATIONS_ENABLED : process.env.WEBFACTORY_CUSTOMER_EMAILS_ENABLED) === "true";
 }
 
@@ -47,6 +53,7 @@ export function leadEmailEnabled(mode: LeadDeliveryMode) {
  * every other customer, so activating one new customer never changes another customer's delivery.
  */
 export function leadDeliveryAllowedForSlug(slug: string, mode: LeadDeliveryMode) {
+  if (slug === 'broom-home-enterprises-llc') return process.env.WEBFACTORY_BROOM_CONTACT_ENABLED === 'true';
   // UMG's authorized branded-preview form has its own activation gate, preserving every existing tenant allowlist.
   if (slug === 'unique-management-group' && mode === 'live') return process.env.WEBFACTORY_UMG_CONTACT_ENABLED === 'true';
   const raw = (mode === "test" ? process.env.WEBFACTORY_LEAD_TEST_ACTIVE_SLUGS : process.env.WEBFACTORY_LEAD_LIVE_ACTIVE_SLUGS)?.trim();

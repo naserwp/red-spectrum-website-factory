@@ -9,7 +9,9 @@ const load=(file,deps)=>{const m={exports:{}};new Function('require','module','e
 const env={...parseEnv(readFileSync(process.env.WEBFACTORY_TEST_ENV_FILE || '.env.local','utf8')),...process.env};
 const pool=new pg.Pool({connectionString:env.LEADS_DATABASE_URL,connectionTimeoutMillis:5000});
 const brief=load('lib/webfactory/brief-schema.ts',{zod:{z}}),rules=load('lib/webfactory/slug-rules.ts',{}),executor=load('lib/webfactory/build-executor.ts',{});
-const service=load('lib/webfactory/build-jobs.ts',{'node:crypto':{randomUUID},'./server':{database:()=>pool},'./brief-schema':brief,'./slug-rules':rules,'@/lib/customers/registry':{getCustomerSite:()=>null},'./build-receipts':{getLocalBuildReceipt:()=>null},'./build-executor':executor});
+const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':load('lib/webfactory/qa-diagnostics.ts',{}),'./build-paths':load('lib/webfactory/build-paths.ts',{})});
+const evidence=load('lib/webfactory/build-evidence.ts',{'./worker-contract':contract,'./build-executor':executor});
+const service=load('lib/webfactory/build-jobs.ts',{'node:crypto':{randomUUID},'./server':{database:()=>pool},'./brief-schema':brief,'./slug-rules':rules,'@/lib/customers/registry':{getCustomerSite:()=>null},'./build-receipts':{getLocalBuildReceipt:()=>null},'./build-executor':executor,'./build-evidence':evidence});
 const id=randomUUID(),briefId=randomUUID(),slug='qa-build-'+randomUUID().slice(0,8);
 const snapshot={customerSlug:'old-ai-slug',businessSummary:'Synthetic only',brandDirection:'Draft',colorDirection:'Draft',logoConcept:'Draft',pages:brief.pageNames.map(name=>({name,purpose:'Draft',sections:[]})),services:[],seo:{title:'Draft',metaDescription:'Draft'},hero:{heading:'Draft',body:'Draft'},ctaCopy:[],myndy:{agentName:'Draft',avatarBrief:'Draft',greeting:'Draft',context:'Draft',faqs:[],qualificationFlow:[],escalationRules:[]},imagePrompts:[],customerEmailDraft:'Unsent',smsDraft:'Unsent',missingInformation:[],verificationNotes:[]};
 try{

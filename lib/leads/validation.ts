@@ -17,6 +17,11 @@ export const websiteLeadSchema = z.object({
 
 export const uniqueHomeInquiryAreas = ["Marketing", "Consulting", "Advertising", "Real estate-related inquiry", "General business inquiry"] as const;
 
+export const broomLeadSchema = websiteLeadSchema.extend({
+  phone: z.string().trim().max(40).optional().transform(value => value ?? ""),
+  service: z.enum(["Rental Properties", "Buying", "Selling", "Building", "Holding"]),
+});
+
 export const uniqueHomeLeadSchema = websiteLeadSchema.extend({
   phone: z.string().trim().max(40).optional().transform((value) => value ?? ""),
   service: z.enum(uniqueHomeInquiryAreas),

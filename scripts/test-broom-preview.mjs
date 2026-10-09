@@ -33,10 +33,13 @@ try{
   assert.equal(queries,11);
   verified={previewUrl:'https://verified.example.invalid/'+slug,protection:'public'};
   for(const path of pages){const response=await request(slug,path);assert.equal(response.status,200);const html=await response.text();assert(!html.includes('hydration()'));assert(html.includes('application/ld+json'));assert(html.includes('/api/branded-preview/'+slug+'/customers/'+slug));}
-  for(const asset of ['logo.svg','logo-dark.svg','logo-stacked.svg','mark.svg','favicon.svg',...['architecture','building','city','development','hero','home','interior','rental'].map(n=>'images/'+n+'.webp')])assert.equal((await request(slug,['customers',slug,...asset.split('/')])).status,200);
+  for(const asset of ['motion.js','logo.svg','logo-dark.svg','logo-stacked.svg','mark.svg','favicon.svg',...['architecture','building','city','development','hero','home','interior','rental'].map(n=>'images/'+n+'.webp')])assert.equal((await request(slug,['customers',slug,...asset.split('/')])).status,200);
+  globalThis.fetch=async()=>new Response(`<script src="/customers/${slug}/motion.js" onload="untrusted()">untrusted()</script><script src="https://evil.invalid/motion.js"></script><script src="/customers/${slug}/other.js"></script><script src="/customers/another-tenant/motion.js"></script>`,{headers:{'content-type':'text/html'}});
+  const enhanced=await (await request(slug)).text();
+  assert.equal(enhanced,`<script src="/api/branded-preview/${slug}/customers/${slug}/motion.js" defer></script>`,'Only a reconstructed, exact tenant runtime tag may survive');
   const before=upstream;
   for(const path of [['services','unknown'],['qa','admin-state.json'],['customers','another-tenant','logo.svg'],['customers',slug,'secret.txt'],['..'],['services','buying','extra']])assert.equal((await request(slug,path)).status,404);
   assert.equal((await request(slug,[],'https://evil.invalid')).status,404);
   assert.equal(upstream,before,'Rejected requests must never reach upstream');
-  console.log('PASS: 11 canonical/alias proxy routes, trusted-build gate, 13 assets, tenant isolation, private-path rejection, server-rendered navigation.');
+  console.log('PASS: 11 canonical/alias proxy routes, trusted-build gate, 14 assets, strict runtime allowlist, tenant isolation, private-path rejection.');
 }finally{globalThis.fetch=originalFetch;if(token===undefined)delete process.env.VERCEL_TOKEN;else process.env.VERCEL_TOKEN=token;}
