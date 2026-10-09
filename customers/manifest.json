@@ -989,9 +989,9 @@
         "avatarBrief": "A restrained abstract geometric UH framework mark, not a person.",
         "knowledgeContextPath": "customers/unique-home-enterprise/myndy/agent-context.md",
         "embed": {
-        "enabled": true,
-        "agentId": "agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw",
-        "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
+          "enabled": true,
+          "agentId": "agent_1790790948_rwhM6iVfBBVQx2lJTGf0Fw",
+          "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
         }
       }
     },
@@ -1616,6 +1616,281 @@
           "enabled": false,
           "agentId": "",
           "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
+        }
+      }
+    },
+    {
+      "schemaVersion": "1.0",
+      "design": {
+        "version": "2.0",
+        "hero": "panorama",
+        "navigation": "balanced",
+        "typography": "modern",
+        "spacing": "generous",
+        "palette": "ink",
+        "logo": "interlock",
+        "pages": {
+          "home": [
+            {
+              "kind": "split",
+              "eyebrow": "Creative studio · Synthetic preview",
+              "heading": "Give your next idea a visual language.",
+              "body": "Explore a creative studio concept for WebFactory Automation QA 20261010, where abstract forms meet clear questions. Discover possible inquiry topics for your next brief. This is a synthetic test preview; services are unverified and booking is inactive.",
+              "image": 0,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "A starting point",
+              "heading": "What should your idea make people see?",
+              "body": "A different perspective, a clearer message, a more distinctive presence. Begin with the impression you want to create, then ask the studio which creative support is available.",
+              "image": 1,
+              "reverse": false
+            },
+            {
+              "kind": "image",
+              "eyebrow": "Visual study",
+              "heading": "Contrast, with room to breathe.",
+              "body": "An abstract exploration of scale, rhythm and negative space. Illustrative concept artwork only—not a company or client project.",
+              "image": 1,
+              "reverse": false
+            },
+            {
+              "kind": "columns",
+              "eyebrow": "Possible inquiry topics",
+              "heading": "Find the question behind the brief.",
+              "body": "Ask about digital visual design\nConfirm whether visual direction for screens and digital communications is available.\n\nAsk about brand identity concepts\nConfirm whether exploratory marks, typography and colour systems can be discussed.\n\nAsk about illustrative content\nConfirm availability for your subject, audience and intended formats.\n\nAsk about creative automation strategy\nConfirm whether support for reviewing repeatable creative tasks is available.",
+              "image": 2,
+              "reverse": false
+            },
+            {
+              "kind": "split",
+              "eyebrow": "Shape the inquiry",
+              "heading": "Bring the idea. Name the unknowns.",
+              "body": "What are you making? Who needs to understand it? Where will it appear? A few clear answers can help frame a focused inquiry. Keep scope, deliverables and availability open for direct confirmation with the studio.",
+              "image": 2,
+              "reverse": true
+            },
+            {
+              "kind": "image",
+              "eyebrow": "System study",
+              "heading": "One shape. Many possibilities.",
+              "body": "A modular composition exploring repetition and variation. Preview artwork only; it does not demonstrate an offered service or completed project.",
+              "image": 3,
+              "reverse": false
+            },
+            {
+              "kind": "steps",
+              "eyebrow": "Before making contact",
+              "heading": "A useful brief starts small.",
+              "body": "01 — State the purpose\nDescribe the message, audience and intended use.\n\n02 — Identify the possibilities\nNote the visual design, identity, illustration or workflow questions you want to explore.\n\n03 — Request confirmation\nAsk about available support, suitable deliverables, timing and any practical constraints. No scope or availability is confirmed by this preview.",
+              "image": 3,
+              "reverse": false
+            },
+            {
+              "kind": "contact",
+              "eyebrow": "Inquiry preview",
+              "heading": "Keep your next question in view.",
+              "body": "The contact page shows where an inquiry could begin. Its form is inactive, and no verified contact details are published. Please do not enter personal or confidential information. Confirm specific offerings directly once a verified contact route is available.",
+              "image": 0,
+              "reverse": false
+            }
+          ],
+          "services": [
+            {
+              "kind": "split",
+              "eyebrow": "Service inquiries · Availability unconfirmed",
+              "heading": "Ask about digital visuals and identity concepts.",
+              "body": "Digital visual design\nConfirm whether support is available for visual direction across screens or digital communications. Describe the formats, audience and existing assets you have in mind.\n\nBrand identity concepts\nAsk whether exploratory logos, typography and colour directions are available. Clarify whether you need early concepts or a more developed visual system; neither is confirmed here.",
+              "image": 4,
+              "reverse": false
+            },
+            {
+              "kind": "columns",
+              "eyebrow": "Further inquiry topics",
+              "heading": "Confirm illustration and automation availability.",
+              "body": "Illustrative content creation\nAsk whether illustration is available for your subject and intended channels. Confirm format, usage permissions and any adaptation needs before agreeing to work.\n\nCreative automation strategy\nAsk whether the studio can discuss repeatable creative tasks or workflow questions. Identify the tools and review steps involved, and confirm whether any advice or implementation is available.",
+              "image": 4,
+              "reverse": false
+            },
+            {
+              "kind": "statement",
+              "eyebrow": "Frequently asked questions",
+              "heading": "Before you make an inquiry.",
+              "body": "What services are available?\nNo offerings are verified. The topics above are prompts for direct confirmation, not a service catalogue.\n\nHow can I contact the studio?\nNo verified contact route is published, and the preview form cannot send inquiries.\n\nIs this a real business website?\nThis is a synthetic test preview. It does not establish an operating business, team or project history.\n\nCan I book a service?\nNo. Bookings, payments and assistant features are not enabled.",
+              "image": 4,
+              "reverse": false
+            }
+          ],
+          "about": [
+            {
+              "kind": "split",
+              "eyebrow": "About this concept",
+              "heading": "An imaginative direction. A clear distinction.",
+              "body": "WebFactory Automation QA 20261010 is the supplied business name, with Creative studio as the submitted industry. This synthetic preview explores a modern, minimal and artistic presentation. It does not establish a studio history, team, credentials or available services.",
+              "image": 5,
+              "reverse": true
+            },
+            {
+              "kind": "image",
+              "eyebrow": "Illustrative collaboration",
+              "heading": "Different forms, in conversation.",
+              "body": "An abstract composition suggesting the exchange of ideas. These shapes are visual metaphors, not representations of actual staff, collaborators or clients.",
+              "image": 6,
+              "reverse": false
+            },
+            {
+              "kind": "split",
+              "eyebrow": "Questions worth asking",
+              "heading": "How might an idea take shape?",
+              "body": "Ask how a potential project would move from an initial brief to visual exploration and review. Confirm who would be involved, what would be delivered and how feedback would be handled. The sequence is a discussion topic, not a verified studio process.",
+              "image": 7,
+              "reverse": false
+            }
+          ],
+          "contact": [
+            {
+              "kind": "contact",
+              "eyebrow": "Contact · Inactive preview",
+              "heading": "What would you like to explore?",
+              "body": "A future inquiry could identify your audience, intended formats and questions about digital visuals, identity concepts, illustration or creative automation. Ask the studio to confirm availability and scope directly.\n\nThis preview form is inactive and cannot send an inquiry or create a booking. No verified contact details are published. Please do not enter personal details, files or confidential project information.",
+              "image": 7,
+              "reverse": false
+            }
+          ],
+          "privacy": [
+            {
+              "kind": "statement",
+              "eyebrow": "Privacy · Draft for review",
+              "heading": "A preview, not an active inquiry channel.",
+              "body": "This website is a synthetic test preview. The preview form is inactive, and no assistant or payment features are enabled. Please do not submit personal or confidential information.\n\nAnalytics, data-handling and retention practices have not been verified; this draft makes no claims about them. A reviewed privacy notice describing the actual practices is needed before any personal-data collection features are activated.",
+              "image": 6,
+              "reverse": false
+            }
+          ]
+        },
+        "imageDirection": "Use abstract and illustrative concept imagery throughout, never company-project photography, portfolio mockups, actual staff depictions or client logos. Anchor the artwork in ink and off-white, with restrained deep plum, teal and coral accents. Keep text outside the images and compositions spacious. Image 0: a panoramic field of oversized geometric forms with a crisp negative-space opening. Image 1: a quiet paper-like composition balancing a dark plane against a single coral curve. Image 2: loose expressive strokes resolving into precise shapes. Image 3: one geometric module repeated with unexpected changes of scale and orientation. Image 4: abstract screen-like planes alongside typographic fragments that form no readable words. Image 5: a sculptural arrangement of translucent and opaque shapes. Image 6: distinct illustrated forms connected through shared lines, suggesting conversation without depicting people. Image 7: an abstract progression from sketch-like marks to a balanced composition. All images are illustrative studies, not evidence of delivered work.",
+        "brandNotes": "Three logo concepts considered: open-frame offers an airy container for changing ideas; interlock connects independent shapes through a shared negative-space seam; ligature gives the long business name a more typographic expression but risks reduced clarity at small sizes. Select interlock: two offset, open geometric forms with a simple silhouette, avoiding literal gears or implied technology credentials. Pair it with the full supplied business name rather than an invented abbreviation. Use a panorama-led introduction, modern typography, generous spacing and an ink-and-paper foundation; reserve plum, teal and coral for artwork and small accents. Alternate expansive images, concise statements and practical inquiry sections instead of repeated cards. Keep synthetic-preview status visible and distinguish inquiry topics from confirmed offerings. All copy, visual directions and privacy wording are drafts for admin review."
+      },
+      "slug": "webfactory-automation-qa-20261010",
+      "status": "draft",
+      "templateId": "ledger",
+      "business": {
+        "name": "WebFactory Automation QA 20261010",
+        "industry": "Creative studio",
+        "tagline": "A considered beginning.",
+        "summary": "Connect with WebFactory Automation QA 20261010 to discuss your needs and confirm current offerings."
+      },
+      "contact": {
+        "phone": {
+          "value": "",
+          "status": "missing"
+        },
+        "email": {
+          "value": "automation-qa@example.invalid",
+          "status": "draft",
+          "source": "Customer request; final publication review pending"
+        },
+        "address": {
+          "value": "",
+          "status": "missing"
+        },
+        "serviceAreas": {
+          "value": "",
+          "status": "missing"
+        }
+      },
+      "services": [
+        {
+          "name": "Discuss your needs",
+          "description": "Specific services and availability require direct confirmation.",
+          "status": "draft"
+        }
+      ],
+      "pages": {
+        "home": {
+          "eyebrow": "WebFactory Automation QA 20261010",
+          "headline": "Give your next idea a visual language.",
+          "intro": "Explore a creative studio concept for WebFactory Automation QA 20261010, where abstract forms meet clear questions. Discover possible inquiry topics for your next brief. This is a synthetic test preview; services are unverified and booking is inactive.",
+          "ctaLabel": "Start a conversation"
+        },
+        "services": {
+          "headline": "Your needs. A clear starting point.",
+          "intro": "Discuss what you have in mind and confirm current offerings directly before making plans."
+        },
+        "about": {
+          "headline": "A name. A conversation. A beginning.",
+          "paragraphs": [
+            "Connect with WebFactory Automation QA 20261010 to discuss your needs and confirm current offerings."
+          ]
+        },
+        "contact": {
+          "headline": "What do you have in mind?",
+          "intro": "Contact details are customer-provided and subject to final publication review."
+        },
+        "privacy": {
+          "headline": "Privacy, clearly explained.",
+          "body": [
+            "DRAFT — Business and legal review required before publication.",
+            "The inquiry form in this preview is disabled and does not submit information. Myndy, payments and lead delivery are inactive.",
+            "If you choose a phone or email link, your phone or email application handles that communication. Do not send payment credentials or sensitive personal information.",
+            "Hosting infrastructure may process technical request information to serve and secure pages. Confirm the final hosting, retention and privacy arrangements before launch."
+          ]
+        }
+      },
+      "branding": {
+        "primary": "#343b48",
+        "secondary": "#1c2632",
+        "accent": "#a79472",
+        "surface": "#f5f3ee",
+        "logoPath": "/customers/webfactory-automation-qa-20261010/logo.svg",
+        "faviconPath": "/customers/webfactory-automation-qa-20261010/favicon.svg"
+      },
+      "images": {
+        "hero": {
+          "src": "/customers/webfactory-automation-qa-20261010/images/image-0.webp",
+          "alt": "Illustrative workspace photograph 1; not a company project",
+          "width": 1600,
+          "height": 1068
+        },
+        "gallery": [
+          {
+            "src": "/customers/webfactory-automation-qa-20261010/images/image-1.webp",
+            "alt": "Illustrative workspace photograph 2; not a company project",
+            "width": 1600,
+            "height": 1068
+          },
+          {
+            "src": "/customers/webfactory-automation-qa-20261010/images/image-2.webp",
+            "alt": "Illustrative workspace photograph 3; not a company project",
+            "width": 1600,
+            "height": 1068
+          }
+        ]
+      },
+      "seo": {
+        "title": "WebFactory Automation QA 20261010",
+        "description": "Contact WebFactory Automation QA 20261010 to discuss your needs and confirm current offerings."
+      },
+      "schema": {
+        "type": "Organization",
+        "description": "Connect with WebFactory Automation QA 20261010 to discuss your needs and confirm current offerings."
+      },
+      "form": {
+        "provider": "sendgrid",
+        "mode": "disabled",
+        "recipientConfirmed": false,
+        "testPassed": false
+      },
+      "myndy": {
+        "agentName": "Welcome Guide",
+        "greeting": "How can I help you prepare your inquiry?",
+        "avatarBrief": "A restrained abstract brand mark, not a person.",
+        "knowledgeContextPath": "customers/webfactory-automation-qa-20261010/myndy/agent-context.md",
+        "embed": {
+          "enabled": false,
+          "agentId": "",
+          "scriptUrl": ""
         }
       }
     }

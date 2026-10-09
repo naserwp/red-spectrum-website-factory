@@ -1,0 +1,35 @@
+[
+  {
+    "file": "public/customers/webfactory-automation-qa-20261010/images/image-0.webp",
+    "provenance": "licensed",
+    "source": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85",
+    "downloadUrl": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85",
+    "license": "https://unsplash.com/license",
+    "sha256": "6516d9f45b0ea4add5bef5336ee4adab234c8b3fe9c7d249d99a562098646e62",
+    "bytes": 119812,
+    "width": 1600,
+    "height": 1068
+  },
+  {
+    "file": "public/customers/webfactory-automation-qa-20261010/images/image-1.webp",
+    "provenance": "licensed",
+    "source": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85",
+    "downloadUrl": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85",
+    "license": "https://unsplash.com/license",
+    "sha256": "9b3d4db0398fdeebbb61571658b14b5ba5e866d6f690a4265e4a961f9e1c316e",
+    "bytes": 92562,
+    "width": 1600,
+    "height": 1068
+  },
+  {
+    "file": "public/customers/webfactory-automation-qa-20261010/images/image-2.webp",
+    "provenance": "licensed",
+    "source": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=85",
+    "downloadUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=85",
+    "license": "https://unsplash.com/license",
+    "sha256": "1841d158db29b9ff2b10d8507226234fe4a9b36a1f0e45cb06b378faade234b1",
+    "bytes": 73256,
+    "width": 1600,
+    "height": 1068
+  }
+]
