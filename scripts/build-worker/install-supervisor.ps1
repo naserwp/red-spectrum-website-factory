@@ -17,7 +17,7 @@ if (Get-ScheduledTask -TaskName $workerTaskName -ErrorAction SilentlyContinue) {
     throw 'Existing task found; inspect it rather than silently replacing its configuration.'
 }
 $workerAccount = [Security.Principal.WindowsIdentity]::GetCurrent().Name
-$workerAction = New-ScheduledTaskAction -Execute $workerNode -Argument ('--env-file="' + $workerEnvironment + '" "' + (Join-Path $PSScriptRoot 'run.mjs') + '"') -WorkingDirectory $workerCheckout
+$workerAction = New-ScheduledTaskAction -Execute $workerNode -Argument ('--env-file="' + $workerEnvironment + '" "' + (Join-Path $PSScriptRoot 'supervisor.mjs') + '"') -WorkingDirectory $workerCheckout
 $workerTrigger = New-ScheduledTaskTrigger -AtLogOn -User $workerAccount
 $workerPrincipal = New-ScheduledTaskPrincipal -UserId $workerAccount -LogonType Interactive -RunLevel Limited
 $workerSettings = New-ScheduledTaskSettingsSet -MultipleInstances IgnoreNew -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) -ExecutionTimeLimit ([TimeSpan]::Zero) -StartWhenAvailable -RunOnlyIfNetworkAvailable

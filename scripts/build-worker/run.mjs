@@ -12,7 +12,7 @@ import {verifyProtectedPreview} from '../../lib/webfactory/preview-verification.
 
 const env=process.env;
 const options=workerOptions(process.argv.slice(2));
-const required=['WEBFACTORY_BUILD_CONTROL_URL','WEBFACTORY_BUILD_WORKER_SECRET','WEBFACTORY_BUILD_ROOT','WEBFACTORY_BUILD_BASE_SHA','OPENAI_API_KEY','AGENT_BROWSER_CLI'];
+const required=['WEBFACTORY_BUILD_CONTROL_URL','WEBFACTORY_BUILD_WORKER_SECRET','WEBFACTORY_BUILD_ROOT','WEBFACTORY_BUILD_BASE_SHA','AGENT_BROWSER_CLI'];
 const missing=required.filter(k=>!env[k]);
 if(missing.length){console.error('Missing configuration names: '+missing.join(', '));process.exit(1);}
 if(Number(process.versions.node.split('.')[0])<24 || !/^[a-f0-9]{40}$/.test(env.WEBFACTORY_BUILD_BASE_SHA) || env.WEBFACTORY_BUILD_WORKER_SECRET.length<32){console.error('Requires Node 24, reviewed baseline SHA and strong worker secret.');process.exit(1);}
@@ -40,7 +40,9 @@ async function pages(base,job,site){
 }
 async function execute(job,lease){
  if(!Number.isSafeInteger(job.runAttempt??0)||(job.runAttempt??0)<0||(job.runAttempt??0)>3)throw Error('SCOPE_REJECTED');
- const jobDirectory=path.join(root,job.id+(job.runAttempt?'-attempt-'+job.runAttempt:''));
+ const artifactAttempt=job.artifactAttempt??job.runAttempt??0;
+ if(!Number.isSafeInteger(artifactAttempt)||artifactAttempt<0||artifactAttempt>(job.runAttempt??0)||(job.artifactAttempt!==undefined&&!job.resumeQa&&!job.resumePreview))throw Error('SCOPE_REJECTED');
+ const jobDirectory=path.join(root,job.id+(artifactAttempt?'-attempt-'+artifactAttempt:''));
  let cancelled=false,lost=false;const heartbeat=async()=>{try{cancelled=(await api({action:'heartbeat',jobId:job.id,lease})).cancelRequested;}catch{lost=true;}};
  const timer=setInterval(()=>void heartbeat(),20000);
  const check=async()=>{await heartbeat();if(cancelled || lost)throw Error('WORKER_INTERRUPTED');};

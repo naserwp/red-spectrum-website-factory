@@ -135,6 +135,25 @@ try{
  await wrapped.query("UPDATE webfactory.build_workflows SET stage='build_approved' WHERE request_id=$1",[req]);
  await wrapped.query("UPDATE webfactory.website_build_jobs SET qa_result=qa_result||'{\"runAttempt\":3}'::jsonb WHERE id=$1",[recoveryId]);
  await assert.rejects(()=>jobs.restartBuildJob(req,recoveryId,'test'),/limit/);
+ const artifactInput={artifactAttempt:2,checkpoint:{artifactSha:'f'.repeat(64),baselineSha:'a'.repeat(40),provider:{name:'openai',model:'synthetic'}}};
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),/matching/);
+ await wrapped.query('UPDATE webfactory.website_build_jobs SET qa_result=qa_result||$2::jsonb WHERE id=$1',[recoveryId,JSON.stringify({previousRuns:[{status:'ready_for_review'},{status:'failed',error:'BUILD_FAILED'},{status:'failed',error:'BUILD_FAILED'}]})]);
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',{...artifactInput,artifactAttempt:3}),/matching/);
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='customer_approved' WHERE request_id=$1",[req]);
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),/approval/);
+ await wrapped.query("UPDATE webfactory.build_workflows SET stage='build_approved' WHERE request_id=$1",[req]);
+ const recoveries=await Promise.allSettled([jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput)]);
+ assert.equal(recoveries.filter(r=>r.status==='fulfilled').length,1);
+ const artifactClaim=await worker.workerOperation({action:'claim',workerId:'artifact-recovery',jobId:recoveryId});
+ assert.equal(artifactClaim.job.runAttempt,3);assert.equal(artifactClaim.job.artifactAttempt,2);assert.equal(artifactClaim.job.resumeQa,true);
+ assert.deepEqual(artifactClaim.job.checkpoint,artifactInput.checkpoint);
+ assert.equal(Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.website_build_jobs')).rows[0].count),beforeRestart);
+ await worker.workerOperation({action:'progress',jobId:recoveryId,lease:artifactClaim.lease,stage:'qa_running'});
+ await worker.workerOperation({action:'fail',jobId:recoveryId,lease:artifactClaim.lease,code:'QA_FAILED',diagnostics:[result]});
+ const recoveredQa=(await wrapped.query('SELECT qa_result FROM webfactory.website_build_jobs WHERE id=$1',[recoveryId])).rows[0].qa_result;
+ assert.equal(recoveredQa.previousRuns.length,3);assert.equal(recoveredQa.artifactRecoveryHistory[0].error,'PROVIDER_FAILED');
+ await wrapped.query('UPDATE webfactory.website_build_jobs SET qa_result=qa_result||$2::jsonb WHERE id=$1',[recoveryId,JSON.stringify({artifactRecoveryCount:3})]);
+ await assert.rejects(()=>jobs.recoverBuildArtifact(req,recoveryId,'test',artifactInput),/limit/);
  for(const path of ['.env','app/page.tsx',`public/customers/other/hero.svg`,`customers/${slug}/../other/config.json`])assert.equal(contract.allowedBuildPath(slug,path),false);
  for(const boundary of ['checkout','generate','apply','validate','build','qa','deploy','verify','complete']){
   let failed=false,finished=false;const operations={check:async()=>{},progress:async()=>{},checkout:async()=>({}),generate:async()=>({provider:{}}),apply:async()=>({}),validate:async()=>[],build:async()=>{},qa:async()=>({}),deploy:async()=>({}),verify:async()=>{},complete:async()=>{finished=true;},fail:async()=>{failed=true;}};

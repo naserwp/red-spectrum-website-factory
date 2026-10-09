@@ -9,6 +9,31 @@ import { verifiedBuildEvidence } from "./build-evidence";
 import { configuredBuildExecutor } from "./build-executor";
 
 export class BuildJobError extends Error {}
+type ArtifactRecovery={artifactAttempt:number;checkpoint:{artifactSha:string;baselineSha:string;provider:{name:'openai';model:string}}};
+// Explicit administrator authorization resumes immutable files; it never grants another generation.
+export async function recoverBuildArtifact(requestId:string,jobId:string,actor:string,input:ArtifactRecovery){
+ if(!configuredBuildExecutor())throw new BuildJobError('Controlled worker is not configured.');
+ const {artifactAttempt,checkpoint}=input;
+ if(!Number.isSafeInteger(artifactAttempt)||artifactAttempt<0||artifactAttempt>3||!/^[a-f0-9]{64}$/.test(checkpoint.artifactSha)||!/^[a-f0-9]{40}$/.test(checkpoint.baselineSha)||checkpoint.provider.name!=='openai'||!/^[a-zA-Z0-9._-]{1,80}$/.test(checkpoint.provider.model))throw new BuildJobError('Invalid preserved artifact.');
+ const c=await database().connect();
+ try{
+  await c.query('BEGIN');
+  const r=(await c.query('SELECT customer_slug FROM webfactory.requests WHERE id=$1 FOR UPDATE',[requestId])).rows[0];
+  const w=(await c.query('SELECT stage,active_brief_id FROM webfactory.build_workflows WHERE request_id=$1 FOR UPDATE',[requestId])).rows[0];
+  const j=(await c.query('SELECT * FROM webfactory.website_build_jobs WHERE id=$1 AND request_id=$2 FOR UPDATE',[jobId,requestId])).rows[0];
+  if(!j||j.executor!=='controlled-worker-v1'||j.status!=='failed')throw new BuildJobError('Only a failed controlled job can recover preserved files.');
+  if(r?.customer_slug!==j.customer_slug||w?.active_brief_id!==j.brief_id||!['build_approved','preview_ready'].includes(w?.stage))throw new BuildJobError('Saved slug or approval changed. Recovery refused.');
+  const qa=j.qa_result||{},source=qa.previousRuns?.[artifactAttempt];
+  if(artifactAttempt>=Number(qa.runAttempt||0)||source?.status!=='failed'||source?.error!=='BUILD_FAILED')throw new BuildJobError('No matching preserved build attempt.');
+  if(Number(qa.artifactRecoveryCount||0)>=3)throw new BuildJobError('Artifact recovery limit reached.');
+  if((await c.query("SELECT id FROM webfactory.website_build_jobs WHERE request_id=$1 AND status NOT IN ('failed','cancelled','ready_for_review','changes_requested')",[requestId])).rowCount)throw new BuildJobError('Another build is active.');
+  const history=[...(qa.artifactRecoveryHistory||[]),{status:j.status,error:j.error_category,finishedAt:j.finished_at,attempts:qa.attempts||[],checkpoint:qa.checkpoint||null}];
+  const next={...qa,artifactAttempt,checkpoint,resume:true,resumePreview:false,previewRecovery:null,attempts:[],retryCount:0,artifactRecoveryCount:Number(qa.artifactRecoveryCount||0)+1,artifactRecoveryHistory:history};
+  await c.query("UPDATE webfactory.website_build_jobs SET status='queued',progress_code='artifact_recovery_queued',error_category=NULL,started_at=NULL,finished_at=NULL,worker_id=NULL,lease_hash=NULL,lease_expires_at=NULL,cancel_requested=false,qa_result=$2::jsonb WHERE id=$1",[jobId,JSON.stringify(next)]);
+  await c.query("INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) VALUES($1,'queued','preserved_artifact_recovery_authorized',$2)",[jobId,actor]);
+  await c.query('COMMIT');
+ }catch(e){await c.query('ROLLBACK');throw e;}finally{c.release();}
+}
 export async function restartBuildJob(requestId:string,jobId:string,actor:string){
  if(!configuredBuildExecutor())throw new BuildJobError('Controlled worker is not configured.');
  const c=await database().connect();

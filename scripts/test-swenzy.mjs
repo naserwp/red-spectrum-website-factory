@@ -7,14 +7,16 @@ assert.deepEqual(manifest.customers.find(c=>c.slug==="swenzy-logistics"),custome
 assert.equal(customerSiteSchema.safeParse(customer).success,true);
 function rejects(change){const x=structuredClone(customer);change(x);assert.equal(customerSiteSchema.safeParse(x).success,false);}
 rejects(c=>c.form.mode="live");
-rejects(c=>c.form.mode="test");
+rejects(c=>{c.form.mode="test";c.form.recipientConfirmed=false;});
 rejects(c=>c.form.provider="other");
 rejects(c=>c.images.hero.src="/customers/other-tenant/hero.webp");
-rejects(c=>c.myndy.embed.scriptUrl="https://unapproved.example/script.js");
-rejects(c=>c.myndy.embed.agentId="invalid");
+rejects(c=>{c.myndy.embed.enabled=true;c.myndy.embed.scriptUrl="https://unapproved.example/script.js";});
+rejects(c=>{c.myndy.embed.enabled=true;c.myndy.embed.agentId="invalid";});
 rejects(c=>c.status="approved");
 assert.equal(customerManifestSchema.safeParse({schemaVersion:"1.0",customers:[customer,customer]}).success,false);
-assert.equal(customer.form.mode,"disabled");
-assert.equal(customer.form.recipientConfirmed,false);
+// The existing customer is configured for confirmed-recipient test mode.
+// Schema checks never send a message or promote that integration to live mode.
+assert.equal(customer.form.mode,"test");
+assert.equal(customer.form.recipientConfirmed,true);
 assert.equal(customer.form.testPassed,false);
 console.log("Passed customer registry, schema, isolation and approval-gate assertions.");

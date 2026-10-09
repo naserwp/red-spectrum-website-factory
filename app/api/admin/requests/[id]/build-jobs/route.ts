@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { isAdmin, sameOrigin, rateLimit } from "@/lib/webfactory/server";
 import { chatSession } from "@/lib/webfactory/chat-store";
-import { BuildJobError, createBuildJob, listBuildJobs, cancelBuildJob, retryBuildQa, restartBuildJob } from "@/lib/webfactory/build-jobs";
+import { BuildJobError, createBuildJob, listBuildJobs, cancelBuildJob, retryBuildQa, restartBuildJob, recoverBuildArtifact } from "@/lib/webfactory/build-jobs";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 const input=z.discriminatedUnion("action",[
+  z.object({action:z.literal("recover_artifact"),confirmed:z.literal(true),jobId:z.string().uuid(),artifactAttempt:z.number().int().min(0).max(3),checkpoint:z.object({artifactSha:z.string().regex(/^[a-f0-9]{64}$/),baselineSha:z.string().regex(/^[a-f0-9]{40}$/),provider:z.object({name:z.literal("openai"),model:z.string().regex(/^[a-zA-Z0-9._-]{1,80}$/)}).strict()}).strict()}).strict(),
   z.object({action:z.literal("restart"),confirmed:z.literal(true),jobId:z.string().uuid()}).strict(),
   z.object({action:z.literal("create"),confirmed:z.literal(true),submissionId:z.string().uuid(),requestedChanges:z.string().max(6000).default("")}).strict(),
   z.object({action:z.literal("cancel"),confirmed:z.literal(true),jobId:z.string().uuid()}).strict(),
@@ -32,6 +33,7 @@ export async function POST(request:Request,{params}:{params:Promise<{id:string}>
       if(!await rateLimit("ai","build-job:"+id,12))return json({error:"Build request limit reached. Retry later."},429);
       await createBuildJob(id,data.submissionId,actor,data.requestedChanges);
     }
+    else if(data.action==='recover_artifact')await recoverBuildArtifact(id,data.jobId,actor,data);
     else if(data.action==='restart')await restartBuildJob(id,data.jobId,actor);
     else if(data.action==='retry_qa')await retryBuildQa(id,data.jobId,actor);
     else await cancelBuildJob(id,data.jobId,actor);
