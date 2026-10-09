@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "report": [
+    {
+      "width": 320,
+      "widgetBox": {
+        "x": 51.609375,
+        "y": 419.453125,
+        "width": 236.390625,
+        "height": 386.390625
+      },
+      "opens": true,
+      "formHidden": true,
+      "navigationHidden": true
+    },
+    {
+      "width": 375,
+      "widgetBox": {
+        "x": 51.609375,
+        "y": 419.453125,
+        "width": 291.390625,
+        "height": 386.390625
+      },
+      "opens": true,
+      "formHidden": true,
+      "navigationHidden": true
+    },
+    {
+      "width": 1440,
+      "widgetBox": {
+        "x": 1078,
+        "y": 386.28125,
+        "width": 346,
+        "height": 386.390625
+      },
+      "opens": true,
+      "formHidden": true,
+      "navigationHidden": false
+    }
+  ]
+}

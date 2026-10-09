@@ -1,0 +1,35 @@
+{
+  "result": {
+    "state": "saved",
+    "leadId": "1745a273-b87e-4a06-b643-f0cf1257564f",
+    "duplicate": false,
+    "notification": "provider_accepted",
+    "myndy": "verified"
+  },
+  "duplicate": {
+    "state": "saved",
+    "leadId": "1745a273-b87e-4a06-b643-f0cf1257564f",
+    "duplicate": true,
+    "notification": "provider_accepted",
+    "myndy": "verified"
+  },
+  "rows": [
+    {
+      "kind": "myndy_contact",
+      "state": "accepted",
+      "attempt_count": 1,
+      "provider_receipt": "ct_3c57922782dc0767",
+      "readback_verified_at": "2026-10-08T23:25:55.920Z"
+    },
+    {
+      "kind": "test_email",
+      "state": "accepted",
+      "attempt_count": 1,
+      "provider_receipt": "mUdZESTzRc26Xwhie1dNOg",
+      "readback_verified_at": null
+    }
+  ],
+  "recipient": "accountexec@theredspectrum.com",
+  "at": "2026-10-08T23:25:45.179Z",
+  "gates": "Process-only synthetic authorization; preview and production flags unchanged"
+}

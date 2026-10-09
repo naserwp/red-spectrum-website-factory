@@ -1,0 +1,9 @@
+{
+  "requestId": "2819bf01-793b-4df0-9409-8d53c8df71ee",
+  "customerSlug": "multi-trans-global-logistics",
+  "branch": "codex/multi-trans-global-logistics",
+  "baseCommit": "607f9298a2324e92a2266aa07349be0be0b652e9",
+  "status": "isolated-preview-preparation",
+  "administrativeApproval": false,
+  "liveDelivery": false
+}

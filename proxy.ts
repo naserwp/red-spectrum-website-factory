@@ -31,6 +31,8 @@ export function proxy(request:NextRequest){
     return NextResponse.next();
   }
   if(request.nextUrl.hostname!=='preview.redspectrum.ai')return NextResponse.next();
+  // The dedicated Multi Trans route validates all 27 pages, including nested services.
+  if(request.nextUrl.pathname==='/multi-trans-global-logistics'||request.nextUrl.pathname.startsWith('/multi-trans-global-logistics/'))return NextResponse.next();
   if(request.nextUrl.pathname==='/unique-management-group'||request.nextUrl.pathname.startsWith('/unique-management-group/'))return NextResponse.next();
  const parts=request.nextUrl.pathname.split('/').filter(Boolean);
  if(!parts.length||['api','admin','_next','customers','designs','request','processing','privacy','templates','brief','standards','checkout'].includes(parts[0]))return NextResponse.next();

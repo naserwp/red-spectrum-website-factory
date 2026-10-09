@@ -15,7 +15,12 @@ export async function verifyCustomerRoute(slug:string,url:string):Promise<boolea
     const html=await response.text();
     const accepted=new Set([`https://preview.redspectrum.ai/${slug}`,canonicalCustomerUrl(slug)].filter(Boolean));
     const structured=[...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].some(match=>{
-      try{const data=JSON.parse(match[1]);return data.name===site.business.name && accepted.has(data.url);}catch{return false;}
+      try{
+        const data=JSON.parse(match[1]);
+        // Multi Trans publishes its Organization inside a JSON-LD graph.
+        const identities=slug==='multi-trans-global-logistics' && Array.isArray(data['@graph']) ? data['@graph'].filter((node: Record<string, unknown>)=>node && node['@type']==='Organization') : [data];
+        return identities.some((node: Record<string, unknown>)=>node?.name===site.business.name && typeof node.url==='string' && accepted.has(node.url));
+      }catch{return false;}
     });
     if(structured)return true;
     // Some reviewed previews are server-rendered without JSON-LD. Require both the exact canonical URL and business name.

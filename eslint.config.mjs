@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Unmodified, hash-pinned upstream Myndy bundle; reviewed as a vendor asset.
+    "public/customers/multi-trans-global-logistics/myndy-widget-207f75d8.js",
   ]),
   {
     files: ["components/ui/**/*.{ts,tsx}", "hooks/use-mobile.ts"],

@@ -1,0 +1,32 @@
+{
+  "identity": {
+    "status": 200,
+    "user_id": "69fe0055f0de00208466235b",
+    "workspace_id": "69fe0055f0de00208466235b",
+    "scopes": [
+      "calls:read",
+      "calls:write",
+      "contacts:read",
+      "contacts:write",
+      "conversations:read",
+      "conversations:write",
+      "messages:read",
+      "messages:write",
+      "numbers:read",
+      "office_hours:read",
+      "office_hours:write",
+      "settings:read",
+      "settings:write",
+      "webhooks:manage"
+    ]
+  },
+  "contact": {
+    "email": "mtg-contact-qa-61b8db4f-77f5-43ce-bf3e-44c5a2d4518f@example.invalid",
+    "result": {
+      "state": "accepted",
+      "receipt": "ct_c52d4cd538897aee",
+      "verified": true
+    }
+  },
+  "previewKeyStatus": 201
+}
