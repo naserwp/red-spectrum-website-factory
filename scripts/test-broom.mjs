@@ -44,6 +44,8 @@ if (process.env.BROOM_QA_ORIGIN) {
     const html = await r.text();
     assert(html.includes(`data-customer-slug="${slug}"`));
     assert(html.includes(`rel="canonical" href="https://preview.redspectrum.ai/${slug}${route}"`));
+    const schema=[...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match=>JSON.parse(match[1]));
+    assert.equal(schema.find(item=>item['@type']==='Organization')?.url,`https://preview.redspectrum.ai/${slug}`,'Business identity must match the release verifier exactly');
     assert.match(html, /name="robots" content="noindex, nofollow"/);
     assert(!html.includes('<myndy-convai'));
     assert(!html.includes('<script src="https://widget.myndy.ai'));
