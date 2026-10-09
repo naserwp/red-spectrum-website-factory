@@ -3,6 +3,38 @@
   const start = () => {
     const site = document.querySelector('.bh');
     if (!site) return;
+    // Broom's verified agent only. This also works on the branded, server-rendered
+    // preview, where Next hydration is intentionally removed.
+    const chat = site.querySelector('[data-broom-agent]');
+    const broomAgent = 'agent_1791578673_rmH9kMoBMuSgTK0WoVmujw';
+    if (site.dataset.customerSlug === 'broom-home-enterprises-llc' && chat?.dataset.broomAgent === broomAgent && !chat.dataset.started) {
+      chat.dataset.started = 'true';
+      const status = chat.querySelector('[data-broom-chat-status]');
+      const fail = () => {
+        status.hidden = false;
+        status.firstChild.textContent = 'Broom Home Guide is unavailable. ';
+      };
+      const timeout = setTimeout(fail, 20000);
+      const mount = () => {
+        customElements.whenDefined('myndy-convai').then(() => {
+          clearTimeout(timeout);
+          if (chat.querySelector('myndy-convai')) return;
+          const widget = document.createElement('myndy-convai');
+          Object.entries({ agent_id: broomAgent, position: 'bottom-right', bottom: '24px', right: '16px', zindex: '45', primarycolor: '#132238', 'aria-label': 'Broom Home Guide AI chat' }).forEach(([key, value]) => widget.setAttribute(key, value));
+          chat.appendChild(widget);
+          status.hidden = true;
+        });
+      };
+      if (customElements.get('myndy-convai')) mount();
+      else {
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = 'https://widget.myndy.ai/myndy-convai-widget.es.js';
+        script.onload = mount;
+        script.onerror = () => { clearTimeout(timeout); fail(); };
+        document.head.appendChild(script);
+      }
+    }
     const menu = site.querySelector('.bh-mobile-menu');
     const toggle = menu?.querySelector('summary');
     const close = (restoreFocus = false) => {

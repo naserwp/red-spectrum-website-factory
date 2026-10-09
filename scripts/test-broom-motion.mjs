@@ -8,7 +8,7 @@ const listeners = {};
 let focused = false;
 const toggle = { focus: () => { focused = true; } };
 const menu = { open: true, querySelector: () => toggle, contains: () => false };
-const site = { querySelector: selector => selector === '.bh-mobile-menu' ? menu : null, addEventListener: (name, callback) => { listeners[name] = callback; } };
+const site = { dataset: {customerSlug:'broom-home-enterprises-llc'}, querySelector: selector => selector === '.bh-mobile-menu' ? menu : null, addEventListener: (name, callback) => { listeners[name] = callback; } };
 vm.runInNewContext(readFileSync('public/customers/broom-home-enterprises-llc/motion.js', 'utf8'), {
   document: { readyState: 'complete', querySelector: () => site, addEventListener: (name, callback) => { listeners[name] = callback; } },
   window: { addEventListener: (name, callback) => { listeners[name] = callback; }, matchMedia: () => ({ matches: true }) },
