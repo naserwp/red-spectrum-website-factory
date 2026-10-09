@@ -94,7 +94,7 @@ export async function workerOperation(input:z.infer<typeof workerInput>){
   if(input.action==="complete"){
      if(j.instruction_version==='customer-site-v2'){
       const results=j.qa_result?.attempts?.at(-1)?.results || [];
-      if(results.some((r:{status:string})=>r.status!=='passed')||!['','/services','/about','/contact','/privacy'].every(page=>[320,375,768,1024,1440,1920].every(viewport=>results.some((r:{page:string;viewport:number;check_name:string;status:string})=>r.page===page&&r.viewport===viewport&&r.check_name==='mobile-overflow'&&r.status==='passed'))))throw Error('Six-width QA required');
+      if(results.some((r:{status:string})=>r.status!=='passed')||!['','/services','/about','/contact','/privacy'].every(page=>[320,375,430,768,1024,1440,1920].every(viewport=>results.some((r:{page:string;viewport:number;check_name:string;status:string})=>r.page===page&&r.viewport===viewport&&r.check_name==='mobile-overflow'&&r.status==='passed'))))throw Error('Seven-width QA required');
      }
    if(j.status!=="preview_verifying" || input.branch!==`webfactory/build/${j.id}-${j.customer_slug}` || !input.changedFiles.every(file=>allowedBuildPath(j.customer_slug,file)))throw Error("Invalid artifacts");
    if(j.qa_result?.resumePreview){

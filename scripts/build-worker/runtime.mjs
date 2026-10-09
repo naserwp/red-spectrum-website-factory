@@ -27,6 +27,9 @@ export const command=(cmd,args,cwd,extra={},timeout=600000,input)=>new Promise((
   const candidates=windows&&existsSync(volta)?readdirSync(volta).map(v=>path.join(volta,v,'node_modules/npm/bin/npm-cli.js')):[];
   const npm=[process.env.npm_execpath,path.join(path.dirname(process.execPath),'node_modules/npm/bin/npm-cli.js'),path.join(path.dirname(process.execPath),'../node_modules/npm/bin/npm-cli.js'),...candidates].find(p=>p&&existsSync(p));
   if(!npm){reject(Error('CONFIGURATION_MISSING'));return;}
+  // Project scripts may invoke npm again. Keep both the reviewed Node runtime
+  // and npm's own installation directory available inside the sanitized shell.
+  extra={...extra,PATH:[path.dirname(process.execPath),path.resolve(path.dirname(npm),'../../..'),extra.PATH||cleanEnv.PATH||''].join(path.delimiter)};
   args=[npm,...args];cmd=process.execPath;
  }
  const child=launch(cmd,args,{cwd,env:{...cleanEnv,...extra},stdio:[input===undefined?'ignore':'pipe','pipe','pipe']});let out='';
