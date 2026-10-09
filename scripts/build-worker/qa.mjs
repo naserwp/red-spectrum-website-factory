@@ -1,6 +1,6 @@
 import {command,cleanEnv,launch,stop} from './runtime.mjs';
 import {createServer} from 'node:net';
-import {readFile} from 'node:fs/promises';
+import {readFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {qaMessages} from '../../lib/webfactory/qa-diagnostics.ts';
 import {settleImages} from './image-readiness.mjs';
@@ -31,6 +31,9 @@ export function safeResults(results){return results.map(r=>({...r,safe_message:r
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 async function freePort(){const s=createServer();await new Promise((resolve,reject)=>{s.once('error',reject);s.listen(0,'127.0.0.1',resolve);});const port=s.address().port;await new Promise(r=>s.close(r));return port;}
 export async function runQa(repo,job,site,env,check=async()=>{}){
+ if(!/^[a-f0-9-]{36}$/.test(job.id))throw Error('SCOPE_REJECTED');
+ const screenshots=path.join(path.dirname(repo.dir),job.id+'-qa');
+ await mkdir(screenshots,{recursive:true});
  const record=recorder(),port=await freePort(),base=`http://127.0.0.1:${port}`;
  const server=launch(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',String(port)],{cwd:repo.dir,env:cleanEnv,stdio:'ignore'});
  let launchFailed=false;server.on('error',()=>{launchFailed=true;});
@@ -54,6 +57,7 @@ export async function runQa(repo,job,site,env,check=async()=>{}){
     const settled=await browserStep(record,async()=>JSON.parse(await browser('eval',`(${settleImages.toString()})()`)),page,width,'browser-check');
     const c=await browserStep(record,async()=>JSON.parse(await browser('eval',`({overflow:document.documentElement.scrollWidth>innerWidth,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0),leak:[...document.querySelectorAll('a[href^="/"]')].some(a=>{const p=a.getAttribute('href').split(/[?#]/)[0];return p!=='/${job.customerSlug}'&&!p.startsWith('/${job.customerSlug}/')}),error:!!document.querySelector('[data-nextjs-dialog]')})`)),page,width,'browser-check');
     c.imageFailures=settled.failures;checkBrowser(record,c,page,width);
+    await browserStep(record,()=>browser('screenshot',path.join(screenshots,`${page.slice(1)||'home'}-${width}.png`),'--full'),page,width,'browser-check');
     if(width===320){
      const menu=await browserStep(record,()=>browser('eval',`(()=>{const d=document.querySelector('header details');if(!d)return false;d.open=true;return true})()`),page,width,'browser-check');
      if(JSON.parse(menu)){
