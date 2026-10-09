@@ -3,6 +3,7 @@ import {mkdir,readFile,lstat,realpath} from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {workerOptions,pollDelay} from './options.mjs';
+import {compileWithRetry} from './build-retry.mjs';
 import {runPipeline} from './pipeline.mjs';
 import {generateDesign,writeCustomer,validateScope,verifyManifestDiff} from './generator.mjs';
 import {runQa} from './qa.mjs';
@@ -93,7 +94,7 @@ async function execute(job,lease){
   async build(repo){
    await command('npm',['ci','--ignore-scripts','--no-audit','--no-fund'],repo.dir);
    try{await command('npm',['run','lint'],repo.dir);}catch(e){throw Object.assign(Error('LINT_FAILED'),{commandFailure:e.commandFailure});}
-   try{await command('npm',['run','build'],repo.dir);}catch(e){throw Object.assign(Error('BUILD_FAILED'),{commandFailure:e.commandFailure});}
+   try{await compileWithRetry(()=>command('npm',['run','build'],repo.dir),check,{onRetry:reason=>console.log(JSON.stringify({event:'local_build_retry',jobId:job.id,reason,at:new Date().toISOString()}))});}catch(e){throw Object.assign(Error('BUILD_FAILED'),{commandFailure:e.commandFailure});}
   },
   async qa(repo,_job,site){
    const qa=await runQa(repo,job,site,env,check);
