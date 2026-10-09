@@ -10,14 +10,14 @@ const site = manifest.customers.find(site => site.slug === slug);
 assert(site);
 assert.equal(manifest.customers.filter(site => site.slug === slug).length, 1);
 assert.deepEqual(site, JSON.parse(readFileSync(`customers/${slug}/site/customer.config.json`, 'utf8')));
-const baseline = JSON.parse(execFileSync('git', ['show', '287f9b1:customers/manifest.json'], { encoding: 'utf8' }));
-assert.deepEqual(manifest.customers.filter(site => site.slug !== slug), baseline.customers, 'Existing customers must be unchanged');
+const baseline = JSON.parse(execFileSync('git', ['show', '1025826:customers/manifest.json'], { encoding: 'utf8' }));
+assert.deepEqual(manifest.customers.filter(site => site.slug !== slug), baseline.customers.filter(site => site.slug !== slug), 'Existing customers must be unchanged');
 assert.equal(site.form.provider, 'sendgrid');
 assert(['test', 'live'].includes(site.form.mode));
 assert.equal(site.form.recipientConfirmed, true);
 if (site.form.mode === 'live') assert.equal(site.form.testPassed, true);
-assert.equal(site.myndy.embed.enabled, false);
-assert.equal(site.myndy.embed.agentId, '');
+assert.equal(site.myndy.embed.enabled, true);
+assert.equal(site.myndy.embed.agentId, 'agent_1791578673_rmH9kMoBMuSgTK0WoVmujw');
 assert(existsSync(site.myndy.knowledgeContextPath));
 for (const asset of [site.branding.logoPath, site.branding.faviconPath, site.images.hero.src, ...site.images.gallery.map(image => image.src)]) {
   assert(asset.startsWith(`/customers/${slug}/`));
@@ -31,7 +31,7 @@ new Function('exports', code)(testModule.exports);
 const { validBroomRoute, broomServices } = testModule.exports;
 for (const route of [[], ['services'], ['about'], ['contact'], ['faq'], ['privacy'], ...broomServices.map(s => ['services', s.slug])]) assert(validBroomRoute(route));
 for (const route of [['home'], ['services', 'fake-listing'], ['contact', 'extra'], ['faq', 'extra'], ['services', 'buying', 'extra'], ['thank-you']]) assert(!validBroomRoute(route));
-console.log('PASS: exact tenant registration, existing tenant preservation, all 11 routes, invalid route rejection, asset ownership, confirmed email configuration, inactive chat, no fictitious structured-data address.');
+console.log('PASS: exact tenant registration, existing tenant preservation, all 11 routes, invalid route rejection, asset ownership, confirmed email configuration, verified Broom-only chat, no fictitious structured-data address.');
 
 if (process.env.BROOM_QA_ORIGIN) {
   const base = process.env.BROOM_QA_ORIGIN;
@@ -47,7 +47,8 @@ if (process.env.BROOM_QA_ORIGIN) {
     const schema=[...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match=>JSON.parse(match[1]));
     assert.equal(schema.find(item=>item['@type']==='Organization')?.url,`https://preview.redspectrum.ai/${slug}`,'Business identity must match the release verifier exactly');
     assert.match(html, /name="robots" content="noindex, nofollow"/);
-    assert(!html.includes('<myndy-convai'));
+    assert(html.includes('data-broom-agent="'+site.myndy.embed.agentId+'"'));
+    assert(!html.includes('Contact Aminul Haque'));
     assert(!html.includes('<script src="https://widget.myndy.ai'));
     assert(!html.includes('6417efec-04c9-497c-a735-229d51219944'));
   }
@@ -59,7 +60,7 @@ if (process.env.BROOM_QA_ORIGIN) {
   const r = await fetch(base + '/api/leads/' + slug, { method: 'POST', body: form, headers: { origin: base } });
   assert.equal(r.status, 400);
   assert.equal((await r.json()).message, 'Please check the required fields.');
-  for (const customer of baseline.customers) {
+  for (const customer of baseline.customers.filter(site => site.slug !== slug)) {
     const result = base.startsWith('http://localhost:')
       ? await new Promise((resolve, reject) => http.get(base + '/' + customer.slug, { headers: { host: 'red-spectrum-website-factory.vercel.app' } }, response => {
         let html = ''; response.on('data', data => { html += data; });

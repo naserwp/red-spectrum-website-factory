@@ -1527,7 +1527,7 @@
             "This notice describes the Broom Home Enterprises LLC review website. Contact info@broomhome.biz with questions about your information. Final retention periods and applicable privacy rights require business confirmation before public launch.",
             "When you submit an inquiry, we collect your name, email address, optional phone number, selected service and message to respond to your request. Inquiry records are stored by the website service, and an email notification is processed through SendGrid for delivery to info@broomhome.biz. Please share only the information needed for your inquiry. Contact the business with questions about access, correction or deletion.",
             "Phone and email links open your own applications. Information you choose to share is handled by your communications provider and the business to respond to your inquiry. Do not send account numbers, payment credentials, identification documents or sensitive financial information.",
-            "Myndy live chat is not active. No Myndy script is loaded and no conversation is sent to Myndy from this preview. A revised notice and separate approval are required before activation.",
+            "Broom Home Guide is an AI assistant powered by Myndy. Loading this website loads Myndy’s widget; messages you choose to send are processed by Myndy to provide replies. Please do not share identification documents, banking information or other sensitive details in chat. Chat is separate from the contact form and does not confirm an inquiry or appointment. Myndy’s privacy policy at https://myndy.ai/privacy-policy describes its data practices; a specific chat retention period is not stated. Contact info@broomhome.biz for questions about your information.",
             "The website host may process IP addresses, request information and technical logs to deliver and protect the website. No separate marketing analytics, advertising tags or payment processing have been added to this customer experience.",
             "Photographs are licensed illustrative stock images. They do not identify Broom Home properties, available listings, customers or team members."
           ]
@@ -1609,12 +1609,12 @@
       },
       "myndy": {
         "agentName": "Broom Home Guide",
-        "greeting": "Welcome to Broom Home Enterprises! Are you looking to rent, buy, sell, build, or discuss a property investment?",
+        "greeting": "Hello, I’m Broom Home Guide, the AI assistant for Broom Home Enterprises LLC. Are you looking to rent, buy, sell, build, or discuss holding a property?",
         "avatarBrief": "Refined BH monogram in deep navy and architectural gold.",
         "knowledgeContextPath": "customers/broom-home-enterprises-llc/myndy/agent-context.md",
         "embed": {
-          "enabled": false,
-          "agentId": "",
+          "enabled": true,
+          "agentId": "agent_1791578673_rmH9kMoBMuSgTK0WoVmujw",
           "scriptUrl": "https://widget.myndy.ai/myndy-convai-widget.es.js"
         }
       }
