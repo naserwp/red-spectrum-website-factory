@@ -1,0 +1,1255 @@
+{
+  "plan": {
+    "method": "OpenAI Codex authorized live-contact release verification",
+    "emailAuthorization": "User explicitly authorized live contact delivery and branded release; test inbox receipt confirmed",
+    "sourceCommit": "9fce70fdca8d54e5e3459116c41f7a1a62bca91e",
+    "requestId": "6417efec-04c9-497c-a735-229d51219944",
+    "briefId": "3c5b09be-2a62-4c74-978b-7a21499e3905",
+    "preserveApplication": true,
+    "widths": [
+      320,
+      375,
+      768,
+      1024,
+      1440,
+      1920
+    ],
+    "forbidden": [
+      "customer_approved",
+      "DNS changes",
+      "payment activation",
+      "Myndy activation"
+    ]
+  },
+  "status": "qa_passed",
+  "checkedAt": "2026-10-09T18:24:56.753Z",
+  "checks": {
+    "route_identity": true,
+    "required_pages": true,
+    "tenant_isolation": true,
+    "navigation": true,
+    "metadata": true,
+    "public_privacy": true,
+    "mobile_320_768_1440": true,
+    "lint": true,
+    "production_build": true
+  },
+  "results": [
+    {
+      "check_name": "privacy",
+      "status": "passed",
+      "page": "",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:12.297Z"
+    },
+    {
+      "check_name": "server-start",
+      "status": "passed",
+      "page": "",
+      "viewport": 0,
+      "duration": 1802,
+      "timestamp": "2026-10-09T18:24:14.101Z"
+    },
+    {
+      "check_name": "customer-route",
+      "status": "passed",
+      "page": "",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:14.599Z"
+    },
+    {
+      "check_name": "customer-identity",
+      "status": "passed",
+      "page": "",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:14.599Z"
+    },
+    {
+      "check_name": "metadata",
+      "status": "passed",
+      "page": "",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:14.599Z"
+    },
+    {
+      "check_name": "privacy",
+      "status": "passed",
+      "page": "",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:14.599Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:14.599Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:17.592Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:17.592Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:17.592Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:17.592Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:17.982Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:19.432Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:19.432Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:19.432Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:19.432Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:20.613Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:20.613Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:20.613Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:20.613Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:21.800Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:21.800Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:21.800Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:21.800Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:22.961Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:22.961Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:22.961Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:22.961Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.131Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.131Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.131Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.131Z"
+    },
+    {
+      "check_name": "customer-route",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.650Z"
+    },
+    {
+      "check_name": "customer-identity",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.650Z"
+    },
+    {
+      "check_name": "metadata",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.650Z"
+    },
+    {
+      "check_name": "privacy",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.651Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:24.651Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:26.611Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:26.611Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:26.611Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:26.611Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:26.980Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:28.351Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:28.351Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:28.352Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:28.352Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:29.479Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:29.479Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:29.479Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:29.479Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:30.631Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:30.631Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:30.631Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:30.631Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:31.738Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:31.738Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:31.738Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:31.738Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:32.842Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:32.842Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:32.842Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/services",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:32.842Z"
+    },
+    {
+      "check_name": "customer-route",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:33.375Z"
+    },
+    {
+      "check_name": "customer-identity",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:33.375Z"
+    },
+    {
+      "check_name": "metadata",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:33.375Z"
+    },
+    {
+      "check_name": "privacy",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:33.375Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:33.376Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:34.876Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:34.876Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:34.876Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:34.876Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:35.262Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:36.516Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:36.516Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:36.516Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:36.516Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:37.521Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:37.521Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:37.521Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:37.521Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:38.545Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:38.545Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:38.545Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:38.545Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:39.564Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:39.564Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:39.564Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:39.564Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:40.564Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:40.564Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:40.564Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/about",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:40.564Z"
+    },
+    {
+      "check_name": "customer-route",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:41.093Z"
+    },
+    {
+      "check_name": "customer-identity",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:41.093Z"
+    },
+    {
+      "check_name": "metadata",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:41.093Z"
+    },
+    {
+      "check_name": "privacy",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:41.093Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:41.093Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:42.602Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:42.602Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:42.602Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:42.602Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:42.992Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:44.217Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:44.217Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:44.217Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:44.217Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:45.187Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:45.187Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:45.187Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:45.187Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:46.169Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:46.169Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:46.169Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:46.169Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:47.136Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:47.136Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:47.136Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:47.136Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.104Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.104Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.104Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/contact",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.104Z"
+    },
+    {
+      "check_name": "customer-route",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.595Z"
+    },
+    {
+      "check_name": "customer-identity",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.595Z"
+    },
+    {
+      "check_name": "metadata",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.595Z"
+    },
+    {
+      "check_name": "privacy",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.596Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 0,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:48.596Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:50.073Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:50.073Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:50.073Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:50.073Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 320,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:50.454Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:51.659Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:51.659Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:51.659Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 375,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:51.659Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:52.610Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:52.610Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:52.610Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 768,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:52.610Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:53.578Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:53.578Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:53.578Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1024,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:53.578Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:54.548Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:54.548Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:54.548Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1440,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:54.548Z"
+    },
+    {
+      "check_name": "mobile-overflow",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:55.541Z"
+    },
+    {
+      "check_name": "images",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:55.541Z"
+    },
+    {
+      "check_name": "tenant-isolation",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:55.541Z"
+    },
+    {
+      "check_name": "page-error",
+      "status": "passed",
+      "page": "/privacy",
+      "viewport": 1920,
+      "duration": 0,
+      "timestamp": "2026-10-09T18:24:55.541Z"
+    }
+  ]
+}
