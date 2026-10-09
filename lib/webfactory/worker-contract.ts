@@ -7,6 +7,7 @@ export const commandFailureSchema=z.object({stage:z.literal('building'),category
 export const workerStages = ["claimed","planning","generating","applying_changes","validating","building","qa_running","preview_deploying","preview_verifying"] as const;
 export const workerErrors = ["PROVIDER_UNAVAILABLE","PROVIDER_FAILED","INVALID_OUTPUT","SCOPE_REJECTED","LINT_FAILED","BUILD_FAILED","QA_FAILED","DEPLOYMENT_FAILED","PREVIEW_VERIFICATION_FAILED","WORKER_INTERRUPTED","INPUT_CHANGED","CONFIGURATION_MISSING"] as const;
 export const workerInput = z.discriminatedUnion("action",[
+ z.object({action:z.literal("pulse"),workerId:z.string().regex(/^[a-zA-Z0-9-]{1,60}$/)}).strict(),
  z.object({action:z.literal("claim"),workerId:z.string().regex(/^[a-zA-Z0-9-]{1,60}$/),jobId:z.string().uuid().optional()}).strict(),
  z.object({action:z.enum(["heartbeat","cancel_ack"]),jobId:z.string().uuid(),lease:z.string().length(64)}).strict(),
  z.object({action:z.literal("progress"),jobId:z.string().uuid(),lease:z.string().length(64),stage:z.enum(workerStages)}).strict(),

@@ -2,6 +2,7 @@ import {command,stopAll,assertRoot} from './runtime.mjs';
 import {mkdir,readFile,lstat,realpath} from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
+import {workerOptions,pollDelay} from './options.mjs';
 import {runPipeline} from './pipeline.mjs';
 import {generateDesign,writeCustomer,validateScope,verifyManifestDiff} from './generator.mjs';
 import {runQa} from './qa.mjs';
@@ -9,6 +10,7 @@ import {saveCheckpoint,loadCheckpoint} from './checkpoint.mjs';
 import {verifyProtectedPreview} from '../../lib/webfactory/preview-verification.ts';
 
 const env=process.env;
+const options=workerOptions(process.argv.slice(2));
 const required=['WEBFACTORY_BUILD_CONTROL_URL','WEBFACTORY_BUILD_WORKER_SECRET','WEBFACTORY_BUILD_ROOT','WEBFACTORY_BUILD_BASE_SHA','OPENAI_API_KEY','AGENT_BROWSER_CLI'];
 const missing=required.filter(k=>!env[k]);
 if(missing.length){console.error('Missing configuration names: '+missing.join(', '));process.exit(1);}
@@ -39,7 +41,7 @@ async function execute(job,lease){
  let cancelled=false,lost=false;const heartbeat=async()=>{try{cancelled=(await api({action:'heartbeat',jobId:job.id,lease})).cancelRequested;}catch{lost=true;}};
  const timer=setInterval(()=>void heartbeat(),20000);
  const check=async()=>{await heartbeat();if(cancelled || lost)throw Error('WORKER_INTERRUPTED');};
- const progress=stage=>api({action:'progress',jobId:job.id,lease,stage});
+ const progress=async stage=>{const result=await api({action:'progress',jobId:job.id,lease,stage});console.log(JSON.stringify({event:'stage',jobId:job.id,stage,at:new Date().toISOString()}));return result;};
  const branch=`webfactory/build/${job.id}-${job.customerSlug}`;
  let baselineManifest,checkpointMetadata;
  try{return await runPipeline(job,{
@@ -117,9 +119,27 @@ async function execute(job,lease){
 }
 // One job at a time; process supervisor restarts the poller. Never recover by force-pushing.
 console.log('RS WebFactory Build Worker\nControl plane: configured\nGitHub: '+(env.GH_TOKEN?'token configured':'Windows/native credential manager')+'\nVercel: '+(env.VERCEL_TOKEN?'token configured':'existing CLI session'));
-if(process.argv.includes('--check')){console.log('Configuration valid; no jobs claimed.');process.exit(0);}
+if(options.check){console.log('Configuration valid; no jobs claimed.');process.exit(0);}
 console.log('Polling...');
+// Opt-in during rollout: older control planes do not implement the pulse action.
+const pulse=()=>api({action:'pulse',workerId}).catch(()=>console.error(JSON.stringify({event:'health_report_failed',at:new Date().toISOString()})));
+const healthTimer=env.WEBFACTORY_BUILD_HEALTH_ENABLED==='true'?setInterval(()=>void pulse(),30000):null;
+if(healthTimer)await pulse();
+let pollFailures=0;
 while(!stopping){
- try{const {job,lease}=await api({action:'claim',workerId});if(job){await execute(job,lease);console.log('Build attempt finished; consult private job history.');}else {console.log('Waiting for build jobs...');if(!process.argv.includes('--once'))await pause(10000);}}catch{console.error('Worker paused: check private configuration/lease state.');if(!process.argv.includes('--once'))await pause(10000);}
- if(process.argv.includes('--once'))break;
+ try{
+  const {job,lease}=await api({action:'claim',workerId,...(options.jobId?{jobId:options.jobId}:{})});pollFailures=0;
+  if(job){
+   const status=await execute(job,lease);
+   console.log(JSON.stringify({event:'attempt_finished',jobId:job.id,status,at:new Date().toISOString()}));
+   if(options.once&&status!=='ready_for_review')process.exitCode=1;
+  }else if(options.jobId){console.error('Target job was not claimable; no other job claimed.');process.exitCode=2;}
+  else if(!options.once)await pause(10000);
+ }catch{
+  const delay=pollDelay(++pollFailures);
+  console.error(JSON.stringify({event:'poll_failed',attempt:pollFailures,retryAfterMs:delay,at:new Date().toISOString()}));
+  if(options.once)process.exitCode=1;else await pause(delay);
+ }
+ if(options.once)break;
 }
+if(healthTimer)clearInterval(healthTimer);

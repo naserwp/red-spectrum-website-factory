@@ -27,6 +27,13 @@ async function cloneReadyCandidate(templateId,{id=randomUUID(),requestId=req,cus
 }
 try{
  await db.query(`CREATE SCHEMA ${schema}`);
+ await db.query(rewrite(readFileSync('db/migrations/0012_webfactory_worker_health.sql','utf8')));
+ await worker.workerOperation({action:'pulse',workerId:'health-test'});
+ await worker.workerOperation({action:'pulse',workerId:'health-test'});
+ assert.equal(Number((await wrapped.query('SELECT count(*) AS count FROM webfactory.build_workers')).rows[0].count),1);
+ assert.equal((await wrapped.query("SELECT last_seen_at>now()-interval '90 seconds' AS online FROM webfactory.build_workers")).rows[0].online,true);
+ await wrapped.query("UPDATE webfactory.build_workers SET last_seen_at=now()-interval '91 seconds'");
+ assert.equal((await wrapped.query("SELECT last_seen_at>now()-interval '90 seconds' AS online FROM webfactory.build_workers")).rows[0].online,false);
  for(const table of ['requests','ai_briefs','build_workflows','request_actions'])await db.query(`CREATE TABLE ${schema}.${table} (LIKE webfactory.${table} INCLUDING ALL)`);
  await db.query(rewrite(readFileSync('db/migrations/0008_webfactory_build_jobs.sql','utf8')));await db.query(rewrite(readFileSync('db/migrations/0009_webfactory_build_worker.sql','utf8')));
  await wrapped.query("INSERT INTO webfactory.requests(id,submission_id,access_hash,name,business,email,industry,details,customer_slug) VALUES($1,$2,'test','Synthetic','Synthetic Worker','qa@example.invalid','Test','Test',$3)",[req,randomUUID(),slug]);
@@ -87,7 +94,7 @@ try{
  await worker.workerOperation({action:'fail',...q,code:'QA_FAILED',diagnostics:[result]});
  const recorded=(await wrapped.query('SELECT qa_result FROM webfactory.website_build_jobs WHERE id=$1',[q.jobId])).rows[0].qa_result;
  assert.equal(recorded.attempts[0].results[0].check_name,'mobile-overflow');assert.equal(recorded.checkpoint.artifactSha,'c'.repeat(64));
- const jobs=load('lib/webfactory/build-jobs.ts',{'node:crypto':{randomUUID},'./server':{database:()=>wrapped},'./brief-schema':{},'./slug-rules':{},'@/lib/customers/registry':{},'./build-receipts':{},'./build-executor':executor});
+ const jobs=load('lib/webfactory/build-jobs.ts',{'node:crypto':{randomUUID},'./server':{database:()=>wrapped},'./brief-schema':{},'./slug-rules':{},'@/lib/customers/registry':{},'./build-receipts':{},'./build-evidence':evidence,'./build-executor':executor});
  await assert.rejects(()=>jobs.retryBuildQa(randomUUID(),q.jobId,'test'));
  const retries=await Promise.allSettled([jobs.retryBuildQa(req,q.jobId,'test'),jobs.retryBuildQa(req,q.jobId,'test')]);
  assert.equal(retries.filter(r=>r.status==='fulfilled').length,1);

@@ -13,7 +13,12 @@ export async function listBuildJobs(requestId: string) {
   // Explicit projection: private brief/instructions never included in polling responses.
   const jobs = (await database().query("SELECT id,customer_slug,status,executor,created_at,finished_at,error_category,progress_code,changed_files,qa_result,preview_url FROM webfactory.website_build_jobs WHERE request_id=$1 ORDER BY created_at DESC LIMIT 20",[requestId])).rows;
   const events = (await database().query("SELECT e.job_id,e.created_at,e.status,e.code FROM webfactory.website_build_job_events e WHERE e.job_id=ANY($1::uuid[]) ORDER BY e.id DESC LIMIT 100",[jobs.map(j=>j.id)])).rows;
-  return { jobs:jobs.map(j=>({...j,qaRetryAvailable:j.status==='failed'&&j.error_category==='QA_FAILED'&&Boolean(j.qa_result?.checkpoint)&&Number(j.qa_result?.retryCount||0)<3})), events, executorConfigured: Boolean(configuredBuildExecutor()) };
+  let workerHealth:{state:'online'|'offline'|'unknown';lastSeenAt:string|null}={state:'unknown',lastSeenAt:null};
+  try{
+   const h=(await database().query("SELECT max(last_seen_at) AS last_seen_at,COALESCE(max(last_seen_at)>now()-interval '90 seconds',false) AS online FROM webfactory.build_workers")).rows[0];
+   workerHealth={state:h.online?'online':'offline',lastSeenAt:h.last_seen_at};
+  }catch{/* Older control planes remain usable; missing migration is not online evidence. */}
+  return { jobs:jobs.map(j=>({...j,qaRetryAvailable:j.status==='failed'&&j.error_category==='QA_FAILED'&&Boolean(j.qa_result?.checkpoint)&&Number(j.qa_result?.retryCount||0)<3})), events, workerHealth, executorConfigured: Boolean(configuredBuildExecutor()) };
 }
 export async function retryBuildQa(requestId:string,jobId:string,actor:string){
  if(!configuredBuildExecutor())throw new BuildJobError('Controlled worker is not configured.');

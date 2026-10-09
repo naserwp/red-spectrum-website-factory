@@ -3,15 +3,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {qaMessages,type QaDiagnostic} from "@/lib/webfactory/qa-diagnostics";
 type Job={id:string;customer_slug:string;status:string;error_category:string|null;created_at:string;progress_code:string;preview_url:string|null;qaRetryAvailable?:boolean;qa_result?:{preview_access?:{preview_public_access:'protected'|'public'};attempts?:{results:QaDiagnostic[];recorded_at:string}[]}};
 type Event={job_id:string;created_at:string;status:string;code:string};
-type Result={jobs?:Job[];events?:Event[];error?:string;executorConfigured?:boolean};
+type Health={state:'online'|'offline'|'unknown';lastSeenAt:string|null};
+type Result={jobs?:Job[];events?:Event[];error?:string;executorConfigured?:boolean;workerHealth?:Health};
 export function BuildConsole({requestId,enabled}:{requestId:string;enabled:boolean}){
   const [jobs,setJobs]=useState<Job[]>([]),[events,setEvents]=useState<Event[]>([]),[error,setError]=useState("");
   const [pending,setPending]=useState(false),[confirmed,setConfirmed]=useState(false),[changes,setChanges]=useState("");
   const [configured,setConfigured]=useState(false);
+  const [health,setHealth]=useState<Health>({state:'unknown',lastSeenAt:null});
   const submission=useRef<string|null>(null);
   const endpoint=`/api/admin/requests/${requestId}/build-jobs`;
   const refresh=useCallback(async()=>{
-    try{const response=await fetch(endpoint,{cache:"no-store"});const data=await response.json() as Result;if(!response.ok)throw Error(data.error);setJobs(data.jobs || []);setEvents(data.events || []);setConfigured(Boolean(data.executorConfigured));setError("");}catch{setError("Build history unavailable. Sign in and check database migration.");}
+    try{const response=await fetch(endpoint,{cache:"no-store"});const data=await response.json() as Result;if(!response.ok)throw Error(data.error);setJobs(data.jobs || []);setEvents(data.events || []);setConfigured(Boolean(data.executorConfigured));setHealth(data.workerHealth||{state:'unknown',lastSeenAt:null});setError("");}catch{setHealth({state:'unknown',lastSeenAt:null});setError("Build history unavailable. Sign in and check database migration.");}
   },[endpoint]);
   useEffect(()=>{const initial=setTimeout(()=>void refresh(),0);const timer=setInterval(()=>void refresh(),10000);return()=>{clearTimeout(initial);clearInterval(timer);};},[refresh]);
   const active=jobs.some(job=>!["failed","cancelled","ready_for_review","changes_requested"].includes(job.status));
@@ -29,6 +31,7 @@ export function BuildConsole({requestId,enabled}:{requestId:string;enabled:boole
   return <section className="wf-panel" aria-label="Build console" style={{minWidth:0}}>
     <p className="wf-section-label">Build Engine / Private admin console</p>
     <h3>Build Customer Website</h3>
+    <p role="status">Worker: <strong>{health.state}</strong>{health.lastSeenAt&&<> · Last heartbeat: <time>{new Date(health.lastSeenAt).toLocaleString()}</time></>}. {health.state==='offline'?'Queued builds wait until the worker reconnects.':health.state==='unknown'?'Worker health has not been verified.':''}</p>
     <p>Creates a durable job using the saved slug and current approved brief. {configured?"The controlled worker will claim queued jobs. A queued job is not proof that a worker is online; follow the recorded progress below.":"Worker dispatch is not configured. Jobs report an explicit configuration failure, not a completed website."}</p>
     <label className="wf-field">Requested changes / approved rebuild scope<textarea value={changes} maxLength={6000} rows={3} onChange={e=>{setChanges(e.target.value);submission.current=null;}}/></label>
     <a href={`/admin/ai?requestId=${requestId}`}>Ask AI for a draft change plan</a>

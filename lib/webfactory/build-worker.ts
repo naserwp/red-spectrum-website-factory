@@ -27,6 +27,10 @@ async function verifyPreview(input:Extract<z.infer<typeof workerInput>,{action:"
 }
 export async function workerOperation(input:z.infer<typeof workerInput>){
  const db=database();
+ if(input.action==='pulse'){
+  await db.query("INSERT INTO webfactory.build_workers(worker_id) VALUES($1) ON CONFLICT(worker_id) DO UPDATE SET last_seen_at=now()",[input.workerId]);
+  return {healthy:true};
+ }
  if(input.action==="claim"){
   // Expired workers are fenced, not silently requeued: external side effects may already exist.
   await db.query("WITH expired AS (UPDATE webfactory.website_build_jobs SET status='failed',error_category='WORKER_LEASE_EXPIRED',finished_at=now() WHERE ($1::uuid IS NULL OR id=$1) AND lease_expires_at<now() AND status IN ('claimed','planning','generating','applying_changes','validating','building','qa_running','preview_deploying','preview_verifying') RETURNING id) INSERT INTO webfactory.website_build_job_events(job_id,status,code,actor) SELECT id,'failed','WORKER_LEASE_EXPIRED','worker-recovery' FROM expired",[input.jobId ?? null]);
