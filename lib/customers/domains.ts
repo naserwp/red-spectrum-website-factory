@@ -2,11 +2,15 @@ export type CustomerDomainRecord = {
   slug: string;
   canonicalHost: string;
   status: "attached" | "verified";
+  // False while hosting is prepared but the customer has not cut over DNS.
+  published?: boolean;
 };
 
 // Customer-owned domains are recorded here, rather than inferred from the
 // Host header. Unknown hosts never select a tenant.
 export const customerDomains: Record<string, CustomerDomainRecord> = {
+  "broomhome.biz": { slug: "broom-home-enterprises-llc", canonicalHost: "www.broomhome.biz", status: "verified", published: false },
+  "www.broomhome.biz": { slug: "broom-home-enterprises-llc", canonicalHost: "www.broomhome.biz", status: "verified", published: false },
   "uniquehomeenterprise.com": { slug: "unique-home-enterprise", canonicalHost: "uniquehomeenterprise.com", status: "attached" },
   "www.uniquehomeenterprise.com": { slug: "unique-home-enterprise", canonicalHost: "uniquehomeenterprise.com", status: "attached" },
   "uniquemanagementgroup.com": { slug: "unique-management-group", canonicalHost: "uniquemanagementgroup.com", status: "attached" },
@@ -19,7 +23,7 @@ export function customerDomainForHost(host: string) {
 }
 
 export function canonicalCustomerUrl(slug: string) {
-  const host = Object.values(customerDomains).find((domain) => domain.slug === slug)?.canonicalHost;
+  const host = Object.values(customerDomains).find((domain) => domain.slug === slug && domain.published !== false)?.canonicalHost;
   return host ? `https://${host}` : null;
 }
 

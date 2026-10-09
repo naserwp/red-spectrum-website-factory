@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+import {NextRequest,NextResponse} from 'next/server.js';
+const load=(path,deps={})=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(path,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(n=>{assert(n in deps,n);return deps[n]},m,m.exports);return m.exports};
+const domains=load('lib/customers/domains.ts'),broom=load('lib/customers/broom-content.ts'),umg=load('lib/customers/umg-services.ts');
+const {proxy}=load('proxy.ts',{'next/server':{NextRequest,NextResponse},'@/lib/customers/domains':domains,'@/lib/customers/broom-content':broom,'@/lib/customers/umg-services':umg,'@/customers/manifest.json':JSON.parse(readFileSync('customers/manifest.json'))});
+const call=(host,path)=>proxy(new NextRequest('https://'+host+path,{headers:{host}}));
+const paths=['','/services','/about','/contact','/faq','/privacy',...broom.broomServices.map(s=>'/services/'+s.slug)];
+for(const path of paths){const r=call('www.broomhome.biz',path||'/');assert.equal(new URL(r.headers.get('x-middleware-rewrite')).pathname,'/'+broom.broomSlug+path);const apex=call('broomhome.biz',path||'/');assert.equal(apex.status,308);assert.equal(apex.headers.get('location'),'https://www.broomhome.biz'+(path||'/'));}
+for(const path of ['/admin','/api/broom-sitemap','/api/leads/unique-management-group','/services/nope','/customers/unique-home-enterprise/logo.svg','/_next/image?url=%2Fcustomers%2Funique-home-enterprise%2Flogo.svg&w=640&q=75','/customers/broom-home-enterprises-llc/secret.txt'])assert.equal(call('www.broomhome.biz',path).status,404,path);
+for(const path of ['/api/leads/'+broom.broomSlug,'/customers/'+broom.broomSlug+'/motion.js','/customers/'+broom.broomSlug+'/images/interior.webp','/_next/image?url=%2Fcustomers%2Fbroom-home-enterprises-llc%2Fimages%2Finterior.webp&w=640&q=75'])assert.equal(call('www.broomhome.biz',path).headers.get('x-middleware-next'),'1',path);
+assert.equal(call('www.broomhome.biz','/'+broom.broomSlug+'/contact?x=1').headers.get('location'),'https://www.broomhome.biz/contact?x=1');
+assert((await call('www.broomhome.biz','/robots.txt').text()).includes('Sitemap: https://www.broomhome.biz/sitemap.xml'));
+assert.equal(domains.canonicalCustomerUrl(broom.broomSlug),null,'Do not publish the admin domain before cutover');
+for(const host of ['uniquehomeenterprise.com','uniquemanagementgroup.com'])assert(call(host,'/').headers.get('x-middleware-rewrite').includes(domains.customerDomainForHost(host).slug));
+const sitemap=load('app/api/broom-sitemap/route.ts',{'@/lib/customers/domains':domains,'@/lib/customers/broom-content':broom});
+assert.equal(sitemap.GET(new Request('https://preview.redspectrum.ai/api/broom-sitemap',{headers:{host:'preview.redspectrum.ai'}})).status,404);
+const xml=await sitemap.GET(new Request('https://www.broomhome.biz/sitemap.xml',{headers:{host:'www.broomhome.biz'}})).text();assert.equal((xml.match(/<loc>/g)||[]).length,11);assert(!xml.includes('preview.redspectrum.ai'));
+console.log('PASS: 11 custom-host pages, apex and slug redirects, tenant/private-path isolation, exact assets, robots/sitemap and unchanged existing-host routing.');
