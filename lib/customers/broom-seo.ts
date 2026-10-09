@@ -19,7 +19,7 @@ const descriptions: Record<string, string> = {
   about: 'Meet Broom Home Enterprises LLC and discover our approach to real estate: clear communication, professional guidance and relationships built around your priorities.',
   contact: 'Contact Aminul Haque at Broom Home Enterprises LLC. Call (347) 666-3929 or email info@broomhome.biz to discuss your next real estate move.',
   faq: 'Find answers to common questions about Broom Home real estate services, preparing for a conversation, property imagery and contacting the team.',
-  privacy: 'Read the Broom Home preview privacy notice, including direct communications, technical information, illustrative photography and unavailable online inquiries.',
+  privacy: 'Read the Broom Home privacy notice, including contact inquiries, email notifications, technical information and illustrative photography.',
 };
 
 export function broomSeo(route: string[] = []) {
