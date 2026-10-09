@@ -24,6 +24,8 @@ export function MtgAssistant({ children }: { children: ReactNode }) {
     if (!container) return;
     let root: ShadowRoot | undefined;
     let imageObserver: MutationObserver | undefined;
+    const imageTimers = new Set<number>();
+    const pendingImages = new WeakSet<HTMLImageElement>();
     const fallback = (image: HTMLImageElement) => {
       if (!image.matches('.fab-logo-circle img') || image.dataset.mtgFallback) return;
       image.dataset.mtgFallback = 'true';
@@ -31,7 +33,17 @@ export function MtgAssistant({ children }: { children: ReactNode }) {
       image.src = '/customers/multi-trans-global-logistics/chat.svg';
     };
     const onError = (event: Event) => { if (event.target instanceof HTMLImageElement) fallback(event.target); };
-    const scanImages = () => root?.querySelectorAll<HTMLImageElement>('.fab-logo-circle img').forEach(image => { if (image.complete && !image.naturalWidth) fallback(image); });
+    const scanImages = () => root?.querySelectorAll<HTMLImageElement>('.fab-logo-circle img').forEach(image => {
+      if (image.complete && !image.naturalWidth) fallback(image);
+      else if (!image.naturalWidth && !pendingImages.has(image)) {
+        pendingImages.add(image);
+        const timer = window.setTimeout(() => {
+          imageTimers.delete(timer);
+          if (!image.naturalWidth) fallback(image);
+        }, 2000);
+        imageTimers.add(timer);
+      }
+    });
     const attach = () => {
       const widget = container.querySelector('myndy-convai');
       if (root || widget?.getAttribute('agent_id') !== 'agent_1791499171_dFkdItb29IQasjpC9SdkgA' || !widget.shadowRoot) return;
@@ -44,7 +56,7 @@ export function MtgAssistant({ children }: { children: ReactNode }) {
     const mountObserver = new MutationObserver(attach);
     mountObserver.observe(container, { childList: true, subtree: true });
     attach();
-    return () => { mountObserver.disconnect(); imageObserver?.disconnect(); root?.removeEventListener('error', onError, true); };
+    return () => { imageTimers.forEach(timer => window.clearTimeout(timer)); mountObserver.disconnect(); imageObserver?.disconnect(); root?.removeEventListener('error', onError, true); };
   }, []);
   return <div ref={shell} data-mtg-ready={mounted} className="mtg-widget-shell" style={{ visibility: obstructsControls ? 'hidden' : undefined }}>{children}</div>;
 }
