@@ -24,5 +24,10 @@ try{
  await assert.rejects(()=>verifyProtectedPreview(input,{apiGet,otherNames:['Nasir test']}));
  await assert.rejects(()=>verifyProtectedPreview(input,{apiGet,privateValues:['Nasir']}));
  for(const previewUrl of ['https://attacker.example/nasirtesting','https://test-preview.vercel.app/other','https://user:password@test-preview.vercel.app/nasirtesting','https://test-preview.vercel.app/nasirtesting?secret=test'])await assert.rejects(()=>verifyProtectedPreview({...input,previewUrl},{apiGet}));
- console.log('PASS: protected/public semantics, five pages, exact deployment binding, credential header confinement, redirect rejection, wrong tenant/private data, missing credentials, safe error/output.');
+ const faqHtml=html+'<a href="/nasirtesting/faq">FAQ</a>';
+ globalThis.fetch=async url=>new Response(faqHtml,{status:String(url).endsWith('/faq')?404:200});
+ await assert.rejects(()=>verifyProtectedPreview(input,{apiGet}),/^Error: PREVIEW_VERIFICATION_FAILED$/);
+ globalThis.fetch=async()=>new Response(faqHtml);
+ assert.deepEqual((await verifyProtectedPreview(input,{apiGet})).pages,['/','/services','/about','/contact','/privacy','/faq']);
+ console.log('PASS: protected/public semantics, base pages and opt-in FAQ/FAQ 404, exact deployment binding, credential header confinement, redirect rejection, wrong tenant/private data, missing credentials, safe error/output.');
 }finally{globalThis.fetch=original;}

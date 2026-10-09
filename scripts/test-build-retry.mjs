@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {compileWithRetry} from './build-worker/build-retry.mjs';
+const error=summary=>Object.assign(Error('failed'),{commandFailure:{category:'build',summary}});
+let calls=0,checks=0;
+const options={delay:async ms=>assert.equal(ms,2000)};
+assert.equal(await compileWithRetry(async()=>{if(++calls===1)throw error('exit_nonzero');return 'compiled';},async()=>checks++,options),'compiled');
+assert.equal(calls,2);assert.equal(checks,2);
+calls=0;
+await assert.rejects(()=>compileWithRetry(async()=>{calls++;throw error('typescript_error');},async()=>{},options));assert.equal(calls,1);
+calls=0;
+await assert.rejects(()=>compileWithRetry(async()=>{calls++;throw error('permission_denied');},async()=>{},options));assert.equal(calls,2);
+calls=0;checks=0;
+await assert.rejects(()=>compileWithRetry(async()=>{calls++;throw error('exit_nonzero');},async()=>{if(++checks===2)throw Error('lease lost');},options),/lease lost/);assert.equal(calls,1);
+console.log('PASS: bounded local compile recovery, deterministic compiler failures not retried, lease checked before every attempt.');

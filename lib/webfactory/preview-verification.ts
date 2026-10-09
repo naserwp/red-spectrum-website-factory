@@ -13,7 +13,8 @@ export async function verifyProtectedPreview(input:Input,options:Options){
   if(d.projectId!==previewProject||d.target==='production'||d.readyState!=='READY'||d.url!==url.hostname||d.meta?.githubCommitSha!==input.resultSha)throw Error();
   let bypass:string|undefined,protectedAccess=false;
   const pages:string[]=[];
-  for(const page of ['','/services','/about','/contact','/privacy']){
+  const routes=['','/services','/about','/contact','/privacy'];
+  for(const page of routes){
    const target=input.previewUrl+page;
    let response=await fetch(target,{redirect:'manual',cache:'no-store',signal:AbortSignal.timeout(10000)});
    if(response.status!==200){
@@ -39,6 +40,7 @@ export async function verifyProtectedPreview(input:Input,options:Options){
    if(!identity||!html.includes('noindex')||!html.includes('<title>'))throw Error();
    if([...(options.privateValues||[]),'BUILD_WORKER_SECRET','LEADS_DATABASE_URL','OPENAI_API_KEY',...(options.otherNames||[])].filter(Boolean).some(s=>html.includes(s)))throw Error();
    const links=[...html.matchAll(/<a\b[^>]*\bhref="(\/[^"]*)"/g)].map(m=>m[1].split(/[?#]/)[0]);
+   if(page===''&&links.includes('/'+input.slug+'/faq'))routes.push('/faq');
    if(links.some(p=>p!==`/${input.slug}`&&!p.startsWith(`/${input.slug}/`))||!['','/services','/about','/contact','/privacy'].every(p=>links.includes('/'+input.slug+p)))throw Error();
    pages.push(page||'/');
   }

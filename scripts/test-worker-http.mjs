@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+import {z} from 'zod';
+const load=(file,deps)=>{const m={exports:{}};new Function('require','module','exports',ts.transpileModule(readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(name=>{assert(name in deps,name);return deps[name];},m,m.exports);return m.exports;};
+const diagnostics=load('lib/webfactory/qa-diagnostics.ts',{});
+const contract=load('lib/webfactory/worker-contract.ts',{zod:{z},'./qa-diagnostics':diagnostics,'./build-paths':load('lib/webfactory/build-paths.ts',{})});
+let calls=0;
+const route=load('app/api/internal/build-worker/route.ts',{'@/lib/webfactory/worker-contract':contract,'@/lib/webfactory/build-worker':{workerAuthorized:header=>header==='Bearer test',workerOperation:async input=>{calls++;return {count:input.diagnostics.length};}}});
+const results=Array.from({length:248},(_,i)=>({check_name:'logo-home-link',status:'passed',page:['','/services','/about','/contact','/privacy','/faq'][i%6],viewport:[320,375,430,768,1024,1440,1920][i%7],duration:123,timestamp:new Date().toISOString()}));
+const body=JSON.stringify({action:'qa_report',jobId:'f0565b20-d1de-47f0-b673-cd1b1bf006dd',lease:'a'.repeat(64),diagnostics:results});assert(body.length>24000);
+const request=(text,auth='Bearer test')=>new Request('http://localhost/api/internal/build-worker',{method:'POST',headers:{authorization:auth},body:text});
+const response=await route.POST(request(body));assert.equal(response.status,200);assert.equal((await response.json()).count,248);
+assert.equal((await route.POST(request('x'.repeat(128001)))).status,400);
+assert.equal((await route.POST(request(body,'wrong'))).status,401);
+assert.equal((await route.POST(request(body.replace('logo-home-link','unsafe-check')))).status,400);assert.equal(calls,1);
+console.log('PASS: full six-page/seven-width QA report accepted; oversized, unauthorized and invalid diagnostics rejected.');

@@ -13,6 +13,9 @@ const query=async(sql,args=[])=>{
 const worker=load('lib/webfactory/build-worker.ts',{'node:crypto':{randomBytes},'./server':{database:()=>({query,connect:async()=>({query,release(){}})}),digest:s=>createHash('sha256').update(s).digest('hex')},'./worker-contract':contract,'./build-executor':{},'./preview-verification':{},'@/lib/customers/registry':{},'./build-evidence':{}});
 const prior=process.env.WEBFACTORY_BUILD_EXECUTOR;process.env.WEBFACTORY_BUILD_EXECUTOR='controlled-worker-v1';
 try{
+ const diagnostic={check_name:'logo-home-link',status:'passed',page:'/faq',viewport:430,duration:1,timestamp:new Date().toISOString()};
+ assert(contract.workerInput.safeParse({action:'qa_report',jobId:target,lease:'a'.repeat(64),diagnostics:[diagnostic]}).success);
+ assert(!contract.qaDiagnosticSchema.safeParse({...diagnostic,page:'/other-tenant'}).success);
  for(const jobId of [target,missing,undefined])assert(contract.workerInput.safeParse({action:'claim',workerId:'test',...(jobId?{jobId}:{})}).success);
  assert(!contract.workerInput.safeParse({action:'claim',workerId:'test',jobId:'invalid'}).success);
  assert.equal((await worker.workerOperation({action:'claim',workerId:'test',jobId:target})).job.id,target);

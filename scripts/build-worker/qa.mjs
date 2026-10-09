@@ -1,6 +1,6 @@
 import {command,cleanEnv,launch,stop} from './runtime.mjs';
 import {createServer} from 'node:net';
-import {readFile} from 'node:fs/promises';
+import {readFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {qaMessages} from '../../lib/webfactory/qa-diagnostics.ts';
 import {settleImages} from './image-readiness.mjs';
@@ -22,7 +22,7 @@ export function checkHtml(record,html,status,job,site,page){
  record.assert('privacy',![job.requestId,job.briefId,'BUILD_WORKER_SECRET','LEADS_DATABASE_URL','OPENAI_API_KEY'].filter(Boolean).some(s=>html.includes(s)),page);
 }
 export function checkBrowser(record,c,page,width){
- for(const [name,ok] of [['mobile-overflow',!c.overflow],['images',c.images],['tenant-isolation',!c.leak],['page-error',!c.error]])record.assert(name,ok,page,width,Date.now(),name==='images'&&c.imageFailures?.length?{imageFailures:c.imageFailures}:{});
+ for(const [name,ok] of [['mobile-overflow',!c.overflow],['images',c.images],['logo-home-link',c.logos],['tenant-isolation',!c.leak],['page-error',!c.error]])record.assert(name,ok,page,width,Date.now(),name==='images'&&c.imageFailures?.length?{imageFailures:c.imageFailures}:{});
 }
 export async function browserStep(record,fn,page,width,name){
  const start=Date.now();try{return await fn();}catch(error){record.assert(error?.code==='COMMAND_TIMEOUT'?'browser-timeout':name,false,page,width,start);}
@@ -31,6 +31,9 @@ export function safeResults(results){return results.map(r=>({...r,safe_message:r
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 async function freePort(){const s=createServer();await new Promise((resolve,reject)=>{s.once('error',reject);s.listen(0,'127.0.0.1',resolve);});const port=s.address().port;await new Promise(r=>s.close(r));return port;}
 export async function runQa(repo,job,site,env,check=async()=>{}){
+ if(!/^[a-f0-9-]{36}$/.test(job.id))throw Error('SCOPE_REJECTED');
+ const screenshots=path.join(path.dirname(repo.dir),path.basename(repo.dir)+'-qa');
+ await mkdir(screenshots,{recursive:true});
  const record=recorder(),port=await freePort(),base=`http://127.0.0.1:${port}`;
  const server=launch(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',String(port)],{cwd:repo.dir,env:cleanEnv,stdio:'ignore'});
  let launchFailed=false;server.on('error',()=>{launchFailed=true;});
@@ -42,18 +45,19 @@ export async function runQa(repo,job,site,env,check=async()=>{}){
   const start=Date.now();let ready=false;
   for(let n=0;n<30;n++){await check();if(launchFailed||server.exitCode!==null)break;try{if((await fetch(base,{signal:AbortSignal.timeout(1000)})).ok){ready=true;break;}}catch{}await pause(1000);}
   record.assert('server-start',ready,'',0,start);
-  for(const page of ['','/services','/about','/contact','/privacy']){
+  for(const page of ['','/services','/about','/contact','/privacy',...(site.design?.faq?['/faq']:[])]){
    await check();let response;try{response=await fetch(base+'/'+job.customerSlug+page,{redirect:'error',signal:AbortSignal.timeout(10000)});}catch{record.assert('customer-route',false,page);}
    const html=await response.text();checkHtml(record,html,response.status,job,site,page);
    record.assert('tenant-isolation',!otherNames.some(name=>html.includes(name)),page);
    await browserStep(record,()=>browser('open',base+'/'+job.customerSlug+page),page,0,'browser-launch');
    await browserStep(record,()=>browser('snapshot','-i'),page,0,'browser-check');
-   for(const width of ([320,375,768,1024,1440,1920])){
+   for(const width of ([320,375,430,768,1024,1440,1920])){
     await browserStep(record,()=>browser('set','viewport',String(width),'1000'),page,width,'browser-check');
     await browserStep(record,()=>browser('open',base+'/'+job.customerSlug+page),page,width,'browser-launch');
     const settled=await browserStep(record,async()=>JSON.parse(await browser('eval',`(${settleImages.toString()})()`)),page,width,'browser-check');
-    const c=await browserStep(record,async()=>JSON.parse(await browser('eval',`({overflow:document.documentElement.scrollWidth>innerWidth,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0),leak:[...document.querySelectorAll('a[href^="/"]')].some(a=>{const p=a.getAttribute('href').split(/[?#]/)[0];return p!=='/${job.customerSlug}'&&!p.startsWith('/${job.customerSlug}/')}),error:!!document.querySelector('[data-nextjs-dialog]')})`)),page,width,'browser-check');
+    const c=await browserStep(record,async()=>JSON.parse(await browser('eval',`({logos:['header','footer'].every(tag=>[...document.querySelectorAll(tag+' a')].some(a=>a.getAttribute('href')==='/${job.customerSlug}'&&a.querySelector('img'))),overflow:document.documentElement.scrollWidth>innerWidth,images:[...document.images].every(i=>i.complete&&i.naturalWidth>0),leak:[...document.querySelectorAll('a[href^="/"]')].some(a=>{const p=a.getAttribute('href').split(/[?#]/)[0];return p!=='/${job.customerSlug}'&&!p.startsWith('/${job.customerSlug}/')}),error:!!document.querySelector('[data-nextjs-dialog]')})`)),page,width,'browser-check');
     c.imageFailures=settled.failures;checkBrowser(record,c,page,width);
+    await browserStep(record,()=>browser('screenshot',path.join(screenshots,`${page.slice(1)||'home'}-${width}.png`),'--full'),page,width,'browser-check');
     if(width===320){
      const menu=await browserStep(record,()=>browser('eval',`(()=>{const d=document.querySelector('header details');if(!d)return false;d.open=true;return true})()`),page,width,'browser-check');
      if(JSON.parse(menu)){
