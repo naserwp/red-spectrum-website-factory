@@ -23,6 +23,54 @@
     // close a menu that a visitor has already opened.
     window.addEventListener('pageshow', event => { if (event.persisted) close(); });
 
+    const form = site.querySelector('[data-broom-contact]');
+    const status = site.querySelector('#bh-form-status');
+    if (form && status) {
+      let busy = false;
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (busy || !form.reportValidity()) return;
+        busy = true;
+        const button = form.querySelector('button[type="submit"]');
+        const payload = new FormData(form);
+        button.disabled = true;
+        button.textContent = 'Sending your inquiry…';
+        form.setAttribute('aria-busy', 'true');
+        status.textContent = 'Sending securely. Please wait.';
+        status.classList.remove('bh-form-error');
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 20000);
+        try {
+          const response = await fetch(form.action, { method: 'POST', body: payload, headers: { Accept: 'application/json' }, signal: controller.signal });
+          const result = await response.json();
+          status.textContent = result.message || 'We could not confirm receipt. Please call or email the team.';
+          if (response.ok && result.ok) {
+            form.reset();
+            form.querySelector('fieldset').disabled = true;
+            button.textContent = 'Inquiry received';
+          } else if (result.saved) {
+            button.textContent = 'Inquiry saved — notification pending';
+            status.classList.add('bh-form-error');
+          } else {
+            busy = false;
+            button.disabled = false;
+            button.textContent = 'Send inquiry ↗';
+            status.classList.add('bh-form-error');
+          }
+        } catch {
+          // An interrupted connection can still leave a saved inquiry. Never
+          // automatically retry or encourage an ambiguous duplicate submission.
+          status.textContent = 'We could not confirm receipt. Please call or email before sending again.';
+          status.classList.add('bh-form-error');
+          button.textContent = 'Please contact the team';
+        } finally {
+          clearTimeout(timeout);
+          form.removeAttribute('aria-busy');
+          status.focus();
+        }
+      });
+    }
+
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (preference.matches || !('IntersectionObserver' in window) || !Element.prototype.animate) return;
     const observer = new IntersectionObserver(entries => {

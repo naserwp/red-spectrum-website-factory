@@ -36,7 +36,7 @@ function errorCode(error: unknown) {
 export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInput, clientIp: string) {
   const mode = site.form.mode as LeadDeliveryMode | "disabled";
   if (mode === "disabled" || !site.form.recipientConfirmed || (mode === "live" && !site.form.testPassed)) return { state: "inactive" as const };
-  if (!leadEmailEnabled(mode) || !leadDeliveryAllowedForSlug(site.slug, mode)) return { state: "inactive" as const };
+  if (!leadEmailEnabled(mode, site.slug) || !leadDeliveryAllowedForSlug(site.slug, mode)) return { state: "inactive" as const };
   const config = getSendGridConfig();
   if (!config) return { state: "unconfigured" as const };
   const store = createLeadStore(config.databaseUrl);
@@ -65,7 +65,7 @@ export async function acceptWebsiteLead(site: CustomerSite, lead: WebsiteLeadInp
 }
 
 export async function retryPendingLeadNotifications(limit = 10) {
-  if (!leadEmailEnabled("test") && !leadEmailEnabled("live")) return { attempted: 0, accepted: 0, failed: 0, disabled: true };
+  if (!leadEmailEnabled("test") && !leadEmailEnabled("live") && !leadEmailEnabled("live", "broom-home-enterprises-llc")) return { attempted: 0, accepted: 0, failed: 0, disabled: true };
   const config = getSendGridConfig();
   if (!config) throw new Error("Lead delivery is not configured.");
   const store = createLeadStore(config.databaseUrl);
@@ -73,7 +73,7 @@ export async function retryPendingLeadNotifications(limit = 10) {
   let accepted = 0; let failed = 0;
   for (const leadId of leadIds) {
     const pending = await store.get(leadId);
-    if (!pending || !leadEmailEnabled(pending.deliveryMode)) continue;
+    if (!pending || !leadEmailEnabled(pending.deliveryMode, pending.customerSlug)) continue;
     const site = getCustomerSite(pending.customerSlug);
     if (!site || site.form.mode !== pending.deliveryMode || !site.form.recipientConfirmed || (pending.deliveryMode === "live" && !site.form.testPassed) || !leadDeliveryAllowedForSlug(site.slug, pending.deliveryMode)) continue;
     // Never retry a disabled tenant or silently send an old lead to a changed recipient.

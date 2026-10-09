@@ -92,7 +92,7 @@
           "kind": "contact",
           "eyebrow": "Contact",
           "heading": "Tell us what you are planning.",
-          "body": "Reach Broom Home Enterprise directly by phone or email. Website email delivery remains disabled until the hosting transfer and recipient mapping are verified.",
+          "body": "Send an inquiry to Broom Home or contact the team directly by phone or email. Your details are used to respond to your request.",
           "image": 3,
           "reverse": false
         }
@@ -102,7 +102,7 @@
           "kind": "statement",
           "eyebrow": "Privacy",
           "heading": "Simple, careful communication.",
-          "body": "Direct phone and email links use the visitor's own applications. Website form delivery remains disabled until it is separately tested and approved.",
+          "body": "Inquiry details are stored and used to respond to your request. Email notifications are sent to the verified Broom Home business address.",
           "image": 5,
           "reverse": false
         }
@@ -197,13 +197,13 @@
     },
     "contact": {
       "headline": "Tell us what you are planning.",
-      "intro": "Call or email Broom Home Enterprise to discuss your next real estate move."
+      "intro": "Tell us about your next move using the inquiry form, or contact Broom Home directly by phone or email."
     },
     "privacy": {
       "headline": "Privacy, in clear terms.",
       "body": [
         "This notice describes the Broom Home Enterprises LLC review website. Contact info@broomhome.biz with questions about your information. Final retention periods and applicable privacy rights require business confirmation before public launch.",
-        "The inquiry form is disabled. It does not submit or store the information you type. No inquiry email is sent by this preview. Please contact the business directly by phone or email.",
+        "When you submit an inquiry, we collect your name, email address, optional phone number, selected service and message to respond to your request. Inquiry records are stored by the website service, and an email notification is processed through SendGrid for delivery to info@broomhome.biz. Please share only the information needed for your inquiry. Contact the business with questions about access, correction or deletion.",
         "Phone and email links open your own applications. Information you choose to share is handled by your communications provider and the business to respond to your inquiry. Do not send account numbers, payment credentials, identification documents or sensitive financial information.",
         "Myndy live chat is not active. No Myndy script is loaded and no conversation is sent to Myndy from this preview. A revised notice and separate approval are required before activation.",
         "The website host may process IP addresses, request information and technical logs to deliver and protect the website. No separate marketing analytics, advertising tags or payment processing have been added to this customer experience.",
@@ -281,9 +281,9 @@
   },
   "form": {
     "provider": "sendgrid",
-    "mode": "disabled",
-    "recipientConfirmed": false,
-    "testPassed": false
+    "mode": "live",
+    "recipientConfirmed": true,
+    "testPassed": true
   },
   "myndy": {
     "agentName": "Broom Home Guide",

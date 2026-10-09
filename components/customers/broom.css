@@ -50,3 +50,15 @@
 @media(max-width:600px){.bh-hero{grid-template-columns:minmax(0,1fr);padding:28px 6% 36px;gap:24px}.bh-hero h1{font-size:clamp(49px,12.8vw,76px)}.bh-hero-visual .bh-photo{min-height:0;height:clamp(310px,80vw,450px)}.bh-service-grid{gap:10px}.bh-service-card,.bh-service-card:last-child{padding:22px 16px}.bh-service-card h3{font-size:25px}.bh-service-card:last-child{min-height:170px}.bh-footer-top{gap:28px 18px}}
 @media(max-width:359px){.bh-header{gap:12px}.bh-header img{width:184px}.bh-image-note{width:90%}.bh-footer-top{grid-template-columns:minmax(0,1fr)}.bh-footer-top>div:first-child{grid-column:auto}.bh-footer h2{margin-bottom:12px}}
 @media(max-width:1100px){.bh-values>div{grid-template-columns:1fr;gap:8px}}
+
+.bh-perspectives{padding-top:15px}.bh-perspective-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:22px;align-items:start}
+.bh-perspective-grid figure{margin:0;min-width:0}.bh-perspective-grid .bh-photo{min-height:0;height:360px}.bh-perspective-grid figure:first-child .bh-photo{height:440px}
+.bh-perspective-grid figcaption{font:italic 23px/1.35 Georgia,serif;padding:18px 0;border-bottom:1px solid #b9965a88}.bh .bh-photo-disclaimer{font-size:11px;margin-top:20px}
+.bh-contact-grid .bh-contact-photo{height:240px;min-height:0;margin-bottom:35px}.bh-form-panel{border-top:2px solid var(--gold)}
+.bh-form-panel input:focus-visible,.bh-form-panel select:focus-visible,.bh-form-panel textarea:focus-visible{outline:2px solid #836532;outline-offset:3px}
+.bh-form-panel .bh-consent{display:flex;align-items:flex-start;gap:12px;line-height:1.65;margin:25px 0}
+.bh-form-panel .bh-consent input{width:20px;height:20px;min-height:20px;flex:0 0 20px;margin:2px 0;accent-color:var(--navy)}
+.bh-form-status{padding:12px 0;min-height:48px;border-bottom:1px solid #13223825}.bh .bh-form-error{color:#8a342a}
+.bh-form-panel button{width:100%;font-size:13px}.bh-honeypot{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:800px){.bh-perspective-grid{gap:16px}.bh-perspective-grid .bh-photo{height:260px}.bh-perspective-grid figure:first-child .bh-photo{height:330px}.bh-perspective-grid figcaption{font-size:20px}}
+@media(max-width:600px){.bh-perspective-grid{grid-template-columns:1fr 1fr;gap:28px 16px}.bh-perspective-grid figure:first-child{grid-column:span 2}.bh-perspective-grid figure:first-child .bh-photo{height:350px}.bh-perspective-grid .bh-photo{height:220px}.bh-perspective-grid figcaption{font-size:21px}.bh-contact-grid .bh-contact-photo{height:240px}.bh-form-panel{padding:28px 20px}}
