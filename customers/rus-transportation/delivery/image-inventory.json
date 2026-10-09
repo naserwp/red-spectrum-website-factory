@@ -1,0 +1,35 @@
+[
+  {
+    "file": "public/customers/rus-transportation/images/image-0.webp",
+    "provenance": "licensed",
+    "source": "https://unsplash.com/photos/P0bVatS8Jdw",
+    "downloadUrl": "https://images.unsplash.com/photo-1766785368863-f2188a8c8b32?auto=format&fit=crop&w=1800&q=85",
+    "license": "https://unsplash.com/license",
+    "sha256": "51173779cce4a1c6e61d5baecebcb7aed51279a17f11637bd6c3dd4c037f76ea",
+    "bytes": 78346,
+    "width": 1600,
+    "height": 1067
+  },
+  {
+    "file": "public/customers/rus-transportation/images/image-1.webp",
+    "provenance": "licensed",
+    "source": "https://unsplash.com/photos/9Ayfcdmu2YE",
+    "downloadUrl": "https://images.unsplash.com/photo-1633726034721-a72a3394fab9?auto=format&fit=crop&w=1800&q=85",
+    "license": "https://unsplash.com/license",
+    "sha256": "72b9f6abc3ddc198461af2f65f58dae1f7bca3f93fb28107fdc473cadea5dae1",
+    "bytes": 175846,
+    "width": 1600,
+    "height": 1068
+  },
+  {
+    "file": "public/customers/rus-transportation/images/image-2.webp",
+    "provenance": "licensed",
+    "source": "https://unsplash.com/photos/z-xDITGdRMA",
+    "downloadUrl": "https://images.unsplash.com/photo-1761479556231-570639303a51?auto=format&fit=crop&w=1800&q=85",
+    "license": "https://unsplash.com/license",
+    "sha256": "eb86a60f4984bdbdc4ff12e93725e2d7f948e88ea7ef074b5cb62357202af02b",
+    "bytes": 72712,
+    "width": 1600,
+    "height": 1069
+  }
+]

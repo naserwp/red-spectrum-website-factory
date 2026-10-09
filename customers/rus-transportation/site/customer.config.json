@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "1.0",
+  "design": {
+    "faq": [
+      {
+        "question": "Is over-the-road transportation available?",
+        "answer": "Availability has not been confirmed for this preview. Ask RUS Transportation LLC about your pickup and delivery locations, shipment dates, cargo, and equipment needs before making arrangements."
+      },
+      {
+        "question": "Can I ask about local transportation work?",
+        "answer": "Yes—frame your inquiry around the locations, distance, timing, and expected frequency. Ask directly whether local transportation is currently available and what requirements would apply."
+      },
+      {
+        "question": "What areas are served?",
+        "answer": "No service area is confirmed here. Provide the specific pickup and delivery locations and ask whether that route can be considered, including any site-access or appointment restrictions."
+      },
+      {
+        "question": "How should I request a transportation quote?",
+        "answer": "Prepare cargo type, dimensions, approximate weight, locations, preferred dates, and loading requirements. Ask whether a quote is available for that movement and confirm the scope and terms directly. The preview form cannot submit a request."
+      },
+      {
+        "question": "How can I ask about a driving position?",
+        "answer": "Ask whether any positions are currently open and whether the work would be over the road, local, or another arrangement. Confirm requirements, compensation structure, scheduling, and the application process directly. Do not upload licenses or employment documents to this preview."
+      },
+      {
+        "question": "Can I send an inquiry through this preview?",
+        "answer": "No. The preview form is inactive, and contact details are awaiting confirmation. No assistant or payment features are enabled."
+      }
+    ],
+    "version": "2.0",
+    "hero": "panorama",
+    "navigation": "balanced",
+    "typography": "modern",
+    "spacing": "generous",
+    "palette": "ink",
+    "logo": "open-frame",
+    "pages": {
+      "home": [
+        {
+          "kind": "split",
+          "eyebrow": "RUS Transportation LLC · Transportation",
+          "heading": "Start with the road ahead.",
+          "body": "Have a shipment to discuss or an interest in driving work? Ask RUS Transportation LLC about transportation availability and any current driver opportunities.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "statement",
+          "eyebrow": "A clear starting point",
+          "heading": "Talk through what matters.",
+          "body": "For businesses, that means the load, the route, and the timing. For drivers, it means work expectations, fair treatment, and the kind of opportunity you are looking for. Bring those questions to the conversation.",
+          "image": 0,
+          "reverse": false
+        },
+        {
+          "kind": "split",
+          "eyebrow": "Transportation inquiries",
+          "heading": "Across the miles—or closer to home?",
+          "body": "Ask whether over-the-road transportation or local work is available for your needs. Start with pickup and delivery locations, preferred dates, and what needs to move. Confirm route coverage and equipment suitability directly.",
+          "image": 1,
+          "reverse": true
+        },
+        {
+          "kind": "image",
+          "eyebrow": "Before the journey",
+          "heading": "The details come before the miles.",
+          "body": "Cargo, access, loading arrangements, and delivery requirements all belong in the first conversation. Illustrative transportation photography—not a company vehicle or completed assignment.",
+          "image": 2,
+          "reverse": false
+        },
+        {
+          "kind": "columns",
+          "eyebrow": "Driver inquiries",
+          "heading": "Put your work questions on the table.",
+          "body": "Work pattern: Ask whether any over-the-road or local driving opportunities are currently available.\n\nExpectations: Confirm experience requirements, scheduling, and time away from home.\n\nFair treatment: Ask how compensation is structured, how terms are explained, and who handles questions or concerns.",
+          "image": 2,
+          "reverse": false
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Prepare your inquiry",
+          "heading": "A useful conversation starts here.",
+          "body": "1. Choose your topic: transportation needs or driving work.\n2. Gather the essentials: route and cargo details, or the work pattern you are interested in.\n3. Confirm the next step directly: availability, requirements, and whether a quote or application process is available.",
+          "image": 2,
+          "reverse": false
+        },
+        {
+          "kind": "contact",
+          "eyebrow": "Next steps",
+          "heading": "Bring the route. Bring the questions.",
+          "body": "Prepare a transportation inquiry or ask about driving opportunities. Contact details are awaiting confirmation; the preview form is inactive and cannot send a message.",
+          "image": 2,
+          "reverse": false
+        }
+      ],
+      "services": [
+        {
+          "kind": "split",
+          "eyebrow": "Over-the-road inquiries",
+          "heading": "Ask about the longer haul.",
+          "body": "Planning a shipment between locations? Ask whether over-the-road transportation is available for your route and dates. Include cargo type, approximate dimensions and weight, pickup and delivery locations, and any appointment requirements. Equipment, coverage, and scheduling must be confirmed directly.",
+          "image": 3,
+          "reverse": false
+        },
+        {
+          "kind": "split",
+          "eyebrow": "Local transportation inquiries",
+          "heading": "Ask what may be possible nearby.",
+          "body": "Looking into a shorter route or recurring local movement? Share the locations, expected frequency, loading arrangements, and site-access details. Ask whether local work is available and what requirements would apply; local service and coverage are not yet confirmed.",
+          "image": 4,
+          "reverse": true
+        },
+        {
+          "kind": "steps",
+          "eyebrow": "Quote preparation",
+          "heading": "Make the request specific.",
+          "body": "1. Describe the shipment, including packaging, size, weight, and handling needs.\n2. Outline pickup and delivery access, preferred dates, and any scheduling flexibility.\n3. Ask whether the movement can be considered for a quote, then confirm scope, terms, and any additional requirements before making arrangements.",
+          "image": 4,
+          "reverse": false
+        }
+      ],
+      "about": [
+        {
+          "kind": "split",
+          "eyebrow": "About RUS Transportation LLC",
+          "heading": "The work matters. So do the people.",
+          "body": "Transportation conversations bring together business needs and decisions about working life. Ask RUS Transportation LLC about the work you have in mind, the expectations involved, and the details you need before choosing a next step.",
+          "image": 5,
+          "reverse": false
+        },
+        {
+          "kind": "split",
+          "eyebrow": "Fairness in practical terms",
+          "heading": "Ask for clarity before a commitment.",
+          "body": "For a transportation inquiry, discuss responsibilities, requirements, and written terms. For a driver inquiry, ask about compensation structure, scheduling, and how concerns are handled. Confirm the specifics directly rather than relying on assumptions.",
+          "image": 6,
+          "reverse": true
+        },
+        {
+          "kind": "image",
+          "eyebrow": "Looking ahead",
+          "heading": "An opportunity begins with a question.",
+          "body": "Interested in work on the road or closer to home? Ask whether any driving opportunities are available and what the next step would involve. Illustrative photography—not RUS Transportation LLC personnel, equipment, or facilities.",
+          "image": 7,
+          "reverse": false
+        }
+      ],
+      "contact": [
+        {
+          "kind": "contact",
+          "eyebrow": "Contact",
+          "heading": "What would you like to discuss?",
+          "body": "Transportation: Prepare your pickup and delivery locations, preferred dates, cargo details, and loading needs.\n\nDriving work: Prepare the type of work you are interested in and questions about availability, requirements, and working terms.\n\nPreview notice: Contact details are awaiting confirmation. This form is inactive and does not send inquiries. Do not enter personal documents or sensitive information in this preview.",
+          "image": 7,
+          "reverse": false
+        }
+      ],
+      "privacy": [
+        {
+          "kind": "statement",
+          "eyebrow": "Privacy · Draft for review",
+          "heading": "About this preview.",
+          "body": "This website is a draft preview. The inquiry form is inactive and cannot submit information. No assistant or payment features are enabled.\n\nThis draft is not a finalized privacy policy. Before launch, the privacy notice must be reviewed against the site's actual data collection and use, service providers, and applicable requirements. Analytics, retention practices, and privacy contact details have not been confirmed and are not represented here.\n\nDo not enter personal or sensitive information in this preview.",
+          "image": 7,
+          "reverse": false
+        }
+      ]
+    },
+    "imageDirection": "Use eight distinct, generic editorial photographs with natural light, believable working environments, and restrained navy, gray, and warm-red tones. Image 0: an unbranded tractor-trailer on an open highway, composed wide with space for the hero heading. Image 1: a road transitioning between an industrial district and open countryside. Image 2: a close view of unbranded truck wheels and road markings, emphasizing preparation rather than speed. Image 3: a distant truck on a broad interstate landscape. Image 4: a generic loading area with clear access and no visible business signage. Image 5: a quiet cab interior with a notebook and work gloves, no readable documents. Image 6: two anonymous adults discussing a blank route sheet in a neutral setting, not presented as staff or clients. Image 7: a road extending toward a soft morning horizon. All photography is illustrative, not evidence of company fleet, personnel, facilities, coverage, or completed work. Give each displayed photograph a discreet visible 'Illustrative photography' caption. Avoid logos, license details, readable screens, staged team portraits, unsafe driving, and images implying specialized equipment availability. Display images only in split and image sections; other section types remain text-led.",
+    "brandNotes": "Draft design and copy for admin review. Use a panoramic opening, balanced navigation, generous spacing, and sturdy modern typography to create an approachable transportation identity without a corporate sales gloss. The ink palette should read as deep navy, warm white, and graphite, with restrained muted-red accents. Alternate wide photographs, short statements, practical split sections, and a single text-column section rather than repeating cards. Keep inquiry labels specific: 'Ask about transportation,' 'Ask about driving opportunities,' and 'Prepare a quote request.' Considered three logo concepts: open-frame, an open rectangular frame with a simple road-like gap suggesting an invitation to talk; interlock, linked R and T forms suggesting coordination; ligature, a compact RUS wordmark with a shared stroke suggesting movement. Selected open-frame for its approachable character and clear reproduction at small sizes, paired with the full business name. Reliability, opportunity, and fairness guide tone and visual character; they are not presented as verified performance or employment promises. The submitted founding date, operating history, service availability, routes, equipment, hiring status, and working terms remain unverified and are omitted as factual claims. No testimonials, credentials, pricing, response-time promises, or free consultations are included. Contact details and final privacy content require review before publication."
+  },
+  "slug": "rus-transportation",
+  "status": "draft",
+  "templateId": "ledger",
+  "business": {
+    "name": "RUS Transportation LLC",
+    "industry": "Transportation",
+    "tagline": "A considered beginning.",
+    "summary": "Connect with RUS Transportation LLC to discuss your needs and confirm current offerings."
+  },
+  "contact": {
+    "phone": {
+      "value": "12259750987",
+      "status": "draft",
+      "source": "Customer request; final publication review pending"
+    },
+    "email": {
+      "value": "Strickey1991@gmail.com",
+      "status": "draft",
+      "source": "Customer request; final publication review pending"
+    },
+    "address": {
+      "value": "",
+      "status": "missing"
+    },
+    "serviceAreas": {
+      "value": "",
+      "status": "missing"
+    }
+  },
+  "services": [
+    {
+      "name": "Discuss your needs",
+      "description": "Specific services and availability require direct confirmation.",
+      "status": "draft"
+    }
+  ],
+  "pages": {
+    "home": {
+      "eyebrow": "RUS Transportation LLC",
+      "headline": "Start with the road ahead.",
+      "intro": "Have a shipment to discuss or an interest in driving work? Ask RUS Transportation LLC about transportation availability and any current driver opportunities.",
+      "ctaLabel": "Start a conversation"
+    },
+    "services": {
+      "headline": "Your needs. A clear starting point.",
+      "intro": "Discuss what you have in mind and confirm current offerings directly before making plans."
+    },
+    "about": {
+      "headline": "A name. A conversation. A beginning.",
+      "paragraphs": [
+        "Connect with RUS Transportation LLC to discuss your needs and confirm current offerings."
+      ]
+    },
+    "contact": {
+      "headline": "What do you have in mind?",
+      "intro": "Contact details are customer-provided and subject to final publication review."
+    },
+    "privacy": {
+      "headline": "Privacy, clearly explained.",
+      "body": [
+        "DRAFT — Business and legal review required before publication.",
+        "The inquiry form in this preview is disabled and does not submit information. Myndy, payments and lead delivery are inactive.",
+        "If you choose a phone or email link, your phone or email application handles that communication. Do not send payment credentials or sensitive personal information.",
+        "Hosting infrastructure may process technical request information to serve and secure pages. Confirm the final hosting, retention and privacy arrangements before launch."
+      ]
+    }
+  },
+  "branding": {
+    "primary": "#343b48",
+    "secondary": "#1c2632",
+    "accent": "#a79472",
+    "surface": "#f5f3ee",
+    "logoPath": "/customers/rus-transportation/logo.svg",
+    "faviconPath": "/customers/rus-transportation/favicon.svg"
+  },
+  "images": {
+    "hero": {
+      "src": "/customers/rus-transportation/images/image-0.webp",
+      "alt": "Illustrative transportation and roadway photograph 1; not a company project",
+      "width": 1600,
+      "height": 1067
+    },
+    "gallery": [
+      {
+        "src": "/customers/rus-transportation/images/image-1.webp",
+        "alt": "Illustrative transportation and roadway photograph 2; not a company project",
+        "width": 1600,
+        "height": 1068
+      },
+      {
+        "src": "/customers/rus-transportation/images/image-2.webp",
+        "alt": "Illustrative transportation and roadway photograph 3; not a company project",
+        "width": 1600,
+        "height": 1069
+      }
+    ]
+  },
+  "seo": {
+    "title": "RUS Transportation LLC",
+    "description": "Contact RUS Transportation LLC to discuss your needs and confirm current offerings."
+  },
+  "schema": {
+    "type": "Organization",
+    "description": "Connect with RUS Transportation LLC to discuss your needs and confirm current offerings."
+  },
+  "form": {
+    "provider": "sendgrid",
+    "mode": "disabled",
+    "recipientConfirmed": false,
+    "testPassed": false
+  },
+  "myndy": {
+    "agentName": "Welcome Guide",
+    "greeting": "How can I help you prepare your inquiry?",
+    "avatarBrief": "A restrained abstract brand mark, not a person.",
+    "knowledgeContextPath": "customers/rus-transportation/myndy/agent-context.md",
+    "embed": {
+      "enabled": false,
+      "agentId": "",
+      "scriptUrl": ""
+    }
+  }
+}
